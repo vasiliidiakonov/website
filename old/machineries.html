@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Machineries of Joy</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css"
+    />
+  </head>
+  <body>
+    <style>
+      @keyframes nav {
+        from {
+          color: black;
+        }
+        to {
+          color: darkgray;
+        }
+      }
+      a {
+        color: black;
+        text-decoration: none;
+      }
+      .magenta {
+        color: RosyBrown;
+        width: 100vw;
+        text-decoration: none;
+      }
+      .cyan {
+        color: #009fe3;
+      }
+      header {
+        position: fixed;
+        background-color: white;
+        margin-top: 0px;
+        color: black;
+        width: 100vw;
+        height: 6.5vh;
+        z-index: -1;
+      }
+
+      body {
+        font-family: "HelveticaNeueMedium", "HelveticaNeue-Medium",
+          "Helvetica Neue Medium", "HelveticaNeue", "Helvetica Neue",
+          "TeXGyreHerosRegular", "Helvetica", "Tahoma", "Geneva", "Arial",
+          sans-serif;
+        font-weight: 500;
+        font-stretch: normal;
+        font-size: 13pt;
+        -webkit-font-smoothing: antialiased;
+      }
+      #nav {
+        position: fixed;
+        display: none;
+        top: 36px;
+        height: 9vh;
+        width: 100vw;
+        background: white;
+        margin-left: 0vw;
+        z-index: 0;
+      }
+      #nav-inline {
+        display: inline;
+        position: absolute;
+      }
+      #icon {
+        position: fixed;
+        width: 43px;
+        height: 1px;
+        left: 60vw;
+        top: 17px;
+        display: inline;
+        background-color: black;
+        border: 1px black;
+
+        z-index: 1;
+      }
+      #icon2 {
+        position: fixed;
+        width: 43px;
+        height: 1px;
+        left: 60vw;
+        top: 28px;
+        display: inline;
+        background-color: black;
+        border: 1px black;
+
+        z-index: 1;
+      }
+      #icon3 {
+        display: none;
+        position: fixed;
+        width: 43px;
+        height: 1px;
+        left: 60vw;
+        top: 22px;
+        background-color: black;
+        border: 1px black;
+
+        transform: rotate(-45deg);
+        z-index: 1;
+      }
+      #icon4 {
+        display: none;
+        position: fixed;
+        width: 43px;
+        height: 1px;
+        left: 60vw;
+        top: 22px;
+        background-color: black;
+        border: 1px black;
+
+        transform: rotate(45deg);
+        z-index: 1;
+      }
+      #icon-underline {
+        z-index: 2;
+        position: fixed;
+        width: 50px;
+        height: 26px;
+        left: 59vw;
+        top: 15px;
+        cursor: pointer;
+
+        background: white;
+        opacity: 0;
+      }
+      #top-nav {
+        width: 70vw;
+        margin-left: 33vw;
+        margin-top: 2px;
+      }
+      .inside-nav {
+        width: 70vw;
+        margin-left: 33vw;
+        margin-top: 6px;
+      }
+      .runway {
+        position: absolute;
+        z-index: -4;
+        margin-top: 78px;
+      }
+
+      .hero {
+        width: 100%;
+
+        align: center;
+      }
+      img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 70%;
+      }
+      .caption {
+        margin-left: 33vw;
+        padding-top: 5px;
+      }
+      #header-inside {
+        margin-left: 33vw;
+        margin-top: 15px;
+      }
+      .runway-el {
+        margin-top: 60px;
+        padding-bottom: 10px;
+      }
+      footer {
+        background-color: white;
+        width: 100vw;
+        height: 20vh;
+        bottom: 0px;
+        display: block;
+      }
+
+      #title {
+        top: 60px;
+        position: absolute;
+        z-index: -2;
+        background-color: white;
+        color: black;
+        width: 33vw;
+      }
+      #inside-title {
+        margin-left: 1vw;
+      }
+      #year {
+        margin-top: 6px;
+        margin-left: 1vw;
+        color: RosyBrown;
+        position: absolute;
+        z-index: -2;
+        background-color: none;
+      }
+      #projectinfo {
+        margin-left: 33vw;
+        color: black;
+        top: 60px;
+        position: absolute;
+        z-index: -2;
+        text-decoration: underline;
+        background-color: white;
+        width: 7.5vw;
+        display: inline;
+        cursor: pointer;
+      }
+      #projectinfoalt {
+        margin-left: 33vw;
+        color: black;
+        top: 60px;
+        position: absolute;
+        z-index: -2;
+        text-decoration: underline;
+        background-color: white;
+        width: 7.5vw;
+        display: none;
+        cursor: pointer;
+      }
+
+      #menu-underlay {
+        position: absolute;
+        width: 100%;
+        height: 80px;
+        z-index: -3;
+        top: 34px;
+        background-color: white;
+      }
+      #info {
+        position: fixed;
+        width: 100%;
+        height: 45vh;
+        /*background-color: black; */ /*#0d0313*/
+        margin-top: 35px;
+        display: none;
+        flex-wrap: wrap;
+        -webkit-backdrop-filter: invert(100%);
+        backdrop-filter: invert(100%);
+        opacity: 1;
+        z-index: 1;
+      }
+      #info-underlay {
+        position: fixed;
+        width: 100%;
+        height: 45vh;
+        background-color: snow; /*#0d0313*/
+        margin-top: 35px;
+        opacity: 0.9;
+        z-index: 0;
+        display: none;
+      }
+      #info-resp {
+        color: white;
+        margin-left: 1vw;
+        width: 26vw;
+        margin-top: 5px;
+        line-height: 15pt;
+      }
+      #info-strat {
+        color: white;
+        margin-left: 6vw;
+        width: 43vw;
+        margin-top: 5px;
+        line-height: 15pt;
+      }
+      #info-foot {
+        height: 10vh;
+        margin-top: auto;
+        flex: 0 0 100%;
+      }
+      #toptopnav:hover {
+        color: darkgray;
+
+        animation-name: nav;
+        animation-duration: 0.2s;
+        animation-timing-function: ease-in-out;
+      }
+
+      #bottomnav:hover {
+        color: darkgray;
+
+        animation-name: nav;
+        animation-duration: 0.2s;
+        animation-timing-function: ease-in-out;
+      }
+      #midnav:hover {
+        color: darkgray;
+
+        animation-name: nav;
+        animation-duration: 0.2s;
+        animation-timing-function: ease-in-out;
+      }
+      .links{
+        text-decoration:underline;
+        color:white;
+      }
+
+      @media screen and (max-width: 500px) {
+        header {
+          height: 6.5vh;
+        }
+        img {
+          width: 100%;
+        }
+        .hero {
+          margin-top: 30px;
+        }
+        #header-inside {
+          margin-left: 7vw;
+        }
+        .caption {
+          margin-left: 7vw;
+        }
+        #icon {
+          left: 83vw;
+        }
+        #icon2 {
+          left: 83vw;
+        }
+        #icon3 {
+          left: 83vw;
+        }
+        #icon4 {
+          left: 83vw;
+        }
+        #icon-underline {
+          left: 82vw;
+        }
+        .inside-nav {
+          margin-left: 7vw;
+        }
+        #top-nav {
+          margin-left: 7vw;
+        }
+        #info {
+          top: 79px;
+          height: 90vh;
+          flex-wrap: wrap;
+          position: fixed;
+          overflow: auto;
+        }
+        #info-underlay {
+          top: 79px;
+          height: 90vh;
+          position: fixed;
+        }
+        #info-resp {
+          margin-left: 7vw;
+          width: 80vw;
+        }
+        #info-strat {
+          margin-left: 7vw;
+          width: 80vw;
+          margin-top: 0px;
+        }
+        #projectinfo {
+          margin-left: 72.5vw;
+          width: 25vw;
+          height: 5vh;
+          position: absolute;
+        }
+        #projectinfoalt {
+          margin-left: 82.3vw;
+          position: absolute;
+        }
+        #title {
+          width: 100vw;
+          position: absolute;
+        }
+        #inside-title {
+          margin-left: 7vw;
+          position: absolute;
+        }
+        #year {
+          margin-top: 20px;
+          margin-left: 7vw;
+          position: absolute;
+        }
+        #menu-underlay {
+          position: absolute;
+        }
+        #info-foot {
+          height: 10vh;
+          margin-top: auto;
+          flex: 0 0 100%;
+        }
+      }
+    </style>
+    <div id="icon-underline"></div>
+    <div id="icon"></div>
+    <div id="icon2"></div>
+    <div id="icon3"></div>
+    <div id="icon4"></div>
+    <header>
+      <p id="header-inside">
+        <a class="magenta" href="index.html">Vasily Dyakonov </a>
+      </p>
+    </header>
+    <nav id="nav">
+      <div id="nav-inline">
+        <div id="top-nav">
+          <a id="toptopnav" href="index.html">Brand &amp; Web Design</a>
+        </div>
+        <div class="inside-nav">
+          <a id="midnav" href="other.html">Other Projects</a>
+        </div>
+        <div class="inside-nav">
+          <a id="bottomnav" href="profile.html">Profile</a>
+        </div>
+      </div>
+    </nav>
+
+    <div id="title">
+      <p id="inside-title">Machineries of Joy</p>
+      <p id="year">2020</p>
+    </div>
+    <div id="projectinfo">
+      <p><a>Project Info</a></p>
+    </div>
+    <div id="projectinfoalt">
+      <p>Close</p>
+    </div>
+    <div id="menu-underlay"></div>
+    <div class="runway">
+      <div id="info">
+        <p id="info-resp"><a class="magenta">Links:</a><br />
+           <a class="links" href="https://machineriesofjoy.glitch.me">Project Page</a><br />
+          <a class="links" href="https://www.youtube.com/watch?v=DEhz7dEnnEU&feature=youtu.be">Video Performance</a><br />
+          
+          <a class="links" href="https://classof2020.online/projects/wassily.html">Graduation Show Page</a><br />
+          <a class="links" href="https://classof2020.online/books/wassily.html">Project Log</a><br />
+          <br /><br /><a class="magenta">Medium:</a><br />
+          Mixed media.
+        </p>
+
+     
+         
+      
+        <p id="info-strat">
+          <a class="magenta">Info:</a><br />
+Machineries of Joy is an experiment in publishing. It consists of a website with a series of publications and a feed of what influenced them. Each publication is produced using appropriated material mixed with generative collage. By acting as a an editor, designer, writer and publisher I intended to explore a space between traditional art practice and institutional editorial style in form of a long term production-performance.
+I am including links and spreads here as opposed to contents of the publications as the project as a whole should be taken in at once, as opposed to just constituent parts.
+          
+        </p>
+        <div id="info-foot"></div>
+      </div>
+      <div id="info-underlay"></div>
+      <div class="runway-el">
+        <div class="hero">
+          <a><img
+            src="https://cdn.glitch.global/cb2683d9-7542-47a3-9caa-215bacfe2645/mach1.png?v=1650544753917"
+            alt="ascent"
+          /></a>
+        </div>
+      </div>
+       <div class="runway-el">
+        <div class="hero">
+          <a><img
+            src="https://cdn.glitch.global/cb2683d9-7542-47a3-9caa-215bacfe2645/mach2.png?v=1650544752891"
+            alt="ascent"
+          /></a>
+        </div>
+      </div>
+       <div class="runway-el">
+        <div class="hero">
+          <a><img
+            src="https://cdn.glitch.global/cb2683d9-7542-47a3-9caa-215bacfe2645/mach3.png?v=1650544753032"
+            alt="ascent"
+          /></a>
+        </div>
+      </div>
+      <div class="runway-el">
+        <div class="hero">
+          <a href="https://www.youtube.com/watch?v=DEhz7dEnnEU&feature=youtu.be"><img
+            src="https://cdn.glitch.global/cb2683d9-7542-47a3-9caa-215bacfe2645/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202021-12-10%20%D0%B2%2018.34.19.png?v=1650544240676"
+            alt="ascent"
+          /></a>
+        </div>
+      </div>
+      
+      <footer></footer>
+    </div>
+  </body>
+  <script>
+    document
+      .getElementById("projectinfoalt")
+      .addEventListener("click", myFunction1);
+
+    function myFunction1() {
+      var x = document.getElementById("projectinfo");
+      var y = document.getElementById("projectinfoalt");
+      var z = document.getElementById("info");
+      var a = document.getElementById("info-underlay");
+      var b = document.getElementById("title");
+      var c = document.getElementById("year");
+      var d = document.getElementById("menu-underlay");
+
+      if (x.style.display === "inline") {
+        x.style.display = "none";
+      } else {
+        x.style.display = "inline";
+      }
+      if (x.style.position === "absolute") {
+        x.style.position = "fixed";
+      } else {
+        x.style.position = "absolute";
+      }
+      if (y.style.display === "none") {
+        y.style.display = "inline";
+      } else {
+        y.style.display = "none";
+      }
+      if (y.style.position === "absolute") {
+        y.style.position = "fixed";
+      } else {
+        y.style.position = "absolute";
+      }
+      if (z.style.display === "none") {
+        z.style.display = "flex";
+      } else {
+        z.style.display = "none";
+      }
+      if (a.style.display === "none") {
+        a.style.display = "inline";
+      } else {
+        a.style.display = "none";
+      }
+      if (b.style.position === "absolute") {
+        b.style.position = "fixed";
+      } else {
+        b.style.position = "absolute";
+      }
+
+      if (c.style.position === "absolute") {
+        c.style.position = "fixed";
+      } else {
+        c.style.position = "absolute";
+      }
+      if (d.style.position === "absolute") {
+        d.style.position = "fixed";
+      } else {
+        d.style.position = "absolute";
+      }
+    }
+  </script>
+  <script>
+    document
+      .getElementById("projectinfo")
+      .addEventListener("click", myFunction2);
+
+    function myFunction2() {
+      var x = document.getElementById("projectinfo");
+      var y = document.getElementById("projectinfoalt");
+      var z = document.getElementById("info");
+      var a = document.getElementById("info-underlay");
+      var b = document.getElementById("title");
+      var c = document.getElementById("year");
+      var d = document.getElementById("menu-underlay");
+
+      if (x.style.display === "none") {
+        x.style.display = "inline";
+      } else {
+        x.style.display = "none";
+      }
+
+      if (x.style.position === "fixed") {
+        x.style.position = "absolute";
+      } else {
+        x.style.position = "fixed";
+      }
+
+      if (y.style.display === "inline") {
+        y.style.display = "none";
+      } else {
+        y.style.display = "inline";
+      }
+      if (y.style.position === "fixed") {
+        y.style.position = "absolute";
+      } else {
+        y.style.position = "fixed";
+      }
+      if (z.style.display === "flex") {
+        z.style.display = "none";
+      } else {
+        z.style.display = "flex";
+      }
+      if (a.style.display === "inline") {
+        a.style.display = "none";
+      } else {
+        a.style.display = "inline";
+      }
+      if (b.style.position === "fixed") {
+        b.style.position = "absolute";
+      } else {
+        b.style.position = "fixed";
+      }
+      if (c.style.position === "fixed") {
+        c.style.position = "absolute";
+      } else {
+        c.style.position = "fixed";
+      }
+      if (d.style.position === "fixed") {
+        d.style.position = "absolute";
+      } else {
+        d.style.position = "fixed";
+      }
+    }
+  </script>
+  <script>
+    document
+      .getElementById("icon-underline")
+      .addEventListener("click", myFunction3);
+
+    function myFunction3() {
+      var x = document.getElementById("icon-underline");
+      var y = document.getElementById("nav");
+      var z = document.getElementById("icon");
+      var d = document.getElementById("icon2");
+      var c = document.getElementById("icon3");
+      var e = document.getElementById("icon4");
+
+      if (y.style.display === "inline") {
+        y.style.display = "none";
+      } else {
+        y.style.display = "inline";
+      }
+      if (c.style.display === "inline") {
+        c.style.display = "none";
+      } else {
+        c.style.display = "inline";
+      }
+      if (e.style.display === "inline") {
+        e.style.display = "none";
+      } else {
+        e.style.display = "inline";
+      }
+      if (z.style.display === "none") {
+        z.style.display = "inline";
+      } else {
+        z.style.display = "none";
+      }
+      if (d.style.display === "none") {
+        d.style.display = "inline";
+      } else {
+        d.style.display = "none";
+      }
+    }
+  </script>
+</html>

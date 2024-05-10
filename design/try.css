@@ -1,0 +1,388 @@
+/*@font-face {
+  font-family: "San Francisco";
+  font-weight: 100;
+  src: url("https://cdn.glitch.global/cb2683d9-7542-47a3-9caa-215bacfe2645/SF-Pro-Display-Medium.otf?v=1678474312742");
+} */
+
+@keyframes colorchange {
+  50% {
+    background-color: crimson;
+  }
+}
+div.anbg {
+  width: 100vw;
+  height: 100vh;
+}
+img.resize {
+  width: 100vw; /* comment */
+  height: 100vh;
+  background-color: ghostwhite;
+  animation: colorchange 15s;
+  animation-iteration-count: infinite;
+  animation-fill-mode: forwards;
+}
+
+@keyframes opacity1 {
+  0% {
+    opacity: 0;
+  }
+}
+
+@keyframes opacity2 {
+  100% {
+    box-shadow: 0px -1px 30px 10px rgba(255, 255, 255, 0);
+  }
+}
+
+@keyframes opacity3 {
+  0% {
+    box-shadow: 0px -1px 30px 6px rgba(255, 255, 255, 0);
+  }
+}
+
+@keyframes opacity4 {
+  0% {
+    box-shadow: 0px -1px 30px 6px rgba(255, 255, 255, 0);
+  }
+  50% {
+    box-shadow: 0px -1px 30px 10px rgba(255, 255, 255, 0);
+  }
+  100% {
+    box-shadow: 0px -1px 30px 6px rgba(255, 255, 255, 0);
+  }
+}
+
+@keyframes opacity5 {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.2;
+  }
+}
+
+@keyframes opacity6 {
+  100% {
+    opacity: 0.2;
+  }
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #937ed6;
+  overflow:hidden;
+}
+
+.mobilebr {
+  display: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+.nav {
+  justify-content: start;
+  position: absolute;
+  display: inline;
+  font-family: San Francisco, Helvetica, sans-serif;
+  font-size: 5vh;
+  line-height: 5.7vh;
+  letter-spacing: -0.02em;
+  color: white;
+  width: 73vw;
+  height: 15vh;
+  left: 2vw;
+  top: 1vh;
+  opacity: 1;
+  animation: opacity1 2s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  align-items: center;
+}
+
+.runway {
+  position: absolute;
+  max-width: 98vw;
+  display: flex;
+  flex-wrap: wrap;
+  display: grid;
+  grid-gap: 3vw;
+  grid-template-columns: repeat(auto-fill, 35vw);
+  bottom: 2vw;
+  left: 2vw;
+}
+
+.runway-el {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  width: 35vw;
+  height: 34vh;
+  outline: 1px solid white;
+  align-items: center;
+  box-shadow: 0px -1px 20px 6px rgba(255, 255, 255, 0.5);
+  animation: opacity3 1s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+ 
+}
+
+.juicy-el {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  width: 35vw;
+  height: 34vh;
+  background-image: url("https://cdn.glitch.global/cb2683d9-7542-47a3-9caa-215bacfe2645/Rectangle%203%20(1).png?v=1688822605091"); /*conic-gradient(from 0.25turn at 100% 0%, rgba(221, 28, 252, 1), rgba(255, 255, 255, 1), rgba(237, 138, 253, 1) 1turn, rgba(255, 255, 255, 1))*/
+  background-position: center;
+  background-size: 35vw 34vh;
+}
+
+.juicy-inside{
+   width: 28.2vw;
+  height: 22.7vh;
+  left: 3vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  background-color:rgba(221, 28, 252, 1);
+  
+  
+}
+
+
+.placeholder {
+  display: flex;
+  flex-direction: row;
+  width: 35vw;
+  height: 34vh;
+  outline: none;
+  align-items: center;
+ 
+}
+
+.rightrow {
+  position: fixed;
+  max-width: 20vw;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3vw;
+  display: grid;
+  grid-gap: 0.6vw;
+  grid-template-columns: repeat(auto-fill, 20vw);
+  top: 1vh;
+  left: 78vw;
+  opacity: 100;
+  animation: opacity6 2s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-delay: 10s;
+}
+
+.rightrow:hover {
+  animation: opacity5 1s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-delay: 10s;
+}
+
+.rightrow-el {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  width: 20vw;
+  height: 7vh;
+  outline: 1px solid white;
+  align-items: center;
+  box-shadow: 0px -1px 30px 6px rgba(255, 255, 255, 0.5);
+  animation: opacity3 1s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+.placeholder-right {
+  display: flex;
+  flex-direction: row;
+  width: 20vw;
+  height: 35vh;
+  outline: none;
+  align-items: center;
+}
+
+.txt {
+  position: relative;
+  font-family: San Francisco, Helvetica, sans-serif;
+  font-size: 5vh;
+  line-height: 5.7vh;
+  letter-spacing: -0.02em;
+  color: white;
+  text-align: center;
+  opacity: 1;
+  animation: opacity1 2s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+.runway-el:hover {
+  box-shadow: 0px -1px 30px 6px rgba(255, 255, 255, 0.5);
+  animation: opacity2 1s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-delay: 0;
+}
+
+.rightrow-el:hover {
+  box-shadow: 0px -1px 30px 6px rgba(255, 255, 255, 0.5);
+  animation: opacity2 1s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-delay: 0;
+}
+
+
+
+@media only screen and (max-width: 1000px) {
+  @keyframes opacity1 {
+    0% {
+      opacity: 0;
+    }
+  }
+
+  @keyframes opacity2 {
+    100% {
+      box-shadow: 0px -1px 30px 10px rgba(255, 255, 255, 0);
+    }
+  }
+
+  @keyframes opacity3 {
+    0% {
+      box-shadow: 0px -1px 30px 6px rgba(255, 255, 255, 0);
+    }
+  }
+
+  @keyframes opacity4 {
+    50% {
+      box-shadow: 0px -1px 30px 10px rgba(255, 255, 255, 0);
+    }
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  div.anbg {
+    background: url("https://cdn.glitch.global/cb2683d9-7542-47a3-9caa-215bacfe2645/1kb_background2.gif?v=1687786474647")
+      no-repeat center center;
+    background-size: 166.6666667vh 100vh;
+    width: 100vw; /* you can use % */
+    height: 100vh;
+    animation: colorchange 15s;
+    animation-iteration-count: infinite;
+    animation-fill-mode: forwards;
+    background-color: ghostwhite;
+  }
+  img.resize {
+    display: none;
+  }
+
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #937ed6;
+    margin: 0px;
+    max-width: 100vw; /*comment*/
+    max-height: 100vh;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  .nav {
+    position: absolute;
+    display: inline;
+    font-family: San Francisco, Helvetica, sans-serif;
+    font-size: 5vh;
+    line-height: 5.7vh;
+    letter-spacing: -0.02em;
+    color: white;
+    width: 99vw;
+    height: 10vh;
+    left: 2vw;
+    top: 1vh;
+    opacity: 1;
+    animation: opacity1 2s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+  }
+
+  .runway {
+    position: absolute;
+    max-width: 96vw;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3vw;
+    display: grid;
+    grid-gap: 3vw;
+    grid-template-columns: repeat(auto-fill, 100%);
+    bottom: 2vh;
+    left: 2vw;
+  }
+  .runway-el {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    width: 96vw;
+    height: 10vh;
+    outline: 1px solid white;
+    box-shadow: 0px -1px 30px 6px rgba(255, 255, 255, 0.5);
+    animation: opacity3 1s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+  }
+  
+  .juicy-el {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  width: 96vw;
+    height: 15vh;
+  background-image: url("https://cdn.glitch.global/cb2683d9-7542-47a3-9caa-215bacfe2645/Rectangle%203%20(1).png?v=1688822605091"); /*conic-gradient(from 0.25turn at 100% 0%, rgba(221, 28, 252, 1), rgba(255, 255, 255, 1), rgba(237, 138, 253, 1) 1turn, rgba(255, 255, 255, 1))*/
+  background-position: center;
+  background-size: 96vw 15vh;
+}
+
+.juicy-inside{
+  width: 90vw;
+  height: 10vh;
+  left: 3vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  background-color:rgba(221, 28, 252, 1);
+  
+  
+}
+
+  #entrybutton {
+    animation: opacity4 3s ease-in-out;
+    animation-iteration-count: 8;
+    animation-fill-mode: backwards;
+  }
+  .placeholder {
+    display: none;
+  }
+
+  .dispbr {
+    display: none;
+  }
+
+  .mobilebr {
+    display: flex;
+  }
+}
