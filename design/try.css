@@ -346,7 +346,9 @@ arial, sans-serif;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
   }
-  
+  .txt {
+  font-family: -apple-system, BlinkMacSystemFont, "helvetica neue", helvetica,
+arial, sans-serif;}
   .juicy-el {
   display: flex;
   justify-content: center;
