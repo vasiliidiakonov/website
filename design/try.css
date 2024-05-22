@@ -306,7 +306,8 @@ arial, sans-serif;
   .nav {
     position: absolute;
     display: inline;
-    font-family: San Francisco, Helvetica, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "helvetica neue", helvetica,
+arial, sans-serif;
     font-size: 5vh;
     line-height: 5.7vh;
     letter-spacing: -0.02em;
