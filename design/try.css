@@ -86,7 +86,8 @@ a {
   justify-content: start;
   position: absolute;
   display: inline;
-  font-family: San Francisco, Helvetica, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "helvetica neue", helvetica,
+arial, sans-serif;
   font-size: 5vh;
   line-height: 5.7vh;
   letter-spacing: -0.02em;
@@ -216,7 +217,8 @@ a {
 
 .txt {
   position: relative;
-  font-family: San Francisco, Helvetica, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "helvetica neue", helvetica,
+arial, sans-serif;
   font-size: 5vh;
   line-height: 5.7vh;
   letter-spacing: -0.02em;
