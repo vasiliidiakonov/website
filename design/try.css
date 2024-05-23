@@ -348,7 +348,8 @@ arial, sans-serif;
   }
   .txt {
   font-family: -apple-system, BlinkMacSystemFont, "helvetica neue", helvetica,
-arial, sans-serif;}
+arial, sans-serif;
+  line-height: 4.2vh;}
   .juicy-el {
   display: flex;
   justify-content: center;
