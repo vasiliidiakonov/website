@@ -88,14 +88,14 @@ a {
   display: inline;
   font-family: -apple-system, BlinkMacSystemFont, "helvetica neue", helvetica,
 arial, sans-serif;
-  font-size: 5vh;
+  font-size: 4.8vh;
   line-height: 5vh;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
   color: white;
   width: 73vw;
   height: 15vh;
   left: 2vw;
-  top: 1vh;
+  top: 2vh;
   opacity: 1;
   animation: opacity1 2s;
   animation-iteration-count: 1;
