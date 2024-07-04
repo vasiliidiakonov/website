@@ -102,7 +102,6 @@ arial, sans-serif;
   animation-fill-mode: forwards;
   align-items: center;
 }
-
 .runway {
   position: absolute;
   max-width: 98vw;
@@ -230,6 +229,7 @@ arial, sans-serif;
   animation-fill-mode: forwards;
 }
 
+
 .runway-el:hover {
   box-shadow: 0px -1px 30px 6px rgba(255, 255, 255, 0.5);
   animation: opacity2 1s;
@@ -308,8 +308,8 @@ arial, sans-serif;
     display: inline;
     font-family: -apple-system, BlinkMacSystemFont, "helvetica neue", helvetica,
 arial, sans-serif;
-    font-size: 4vh;
-    line-height: 5.7vh;
+    font-size: 5vh;
+    line-height: 4.7vh;
     letter-spacing: -0.02em;
     color: white;
     width: 99vw;
@@ -347,20 +347,18 @@ arial, sans-serif;
     animation-fill-mode: forwards;
   }
   .txt {
+  position: relative;
   font-family: -apple-system, BlinkMacSystemFont, "helvetica neue", helvetica,
 arial, sans-serif;
-  line-height: 4.2vh;}
-  .juicy-el {
-  display: flex;
-    font-size:4vh;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
-  width: 96vw;
-    height: 15vh;
-  background-image: url("https://cdn.glitch.global/cb2683d9-7542-47a3-9caa-215bacfe2645/Rectangle%203%20(1).png?v=1688822605091"); /*conic-gradient(from 0.25turn at 100% 0%, rgba(221, 28, 252, 1), rgba(255, 255, 255, 1), rgba(237, 138, 253, 1) 1turn, rgba(255, 255, 255, 1))*/
-  background-position: center;
-  background-size: 96vw 15vh;
+  font-size: 5vh;
+  line-height: 5.7vh;
+  letter-spacing: -0.02em;
+  color: white;
+  text-align: center;
+  opacity: 1;
+  animation: opacity1 2s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
 }
 
 .juicy-inside{
