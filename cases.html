@@ -112,10 +112,10 @@
           </ul>
 
           <div class="visual-placeholder">
-            <video autoplay loop muted playsinline style="width: 100%; height: auto;">
+            <video autoplay loop muted playsinline style="width: 100%; height: auto;" onloadeddata="this.play()" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
               <source src="images/Drag and drop.mov" type="video/quicktime">
-              Your browser does not support the video tag.
             </video>
+            <img src="images/Tabs Drag and drop.gif" alt="Grouping Interface: Creating and Managing Tab Groups Flow" style="width: 100%; height: auto; display: none;">
           </div>
 
           <p>The grouping system supported multiple interaction patterns: drag-and-drop for intuitive organization, quick actions for batch operations, and visual indicators to help users understand their tab structure at a glance.</p>
