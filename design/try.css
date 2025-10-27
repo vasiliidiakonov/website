@@ -274,6 +274,211 @@ arial, sans-serif;
   }
 }
 
+/* Case Overlay Styles */
+.case-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(147, 126, 214, 0.85);
+  z-index: 1000;
+  overflow-y: auto;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.case-content {
+  position: relative;
+  width: 100vw;
+  min-height: 100vh;
+  overflow-y: auto;
+}
+
+.case-inner {
+  padding: 6vh 6vw;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.close-btn {
+  position: relative;
+  left: 0;
+  transform: none;
+  width: calc((100% - 12vw) / 3);
+  max-width: 400px;
+  height: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 4vh;
+  line-height: 4vh;
+  cursor: pointer;
+  z-index: 1002;
+  opacity: 1;
+  font-family: -apple-system, BlinkMacSystemFont, "helvetica neue", helvetica, arial, sans-serif;
+  padding: 0;
+  margin: 0 0 4vh 0;
+  outline: 1px solid white;
+  box-shadow: 0px -1px 20px 6px rgba(255, 255, 255, 0.5);
+  animation: opacity1 2s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  transition: box-shadow 1s;
+}
+
+.close-btn:hover {
+  box-shadow: 0px -1px 30px 10px rgba(255, 255, 255, 0);
+}
+
+
+.page-hidden {
+  display: none !important;
+}
+
+.case-inner h1 {
+  font-family: -apple-system, BlinkMacSystemFont, "helvetica neue", helvetica, arial, sans-serif;
+  font-size: 6vh;
+  line-height: 6.5vh;
+  letter-spacing: -0.02em;
+  color: white;
+  margin-bottom: 4vh;
+  opacity: 1;
+  animation: opacity1 2s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+.case-inner h2 {
+  font-family: -apple-system, BlinkMacSystemFont, "helvetica neue", helvetica, arial, sans-serif;
+  font-size: 4vh;
+  line-height: 4.5vh;
+  letter-spacing: -0.01em;
+  color: white;
+  margin-top: 3vh;
+  margin-bottom: 2vh;
+  opacity: 1;
+  animation: opacity1 2s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+.case-body p {
+  font-family: -apple-system, BlinkMacSystemFont, "helvetica neue", helvetica, arial, sans-serif;
+  font-size: 2.5vh;
+  line-height: 3.5vh;
+  color: white;
+  margin-bottom: 2vh;
+  opacity: 1;
+  animation: opacity1 2s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+.case-inner h3 {
+  font-family: -apple-system, BlinkMacSystemFont, "helvetica neue", helvetica, arial, sans-serif;
+  font-size: 3vh;
+  line-height: 3.5vh;
+  letter-spacing: -0.01em;
+  color: white;
+  margin-top: 2vh;
+  margin-bottom: 1.5vh;
+  opacity: 1;
+  animation: opacity1 2s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+.case-body ul {
+  margin-bottom: 2vh;
+  padding-left: 2vw;
+}
+
+.case-body li {
+  font-family: -apple-system, BlinkMacSystemFont, "helvetica neue", helvetica, arial, sans-serif;
+  font-size: 2.5vh;
+  line-height: 3.5vh;
+  color: white;
+  margin-bottom: 1vh;
+  opacity: 1;
+  list-style-type: disc;
+  animation: opacity1 2s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+.visual-placeholder {
+  width: 100%;
+  min-height: 40vh;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px dashed rgba(255, 255, 255, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 3vh 0;
+  font-family: -apple-system, BlinkMacSystemFont, "helvetica neue", helvetica, arial, sans-serif;
+  font-size: 2.5vh;
+  color: rgba(255, 255, 255, 0.6);
+  text-align: center;
+  padding: 2vh 2vw;
+  opacity: 1;
+  animation: opacity1 2s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+.visual-placeholder img,
+.visual-placeholder video {
+  border: none;
+  outline: none;
+}
+
+.visual-placeholder:has(img),
+.visual-placeholder:has(video) {
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  min-height: auto;
+}
+
+.impact-metrics {
+  margin: 4vh 0;
+  padding: 3vh 2vw;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-left: 3px solid white;
+  opacity: 1;
+  animation: opacity1 2s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+.impact-metrics p {
+  font-size: 2.8vh;
+  line-height: 4vh;
+  opacity: 1;
+}
+
+.section-divider {
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.2);
+  margin: 5vh 0;
+  opacity: 1;
+  animation: opacity1 2s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
 @media only screen and (max-width: 1000px) {
   div.anbg {
     background: url("https://cdn.glitch.global/cb2683d9-7542-47a3-9caa-215bacfe2645/1kb_background2.gif?v=1687786474647")
@@ -389,5 +594,83 @@ arial, sans-serif;
 
   .mobilebr {
     display: flex;
+  }
+
+  .case-content {
+    width: 100vw;
+    min-height: 100vh;
+  }
+
+  .case-inner {
+    padding: 4vh 2vw 20vh 2vw;
+  }
+
+  .case-content::after {
+    content: '';
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    height: calc(12vh + 20px);
+    background: linear-gradient(to top, rgba(147, 126, 214, 0.85) 0%, rgba(147, 126, 214, 0.85) 30%, rgba(147, 126, 214, 0.82) 50%, rgba(147, 126, 214, 0.78) 70%, transparent 100%);
+    z-index: 1001;
+    pointer-events: none;
+  }
+
+  .close-btn {
+    position: fixed;
+    bottom: 2vh;
+    left: 2vw;
+    width: 96vw;
+    max-width: 96vw;
+    margin: 0;
+  }
+
+  .case-inner h1 {
+    font-size: 4.5vh;
+    line-height: 5vh;
+    margin-bottom: 3vh;
+  }
+
+  .case-inner h2 {
+    font-size: 3.5vh;
+    line-height: 4vh;
+    margin-top: 2vh;
+    margin-bottom: 1.5vh;
+  }
+
+  .case-body p {
+    font-size: 2.2vh;
+    line-height: 3vh;
+  }
+
+
+  .case-inner h3 {
+    font-size: 2.8vh;
+    line-height: 3.2vh;
+  }
+
+  .case-body p,
+  .case-body li {
+    font-size: 2vh;
+    line-height: 2.8vh;
+  }
+
+  .case-body ul {
+    padding-left: 4vw;
+  }
+
+  .visual-placeholder {
+    min-height: 30vh;
+    font-size: 2vh;
+  }
+
+  .impact-metrics {
+    padding: 3vh 2vw;
+  }
+
+  .impact-metrics p {
+    font-size: 2.2vh;
+    line-height: 3.2vh;
   }
 }

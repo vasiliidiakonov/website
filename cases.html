@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Vasily Dyakonov – Cases</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="https://cdn.glitch.global/cb2683d9-7542-47a3-9caa-215bacfe2645/Untitled.png?v=1668196992991"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/addons/p5.sound.min.js"></script>
+    <link rel="stylesheet" href="design/try.css" />
+  </head>
+<body>
+  <div class="anbg">
+    <img class="resize" style="-webkit-user-select:none; margin:auto; padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);" src="https://cdn.glitch.global/cb2683d9-7542-47a3-9caa-215bacfe2645/1kb_background2.gif?v=1687786474647">
+  </div>
+
+  <div class="nav">
+    <p>Product Design Cases</p>
+  </div>
+
+  <div class="runway">
+    <a href="#" onclick="openCase('aloha'); return false;">
+      <div class="runway-el">
+        <p class="txt">Aloha Browser Tabs</p>
+      </div>
+    </a>
+    <a href="#" onclick="openCase('case2'); return false;">
+      <div class="runway-el">
+        <p class="txt">Case 2</p>
+      </div>
+    </a>
+    <a href="#" onclick="openCase('case3'); return false;">
+      <div class="runway-el">
+        <p class="txt">Case 3</p>
+      </div>
+    </a>
+    <a href="home.html">
+      <div class="runway-el">
+        <p class="txt">Back</p>
+      </div>
+    </a>
+  </div>
+
+  <!-- Case Overlays -->
+  <div id="aloha-overlay" class="case-overlay">
+    <div class="case-content">
+      <div class="case-inner">
+        <button class="close-btn" onclick="closeCase('aloha')">Back</button>
+        <h1>Redesigning Browser Tab Management: Retaining 50-70K Users Through Strategic Improvements</h1>
+
+        <div class="visual-placeholder">
+          <img src="images/Tabs Hero.png" alt="Before/After Comparison of Tab Interface" style="width: 100%; height: auto;">
+        </div>
+
+        <div class="case-body">
+          <h2>Context</h2>
+          <p>Aloha Browser had grown to 4 million users, but our outdated tab format was creating friction in a competitive market. Users with multiple tabs struggled to stay organized—older tabs consumed excessive screen space, and power users had no way to group related tabs. These limitations were holding us back against competitors who had already introduced grouping. I led the complete redesign of our tab experience and introduced grouping functionality to address these problems and improve retention.</p>
+
+          <div class="section-divider"></div>
+
+          <h2>Discovery & Strategy</h2>
+          <p>Initial user feedback came from our community, where users were vocal about needing quality-of-life improvements to tab management. But before diving into design, I aligned with leadership on strategic goals: we were competing with Chrome for users and needed to position Aloha as a viable daily driver—a gateway into our privacy-focused product ecosystem.</p>
+
+          <p>To validate whether tabs were the right priority, I conducted competitive analysis of major browsers including Chrome, Safari, and Edge. The research revealed that tab grouping had become table stakes—every major competitor offered it. We were falling behind on a core feature that power users expected. Combined with community feedback, this built a clear business case: improving tabs wasn't just a nice-to-have, it was essential to remain competitive and retain users.</p>
+
+          <p>With this evidence, I presented my findings and initial UI prototypes to our Design Lead and Product Lead for feedback, then to the Founder, CEO, and iOS/Android engineering leads. The combination of competitive research showing we were falling behind and early prototypes demonstrating a viable solution secured buy-in to move forward.</p>
+
+          <div class="section-divider"></div>
+
+          <h2>Design Process & Solution</h2>
+
+          <h3>The Challenge</h3>
+          <p>The scope was significant—we needed to update the visual UI, redesign the core tab experience, and coordinate backend changes with engineering, all shipping as a cohesive package rather than incremental updates. This required careful sequencing: which improvements could ship first on iOS to validate the approach, and what foundational work Android needed before grouping could launch.</p>
+
+          <p>Additionally, I had to balance two user groups: power users who needed sophisticated organization tools, and casual users who just wanted their tabs to work simply. The design couldn't add complexity for the majority while solving for the power user minority.</p>
+
+          <h3>My Approach</h3>
+          <p>After securing buy-in, I explored multiple concepts for the grouping functionality, including cross-account sync, bookmark conversion options, and various tab UI treatments. I created platform-specific designs for iOS and Android rather than forcing identical experiences, respecting each platform's patterns and technical constraints.</p>
+
+          <p>One unconventional decision I'm particularly proud of is the tab mode switcher—allowing users to toggle between normal, private, and sync modes directly within the tab manager. This gave power users quick access to different browsing contexts without leaving their workflow.</p>
+
+          <div class="visual-placeholder">
+            <img src="images/Tabs Mode switching.png" alt="Tab Mode Switcher: Normal/Private/Sync Toggle Interface" style="width: 100%; height: auto;">
+          </div>
+
+          <p>I worked closely with iOS and Android engineering leads throughout, prototyping in Figma and iterating based on their technical input. This collaboration was critical—when we shipped iOS first, we discovered the initial tab shape didn't work well across different screen orientations. I redesigned it to follow more standard patterns, ensuring consistency whether users were in portrait or landscape.</p>
+
+          <div class="visual-placeholder">
+            <img src="images/Tabs iOS vs Android.png" alt="Tab Shape Evolution: Before/After Showing Cross-Orientation Consistency" style="width: 100%; height: auto;">
+          </div>
+
+          <p>On Android, legacy device performance was a major constraint. Loading webpage previews on every tab consumed too many resources on older phones. I designed a fallback state for preview-less tabs, which evolved into an optional feature—users could toggle between preview mode and a more efficient list view. This solved the technical problem while giving all users more control over their experience.</p>
+
+          <div class="visual-placeholder">
+            <img src="images/Tabs Android preview-less tabs.png" alt="Android Preview Toggle: Two States - Preview Mode vs List View" style="width: 100%; height: auto;">
+          </div>
+
+          <h3>Key Design Decisions</h3>
+          <ul>
+            <li>Tab mode switcher - Normal/Private/Sync toggle interface</li>
+            <li>Tab shape evolution - Redesigned for cross-orientation consistency</li>
+            <li>Preview vs list mode - Performance optimization that became a user preference</li>
+            <li>Grouping interface - Creating and managing tab groups</li>
+          </ul>
+
+          <div class="visual-placeholder">
+            <video autoplay loop muted playsinline style="width: 100%; height: auto;">
+              <source src="images/Drag and drop.mov" type="video/quicktime">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+
+          <p>The grouping system supported multiple interaction patterns: drag-and-drop for intuitive organization, quick actions for batch operations, and visual indicators to help users understand their tab structure at a glance.</p>
+
+          <div class="visual-placeholder">
+            <img src="images/Tabs other Grouoing functions.png" alt="Additional Tab Grouping Functions" style="width: 100%; height: auto;">
+          </div>
+
+          <div class="section-divider"></div>
+
+          <h2>Impact</h2>
+
+          <div class="impact-metrics">
+            <p>1.2% retention improvement on iOS from full grouping launch, retaining an estimated 25-40K users</p>
+            <p>0.6% retention improvement on Android from UI improvements alone, even without grouping functionality</p>
+            <p>Combined impact: ~50-70K users retained across both platforms through improved tab management</p>
+          </div>
+
+          <p>Full iOS grouping shipped in 6 months alongside other product work, with continued refinements over the following 2 months</p>
+
+          <p>Android UI improvements shipped as foundation, with grouping development paused when company shifted to premium feature priorities</p>
+
+          <p>Project evolution: I initially identified tab management issues through direct collaboration with Android engineering while working on other features. This early exploration informed the research and strategy that led to the formal redesign project. The phased iOS-first approach allowed us to validate the concept with real metrics before scaling to Android.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="case2-overlay" class="case-overlay">
+    <div class="case-content">
+      <div class="case-inner">
+        <button class="close-btn" onclick="closeCase('case2')">Back</button>
+        <h1>Case Study 2</h1>
+        <div class="case-body">
+          <p>Content coming soon...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="case3-overlay" class="case-overlay">
+    <div class="case-content">
+      <div class="case-inner">
+        <button class="close-btn" onclick="closeCase('case3')">Back</button>
+        <h1>Case Study 3</h1>
+        <div class="case-body">
+          <p>Content coming soon...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function openCase(caseId) {
+      document.getElementById(caseId + '-overlay').style.display = 'block';
+      document.querySelector('.nav').classList.add('page-hidden');
+      document.querySelector('.runway').classList.add('page-hidden');
+    }
+
+    function closeCase(caseId) {
+      document.getElementById(caseId + '-overlay').style.display = 'none';
+      document.querySelector('.nav').classList.remove('page-hidden');
+      document.querySelector('.runway').classList.remove('page-hidden');
+    }
+
+    // Close overlay with Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        document.querySelectorAll('.case-overlay').forEach(overlay => {
+          overlay.style.display = 'none';
+        });
+        document.querySelector('.nav').classList.remove('page-hidden');
+        document.querySelector('.runway').classList.remove('page-hidden');
+      }
+    });
+  </script>
+</body>
+</html>
