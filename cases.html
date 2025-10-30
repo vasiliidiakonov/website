@@ -54,7 +54,8 @@
     <div class="case-content">
       <div class="case-inner">
         <button class="close-btn" onclick="closeCase('aloha')">Back</button>
-        <h1>Redesigning Browser Tab Management: Retaining 50-70K Users Through Strategic Improvements</h1>
+        <h1>Tab Management Redesign</h1>
+        <h2>Improving mobile browser retention through strategic UX improvements</h2>
 
         <div class="visual-placeholder">
           <img src="images/Tabs Hero.png" alt="Before/After Comparison of Tab Interface" style="width: 100%; height: auto;">
@@ -62,7 +63,9 @@
 
         <div class="case-body">
           <h2>Context</h2>
-          <p>Aloha Browser had grown to 4 million users, but our outdated tab format was creating friction in a competitive market. Users with multiple tabs struggled to stay organized—older tabs consumed excessive screen space, and power users had no way to group related tabs. These limitations were holding us back against competitors who had already introduced grouping. I led the complete redesign of our tab experience and introduced grouping functionality to address these problems and improve retention.</p>
+          <p>Aloha Browser had grown to 4 million users, but our outdated tab format was creating friction in a competitive market. Users with multiple tabs struggled to stay organized—older tabs consumed excessive screen space, and power users had no way to group related tabs. These limitations were holding us back against competitors like Chrome, Safari, and Edge who had already introduced grouping functionality.</p>
+
+          <p>As part of a 2-person design team, I led the complete redesign of our tab experience across iOS and Android to improve organization, modernize the interface, and improve retention.</p>
 
           <div class="section-divider"></div>
 
@@ -78,38 +81,12 @@
           <h2>Design Process & Solution</h2>
 
           <h3>The Challenge</h3>
-          <p>The scope was significant—we needed to update the visual UI, redesign the core tab experience, and coordinate backend changes with engineering, all shipping as a cohesive package rather than incremental updates. This required careful sequencing: which improvements could ship first on iOS to validate the approach, and what foundational work Android needed before grouping could launch.</p>
+          <p>The scope was significant—we needed to update the visual UI, redesign the core tab experience, and coordinate backend changes with engineering, all shipping as a cohesive package. This required careful sequencing: which improvements could ship first on iOS to validate the approach, and what foundational work Android needed before grouping could launch.</p>
 
           <p>Additionally, I had to balance two user groups: power users who needed sophisticated organization tools, and casual users who just wanted their tabs to work simply. The design couldn't add complexity for the majority while solving for the power user minority.</p>
 
           <h3>My Approach</h3>
           <p>After securing buy-in, I explored multiple concepts for the grouping functionality, including cross-account sync, bookmark conversion options, and various tab UI treatments. I created platform-specific designs for iOS and Android rather than forcing identical experiences, respecting each platform's patterns and technical constraints.</p>
-
-          <p>One unconventional decision I'm particularly proud of is the tab mode switcher—allowing users to toggle between normal, private, and sync modes directly within the tab manager. This gave power users quick access to different browsing contexts without leaving their workflow.</p>
-
-          <div class="visual-placeholder">
-            <img src="images/Tabs Mode switching.png" alt="Tab Mode Switcher: Normal/Private/Sync Toggle Interface" style="width: 100%; height: auto;">
-          </div>
-
-          <p>I worked closely with iOS and Android engineering leads throughout, prototyping in Figma and iterating based on their technical input. This collaboration was critical—when we shipped iOS first, we discovered the initial tab shape didn't work well across different screen orientations. I redesigned it to follow more standard patterns, ensuring consistency whether users were in portrait or landscape.</p>
-
-          <div class="visual-placeholder">
-            <img src="images/Tabs iOS vs Android.png" alt="Tab Shape Evolution: Before/After Showing Cross-Orientation Consistency" style="width: 100%; height: auto;">
-          </div>
-
-          <p>On Android, legacy device performance was a major constraint. Loading webpage previews on every tab consumed too many resources on older phones. I designed a fallback state for preview-less tabs, which evolved into an optional feature—users could toggle between preview mode and a more efficient list view. This solved the technical problem while giving all users more control over their experience.</p>
-
-          <div class="visual-placeholder">
-            <img src="images/Tabs Android preview-less tabs.png" alt="Android Preview Toggle: Two States - Preview Mode vs List View" style="width: 100%; height: auto;">
-          </div>
-
-          <h3>Key Design Decisions</h3>
-          <ul>
-            <li>Tab mode switcher - Normal/Private/Sync toggle interface</li>
-            <li>Tab shape evolution - Redesigned for cross-orientation consistency</li>
-            <li>Preview vs list mode - Performance optimization that became a user preference</li>
-            <li>Grouping interface - Creating and managing tab groups</li>
-          </ul>
 
           <div class="visual-placeholder">
             <video autoplay loop muted playsinline style="width: 100%; height: auto;" onloadeddata="this.play()" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
@@ -119,10 +96,30 @@
             <img src="images/Tabs Drag and drop.gif" alt="Grouping Interface: Creating and Managing Tab Groups Flow" style="width: 100%; height: auto; display: none;">
           </div>
 
-          <p>The grouping system supported multiple interaction patterns: drag-and-drop for intuitive organization, quick actions for batch operations, and visual indicators to help users understand their tab structure at a glance.</p>
+          <p>I designed flexible grouping interactions to accommodate different user preferences. Power users could batch-select multiple tabs and organize them through an action menu, while users managing fewer tabs could drag individual tabs directly into groups. This flexibility ensured the feature worked for both casual and power users without adding unnecessary complexity.</p>
 
           <div class="visual-placeholder">
             <img src="images/Tabs other Grouoing functions.png" alt="Additional Tab Grouping Functions" style="width: 100%; height: auto;">
+          </div>
+
+          <p>One unconventional decision I'm particularly proud of is the tab mode switcher—allowing users to toggle between Normal, Private, and Sync modes directly within the tab manager. Most browsers require leaving the tab view to switch modes, but this gave power users quick access to different browsing contexts without interrupting their workflow.</p>
+
+          <div class="visual-placeholder">
+            <img src="images/Tabs Mode switching.png" alt="Tab Mode Switcher: Normal/Private/Sync Toggle Interface" style="width: 100%; height: auto;">
+          </div>
+
+          <p>I worked closely with iOS and Android engineering leads throughout, prototyping in Figma and iterating based on their technical input. This collaboration was critical—when we shipped iOS first, we discovered the initial tab shape didn't work well across different screen orientations. I redesigned it to follow more standard patterns, ensuring consistency whether users were in portrait or landscape.</p>
+
+          <p>On Android, legacy device performance was a major constraint. Loading webpage previews on every tab consumed too many resources on older phones. I designed a fallback state for preview-less tabs, which evolved into an optional feature—users could toggle between preview mode and a more efficient list view. This solved the technical problem while giving all users more control over their experience.</p>
+
+          <div class="visual-placeholder">
+            <img src="images/Tabs Android preview-less tabs.png" alt="Android Preview Toggle: Two States - Preview Mode vs List View" style="width: 100%; height: auto;">
+          </div>
+
+          <p>The project spanned both iOS and Android with different timelines and technical considerations. iOS received the complete grouping functionality first, allowing us to validate the approach with real metrics. Android received foundational UI improvements with grouping development paused when company priorities shifted to premium features. Each platform required thoughtful adaptation of the design to respect native patterns while maintaining a cohesive Aloha experience.</p>
+
+          <div class="visual-placeholder">
+            <img src="images/Tabs iOS vs Android.png" alt="Cross-Platform Comparison" style="width: 100%; height: auto;">
           </div>
 
           <div class="section-divider"></div>
@@ -130,16 +127,24 @@
           <h2>Impact</h2>
 
           <div class="impact-metrics">
-            <p>1.2% retention improvement on iOS from full grouping launch, retaining an estimated 25-40K users</p>
-            <p>0.6% retention improvement on Android from UI improvements alone, even without grouping functionality</p>
-            <p>Combined impact: ~50-70K users retained across both platforms through improved tab management</p>
+            <p>Combined retention improvement: 1.8% across platforms</p>
+            <p>iOS: 1.2% Day 1 retention improvement</p>
+            <p>Android: 0.6% Day 1 retention improvement from UI updates alone</p>
           </div>
 
-          <p>Full iOS grouping shipped in 6 months alongside other product work, with continued refinements over the following 2 months</p>
+          <p>Full iOS grouping shipped in 6 months alongside other product work, with continued refinements over the following 2 months. Android UI improvements shipped as foundation, with grouping development paused when company shifted to premium feature priorities.</p>
 
-          <p>Android UI improvements shipped as foundation, with grouping development paused when company shifted to premium feature priorities</p>
+          <h3>Project evolution</h3>
+          <p>I initially identified tab management issues through direct collaboration with Android engineering while working on other features. This early exploration informed the research and strategy that led to the formal redesign project. The phased iOS-first approach allowed us to validate the concept with real metrics before scaling to Android.</p>
 
-          <p>Project evolution: I initially identified tab management issues through direct collaboration with Android engineering while working on other features. This early exploration informed the research and strategy that led to the formal redesign project. The phased iOS-first approach allowed us to validate the concept with real metrics before scaling to Android.</p>
+          <h3>Key learnings</h3>
+          <ul>
+            <li>Competitive research built a compelling business case when paired with user feedback</li>
+            <li>Platform-specific solutions worked better than forcing identical experiences</li>
+            <li>Shipping iOS first to validate reduced risk before full cross-platform investment</li>
+            <li>Technical constraints can become user features (preview toggle)</li>
+            <li>Post-launch iteration based on real usage (tab shape refinement) improved the experience</li>
+          </ul>
         </div>
       </div>
     </div>
