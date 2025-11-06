@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link
       rel="icon"
-      type="image/x-icon"
-      href="https://cdn.glitch.global/cb2683d9-7542-47a3-9caa-215bacfe2645/Untitled.png?v=1668196992991"
+      type="image/png"
+      href="images/favicon.png"
     />
     <link
       rel="stylesheet"
@@ -15,41 +15,96 @@
     />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/addons/p5.sound.min.js"></script>
-    <link rel="stylesheet" href="/design/try.css" />
+    <link rel="stylesheet" href="design/try.css" />
+    <link rel="stylesheet" href="design/testing.css" />
   </head>
-<body><div class="anbg"><img class="resize" style="-webkit-user-select:none;  margin:auto; padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);" src="https://cdn.glitch.global/cb2683d9-7542-47a3-9caa-215bacfe2645/1kb_background2.gif?v=1687786474647"></div></body>
   <body>
-    <div class="nav">
-      <p>Vasily Dyakonov is a multidisciplinary designer <br class="dispbr">working in Branding, UI/UX <br class="mobilebr"> and Creative Technology.</p>
+    <div class="anbg">
+      <img class="resize" style="-webkit-user-select:none; margin:auto; padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);" src="https://cdn.glitch.global/cb2683d9-7542-47a3-9caa-215bacfe2645/1kb_background2.gif?v=1687786474647">
     </div>
 
-    <div class="runway">
-      <a href="pdf/portfolio.html"
-        ><div class="runway-el">
-          <p class="txt">Portfolio</p>
-        </div></a
-      >
-      <div class="placeholder"></div>
-      <a href="pdf/cv.html">
-        <div class="runway-el">
-          <p class="txt">Resume</p>
-        </div></a
-      >
-      <a href="mailto: wwdyakonov@gmail.com"
-        ><div class="juicy-el">
-        <div class="juicy-inside">
-          
-        
-          <p class="txt">Contact</p></div>
-        </div></a
-      >
-   
-      
-      
-      
+    <!-- Main content -->
+    <div class="resume-content">
+      <div class="resume-inner">
+        <h1>Vasilii Diakonov</h1>
+        <p class="resume-subtitle">Product Designer | Mobile, Cross-Platform, Design Systems & Growth</p>
+
+        <div class="resume-section">
+          <p class="resume-bio">Product Designer with 5+ years delivering mobile and cross-platform products across iOS, Android, web, and desktop. Led end-to-end design, design systems, and data-driven experiments that improved retention, referrals, and marketing conversion.</p>
+        </div>
+
+        <div class="resume-section">
+          <h2>Key Achievements</h2>
+          <ul>
+            <li>Improved Day 1 retention by 1–1.5% on iOS/Android</li>
+            <li>Increased marketing site conversion from 20% to 30%</li>
+            <li>Raised referral program conversion 3.4x</li>
+          </ul>
+        </div>
+
+        <div class="resume-section">
+          <h2>Core Skills</h2>
+          <p>Mobile Design (iOS/Android), UX/UI, Design Systems, Prototyping, User Research, Data Driven Design, A/B Testing, Figma, Amplitude, Material Design, Apple HIG, HTML/CSS, JavaScript, Python</p>
+        </div>
+
+        <div class="resume-section">
+          <h2>Education</h2>
+          <p>BA (Hons.) Graphic Design, First Class<br>University of Hertfordshire, 2020</p>
+        </div>
+      </div>
+
+      <!-- Menu button -->
+      <div class="menu-container">
+        <button class="runway-el menu-btn" onclick="openMenu()">
+          <p class="txt">Menu</p>
+        </button>
       </div>
     </div>
+
+    <!-- Navigation overlay -->
+    <div class="case-overlay" id="menuOverlay">
+      <div class="case-content">
+        <div class="case-inner">
+          <button class="close-btn" onclick="closeMenu()">Close</button>
+
+          <div class="runway">
+            <a href="cases.html">
+              <div class="runway-el">
+                <p class="txt">Product</p>
+              </div>
+            </a>
+            <a href="https://cdn.glitch.me/cb2683d9-7542-47a3-9caa-215bacfe2645/Dyakonov_Portfolio_04.2024.pdf?v=1715504311493">
+              <div class="runway-el">
+                <p class="txt">Visual</p>
+              </div>
+            </a>
+            <a href="docs/Vasilii_Diakonov_CV_25.pdf">
+              <div class="runway-el">
+                <p class="txt">Resume</p>
+              </div>
+            </a>
+            <a href="mailto:wwdyakonov@gmail.com">
+              <div class="juicy-el">
+                <div class="juicy-inside">
+                  <p class="txt">Contact</p>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function openMenu() {
+        document.getElementById('menuOverlay').style.display = 'block';
+        document.querySelector('.resume-content').classList.add('page-hidden');
+      }
+
+      function closeMenu() {
+        document.getElementById('menuOverlay').style.display = 'none';
+        document.querySelector('.resume-content').classList.remove('page-hidden');
+      }
+    </script>
   </body>
 </html>
-
-

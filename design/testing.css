@@ -1,0 +1,174 @@
+/* Testing.html specific styles */
+
+/* Fix background z-index for resume content */
+div.anbg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+/* Resume Content Styles */
+.resume-content {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  overflow-y: auto;
+  z-index: 10;
+}
+
+.resume-inner {
+  padding: 6vh 6vw 20vh 6vw;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.resume-inner h1 {
+  font-family: -apple-system, BlinkMacSystemFont, "helvetica neue", helvetica, arial, sans-serif;
+  font-size: 6vh;
+  line-height: 6.5vh;
+  letter-spacing: -0.02em;
+  color: white;
+  margin-bottom: 2vh;
+  opacity: 1;
+  animation: opacity1 2s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+.resume-subtitle {
+  font-family: -apple-system, BlinkMacSystemFont, "helvetica neue", helvetica, arial, sans-serif;
+  font-size: 3vh;
+  line-height: 3.5vh;
+  letter-spacing: -0.01em;
+  color: white;
+  margin-bottom: 4vh;
+  opacity: 1;
+  animation: opacity1 2s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+.resume-section {
+  margin-bottom: 4vh;
+}
+
+.resume-inner h2 {
+  font-family: -apple-system, BlinkMacSystemFont, "helvetica neue", helvetica, arial, sans-serif;
+  font-size: 4vh;
+  line-height: 4.5vh;
+  letter-spacing: -0.01em;
+  color: white;
+  margin-bottom: 2vh;
+  opacity: 1;
+  animation: opacity1 2s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+.resume-inner p {
+  font-family: -apple-system, BlinkMacSystemFont, "helvetica neue", helvetica, arial, sans-serif;
+  font-size: 2.5vh;
+  line-height: 3.5vh;
+  color: white;
+  opacity: 1;
+  animation: opacity1 2s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+.resume-bio {
+  font-size: 2.8vh;
+  line-height: 3.8vh;
+}
+
+.resume-inner ul {
+  padding-left: 2vw;
+  margin-bottom: 2vh;
+}
+
+.resume-inner li {
+  font-family: -apple-system, BlinkMacSystemFont, "helvetica neue", helvetica, arial, sans-serif;
+  font-size: 2.5vh;
+  line-height: 3.5vh;
+  color: white;
+  margin-bottom: 1vh;
+  opacity: 1;
+  list-style-type: disc;
+  animation: opacity1 2s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+.menu-container {
+  position: fixed;
+  bottom: 2vw;
+  right: 2vw;
+  z-index: 100;
+}
+
+.menu-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+/* Mobile Styles */
+@media only screen and (max-width: 1000px) {
+  /* Resume Content Mobile */
+  .resume-inner {
+    padding: 4vh 4vw 20vh 4vw;
+  }
+
+  .resume-inner h1 {
+    font-size: 4.5vh;
+    line-height: 5vh;
+    margin-bottom: 1.5vh;
+  }
+
+  .resume-subtitle {
+    font-size: 2.5vh;
+    line-height: 3vh;
+    margin-bottom: 3vh;
+  }
+
+  .resume-section {
+    margin-bottom: 3vh;
+  }
+
+  .resume-inner h2 {
+    font-size: 3.5vh;
+    line-height: 4vh;
+    margin-bottom: 1.5vh;
+  }
+
+  .resume-inner p {
+    font-size: 2.2vh;
+    line-height: 3vh;
+  }
+
+  .resume-bio {
+    font-size: 2.4vh;
+    line-height: 3.2vh;
+  }
+
+  .resume-inner li {
+    font-size: 2.2vh;
+    line-height: 3vh;
+  }
+
+  .resume-inner ul {
+    padding-left: 4vw;
+  }
+
+  .menu-container {
+    bottom: 2vh;
+    right: 2vw;
+  }
+
+  .runway-el.menu-btn {
+    width: 30vw;
+    height: 10vh;
+  }
+}

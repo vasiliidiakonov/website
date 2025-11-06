@@ -5,8 +5,14 @@
 } */
 
 @keyframes colorchange {
+  0% {
+    background-color: ghostwhite;
+  }
   50% {
     background-color: crimson;
+  }
+  100% {
+    background-color: ghostwhite;
   }
 }
 div.anbg {
@@ -126,7 +132,7 @@ arial, sans-serif;
   animation: opacity3 1s;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
- 
+
 }
 
 .juicy-el {
@@ -238,6 +244,55 @@ arial, sans-serif;
   animation-delay: 0;
 }
 
+.runway-back {
+  background: rgba(220, 20, 60, 0.1);
+  transition: background 0.6s;
+}
+
+.runway-back:hover {
+  background: transparent;
+}
+
+.runway-case {
+  position: relative;
+  overflow: hidden;
+}
+
+.runway-case .txt {
+  position: relative;
+  z-index: 2;
+  transition: opacity 0.6s;
+  animation: none;
+  opacity: 1;
+}
+
+.case-preview {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.6s, visibility 0s 0.6s;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.runway-case:hover .case-preview {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.6s, visibility 0s;
+}
+
+.runway-case:hover .txt {
+  opacity: 0 !important;
+  transition: opacity 0s !important;
+}
+
 .rightrow-el:hover {
   box-shadow: 0px -1px 30px 6px rgba(255, 255, 255, 0.5);
   animation: opacity2 1s;
@@ -313,13 +368,13 @@ arial, sans-serif;
   position: relative;
   left: 0;
   transform: none;
-  width: calc((100% - 12vw) / 3);
-  max-width: 400px;
+  width: 100%;
+  max-width: 1200px;
   height: 10vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: none;
+  background: rgba(220, 20, 60, 0.1);
   border: none;
   color: white;
   font-size: 4vh;
@@ -329,17 +384,18 @@ arial, sans-serif;
   opacity: 1;
   font-family: -apple-system, BlinkMacSystemFont, "helvetica neue", helvetica, arial, sans-serif;
   padding: 0;
-  margin: 0 0 4vh 0;
+  margin: 6vh 0 4vh 0;
   outline: 1px solid white;
   box-shadow: 0px -1px 20px 6px rgba(255, 255, 255, 0.5);
   animation: opacity1 2s;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
-  transition: box-shadow 1s;
+  transition: box-shadow 1s, background 0.6s;
 }
 
 .close-btn:hover {
   box-shadow: 0px -1px 30px 10px rgba(255, 255, 255, 0);
+  background: transparent;
 }
 
 
@@ -438,10 +494,16 @@ arial, sans-serif;
   animation-fill-mode: forwards;
 }
 
-.visual-placeholder img,
+.visual-placeholder img {
+  border: none;
+  outline: none;
+}
+
 .visual-placeholder video {
   border: none;
   outline: none;
+  max-height: 70vh;
+  object-fit: contain;
 }
 
 .visual-placeholder:has(img),
@@ -450,6 +512,20 @@ arial, sans-serif;
   background-color: transparent;
   padding: 0;
   min-height: auto;
+  display: block;
+}
+
+.image-caption {
+  font-family: -apple-system, BlinkMacSystemFont, "helvetica neue", helvetica, arial, sans-serif;
+  font-size: 2vh !important;
+  line-height: 2.8vh !important;
+  color: rgba(255, 255, 255, 0.7) !important;
+  margin-top: 2vh !important;
+  margin-bottom: 0 !important;
+  opacity: 1;
+  animation: opacity1 2s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
 }
 
 .impact-metrics {
@@ -672,5 +748,11 @@ arial, sans-serif;
   .impact-metrics p {
     font-size: 2.2vh;
     line-height: 3.2vh;
+  }
+
+  .image-caption {
+    font-size: 1.8vh;
+    line-height: 2.4vh;
+    margin-top: 1.5vh;
   }
 }
