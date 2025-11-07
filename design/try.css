@@ -503,7 +503,11 @@ arial, sans-serif;
   border: none;
   outline: none;
   max-height: 70vh;
+  max-width: 100%;
+  width: auto;
   object-fit: contain;
+  display: block;
+  margin: 0 auto;
 }
 
 .visual-placeholder:has(img),
@@ -626,6 +630,17 @@ arial, sans-serif;
     animation: opacity3 1s;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
+  }
+
+  .runway-case:hover .case-preview,
+  .runway-case:active .case-preview {
+    opacity: 0 !important;
+    visibility: hidden !important;
+  }
+
+  .runway-case:hover .txt,
+  .runway-case:active .txt {
+    opacity: 1 !important;
   }
   .txt {
   position: relative;
