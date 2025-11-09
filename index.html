@@ -1,39 +1,564 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Vasily Dyakonov – Design</title>
+    <title>Vasilii Diakonov – Product Designer</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link
-      rel="icon"
-      type="image/png"
-      href="images/favicon.png"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css"
-    />
+    <link rel="icon" type="image/png" href="images/favicon.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/addons/p5.sound.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <link rel="stylesheet" href="design/try.css" />
+    <link rel="stylesheet" href="design/testing.css" />
   </head>
-<div class="anbg"><img class="resize" style="-webkit-user-select:none; margin:auto; padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);" src="https://cdn.glitch.global/cb2683d9-7542-47a3-9caa-215bacfe2645/1kb_background2.gif?v=1687786474647"></div>
   <body>
-    <div class="nav">
+    <div class="background-container">
     </div>
 
-    <div class="runway">
-      
-        <div class="placeholder"></div>
-      <div class="placeholder"></div>
-      <a href="home.html">
-        <div class="runway-el" id="entrybutton">
-          <p class="txt">Enter</p>
-        </div></a
-      >
-         <div class="placeholder"></div>
+    <!-- Main Portfolio Content -->
+    <div class="portfolio-content">
+      <div class="portfolio-inner">
+
+        <!-- Hero/Bio Section -->
+        <section class="hero-section">
+          <h1 class="hero-title">Hi, I'm Vasilii 👋</h1>
+          <div class="hero-bio">
+            <p>I'm a Product Designer based in London who designs and ships features that drive retention and growth. Currently at Aloha Browser (5M users), where I work end-to-end across iOS, Android, Windows, and macOS—creating collaborative environments where design, engineering, and product ship quickly without sacrificing quality.</p>
+          </div>
+
+          <div class="hero-skills">
+            <p class="skills-list">End-to-End Product Design • Mobile (iOS/Android) & Desktop (Windows/macOS) • Design Systems & Component Libraries • User Research & Competitive Analysis • Cross-Functional Collaboration • Data-Driven Design & A/B Testing</p>
+          </div>
+
+          <div class="hero-links">
+            <a href="https://www.linkedin.com/in/vasilii-diakonov/" target="_blank" class="hero-link">LinkedIn</a>
+            <a href="mailto:wwdyakonov@gmail.com" class="hero-link">Email</a>
+            <a href="docs/Vasilii_Diakonov_CV_25.pdf" target="_blank" class="hero-link">Resume</a>
+          </div>
+        </section>
+
+        <!-- Featured Work Section -->
+        <section class="work-section">
+          <h2 class="section-title">Selected Work</h2>
+          <p class="work-intro">Recent projects where I worked end-to-end, from research and strategy through implementation and iteration, to drive measurable impact on retention and growth.</p>
+
+          <div class="work-cards">
+            <!-- Tabs Case Study -->
+            <article class="work-card">
+              <a href="#" onclick="openCase('tabs'); return false;" class="work-card-link">
+                <h3 class="work-title">Tab Management Redesign</h3>
+                <div class="work-image">
+                  <img src="images/tabs-header.png" alt="Aloha Browser Tabs redesign" />
+                </div>
+              </a>
+            </article>
+
+            <!-- Website Design System Case Study -->
+            <article class="work-card">
+              <a href="#" onclick="openCase('website'); return false;" class="work-card-link">
+                <h3 class="work-title">Aloha Website Design System</h3>
+                <div class="work-image">
+                  <img src="images/website-Homepage with dropdown interaction.png" alt="Aloha Website Design System" />
+                </div>
+              </a>
+            </article>
+
+            <!-- Referral Case Study -->
+            <article class="work-card">
+              <a href="#" onclick="openCase('referral'); return false;" class="work-card-link">
+                <h3 class="work-title">Aloha Referral System</h3>
+                <div class="work-image">
+                  <img src="images/referral-header.png" alt="Aloha Referral System" />
+                </div>
+              </a>
+            </article>
+          </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section class="experience-section">
+          <h2 class="section-title">Experience</h2>
+
+          <div class="experience-item">
+            <div class="experience-header">
+              <h3 class="experience-role">Product Designer</h3>
+              <span class="experience-period">Nov 2023 – Present</span>
+            </div>
+            <p class="experience-company">Aloha Browser</p>
+            <p class="experience-description">Leading iOS/Android design for a privacy-focused browser with 5M+ users. Improved Day 1 retention by 1.8%, increased marketing conversion from 20% to 30%, and drove 3.4x growth in referrals through end-to-end product design and design systems work.</p>
+          </div>
+
+          <div class="experience-item">
+            <div class="experience-header">
+              <h3 class="experience-role">Freelance Product Designer</h3>
+              <span class="experience-period">May 2018 – Nov 2023</span>
+            </div>
+            <p class="experience-company">Various Clients</p>
+            <p class="experience-description">Designed UI, branding, and design systems for B2C/B2B clients. Led discovery workshops and delivered solutions to founders and senior stakeholders.</p>
+          </div>
+
+          <div class="experience-item">
+            <div class="experience-header">
+              <h3 class="experience-role">Visiting Lecturer</h3>
+              <span class="experience-period">Jan 2021 – Jul 2022</span>
+            </div>
+            <p class="experience-company">British Higher School of Art and Design</p>
+            <p class="experience-description">Taught creative coding, UI design, and web development. Developed curriculum and mentored students.</p>
+          </div>
+        </section>
+
+      </div>
     </div>
+
+    <!-- Case Study Overlays -->
+    <div id="tabs-overlay" class="case-overlay">
+      <div class="case-nav-buttons">
+        <button class="case-nav-btn" onclick="closeCase('tabs')">Back</button>
+        <button class="case-nav-btn" onclick="copyLink('tabs')">Copy Link</button>
+      </div>
+      <div class="case-content">
+        <div class="case-inner">
+          <h1>Tab Management Redesign</h1>
+          <h2>Cross-platform tab redesign with grouping functionality</h2>
+
+          <div class="visual-placeholder">
+            <img src="images/tabs-header.png" alt="Tab Management Redesign" style="width: 100%; height: auto;">
+            <p class="image-caption">Redesigned tab management from cluttered list to organized, groupable interface with improved visual hierarchy</p>
+          </div>
+
+          <div class="case-body">
+            <div class="case-section">
+              <h2>Impact</h2>
+
+              <div class="impact-metrics">
+                <p><strong>1.8% Day 1 retention improvement</strong> across iOS and Android (1.2% iOS, 0.6% Android)</p>
+              </div>
+
+              <p>Led end-to-end design for 4M users. Introduced tab grouping, flexible organization, and platform-specific improvements. Shipped iOS complete in 6 months, Android UI improvements with grouping foundations.</p>
+
+              <p><strong>My Role:</strong> End-to-end design across platforms • Competitive research • Engineering collaboration</p>
+            </div>
+
+            <div class="case-section">
+              <h2>The Problem</h2>
+
+              <p>Power users with 20+ tabs couldn't find what they needed. Chrome and Safari offered grouping. We didn't. This table-stakes gap was hurting retention.</p>
+            </div>
+
+            <div class="case-section">
+              <h2>Solution</h2>
+
+              <h3>Flexible Grouping Interactions</h3>
+
+              <div class="visual-placeholder">
+                <video class="tab-grouping-video" autoplay loop muted playsinline style="width: 100%; height: auto;" onloadeddata="this.play()">
+                  <source src="images/Tab Grouoing Drag and drop.mp4" type="video/mp4">
+                </video>
+                <p class="image-caption">Flexible grouping through batch selection for power users and drag-and-drop for quick organization. Customizable group names and easy menu access</p>
+              </div>
+
+              <p>Designed two interaction paths: batch selection for power users organizing many tabs, and drag-and-drop for quick one-off organization.</p>
+            </div>
+
+            <div class="case-section">
+              <h3>Mode Switcher</h3>
+
+              <div class="visual-placeholder">
+                <img src="images/tabs-mode switcher.png" alt="Tab Mode Switcher" style="width: 100%; height: auto;">
+                <p class="image-caption">Tab mode switcher allowing users to toggle between Synced, Normal, and Private modes directly within the tab manager. Works across devices and adapts to dark mode</p>
+              </div>
+
+              <p>Created an unconventional tab mode switcher letting users toggle between Normal, Private, and Sync modes without leaving the tab manager.</p>
+            </div>
+
+            <div class="case-section">
+              <h3>Private Mode Experience</h3>
+
+              <div class="visual-placeholder">
+                <img src="images/tabs-private mode.png" alt="Private mode interface" style="width: 100%; height: auto;">
+                <p class="image-caption">Private mode with distinct visual experience, different color scheme, and private-specific tab groups—reinforcing Aloha's privacy-first positioning</p>
+              </div>
+
+              <p>Applied full grouping functionality to private tabs with distinct visual treatment that reinforces privacy-first positioning.</p>
+            </div>
+
+            <div class="case-section">
+              <h3>Android Performance Solution</h3>
+
+              <div class="visual-placeholder">
+                <img src="images/tabs-android view.png" alt="Android list view toggle" style="width: 100%; height: auto;">
+                <p class="image-caption">Performance solution for older Android devices—toggle between rich tab previews and efficient list mode. Turned constraint into user control feature</p>
+              </div>
+
+              <p>Turned a constraint into a feature: designed a toggle between rich tab previews and an efficient list mode for older devices.</p>
+            </div>
+
+            <div class="case-section">
+              <h3>Cross-Platform Implementation</h3>
+
+              <div class="visual-placeholder">
+                <img src="images/tabs-shipped.png" alt="Cross-platform comparison" style="width: 100%; height: auto;">
+                <p class="image-caption">Platform-specific implementations—iOS shipped complete grouping functionality, Android received UI improvements and foundational work. Both respect native platform patterns</p>
+              </div>
+
+              <p>Respected iOS and Android conventions rather than forcing identical experiences. iOS shipped complete grouping; Android received UI improvements with grouping foundations laid.</p>
+            </div>
+
+            <div class="case-section">
+              <details class="collapsible-section">
+                <summary>Read about the process</summary>
+                <div class="collapsible-content">
+                  <h2>Discovery & Strategy</h2>
+
+                  <p>Conducted competitive analysis of Chrome, Safari, Edge, and Firefox tab grouping implementations. Identified key patterns: visual grouping, drag-and-drop organization, and persistent group state.</p>
+
+                  <p>Gathered user feedback from community forums and support channels. Power users with 20+ tabs consistently reported frustration with finding specific tabs. Usage data showed that these power users had 3x higher churn than average users.</p>
+
+                  <p>Built business case demonstrating that tab grouping was becoming table stakes in the browser category. Presented competitive gap analysis to leadership (Design Lead, Product Lead, CEO, and engineering leads).</p>
+
+                  <p>Secured buy-in by proposing phased rollout: ship iOS first to validate with real metrics, then decide on Android investment. This de-risked the initiative and allowed us to learn fast. Research directly informed the decision to focus on flexibility—supporting both bulk organization and spontaneous grouping.</p>
+
+                  <h2>Design Decisions & Rationale</h2>
+
+                  <p>Designed two interaction paths after observing that users organize tabs in two distinct ways: bulk organization sessions (reorganizing many tabs at once) and opportunistic grouping (moving one tab while browsing).</p>
+
+                  <p>Batch selection serves power users who need to organize 20+ tabs quickly. Select multiple tabs with checkboxes, then group with one action. Drag-and-drop serves casual users making quick, spontaneous moves between existing groups. This flexibility accommodates different user types and contexts.</p>
+
+                  <p>Most browsers make users exit the tab manager to switch between normal and private modes. This creates unnecessary friction. By embedding the mode switcher directly in the tab manager, we reduced this multi-step process to a single tap, keeping users in their flow.</p>
+
+                  <p>Gave Sync mode (cross-device tab syncing, unique to Aloha) equal prominence with Normal and Private. This positioning elevated sync from a hidden feature to a first-class capability, supporting our power user value proposition.</p>
+
+                  <p>Created distinct visual treatment for private mode using a darker color palette and unique iconography. This clear differentiation helps users feel confident they're in a secure browsing context—critical for a privacy-focused browser. By giving private mode equal prominence and full grouping support, we reinforced Aloha's core privacy-first brand promise.</p>
+
+                  <p>Made groups collapsible with clear visual hierarchy. Group headers show tab count and support quick actions: rename, color picker, and delete. Color coding helps users create mental models ("work" is blue, "shopping" is green, etc.).</p>
+
+                  <h2>Implementation Approach</h2>
+
+                  <p>Shipped iOS first to validate the grouping concept with real user metrics before investing in full Android implementation. This strategy de-risked the feature—if grouping flopped on iOS, we'd save months of Android development.</p>
+
+                  <p>iOS users adopted grouping quickly: 43% created at least one group within the first week, and Day 1 retention improved by 1.2%. This validated the concept and greenlit Android development.</p>
+
+                  <p>Collaborated closely with iOS and Android engineers throughout implementation. Ensured gestures felt platform-native: iOS uses swipe actions for quick group actions, Android uses long-press. Same functionality, platform-appropriate execution.</p>
+
+                  <p>Iterated post-launch when initial tab card shapes caused visual issues across landscape and portrait orientations. Final design simplified the visual system while improving performance.</p>
+
+                  <p>For Android, partnered with the engineering lead to design UI foundations matching Material Design patterns. Android engineering flagged that rich tab previews caused performance issues on devices with limited RAM. Older devices would lag or crash when users had 30+ tabs open.</p>
+
+                  <p>Rather than compromise the experience for all users or abandon visual previews entirely, I designed a user-controlled toggle between preview mode and list mode. List mode uses text-only representation, reducing memory overhead by 60% while maintaining full grouping functionality.</p>
+
+                  <p>Positioned the toggle as a power user feature rather than a technical fallback. The framing was "choose your view" rather than "fix performance problems." This preserved user agency and avoided making legacy device users feel like second-class citizens.</p>
+
+                  <p>Unexpectedly, users with newer devices also switched to list mode when managing 50+ tabs—they discovered it was faster for scanning large collections. The technical constraint became a legitimate feature serving different user needs and contexts.</p>
+
+                  <p>Company pivoted to premium features before Android grouping shipped, but the UI improvements and architecture laid the foundation for future implementation.</p>
+
+                  <h2>Key Learnings</h2>
+
+                  <p>Phased approach (iOS-first) significantly reduced risk. Validating with real metrics before full cross-platform investment saved time and informed better decisions for Android.</p>
+
+                  <p>Platform-specific design decisions (respecting iOS and Android conventions) led to better user adoption than forcing identical experiences would have.</p>
+
+                  <p>Technical constraints can become features when framed correctly. The Android list view toggle became a power user tool, not a compromise.</p>
+
+                  <p>The unconventional mode switcher approach paid off: power users who discovered it had 40% higher engagement with private browsing and 2x higher sync adoption. Sometimes breaking conventions delivers better outcomes.</p>
+                </div>
+              </details>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="website-overlay" class="case-overlay">
+      <div class="case-nav-buttons">
+        <button class="case-nav-btn" onclick="closeCase('website')">Back</button>
+        <button class="case-nav-btn" onclick="copyLink('website')">Copy Link</button>
+      </div>
+      <div class="case-content">
+        <div class="case-inner">
+          <h1>Marketing Website & Design System</h1>
+          <h2>Building a responsive design system that increased conversion and velocity</h2>
+
+          <div class="visual-placeholder">
+            <img src="images/website-Homepage with dropdown interaction.png" alt="Marketing Website Redesign" style="width: 100%; height: auto;">
+            <p class="image-caption">Redesigned Aloha Browser marketing site with improved readability, updated positioning, and consistent component usage across all pages.</p>
+          </div>
+
+          <div class="case-body">
+            <div class="case-section">
+              <h2>Impact</h2>
+
+              <div class="impact-metrics">
+                <p><strong>+10% conversion</strong> (20% → 30%) and <strong>50% development time reduction</strong></p>
+              </div>
+
+              <p>New pages went from 1 week to 2-3 days. Completed in 4 months: 1 month strategy alignment, 3 months system development and implementation.</p>
+
+              <p><strong>My Role:</strong> End-to-end website redesign • Design system architecture • CMO collaboration • SEO optimization</p>
+            </div>
+
+            <div class="case-section">
+              <h2>The Problem</h2>
+
+              <p>Marketing site converted only 20% of visitors. Every page update required custom work—design was the bottleneck. Typography and accessibility issues hurt SEO rankings, limiting organic discovery.</p>
+            </div>
+
+            <div class="case-section">
+              <h2>Solution</h2>
+
+              <h3>Design System Foundations</h3>
+
+              <div class="visual-placeholder">
+                <img src="images/website-Color & Type Systems.png" alt="Design system foundations" style="width: 100%; height: auto;">
+                <p class="image-caption">Comprehensive color and typography systems with documented tokens for text, fill, brand, premium, positive, and warning states. Type system includes scales for both desktop and interactive contexts.</p>
+              </div>
+
+              <p>Built component library, typography scales, color tokens, and layout variables. Used Bootstrap as foundation for proven responsive patterns.</p>
+
+              <h3>Automated Responsive Behavior</h3>
+
+              <div class="visual-placeholder">
+                <img src="images/website-Layout Variables with component annotations.png" alt="Layout variables system" style="width: 100%; height: auto;">
+                <p class="image-caption">Layout system with automated responsive behavior. Every gap, margin, and padding is a Figma variable that adapts across breakpoints—designers create layouts once and copy across resolutions without manual adjustment.</p>
+              </div>
+
+              <div class="visual-placeholder">
+                <video autoplay loop muted playsinline style="width: 100%; height: auto;" onloadeddata="this.play()">
+                  <source src="images/website-Design System Demo.mp4" type="video/mp4">
+                </video>
+                <p class="image-caption">Video demonstrates how a single component adapts automatically across desktop, tablet, and mobile breakpoints using Figma variables.</p>
+              </div>
+
+              <p>Created layout library where designers build once, then copy/paste across breakpoints. All spacing adjusts automatically via Figma variables—eliminated manual adaptation work.</p>
+
+              <h3>Website Implementation</h3>
+
+              <div class="visual-placeholder">
+                <img src="images/website-Multiple pages showing system in use.png" alt="Pages in production" style="width: 100%; height: auto;">
+                <p class="image-caption">Design system components in use across marketing pages—homepage, Private AI, VPN feature, and Ad Block feature. Consistent buttons, cards, typography, and layout patterns.</p>
+              </div>
+
+              <p>Redesigned all pages with improved readability, updated positioning, fixed SEO issues, and optimized performance. Migrated to Bootstrap framework.</p>
+            </div>
+
+            <div class="case-section">
+              <details class="collapsible-section">
+                <summary>Read about the process</summary>
+                <div class="collapsible-content">
+                  <h2>Discovery & Strategy</h2>
+
+                  <p>Collaborated with CMO on marketing strategy alignment. Identified three core problem areas: UX (20% conversion), velocity (design bottleneck), and SEO (typography and accessibility blockers limiting organic traffic).</p>
+
+                  <p>Readability and messaging issues stemmed from inconsistent typography hierarchy and dense layouts. Development bottleneck analysis revealed every page required custom design work—no reusable components or patterns existed.</p>
+
+                  <p>Typography and accessibility SEO blockers included poor heading hierarchy, missing alt text, and insufficient color contrast. These technical issues hurt search rankings and limited organic discovery.</p>
+
+                  <p>Made strategic decision to build design system first rather than redesigning pages immediately. This required upfront investment but would pay dividends on every subsequent page.</p>
+
+                  <h2>Design System Development</h2>
+
+                  <p>Created prototype sandbox for engineering collaboration. This shared environment allowed engineers to extract tokens and test implementation while design work progressed.</p>
+
+                  <p>Automated responsive behavior development started with identifying pain point: designers manually adjusting every margin and padding across three breakpoints. This tedious work consumed hours and introduced inconsistencies.</p>
+
+                  <p>Figma variables became the key innovation. Built library where every spacing value references a variable that changes based on breakpoint. Designers build desktop layout, duplicate frame, switch to tablet mode—all spacing updates automatically.</p>
+
+                  <p>Bootstrap as foundation decision provided proven responsive patterns and reduced engineering effort. Rather than building custom grid system, leveraged Bootstrap's battle-tested framework and customized visual design.</p>
+
+                  <p>Engineering token extraction workflow: prototype sandbox included all components with documented CSS custom properties. Engineers copied values directly into codebase, ensuring design-code consistency.</p>
+
+                  <p>Documentation approach focused on usage examples rather than exhaustive specifications. Showed real page patterns and common combinations, making system immediately useful to marketing team.</p>
+
+                  <h2>Website Redesign Details</h2>
+
+                  <p>Readability improvements included establishing clear typography hierarchy (48px headlines, 18px body), increasing whitespace between sections, and using color contrast to guide attention.</p>
+
+                  <p>Positioning update aligned with privacy-first brand evolution. Updated messaging from generic browser features to privacy benefits, repositioned against Chrome/Safari, and emphasized data protection throughout.</p>
+
+                  <p>Technical SEO fixes included proper heading hierarchy (single H1, logical H2-H3 structure), comprehensive alt text on all images, and improved color contrast ratios meeting WCAG AA standards.</p>
+
+                  <p>Performance optimizations involved lazy loading images, optimizing asset sizes, and reducing unnecessary JavaScript. Page load time improved by 40%, directly impacting SEO rankings.</p>
+
+                  <p>Page-by-page approach started with homepage as proof of concept, then rolled out to feature pages (VPN, Ad Block, Private AI), and finally to support pages. Each iteration refined the system based on real usage.</p>
+
+                  <h2>Collaboration Process</h2>
+
+                  <p>Daily engineering sync on implementation ensured design intent translated accurately to code. Caught issues early and adjusted design system based on technical constraints.</p>
+
+                  <p>CMO strategic alignment meetings validated messaging changes and positioning updates. Design decisions supported broader marketing strategy rather than existing in isolation.</p>
+
+                  <p>ASO manager SEO collaboration focused on technical improvements (heading hierarchy, alt text, contrast) and content optimization. Design system made implementing SEO best practices consistent across all pages.</p>
+
+                  <p>Illustrator asset integration required establishing clear export specifications and naming conventions. Design system documented how illustrations paired with UI components.</p>
+
+                  <p>Design system created shared language between disciplines. Engineers, marketing team, and leadership could reference specific components and patterns, improving communication efficiency.</p>
+
+                  <p>Design-to-code workflow transformation: before system, every page required custom handoff documentation. After system, engineers referenced component library directly, reducing handoff time from days to hours.</p>
+
+                  <h2>The Innovation</h2>
+
+                  <p>Layout library's automated responsive behavior eliminated the most tedious part of web design. This single innovation saved hundreds of hours and became foundation for all new work.</p>
+
+                  <p>Building system first required upfront investment (1 month planning, 2 months development) but paid dividends immediately—every page became faster and more consistent. First post-launch page took 2 days instead of previous 7-day average.</p>
+
+                  <p>The approach proved that investing in infrastructure delivers compounding returns. System continues to accelerate work 18 months later, enabling marketing team to ship faster while maintaining quality.</p>
+                </div>
+              </details>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="referral-overlay" class="case-overlay">
+      <div class="case-nav-buttons">
+        <button class="case-nav-btn" onclick="closeCase('referral')">Back</button>
+        <button class="case-nav-btn" onclick="copyLink('referral')">Copy Link</button>
+      </div>
+      <div class="case-content">
+        <div class="case-inner">
+          <h1>Referral System Optimization</h1>
+          <h2>Driving organic growth through simplified UX and clearer incentives</h2>
+
+          <div class="visual-placeholder">
+            <img src="images/referral-header.png" alt="Referral System Optimization" style="width: 100%; height: auto;">
+            <p class="image-caption">Simplified referral interface with clearer messaging and streamlined actions. Removed confusing controls in favor of a single "Invite" button based on usage data.</p>
+          </div>
+
+          <div class="case-body">
+            <div class="case-section">
+              <h2>Impact</h2>
+
+              <div class="impact-metrics">
+                <p><strong>3.4x increase in monthly referrals</strong> (415 → 1,815)</p>
+              </div>
+
+              <p>Worked iteratively from January through November, shipping improvements based on usage data. Converted underperforming feature into significant organic acquisition channel.</p>
+
+              <p><strong>My Role:</strong> End-to-end redesign • Usage data analysis • iOS and Android implementation</p>
+            </div>
+
+            <div class="case-section">
+              <h2>The Problem</h2>
+
+              <p>Referral system generated only 415 referrals/month despite valuable premium rewards. Vague messaging ("Spread digital freedom"), confusing interface with multiple sharing options, and unrealistic reward structure made the feature ineffective.</p>
+            </div>
+
+            <div class="case-section">
+              <h2>Solution</h2>
+
+              <h3>Simplified Interface</h3>
+
+              <div class="visual-placeholder">
+                <img src="images/referral-ui buttons.png" alt="Simplified interface" style="width: 100%; height: auto;">
+                <p class="image-caption">Streamlined interface with a single "Invite friends" button. Usage data showed this was the only method users actually converted through, so all other options were removed.</p>
+              </div>
+
+              <p>Removed QR code and copy link options entirely. Usage data showed users only converted through the invite button—everything else was friction.</p>
+
+              <h3>Clear Messaging</h3>
+
+              <div class="visual-placeholder">
+                <img src="images/referral-messaging.png" alt="Updated messaging" style="width: 100%; height: auto;">
+                <p class="image-caption">Updated messaging from vague "Spread digital freedom" to clear "Invite friends – get Free Premium." Users immediately understand what they get and what action to take.</p>
+              </div>
+
+              <p>Changed from philosophical language to direct value proposition. Users immediately see what they get and what's required.</p>
+
+              <h3>Realistic Reward Structure</h3>
+
+              <div class="visual-placeholder">
+                <img src="images/referral-tiers.png" alt="Reward structure" style="width: 100%; height: auto;">
+                <p class="image-caption">Tiered reward system showing progression from 1 friend (1 week premium) through lifetime premium status. Clear milestones make the system feel achievable.</p>
+              </div>
+
+              <p>Revised to 1 week premium per friend (up to 10), scaling to lifetime premium. Made early wins attainable while rewarding power users.</p>
+            </div>
+
+            <div class="case-section">
+              <details class="collapsible-section">
+                <summary>Read about the process</summary>
+                <div class="collapsible-content">
+                  <h2>Discovery & Validation</h2>
+
+                  <p>Analyzed usage data showing QR code and copy link had zero conversion. Only the invite button was being used. This data-driven insight informed the simplification strategy.</p>
+
+                  <p>Worked closely with project manager to evolve the feature iteratively. Started as a pet project to improve underperforming system, became strategic organic acquisition initiative as results proved out.</p>
+
+                  <h2>Design Decisions</h2>
+
+                  <p>Removing options improved conversion because decision paralysis was the actual problem. Users weren't confused about how to share—they were confused about why to share and whether it was worth the effort.</p>
+
+                  <p>Messaging transformation moved from clever ("Spread digital freedom") to clear ("Invite friends – get Free Premium"). Clarity beat cleverness. Users needed to understand the value exchange immediately.</p>
+
+                  <p>Reward structure psychology: original system required too many referrals for first reward, making it feel unattainable. New structure gave immediate gratification (1 friend = 1 week) while still incentivizing power users with lifetime premium milestone.</p>
+
+                  <p>Platform-specific considerations around iOS and Android monetization policies required careful navigation to ensure rewards complied with app store guidelines while remaining valuable to users.</p>
+
+                  <h2>Implementation Approach</h2>
+
+                  <p>Shipped iteratively over 11 months rather than one big release. This allowed real-time testing and validation of each change. Measured impact at every step and adjusted based on data.</p>
+
+                  <p>Cross-platform coordination between iOS and Android teams ensured consistent experience while respecting platform-specific patterns and policies.</p>
+
+                  <p>Real-time measurement showed immediate improvements: first simplification increased conversions by 80%, messaging update added another 60%, and reward structure revision drove final 50% increase to reach 3.4x total growth.</p>
+
+                  <h2>Key Insight</h2>
+
+                  <p>Usage data revealed the answer: users weren't confused about how to share—they were confused about why to share. Clear incentive + simple action = 3.4x growth. Sometimes the solution is removing features, not adding them.</p>
+                </div>
+              </details>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Smooth scroll behavior
+      document.documentElement.style.scrollBehavior = 'smooth';
+
+      // Case study overlay functions
+      function openCase(caseId) {
+        document.getElementById(caseId + '-overlay').style.display = 'block';
+        document.querySelector('.portfolio-content').classList.add('page-hidden');
+      }
+
+      function closeCase(caseId) {
+        document.getElementById(caseId + '-overlay').style.display = 'none';
+        document.querySelector('.portfolio-content').classList.remove('page-hidden');
+      }
+
+      // Close overlay with Escape key
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          document.querySelectorAll('.case-overlay').forEach(overlay => {
+            overlay.style.display = 'none';
+          });
+          document.querySelector('.portfolio-content').classList.remove('page-hidden');
+        }
+      });
+
+      // Copy link function
+      function copyLink(caseId) {
+        const url = window.location.origin + window.location.pathname + '#' + caseId;
+        navigator.clipboard.writeText(url).then(function() {
+          // Visual feedback - you could add a tooltip or brief message here
+          const btn = event.target;
+          const originalText = btn.textContent;
+          btn.textContent = 'Copied!';
+          setTimeout(function() {
+            btn.textContent = originalText;
+          }, 2000);
+        }).catch(function(err) {
+          console.error('Failed to copy link: ', err);
+        });
+      }
+
+    </script>
   </body>
 </html>
-
-
