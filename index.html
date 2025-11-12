@@ -6,16 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/png" href="images/favicon.png" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/addons/p5.sound.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <link rel="stylesheet" href="design/try.css" />
     <link rel="stylesheet" href="design/testing.css" />
   </head>
   <body>
-    <div class="background-container">
-    </div>
-
     <!-- Main Portfolio Content -->
     <div class="portfolio-content">
       <div class="portfolio-inner">
@@ -520,6 +513,13 @@
       </div>
     </div>
 
+    <!-- Image Zoom Modal -->
+    <div id="image-zoom-modal" class="image-zoom-modal">
+      <div class="image-zoom-content">
+        <img id="zoomed-image" src="" alt="">
+      </div>
+    </div>
+
     <script>
       // Smooth scroll behavior
       document.documentElement.style.scrollBehavior = 'smooth';
@@ -560,6 +560,41 @@
           console.error('Failed to copy link: ', err);
         });
       }
+
+      // Image zoom functionality for mobile
+      const imageZoomModal = document.getElementById('image-zoom-modal');
+      const zoomedImage = document.getElementById('zoomed-image');
+
+      // Check if device is mobile/tablet (1000px or below)
+      function isMobileOrTablet() {
+        return window.innerWidth <= 1000;
+      }
+
+      // Add click handlers to case study images
+      document.addEventListener('click', function(e) {
+        if (!isMobileOrTablet()) return;
+
+        // Check if clicked element is an image inside a case study
+        const target = e.target;
+        if (target.tagName === 'IMG' && target.closest('.case-overlay')) {
+          // Don't zoom work card images or images in captions
+          if (target.closest('.work-image') || target.closest('.image-caption')) {
+            return;
+          }
+
+          // Open zoom modal
+          zoomedImage.src = target.src;
+          zoomedImage.alt = target.alt;
+          imageZoomModal.style.display = 'flex';
+          document.body.style.overflow = 'hidden';
+        }
+      });
+
+      // Close zoom modal when clicking anywhere
+      imageZoomModal.addEventListener('click', function() {
+        imageZoomModal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+      });
 
     </script>
   </body>
