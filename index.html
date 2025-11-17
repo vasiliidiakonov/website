@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css" />
     <link rel="stylesheet" href="design/style.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   </head>
   <body>
     <!-- Main Portfolio Content -->
@@ -530,16 +531,50 @@
         const button = document.querySelector('.show-more-button');
         const isExpanded = button.textContent === 'Show Less';
 
-        hiddenReleases.forEach(release => {
-          release.style.display = isExpanded ? 'none' : 'flex';
-        });
+        if (isExpanded) {
+          // Collapse with animation
+          gsap.to(hiddenReleases, {
+            opacity: 0,
+            y: -20,
+            scale: 0.95,
+            duration: 0.3,
+            stagger: 0.03,
+            ease: 'power2.in',
+            onComplete: () => {
+              hiddenReleases.forEach(release => {
+                release.style.display = 'none';
+              });
+            }
+          });
+          button.textContent = 'Show More';
+        } else {
+          // Expand - show with animation
+          hiddenReleases.forEach(release => {
+            release.style.display = 'flex';
+          });
 
-        button.textContent = isExpanded ? 'Show More' : 'Show Less';
+          // Animate hidden releases
+          gsap.fromTo(hiddenReleases,
+            { opacity: 0, y: 20, scale: 0.95 },
+            {
+              opacity: 1,
+              y: 0,
+              scale: 1,
+              duration: 0.5,
+              stagger: 0.05,
+              ease: 'back.out(1.7)'
+            }
+          );
+
+          button.textContent = 'Show Less';
+        }
       }
 
       // GSAP Text Animation
       window.addEventListener('DOMContentLoaded', () => {
-        // Get all heading elements in the header section
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Header animation (on page load)
         const headerSection = document.querySelector('.content-section');
         const headings = headerSection.querySelectorAll('.heading-large, .text-flow, .profile-container');
         const pills = headerSection.querySelectorAll('.pill, .platform-pills');
@@ -569,7 +604,82 @@
           duration: 0.7,
           stagger: 0.05,
           ease: 'back.out(2.5)'
-        }, 0.2); // Start with the timeline, no extra delay
+        }, 0.2);
+
+        // Selected Work animation (on scroll with image preload)
+        const bentoCards = document.querySelectorAll('.bento-large, .bento-small');
+        gsap.set(bentoCards, { opacity: 0, y: 40, scale: 0.9 });
+
+        // Preload images before animating
+        const bentoImages = document.querySelectorAll('.bento-grid img');
+        let loadedImages = 0;
+        const totalImages = bentoImages.length;
+
+        function checkImagesLoaded() {
+          loadedImages++;
+          if (loadedImages === totalImages) {
+            // All images loaded, can animate safely
+            gsap.to(bentoCards, {
+              opacity: 1,
+              y: 0,
+              scale: 1,
+              duration: 0.7,
+              stagger: 0.12,
+              ease: 'back.out(2.2)',
+              delay: 0.1,
+              scrollTrigger: {
+                trigger: '.bento-grid',
+                start: 'top 80%',
+                once: true
+              }
+            });
+          }
+        }
+
+        bentoImages.forEach(img => {
+          if (img.complete) {
+            checkImagesLoaded();
+          } else {
+            img.addEventListener('load', checkImagesLoaded);
+          }
+        });
+
+        // Releases animation (on scroll)
+        const releaseCards = document.querySelectorAll('.release-card:not(.release-hidden)');
+        gsap.set(releaseCards, { opacity: 0, y: 30 });
+
+        gsap.to(releaseCards, {
+          opacity: 1,
+          y: 0,
+          duration: 0.4,
+          stagger: 0.06,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: '.releases-section',
+            start: 'top 80%',
+            once: true
+          }
+        });
+
+        // Footer animation (on scroll)
+        const footer = document.querySelector('.content-section:last-of-type');
+        if (footer) {
+          const footerElements = footer.querySelectorAll('.experience-item, .heading-large, .text-flow');
+          gsap.set(footerElements, { opacity: 0, y: 30 });
+
+          gsap.to(footerElements, {
+            opacity: 1,
+            y: 0,
+            duration: 0.5,
+            stagger: 0.08,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: footer,
+              start: 'top 80%',
+              once: true
+            }
+          });
+        }
       });
     </script>
 
