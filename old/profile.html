@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+    <style>
+      @keyframes intro {
+  from {color: white;}
+  to {color: black;}
+}
+                @keyframes nav {
+  from {color: black;}
+  to {color: lightgrey;}
+}
+         a{
+        color:black;
+         text-decoration:none;
+      }
+      #selected{
+        text-decoration: underline;
+      }
+      
+      .magenta {
+        color: RosyBrown;
+        width: 100vw;
+        text-decoration: none;
+      }
+      .cyan{
+        color:#009fe3;
+        
+      }
+      header {
+        position: fixed;
+        background-color: white;
+        margin-top:0px;
+        color: black;
+        width: 100vw;
+        height: 6.5vh;
+        z-index: -1;
+      }
+
+      body {
+        font-family: "HelveticaNeueMedium", "HelveticaNeue-Medium",
+          "Helvetica Neue Medium", "HelveticaNeue", "Helvetica Neue",
+          "TeXGyreHerosRegular", "Helvetica", "Tahoma", "Geneva", "Arial",
+          sans-serif;
+        font-weight: 500;
+        font-stretch: normal;
+        font-size: 13pt;
+        -webkit-font-smoothing: antialiased;
+      }
+      #nav {
+        position: fixed;
+        display: none;
+        top: 39px;
+        height: 9vh;
+        width: 100vw;
+        background: white;
+        margin-left: 0vw;
+        z-index: 0;
+      }
+      #nav-inline {
+        display: inline;
+        position: absolute;
+      }
+     #icon {
+        position: fixed;
+        width: 43px;
+        height: 1px;
+        left: 60vw;
+        top: 17px;
+        display: inline;
+        background-color: black;
+        border: 1px black;
+
+        z-index: 1;
+      }
+      #icon2 {
+        position: fixed;
+        width: 43px;
+        height: 1px;
+        left: 60vw;
+        top: 28px;
+        display: inline;
+        background-color: black;
+        border: 1px black;
+
+        z-index: 1;
+      }
+      #icon3 {
+        display: none;
+        position: fixed;
+        width: 43px;
+        height: 1px;
+        left: 60vw;
+        top: 22px;
+        background-color: black;
+        border: 1px black;
+
+        transform: rotate(-45deg);
+        z-index: 1;
+      }
+      #icon4 {
+        display: none;
+        position: fixed;
+        width: 43px;
+        height: 1px;
+        left: 60vw;
+        top: 22px;
+        background-color: black;
+        border: 1px black;
+
+        transform: rotate(45deg);
+        z-index: 1;
+      }
+      #icon-underline {
+        z-index: 2;
+        position: fixed;
+        width: 50px;
+        height: 26px;
+        left: 59vw;
+        top: 15px;
+        cursor: pointer;
+
+        background: white;
+        opacity: 0;
+      }
+      #top-nav{
+         width: 70vw;
+        margin-left:   33vw;
+        
+      }
+      .inside-nav {
+        width: 70vw;
+        margin-left:   33vw;
+        margin-top:6px;
+        
+      }
+      .runway {
+        position: absolute;
+        z-index: -2;
+        margin-top: 0px;
+      }
+
+      .hero {
+        width: 100%;
+        
+        
+        align:center;
+      }
+      img{
+        display:block;
+        margin-left: auto;
+  margin-right: auto;
+        width:55%;
+      }
+      .caption {
+        margin-left: 33vw;
+        padding-top:15px;
+      }
+      #header-inside{
+        margin-left: 33vw;
+        margin-top:15px;
+      }
+      .runway-el{
+        padding-top:30px;
+        padding-bottom:30px;
+      }
+      footer{
+        background-color:white;
+        width:100vw;
+        height: 20vh;
+        bottom:0px;
+        display:block;
+      }
+      a{
+        cursor: pointer;
+      }
+      #profile{
+        
+        color:black;
+        
+        animation-name: intro;
+  animation-duration: 2s;
+        
+      }
+    
+      
+      #profile-container{
+        top:6.5vh;
+        font-size: 34pt;
+        display:inline;
+        position:absolute;
+           width: 94vw;
+        align:center;
+        margin-left:3vw;
+        line-height:34pt;
+       
+      }
+        #inquries{
+        margin-top: 35vh;
+        text-decoration: underline;
+          
+    
+      }
+             #toptopnav:hover{
+        color:darkgray;
+        
+           animation-name: nav;
+  animation-duration: 0.2s;
+        animation-timing-function: ease-in-out;
+      }
+            #selected:hover {
+              color:darkgray;
+        
+           animation-name: nav;
+  animation-duration: 0.2s;
+        animation-timing-function: ease-in-out;
+      }
+           #midnav:hover {
+              color:darkgray;
+        
+           animation-name: nav;
+  animation-duration: 0.2s;
+        animation-timing-function: ease-in-out;
+      }
+
+@media screen and (max-width: 800px) {
+   header {
+        height: 6.5vh;
+      }
+  img {
+    width: 100%;
+  }
+  #header-inside {
+    margin-left: 7vw;
+  }
+  .caption {
+    margin-left: 7vw;
+  }
+#icon {
+  left: 83vw;
+}
+#icon2 {
+  left: 83vw;
+}
+#icon3 {
+  left: 83vw;
+}
+#icon4 {
+  left: 83vw;
+}
+#icon-underline {
+  left: 82vw;
+}
+.inside-nav {
+  margin-left: 7vw;
+}
+#top-nav {
+  margin-left: 7vw;
+}
+    #profile-container{
+        top:6.5vh;
+        margin-left:7vw;
+      width: 86vw;
+       font-size: 18pt;
+      line-height:19pt;
+        
+       
+      }
+  
+      }
+
+    </style>
+    <div id="icon-underline"></div>
+    <div id="icon"></div>
+    <div id="icon2"></div>
+    <div id="icon3"></div>
+    <div id="icon4"></div>
+    <header>
+      <p id="header-inside">
+        <a class="magenta" href="index.html">Vasily Dyakonov </a>
+      </p>
+    </header>
+    <nav id="nav">
+      <div id="nav-inline">
+        <div id="top-nav"><a id="toptopnav" href="index.html">Brand &amp; Web Design</a></div>
+        <div class="inside-nav"><a id="midnav" href="other.html">Other Projects</a></div>
+        <div class="inside-nav"><a id="selected" href="profile.html">Profile</a></div>
+      </div>
+    </nav>
+    <div class="runway">
+      <div id="profile-container">
+        <p id="profile">
+          <img src="https://cdn.glitch.global/cb2683d9-7542-47a3-9caa-215bacfe2645/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202022-04-25%20%D0%B2%2012.25.48.png?v=1650878815283">
+          I am a designer and educator working with digital interaction and brand projects. <br>
+          &emsp;&emsp;As a designer I have developed identity systems, visual communication, web-based solutions and brand strategy for clients such as Moscow Museum of Modern Art, Moscow Dog Museum, and British Higher School of Art and Design and Kooperativ Cherniy.<br>
+          &emsp;&emsp;As a Lecturer at British Higher School of Art and Design in Moscow. My teaching has been centered around making with code. I have conducted workshops and lectures in programming in Python and web development, where my students were creating Mastodon bots and websites for things they enjoy.<br>
+          &emsp;&emsp;I have simultaneously pursued self-initiated projects in which I put my interests and the things I’ve learned about digital and cross-disciplinary art and poetry into practice.<br><br>
+          &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<a class="magenta">Contact:</a><br>
+          &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<a href="mailto:wwdyakonov@gmail.com">Email</a><br>
+          &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<a href="https://www.linkedin.com/in/vasily-dyakonov-08214115b/">LinkedIn</a>
+        </p>
+       
+      <footer></footer>
+      </div>
+  
+      
+    </div>
+  </body>
+  <script>
+    document
+      .getElementById("icon-underline")
+      .addEventListener("click", myFunction3);
+
+     function myFunction3() {
+      var x = document.getElementById("icon-underline");
+      var y = document.getElementById("nav");
+      var z = document.getElementById("icon");
+      var d = document.getElementById("icon2");
+      var c = document.getElementById("icon3");
+      var e = document.getElementById("icon4");
+     
+      if (y.style.display === "inline") {
+        y.style.display = "none";
+      } else {
+        y.style.display = "inline";
+      }
+      if (c.style.display === "inline") {
+        c.style.display = "none";
+      } else {
+        c.style.display = "inline";
+      }
+      if (e.style.display === "inline") {
+        e.style.display = "none";
+      } else {
+        e.style.display = "inline";
+      }
+      if (z.style.display === "none") {
+        z.style.display = "inline";
+      } else {
+        z.style.display = "none";
+      }
+      if (d.style.display === "none") {
+        d.style.display = "inline";
+      } else {
+        d.style.display = "none";
+      }
+    }
+  </script>
+</html>

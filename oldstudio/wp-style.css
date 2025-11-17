@@ -1,0 +1,149 @@
+@keyframes colorchange {
+0% {
+    opacity:100%
+  }
+}
+
+@font-face {
+  font-family: "Allegro";
+  src: url("https://cdn.glitch.global/cb2683d9-7542-47a3-9caa-215bacfe2645/ALLEGRO.TTF?v=1668359277674");
+}
+/*https://cdn.glitch.global/cb2683d9-7542-47a3-9caa-215bacfe2645/ALLEGRO.TTF?v=1668359277674*/
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.preload{
+  display:none;
+}
+.display {
+  background-color: none;
+  height: 100vh;
+  width: 100vw;
+  z-index:auto;
+  position:absolute;
+}
+
+.display-title {
+  position: absolute;
+  width: 10vw;
+  height: 6vh;
+  left: 2vw;
+  top: 1vh;
+
+  font-family: "HelveticaNeueBold", "HelveticaNeue-Bold", "Helvetica Neue Bold",
+    "HelveticaNeue", "Helvetica Neue", "TeXGyreHerosRegular", "Helvetica",
+    "Tahoma", "Geneva", "Arial", serif;
+  font-size: 6vh;
+  line-height: 55px;
+  letter-spacing: -0.05em;
+  color: rosybrown;
+  z-index:auto;
+}
+
+.info {
+  position: absolute;
+  width: 60vw;
+  height: 6vh;
+  left: 2vw;
+  top: 90vh;
+
+  font-family: "HelveticaNeueBold", "HelveticaNeue-Bold", "Helvetica Neue Bold",
+    "HelveticaNeue", "Helvetica Neue", "TeXGyreHerosRegular", "Helvetica",
+    "Tahoma", "Geneva", "Arial", sans-serif;
+  font-size: 6vh;
+  line-height: 55px;
+  letter-spacing: -0.05em;
+
+  color: black;
+  animation: colorchange 15s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  z-index:auto;
+  opacity:0;
+}
+
+.studio {
+  background-color: navy;
+  height: 120vh;
+  width: 100vw;
+}
+
+.studio-title {
+  position: absolute;
+  width: 30vw;
+  height: 6vh;
+  left: 2vw;
+  top: 1vh;
+
+  font-family: "HelveticaNeueBold", "HelveticaNeue-Bold", "Helvetica Neue Bold",
+    "HelveticaNeue", "Helvetica Neue", "TeXGyreHerosRegular", "Helvetica",
+    "Tahoma", "Geneva", "Arial", sans-serif;
+  font-size: 6vh;
+  line-height: 55px;
+  letter-spacing: -0.05em;
+  color: white;
+}
+i{
+  color:pink;
+}
+.runway {
+  position: absolute;
+  top: 15vh;
+  display: flex;
+  left: 0.5vw;
+  max-width: 99vw;
+  flex-wrap: wrap;
+  gap: 1vw;
+}
+
+.runway-backplate {
+  display: none;
+  width: 99vw;
+  height: 99vh;
+  background-color: none;
+  top: 0.5vh;
+  left: 0.5;
+}
+
+.runway-el {
+  display: flex;
+  flex-direction: column;
+  width: 32vw;
+  height: 50vh;
+  align-items: center;
+}
+
+.runway-el:focus {
+  background-color: none;
+  width: 80vw;
+  height: 80vh;
+  position: fixed;
+  top: 10vh;
+  left: 20vh;
+}
+
+.runway-el:focus ~ .runway-backplate {
+  display: flex;
+  position: fixed;
+}
+
+.runway-img {
+  left: -3vw;
+  max-width: 90%;
+  max-height: 90%;
+  background-color: white;
+}
+
+.runway-vid{
+  margin-top:3.5vh;
+  left: -3vw;
+  max-width: 90%;
+  max-height: 90%;
+  
+}
+
+
+

@@ -1,0 +1,49 @@
+<html>
+  <head>
+    <title>1kb painting</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css"
+    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      @keyframes colorchange {
+        50% {
+          background-color: grey;
+        }
+      }
+
+      img.resize {
+        width: 75vh; /* you can use % */
+        height: 90vh;
+        background-color: white;
+        animation: colorchange 15s;
+        animation-iteration-count: infinite;
+        animation-fill-mode: forwards;
+      }
+      body {
+        background-color: black;
+        margin: 0px;
+      }
+      div {
+        padding-top: 5vh;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <img
+        class="resize"
+        style="
+          -webkit-user-select: none;
+          display: block;
+          margin: auto;
+          padding: env(safe-area-inset-top) env(safe-area-inset-right)
+            env(safe-area-inset-bottom) env(safe-area-inset-left);
+        "
+        src="https://cdn.glitch.global/cb2683d9-7542-47a3-9caa-215bacfe2645/1kb2.gif?v=1668106453111"
+      />
+    </div>
+  </body>
+</html>

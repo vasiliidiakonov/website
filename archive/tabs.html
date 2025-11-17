@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Tab Management Redesign – Vasilii Diakonov</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/png" href="images/favicon.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css" />
+    <link rel="stylesheet" href="design/testing.css" />
+  </head>
+  <body style="background-color: #d8ecff;">
+    <!-- Main Portfolio Content -->
+    <div class="portfolio-content">
+      <div class="portfolio-inner" style="max-width: 1136px; display: flex; flex-direction: column; gap: 60px; align-items: center; padding: 64px 32px;">
+
+        <!-- Case Study Header -->
+        <div style="width: 100%; display: flex; flex-direction: column; gap: 20px; align-items: center;">
+          <div style="width: 100%; max-width: 680px; display: flex; flex-direction: column; gap: 20px;">
+            <h1 style="font-size: 32px; font-weight: 700; line-height: normal; color: midnightblue;">Tab Management Redesign</h1>
+            <p style="font-size: 20px; font-weight: 500; line-height: normal; color: midnightblue;">Cross-platform tab redesign with grouping functionality</p>
+          </div>
+          <div style="width: 100%; max-width: 1136px; height: 524px; border: 2px solid rgba(255, 255, 255, 0.3); border-radius: 24px; overflow: hidden;">
+            <img src="images/tabs-header.png" alt="Tab Management Redesign" style="width: 100%; height: 100%; object-fit: cover;">
+          </div>
+          <div style="width: 100%; max-width: 680px;">
+            <p style="font-size: 16px; font-weight: 400; line-height: normal; color: midnightblue;">Redesigned tab management from cluttered list to organized, groupable interface with improved visual hierarchy</p>
+          </div>
+        </div>
+
+        <!-- Section: Impact -->
+        <div style="width: 100%; max-width: 680px; display: flex; flex-direction: column; gap: 20px;">
+          <h2 style="font-size: 24px; font-weight: 700; line-height: normal; color: midnightblue; width: 100%;">Impact</h2>
+          <div style="background: rgba(255, 255, 255, 0.6); display: flex; gap: 10px; align-items: center; width: 100%;">
+            <div style="background: #0084ff; width: 3px; height: 64px; border-radius: 20px;"></div>
+            <p style="font-size: 20px; font-weight: 500; line-height: normal; color: #0084ff;">1.8% Day 1 retention improvement across iOS and Android<br>(1.2% iOS, 0.6% Android)</p>
+          </div>
+          <p style="font-size: 20px; font-weight: 500; line-height: normal; color: midnightblue; width: 100%;">Led end-to-end design for 4M users. Introduced tab grouping, flexible organization, and platform-specific improvements. Shipped iOS complete in 6 months, Android UI improvements with grouping foundations.</p>
+        </div>
+
+        <!-- Section: Problem -->
+        <div style="width: 100%; max-width: 680px; display: flex; flex-direction: column; gap: 20px;">
+          <h2 style="font-size: 24px; font-weight: 700; line-height: normal; color: midnightblue; width: 100%;">Problem</h2>
+          <p style="font-size: 20px; font-weight: 500; line-height: normal; color: midnightblue; width: 100%;">Power users with 20+ tabs couldn't find what they needed. Chrome and Safari offered grouping. We didn't. This table-stakes gap was hurting retention.</p>
+        </div>
+
+        <!-- Section: Solution -->
+        <div style="width: 100%; display: flex; flex-direction: column; gap: 20px; align-items: center;">
+          <div style="width: 100%; max-width: 680px; display: flex; flex-direction: column; gap: 20px;">
+            <h2 style="font-size: 24px; font-weight: 700; line-height: normal; color: midnightblue;">Solution</h2>
+            <p style="font-size: 20px; font-weight: 500; line-height: normal; color: midnightblue;">Flexible grouping interactions</p>
+          </div>
+          <div style="width: 100%; max-width: 1136px; height: 524px; border: 2px solid rgba(255, 255, 255, 0.3); border-radius: 24px; overflow: hidden;">
+            <video autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover;" onloadeddata="this.play()">
+              <source src="images/Tab Grouoing Drag and drop.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div style="width: 100%; max-width: 680px;">
+            <p style="font-size: 16px; font-weight: 400; line-height: normal; color: midnightblue;">Flexible grouping through batch selection for power users and drag-and-drop for quick organization. Customizable group names and easy menu access</p>
+          </div>
+          <div style="width: 100%; max-width: 1136px; height: 524px; border: 2px solid rgba(255, 255, 255, 0.3); border-radius: 24px; overflow: hidden;">
+            <img src="images/tabs-grouping modes.png" alt="Tab grouping modes" style="width: 100%; height: 100%; object-fit: cover;">
+          </div>
+        </div>
+
+        <!-- Section: Mode Switcher -->
+        <div style="width: 100%; display: flex; flex-direction: column; gap: 20px; align-items: center;">
+          <div style="width: 100%; max-width: 680px;">
+            <p style="font-size: 20px; font-weight: 500; line-height: normal; color: midnightblue;">Mode Switcher</p>
+          </div>
+          <div style="width: 100%; max-width: 1136px; height: 524px; border: 2px solid rgba(255, 255, 255, 0.3); border-radius: 24px; overflow: hidden;">
+            <img src="images/tabs-mode switcher.png" alt="Tab Mode Switcher" style="width: 100%; height: 100%; object-fit: cover;">
+          </div>
+          <div style="width: 100%; max-width: 680px;">
+            <p style="font-size: 16px; font-weight: 400; line-height: normal; color: midnightblue;">Tab mode switcher allowing users to toggle between Synced, Normal, and Private modes directly within the tab manager. Works across devices and adapts to dark mode.</p>
+          </div>
+        </div>
+
+        <!-- Section: Android Performance Solution -->
+        <div style="width: 100%; display: flex; flex-direction: column; gap: 20px; align-items: center;">
+          <div style="width: 100%; max-width: 680px;">
+            <p style="font-size: 20px; font-weight: 500; line-height: normal; color: midnightblue;">Android Performance Solution</p>
+          </div>
+          <div style="width: 100%; max-width: 1136px; height: 524px; border: 2px solid rgba(255, 255, 255, 0.3); border-radius: 24px; overflow: hidden;">
+            <img src="images/tabs-android view.png" alt="Android list view toggle" style="width: 100%; height: 100%; object-fit: cover;">
+          </div>
+          <div style="width: 100%; max-width: 680px;">
+            <p style="font-size: 16px; font-weight: 400; line-height: normal; color: midnightblue;">Performance solution for older Android devices—toggle between rich tab previews and efficient list mode. Turned constraint into user control feature.</p>
+          </div>
+        </div>
+
+        <!-- Section: Private Mode Experience -->
+        <div style="width: 100%; display: flex; flex-direction: column; gap: 20px; align-items: center;">
+          <div style="width: 100%; max-width: 680px;">
+            <p style="font-size: 20px; font-weight: 500; line-height: normal; color: midnightblue;">Private Mode Experience</p>
+          </div>
+          <div style="width: 100%; max-width: 1136px; height: 524px; border: 2px solid rgba(255, 255, 255, 0.3); border-radius: 24px; overflow: hidden;">
+            <img src="images/tabs-private mode.png" alt="Private mode" style="width: 100%; height: 100%; object-fit: cover;">
+          </div>
+          <div style="width: 100%; max-width: 680px; display: flex; flex-direction: column; gap: 20px;">
+            <p style="font-size: 16px; font-weight: 400; line-height: normal; color: midnightblue;">Private mode with distinct visual experience, different color scheme, and private-specific tab groups—reinforcing Aloha's privacy-first positioning</p>
+            <p style="font-size: 16px; font-weight: 400; line-height: normal; color: midnightblue;">Applied full grouping functionality to private tabs with distinct visual treatment</p>
+          </div>
+        </div>
+
+        <!-- Section: Cross-Platform Implementation -->
+        <div style="width: 100%; display: flex; flex-direction: column; gap: 20px; align-items: center;">
+          <div style="width: 100%; max-width: 680px;">
+            <p style="font-size: 20px; font-weight: 500; line-height: normal; color: midnightblue;">Cross-Platform Implementation</p>
+          </div>
+          <div style="width: 100%; max-width: 1136px; height: 524px; border: 2px solid rgba(255, 255, 255, 0.3); border-radius: 24px; overflow: hidden;">
+            <img src="images/tabs-shipped.png" alt="Cross-platform comparison" style="width: 100%; height: 100%; object-fit: cover;">
+          </div>
+          <div style="width: 100%; max-width: 680px;">
+            <p style="font-size: 16px; font-weight: 400; line-height: normal; color: midnightblue;">Platform-specific implementations—iOS shipped complete grouping functionality, Android received UI improvements</p>
+          </div>
+        </div>
+
+        <!-- Back Button Card -->
+        <div style="width: 100%; max-width: 680px;">
+          <a href="aloha.html" class="product-case-card">
+            <div class="product-case-content">
+              <div class="product-case-icon">
+                <img src="images/figma-assets/aloha-icon.png" alt="Aloha Browser">
+              </div>
+              <div class="product-case-text">
+                <h3>Aloha Browser</h3>
+                <p>Back to all work</p>
+              </div>
+            </div>
+            <div class="product-case-arrow">
+              <span>→</span>
+            </div>
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+    <script>
+      // Smooth scroll behavior
+      document.documentElement.style.scrollBehavior = 'smooth';
+    </script>
+  </body>
+</html>

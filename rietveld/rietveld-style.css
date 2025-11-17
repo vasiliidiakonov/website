@@ -1,0 +1,268 @@
+/*
+прагматика бук
+font-family: pragmatica, sans-serif;
+font-weight: 400;
+
+пойнтер
+font-family: poynter-oldstyle-display-con;
+*/
+
+@font-face {
+  font-family: 'cooper';
+  src: url('https://cdn.glitch.global/cb2683d9-7542-47a3-9caa-215bacfe2645/Cooper-Medium.ttf?v=1650368263488');
+}
+@font-face {
+  font-family: 'squiggle';
+  src: url('https://cdn.glitch.global/cb2683d9-7542-47a3-9caa-215bacfe2645/Squiggle1.7-Regular.otf?v=1650368260481');
+}
+
+a {
+  color: #0669ff;
+}
+
+.header {
+  padding:20px;
+  height: 100vh;
+  cursor: default;
+}
+#squiggleImage {
+  height: 120px;
+  width: auto;
+}
+
+.openCall {
+  font-family: pragmatica, sans-serif;
+  font-weight: 400;
+  text-align: right;
+  font-size: 60px;
+  color: #0669ff;
+}
+
+#blink {
+    -webkit-animation-name: blinker;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+
+    -moz-animation-name: blinker;
+    -moz-animation-duration: 2s;
+    -moz-animation-timing-function: linear;
+    -moz-animation-iteration-count: infinite;
+
+    animation-name: blinker;
+    animation-duration: 2s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+@-moz-keyframes blinker {
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+}
+
+@-webkit-keyframes blinker {
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+}
+
+@keyframes blinker {
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+}
+
+#intro {
+  padding-top: 20px;
+  font-family: poynter-oldstyle-display-con;
+  font-size: 120px;
+}
+
+#mmoma {
+  font-family: pragmatica, sans-serif;
+  font-weight: 400;
+}
+
+#squiggle {
+  font-family: squiggle;
+  font-size: 250px;
+}
+
+.mainText {
+  height: 100vh;
+  cursor: default;
+  margin-top: 30vh;
+  font-family: cooper;
+  font-size: 30px;
+  display: flex;
+  line-height: 40px;
+}
+#left a {
+  text-decoration: none;
+}
+
+#right {
+  color: #0669ff;
+}
+#right img {
+  height: 100%;
+}
+
+.half {
+  padding: 20px;
+  width: 50vw;
+}
+
+.squiggle {
+  cursor: pointer;
+  color: #0669ff;
+  font-family: squiggle;
+  font-size: 30px;
+}
+
+.mobile {
+display:none;
+}
+
+.mobileimage{
+display:none;
+}
+
+.arrow{
+height:250px;
+width:auto;
+position:absolute;
+bottom: 20px;
+}
+
+.arrowdiv img {
+  position: absolute;
+  margin: auto;
+  left: 0;
+  right: 0;
+  text-align: center;
+  z-index: -1;
+}
+#desktop {
+  display: block;
+}
+#mobile {
+  display: none;
+}
+
+.logos {
+  display: flex;
+  width: 50vw;
+  padding-top: 40px;
+  padding-bottom: 20px;
+}
+.logo {
+  width: 12.5vw;
+}
+.logos img {
+  padding-right: 40px;
+  height: 100%;
+}
+
+@media (max-width: 1340px) and (max-height: 740px) {
+  .arrow {
+    display: none;
+  }
+
+@media screen and (max-width:700px){
+  .logos {
+    flex-direction: column;
+    width: auto;
+    padding-top: 40px;
+    padding-bottom: 0px;
+    padding-right: 20px;
+  }
+  .logos img {
+    width: 70%;
+    height: 70%;
+    object-fit: contain;
+    padding-right: 0;
+    padding-bottom: 40px;
+    margin: auto;
+  }
+
+#desktop {
+  display: none;
+}
+#mobile {
+  display: block;
+}
+  .arrow {
+    display: none;
+  }
+
+.mobileimage {
+  display:flex;
+  width:50%;
+  height: 50%;
+  margin: auto;
+  }
+
+
+.mobile {
+display:block;
+font-family: cooper;
+font-size: 14pt;
+line-height: 120%;
+padding: 20px;
+color:#0669ff;
+}
+.header {
+  padding: 20px;
+  height: auto;
+  margin-bottom: 4em;
+}
+
+.openCall {
+  top: 0.5em;
+  right: 0.5em;
+  text-align: right;
+  font-size: 2em;
+  color: #0669ff;
+}
+
+#intro {
+  font-family: poynter-oldstyle-display-con;
+  font-size: 2em;
+}
+
+#squiggleImage {
+  height: 1em;
+}
+
+#mmoma {
+  font-family: pragmatica, sans-serif;
+  font-weight: 400;
+}
+
+.mainText {
+  font-family: cooper;
+  font-size: 14pt;
+  display: flex;
+  line-height: 120%;
+  margin-top: 4em;
+  height: auto;
+}
+
+.half {
+  width: 100vw;
+}
+
+#right {display:none;}
+
+.squiggle {
+  color: #0669ff;
+  font-family: squiggle;
+  font-size: 16pt;
+}
+ .mobileHeader {
+   height: 100vh;
+ }
+
+}
