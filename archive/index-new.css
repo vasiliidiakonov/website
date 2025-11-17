@@ -1,0 +1,92 @@
+/* Font Rendering */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "kern" 1;
+  font-kerning: normal;
+}
+
+/* Bento Card Hover Effects */
+.bento-card {
+  transition: all 0.3s ease;
+}
+
+.bento-card:hover {
+  background: rgba(255,255,255,0.6) !important;
+  box-shadow: 0px 2px 4px 0px rgba(147,185,249,0.35), 0px 0px 16px 0px inset #ffffff !important;
+}
+
+.bento-card:hover .bento-image {
+  box-shadow: 0px 2px 4px 0px rgba(147,185,249,0.25);
+}
+
+/* Case Card Hover Effects */
+.case-card {
+  transition: all 0.3s ease;
+}
+
+.case-card:hover {
+  box-shadow: 0px 2px 4px 0px rgba(147,185,249,0.35), 0px 0px 16px 0px inset #ffffff !important;
+}
+
+.case-card:hover .case-arrow {
+  background: rgba(255,255,255,0.8) !important;
+  box-shadow: 0px 0px 8px 0px inset #ffffff !important;
+}
+
+/* Blog Card Hover Effects */
+.blog-card {
+  transition: all 0.3s ease;
+}
+
+.blog-card:hover {
+  box-shadow: 0px 2px 4px 0px rgba(147,185,249,0.35), 0px 0px 16px 0px inset #ffffff !important;
+}
+
+.blog-card:hover .blog-arrow {
+  background: rgba(255,255,255,0.8) !important;
+  box-shadow: 0px 0px 8px 0px inset #ffffff !important;
+}
+
+/* Button Hover Effects */
+.button-small {
+  transition: all 0.3s ease;
+}
+
+.button-small:hover {
+  background: rgba(255,255,255,0.6) !important;
+  box-shadow: 0px 0px 8px 0px inset #ffffff !important;
+}
+
+/* Show More Button Hover */
+.show-more-button {
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.show-more-button:hover {
+  background: rgba(255,255,255,0.6) !important;
+  box-shadow: 0px 0px 8px 0px inset #ffffff !important;
+}
+
+/* Modal Close Button Hover */
+#modal-close:hover {
+  background: rgba(255,255,255,0.6) !important;
+  box-shadow: 0px 0px 8px 0px inset #ffffff !important;
+}
+
+/* Hide scrollbar for modal content */
+#modal-content::-webkit-scrollbar {
+  display: none;
+}
+
+/* Modal Overlay Transitions - Dissolve Effect */
+#case-study-modal {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+#case-study-modal.modal-visible {
+  opacity: 1;
+}

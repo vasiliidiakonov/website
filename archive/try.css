@@ -1,0 +1,771 @@
+/*@font-face {
+  font-family: "San Francisco";
+  font-weight: 100;
+  src: url("https://cdn.glitch.global/cb2683d9-7542-47a3-9caa-215bacfe2645/SF-Pro-Display-Medium.otf?v=1678474312742");
+} */
+
+@keyframes colorchange {
+  0% {
+    background-color: ghostwhite;
+  }
+  50% {
+    background-color: crimson;
+  }
+  100% {
+    background-color: ghostwhite;
+  }
+}
+div.anbg {
+  width: 100vw;
+  height: 100vh;
+}
+img.resize {
+  width: 100vw; /* comment */
+  height: 100vh;
+  background-color: ghostwhite;
+  animation: colorchange 15s;
+  animation-iteration-count: infinite;
+  animation-fill-mode: forwards;
+}
+
+@keyframes opacity1 {
+  0% {
+    opacity: 0;
+  }
+}
+
+@keyframes opacity2 {
+  100% {
+    box-shadow: 0px -1px 30px 10px rgba(255, 255, 255, 0);
+  }
+}
+
+@keyframes opacity3 {
+  0% {
+    box-shadow: 0px -1px 30px 6px rgba(255, 255, 255, 0);
+  }
+}
+
+@keyframes opacity4 {
+  0% {
+    box-shadow: 0px -1px 30px 6px rgba(255, 255, 255, 0);
+  }
+  50% {
+    box-shadow: 0px -1px 30px 10px rgba(255, 255, 255, 0);
+  }
+  100% {
+    box-shadow: 0px -1px 30px 6px rgba(255, 255, 255, 0);
+  }
+}
+
+@keyframes opacity5 {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.2;
+  }
+}
+
+@keyframes opacity6 {
+  100% {
+    opacity: 0.2;
+  }
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #937ed6;
+  overflow:hidden;
+}
+
+.mobilebr {
+  display: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+.nav {
+  justify-content: start;
+  position: absolute;
+  display: inline;
+  font-family: -apple-system, BlinkMacSystemFont, "helvetica neue", helvetica,
+arial, sans-serif;
+  font-size: 4.8vh;
+  line-height: 5vh;
+  letter-spacing: -0.01em;
+  color: white;
+  width: 73vw;
+  height: 15vh;
+  left: 2vw;
+  top: 2vh;
+  opacity: 1;
+  animation: opacity1 2s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  align-items: center;
+}
+.runway {
+  position: absolute;
+  max-width: 98vw;
+  display: flex;
+  flex-wrap: wrap;
+  display: grid;
+  grid-gap: 3vw;
+  grid-template-columns: repeat(auto-fill, 35vw);
+  bottom: 2vw;
+  left: 2vw;
+}
+
+.runway-el {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  width: 35vw;
+  height: 34vh;
+  outline: 1px solid white;
+  align-items: center;
+  box-shadow: 0px -1px 20px 6px rgba(255, 255, 255, 0.5);
+  animation: opacity3 1s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+
+}
+
+.juicy-el {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  width: 35vw;
+  height: 34vh;
+  background-image: url("https://cdn.glitch.global/cb2683d9-7542-47a3-9caa-215bacfe2645/Rectangle%203%20(1).png?v=1688822605091"); /*conic-gradient(from 0.25turn at 100% 0%, rgba(221, 28, 252, 1), rgba(255, 255, 255, 1), rgba(237, 138, 253, 1) 1turn, rgba(255, 255, 255, 1))*/
+  background-position: center;
+  background-size: 35vw 34vh;
+}
+
+.juicy-inside{
+   width: 28.2vw;
+  height: 22.7vh;
+  left: 3vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  background-color:rgba(221, 28, 252, 1);
+  
+  
+}
+
+
+.placeholder {
+  display: flex;
+  flex-direction: row;
+  width: 35vw;
+  height: 34vh;
+  outline: none;
+  align-items: center;
+ 
+}
+
+.rightrow {
+  position: fixed;
+  max-width: 20vw;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3vw;
+  display: grid;
+  grid-gap: 0.6vw;
+  grid-template-columns: repeat(auto-fill, 20vw);
+  top: 1vh;
+  left: 78vw;
+  opacity: 100;
+  animation: opacity6 2s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-delay: 10s;
+}
+
+.rightrow:hover {
+  animation: opacity5 1s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-delay: 10s;
+}
+
+.rightrow-el {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  width: 20vw;
+  height: 7vh;
+  outline: 1px solid white;
+  align-items: center;
+  box-shadow: 0px -1px 30px 6px rgba(255, 255, 255, 0.5);
+  animation: opacity3 1s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+.placeholder-right {
+  display: flex;
+  flex-direction: row;
+  width: 20vw;
+  height: 35vh;
+  outline: none;
+  align-items: center;
+}
+
+.txt {
+  position: relative;
+  font-family: -apple-system, BlinkMacSystemFont, "helvetica neue", helvetica,
+arial, sans-serif;
+  font-size: 5vh;
+  line-height: 5vh;
+  letter-spacing: -0.02em;
+  color: white;
+  text-align: center;
+  opacity: 1;
+  animation: opacity1 2s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+
+.runway-el:hover {
+  box-shadow: 0px -1px 30px 6px rgba(255, 255, 255, 0.5);
+  animation: opacity2 1s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-delay: 0;
+}
+
+.runway-back {
+  background: rgba(220, 20, 60, 0.1);
+  transition: background 0.6s;
+}
+
+.runway-back:hover {
+  background: transparent;
+}
+
+.runway-case {
+  position: relative;
+  overflow: hidden;
+}
+
+.runway-case .txt {
+  position: relative;
+  z-index: 2;
+  transition: opacity 0.6s;
+  animation: none;
+  opacity: 1;
+}
+
+.case-preview {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.6s, visibility 0s 0.6s;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.runway-case:hover .case-preview {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.6s, visibility 0s;
+}
+
+.runway-case:hover .txt {
+  opacity: 0 !important;
+  transition: opacity 0s !important;
+}
+
+.rightrow-el:hover {
+  box-shadow: 0px -1px 30px 6px rgba(255, 255, 255, 0.5);
+  animation: opacity2 1s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-delay: 0;
+}
+
+
+
+@media only screen and (max-width: 1000px) {
+  @keyframes opacity1 {
+    0% {
+      opacity: 0;
+    }
+  }
+
+  @keyframes opacity2 {
+    100% {
+      box-shadow: 0px -1px 30px 10px rgba(255, 255, 255, 0);
+    }
+  }
+
+  @keyframes opacity3 {
+    0% {
+      box-shadow: 0px -1px 30px 6px rgba(255, 255, 255, 0);
+    }
+  }
+
+  @keyframes opacity4 {
+    50% {
+      box-shadow: 0px -1px 30px 10px rgba(255, 255, 255, 0);
+    }
+  }
+}
+
+/* Case Overlay Styles */
+.case-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(147, 126, 214, 0.85);
+  z-index: 1000;
+  overflow-y: auto;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.case-content {
+  position: relative;
+  width: 100vw;
+  min-height: 100vh;
+  overflow-y: auto;
+}
+
+.case-inner {
+  padding: 6vh 6vw;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.close-btn {
+  position: relative;
+  left: 0;
+  transform: none;
+  width: 100%;
+  max-width: 1200px;
+  height: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(220, 20, 60, 0.1);
+  border: none;
+  color: white;
+  font-size: 4vh;
+  line-height: 4vh;
+  cursor: pointer;
+  z-index: 1002;
+  opacity: 1;
+  font-family: -apple-system, BlinkMacSystemFont, "helvetica neue", helvetica, arial, sans-serif;
+  padding: 0;
+  margin: 6vh 0 4vh 0;
+  outline: 1px solid white;
+  box-shadow: 0px -1px 20px 6px rgba(255, 255, 255, 0.5);
+  animation: opacity1 2s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  transition: box-shadow 1s, background 0.6s;
+}
+
+.close-btn:hover {
+  box-shadow: 0px -1px 30px 10px rgba(255, 255, 255, 0);
+  background: transparent;
+}
+
+
+.page-hidden {
+  display: none !important;
+}
+
+.case-inner h1 {
+  font-family: -apple-system, BlinkMacSystemFont, "helvetica neue", helvetica, arial, sans-serif;
+  font-size: 6vh;
+  line-height: 6.5vh;
+  letter-spacing: -0.02em;
+  color: white;
+  margin-bottom: 4vh;
+  opacity: 1;
+  animation: opacity1 2s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+.case-inner h2 {
+  font-family: -apple-system, BlinkMacSystemFont, "helvetica neue", helvetica, arial, sans-serif;
+  font-size: 4vh;
+  line-height: 4.5vh;
+  letter-spacing: -0.01em;
+  color: white;
+  margin-top: 3vh;
+  margin-bottom: 2vh;
+  opacity: 1;
+  animation: opacity1 2s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+.case-body p {
+  font-family: -apple-system, BlinkMacSystemFont, "helvetica neue", helvetica, arial, sans-serif;
+  font-size: 2.5vh;
+  line-height: 3.5vh;
+  color: white;
+  margin-bottom: 2vh;
+  opacity: 1;
+  animation: opacity1 2s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+.case-inner h3 {
+  font-family: -apple-system, BlinkMacSystemFont, "helvetica neue", helvetica, arial, sans-serif;
+  font-size: 3vh;
+  line-height: 3.5vh;
+  letter-spacing: -0.01em;
+  color: white;
+  margin-top: 2vh;
+  margin-bottom: 1.5vh;
+  opacity: 1;
+  animation: opacity1 2s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+.case-body ul {
+  margin-bottom: 2vh;
+  padding-left: 2vw;
+}
+
+.case-body li {
+  font-family: -apple-system, BlinkMacSystemFont, "helvetica neue", helvetica, arial, sans-serif;
+  font-size: 2.5vh;
+  line-height: 3.5vh;
+  color: white;
+  margin-bottom: 1vh;
+  opacity: 1;
+  list-style-type: disc;
+  animation: opacity1 2s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+.visual-placeholder {
+  width: 100%;
+  min-height: 40vh;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px dashed rgba(255, 255, 255, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 3vh 0;
+  font-family: -apple-system, BlinkMacSystemFont, "helvetica neue", helvetica, arial, sans-serif;
+  font-size: 2.5vh;
+  color: rgba(255, 255, 255, 0.6);
+  text-align: center;
+  padding: 2vh 2vw;
+  opacity: 1;
+  animation: opacity1 2s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+.visual-placeholder img {
+  border: none;
+  outline: none;
+}
+
+.visual-placeholder video {
+  border: none;
+  outline: none;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.visual-placeholder:has(img),
+.visual-placeholder:has(video) {
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  min-height: auto;
+  display: block;
+}
+
+.image-caption {
+  font-family: -apple-system, BlinkMacSystemFont, "helvetica neue", helvetica, arial, sans-serif;
+  font-size: 2vh !important;
+  line-height: 2.8vh !important;
+  color: rgba(255, 255, 255, 0.7) !important;
+  margin-top: 2vh !important;
+  margin-bottom: 0 !important;
+  opacity: 1;
+  animation: opacity1 2s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+.impact-metrics {
+  margin: 4vh 0;
+  padding: 3vh 2vw;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-left: 3px solid white;
+  opacity: 1;
+  animation: opacity1 2s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+.impact-metrics p {
+  font-size: 2.8vh;
+  line-height: 4vh;
+  opacity: 1;
+}
+
+.section-divider {
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.2);
+  margin: 5vh 0;
+  opacity: 1;
+  animation: opacity1 2s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+@media only screen and (max-width: 1000px) {
+  div.anbg {
+    background: url("https://cdn.glitch.global/cb2683d9-7542-47a3-9caa-215bacfe2645/1kb_background2.gif?v=1687786474647")
+      no-repeat center center;
+    background-size: 166.6666667vh 100vh;
+    width: 100vw; /* you can use % */
+    height: 100vh;
+    animation: colorchange 15s;
+    animation-iteration-count: infinite;
+    animation-fill-mode: forwards;
+    background-color: ghostwhite;
+  }
+  img.resize {
+    display: none;
+  }
+
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #937ed6;
+    margin: 0px;
+    max-width: 100vw; /*comment*/
+    max-height: 100vh;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  .nav {
+    position: absolute;
+    display: inline;
+    font-family: -apple-system, BlinkMacSystemFont, "helvetica neue", helvetica,
+arial, sans-serif;
+    font-size: 4vh;
+    line-height: 4.2vh;
+    letter-spacing: -0.02em;
+    color: white;
+    width: 99vw;
+    height: 10vh;
+    left: 2vw;
+    top: 1vh;
+    opacity: 1;
+    animation: opacity1 2s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+  }
+
+  .runway {
+    position: absolute;
+    max-width: 96vw;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3vw;
+    display: grid;
+    grid-gap: 3vw;
+    grid-template-columns: repeat(auto-fill, 100%);
+    bottom: 2vh;
+    left: 2vw;
+  }
+  .runway-el {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    width: 96vw;
+    height: 10vh;
+    outline: 1px solid white;
+    box-shadow: 0px -1px 30px 6px rgba(255, 255, 255, 0.5);
+    animation: opacity3 1s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+  }
+
+  .runway-case:hover .case-preview,
+  .runway-case:active .case-preview {
+    opacity: 0 !important;
+    visibility: hidden !important;
+  }
+
+  .runway-case:hover .txt,
+  .runway-case:active .txt {
+    opacity: 1 !important;
+  }
+  .txt {
+  position: relative;
+  font-family: -apple-system, BlinkMacSystemFont, "helvetica neue", helvetica,
+arial, sans-serif;
+  font-size: 4vh;
+  line-height: 3.7vh;
+  letter-spacing: -0.02em;
+  color: white;
+  text-align: center;
+  opacity: 1;
+  animation: opacity1 2s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+.juicy-inside{
+  width: 90vw;
+  height: 10vh;
+  left: 3vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  background-color:rgba(221, 28, 252, 1);
+  
+  
+}
+
+  #entrybutton {
+    animation: opacity4 3s ease-in-out;
+    animation-iteration-count: 8;
+    animation-fill-mode: backwards;
+  }
+  .placeholder {
+    display: none;
+  }
+
+  .dispbr {
+    display: none;
+  }
+
+  .mobilebr {
+    display: flex;
+  }
+
+  .case-content {
+    width: 100vw;
+    min-height: 100vh;
+  }
+
+  .case-inner {
+    padding: 4vh 2vw 20vh 2vw;
+  }
+
+  .case-content::after {
+    content: '';
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    height: calc(12vh + 20px);
+    background: linear-gradient(to top, rgba(147, 126, 214, 0.85) 0%, rgba(147, 126, 214, 0.85) 30%, rgba(147, 126, 214, 0.82) 50%, rgba(147, 126, 214, 0.78) 70%, transparent 100%);
+    z-index: 1001;
+    pointer-events: none;
+  }
+
+  .close-btn {
+    position: fixed;
+    bottom: 2vh;
+    left: 2vw;
+    width: 96vw;
+    max-width: 96vw;
+    margin: 0;
+  }
+
+  .case-inner h1 {
+    font-size: 4.5vh;
+    line-height: 5vh;
+    margin-bottom: 3vh;
+  }
+
+  .case-inner h2 {
+    font-size: 3.5vh;
+    line-height: 4vh;
+    margin-top: 2vh;
+    margin-bottom: 1.5vh;
+  }
+
+  .case-body p {
+    font-size: 2.2vh;
+    line-height: 3vh;
+  }
+
+
+  .case-inner h3 {
+    font-size: 2.8vh;
+    line-height: 3.2vh;
+  }
+
+  .case-body p,
+  .case-body li {
+    font-size: 2vh;
+    line-height: 2.8vh;
+  }
+
+  .case-body ul {
+    padding-left: 4vw;
+  }
+
+  .visual-placeholder {
+    min-height: 30vh;
+    font-size: 2vh;
+  }
+
+  .impact-metrics {
+    padding: 3vh 2vw;
+  }
+
+  .impact-metrics p {
+    font-size: 2.2vh;
+    line-height: 3.2vh;
+  }
+
+  .image-caption {
+    font-size: 1.8vh;
+    line-height: 2.4vh;
+    margin-top: 1.5vh;
+  }
+}

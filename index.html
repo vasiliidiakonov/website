@@ -6,596 +6,572 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/png" href="images/favicon.png" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css" />
-    <link rel="stylesheet" href="design/testing.css" />
+    <link rel="stylesheet" href="design/style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   </head>
   <body>
     <!-- Main Portfolio Content -->
-    <div class="portfolio-content">
-      <div class="portfolio-inner">
+    <div class="portfolio-container">
 
-        <!-- Hero/Bio Section -->
-        <section class="hero-section">
-          <h1 class="hero-title">Hi, I'm Vasilii 👋</h1>
-          <div class="hero-bio">
-            <p>I'm a Product Designer based in London who designs and ships features that drive retention and growth. Currently at Aloha Browser (5M users), where I work end-to-end across iOS, Android, Windows, and macOS—creating collaborative environments where design, engineering, and product ship quickly without sacrificing quality.</p>
+      <!-- Header Section -->
+      <div class="content-section">
+        <!-- Profile Image -->
+        <div class="profile-container">
+          <object class="profile-image" data="images/SVG/SVG01.svg" type="image/svg+xml" aria-label="Vasilii Diakonov"></object>
+        </div>
+
+        <!-- Heading -->
+        <p class="heading-large">Hi, I'm Vasilii</p>
+
+        <!-- Location Line -->
+        <div class="text-flow">
+          <p class="heading-large">I'm a Product Designer based in</p>
+          <div class="pill pill-teal">London</div>
+        </div>
+
+        <!-- Product Design Line -->
+        <div style="display: flex; flex-direction: column; gap: 20px; align-items: center; width: 100%;">
+          <div class="text-flow">
+            <p class="heading-large">I design products</p>
+            <div class="pill pill-red">End-to-End</div>
+            <p class="heading-large">across</p>
           </div>
 
-          <div class="hero-skills">
-            <p class="skills-list">End-to-End Product Design • Mobile (iOS/Android) & Desktop (Windows/macOS) • Design Systems & Component Libraries • User Research & Competitive Analysis • Cross-Functional Collaboration • Data-Driven Design & A/B Testing</p>
+          <!-- Platform Pills -->
+          <div class="platform-pills">
+            <div class="pill pill-blue">iOS</div>
+            <div class="pill pill-green">Android</div>
+            <div class="pill pill-light-blue">Windows & MacOS</div>
+            <div class="pill pill-yellow">Web</div>
           </div>
+        </div>
 
-          <div class="hero-links">
-            <a href="https://www.linkedin.com/in/vasilii-diakonov/" target="_blank" class="hero-link">LinkedIn</a>
-            <a href="mailto:wwdyakonov@gmail.com" class="hero-link">Email</a>
-            <a href="docs/Vasilii_Diakonov_CV_25.pdf" target="_blank" class="hero-link">Resume</a>
-          </div>
-        </section>
+        <!-- Description -->
+        <p class="heading-large" style="text-align: center;">
+          I create collaborative environments where design, engineering, and product ship quickly without sacrificing quality
+        </p>
 
-        <!-- Featured Work Section -->
-        <section class="work-section">
-          <h2 class="section-title">Selected Work</h2>
-          <p class="work-intro">Recent projects where I worked end-to-end, from research and strategy through implementation and iteration, to drive measurable impact on retention and growth.</p>
-
-          <div class="work-cards">
-            <!-- Tabs Case Study -->
-            <article class="work-card">
-              <a href="#" onclick="openCase('tabs'); return false;" class="work-card-link">
-                <h3 class="work-title">Tab Management Redesign</h3>
-                <div class="work-image">
-                  <img src="images/tabs-header.png" alt="Aloha Browser Tabs redesign" />
-                </div>
-              </a>
-            </article>
-
-            <!-- Website Design System Case Study -->
-            <article class="work-card">
-              <a href="#" onclick="openCase('website'); return false;" class="work-card-link">
-                <h3 class="work-title">Aloha Website Design System</h3>
-                <div class="work-image">
-                  <img src="images/website-Homepage with dropdown interaction.png" alt="Aloha Website Design System" />
-                </div>
-              </a>
-            </article>
-
-            <!-- Referral Case Study -->
-            <article class="work-card">
-              <a href="#" onclick="openCase('referral'); return false;" class="work-card-link">
-                <h3 class="work-title">Aloha Referral System</h3>
-                <div class="work-image">
-                  <img src="images/referral-header.png" alt="Aloha Referral System" />
-                </div>
-              </a>
-            </article>
-          </div>
-        </section>
-
-        <!-- Experience Section -->
-        <section class="experience-section">
-          <h2 class="section-title">Experience</h2>
-
-          <div class="experience-item">
-            <div class="experience-header">
-              <h3 class="experience-role">Product Designer</h3>
-              <span class="experience-period">November 2023 – Present</span>
-            </div>
-            <p class="experience-company">Aloha Browser</p>
-            <p class="experience-description">Led select iOS/Android design initiatives for a privacy-focused browser startup in a three person design team, shipped improvements end to end that lifted Day 1 retention by 1.2% (iOS) and 0.6% (Android), contributed to retention of 50–70K users.</p>
-          </div>
-
-          <div class="experience-item">
-            <div class="experience-header">
-              <h3 class="experience-role">Freelance UI and Product Designer</h3>
-              <span class="experience-period">May 2018 – November 2023</span>
-            </div>
-            <p class="experience-company">Various Clients</p>
-            <p class="experience-description">Managed client relationships and project scopes independently, presented work directly to Founders and other senior level stakeholders.</p>
-          </div>
-
-          <div class="experience-item">
-            <div class="experience-header">
-              <h3 class="experience-role">Visiting Lecturer</h3>
-              <span class="experience-period">January 2021 – July 2022</span>
-            </div>
-            <p class="experience-company">British Higher School of Art and Design</p>
-            <p class="experience-description">Lectured on creative coding, UI design, and web development, developed syllabi, led student critiques and mentored students to get desired results.</p>
-          </div>
-        </section>
-
+        <!-- Contact Line -->
+        <div class="text-flow">
+          <p class="heading-large">You can read my</p>
+          <a href="https://cdn.glitch.global/cb2683d9-7542-47a3-9caa-215bacfe2645/Vasilii%20Diakonov%20Resume.pdf?v=1734376765886" class="pill pill-purple" target="_blank">
+            Resume
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g clip-path="url(#clip0_184_558_header)">
+                <path d="M23.6597 11.994C23.6597 18.5159 18.3612 23.8222 11.828 23.8222C5.30623 23.8222 0 18.5159 0 11.994C0 5.46452 5.30623 0.166016 11.828 0.166016C18.3612 0.166016 23.6597 5.46452 23.6597 11.994ZM10.5956 7.09394V13.1697L10.6773 14.848L10.0841 14.1152L8.51632 12.4489C8.30344 12.2164 7.9957 12.0861 7.68592 12.0861C7.10446 12.0861 6.6014 12.52 6.6014 13.1334C6.6014 13.455 6.72459 13.6989 6.94573 13.9159L10.8704 17.6937C11.1987 18.0111 11.5075 18.1153 11.8358 18.1153C12.1677 18.1153 12.4765 18.0111 12.8048 17.6937L16.7218 13.9159C16.9506 13.6989 17.0738 13.455 17.0738 13.1334C17.0738 12.52 16.5629 12.0861 15.9815 12.0861C15.6718 12.0861 15.3718 12.2164 15.1588 12.4489L13.591 14.1152L13.0008 14.8443L13.0873 13.1697V7.09394C13.0873 6.42902 12.5301 5.87286 11.8358 5.87286C11.1487 5.87286 10.5956 6.42902 10.5956 7.09394Z" fill="currentColor"/>
+              </g>
+              <defs>
+                <clipPath id="clip0_184_558_header">
+                  <rect width="24" height="23.6675" fill="white" transform="translate(0 0.166016)"/>
+                </clipPath>
+              </defs>
+            </svg>
+          </a>
+          <p class="heading-large">or contact me on</p>
+          <a href="https://www.linkedin.com/in/vasiliidiakonov/" class="pill pill-indigo" target="_blank">
+            Linkedin
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g clip-path="url(#clip0_140_592_header_linkedin)">
+                <path d="M3.31521 20.5276C3.90159 21.1022 4.72656 21.1368 5.38801 20.4866L16.4031 9.48322L18.7751 6.91254C19.3635 6.28679 19.3114 5.52841 18.8166 5.03416C18.3181 4.52074 17.5368 4.44194 16.9078 5.04534L14.3334 7.4136L3.33011 18.4324C2.64258 19.1274 2.74001 19.9635 3.31521 20.5276ZM17.9286 11.9501V16.36C17.9286 17.1797 18.5587 17.8513 19.3453 17.8513C20.1314 17.8513 20.7955 17.1925 20.7955 16.3318L20.7913 4.59174C20.7913 3.66982 20.1783 3.04883 19.2446 3.04883H7.49287C6.61676 3.04883 5.98139 3.70498 5.98139 4.48735C5.98139 5.26598 6.65672 5.89178 7.46463 5.89178H11.7104L18.2099 5.6425L17.9286 11.9501Z" fill="currentColor"/>
+              </g>
+              <defs>
+                <clipPath id="clip0_140_592_header_linkedin">
+                  <rect width="18.3028" height="17.9325" fill="white" transform="translate(2.84863 3.03418)"/>
+                </clipPath>
+              </defs>
+            </svg>
+          </a>
+          <p class="heading-large">or via</p>
+          <a href="mailto:vasilii.diakonov@gmail.com" class="pill pill-orange">
+            Email
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g clip-path="url(#clip0_140_592_header_email)">
+                <path d="M3.31521 20.5276C3.90159 21.1022 4.72656 21.1368 5.38801 20.4866L16.4031 9.48322L18.7751 6.91254C19.3635 6.28679 19.3114 5.52841 18.8166 5.03416C18.3181 4.52074 17.5368 4.44194 16.9078 5.04534L14.3334 7.4136L3.33011 18.4324C2.64258 19.1274 2.74001 19.9635 3.31521 20.5276ZM17.9286 11.9501V16.36C17.9286 17.1797 18.5587 17.8513 19.3453 17.8513C20.1314 17.8513 20.7955 17.1925 20.7955 16.3318L20.7913 4.59174C20.7913 3.66982 20.1783 3.04883 19.2446 3.04883H7.49287C6.61676 3.04883 5.98139 3.70498 5.98139 4.48735C5.98139 5.26598 6.65672 5.89178 7.46463 5.89178H11.7104L18.2099 5.6425L17.9286 11.9501Z" fill="currentColor"/>
+              </g>
+              <defs>
+                <clipPath id="clip0_140_592_header_email">
+                  <rect width="18.3028" height="17.9325" fill="white" transform="translate(2.84863 3.03418)"/>
+                </clipPath>
+              </defs>
+            </svg>
+          </a>
+        </div>
       </div>
-    </div>
 
-    <!-- Case Study Overlays -->
-    <div id="tabs-overlay" class="case-overlay" style="background-color: #93B9F9;">
-      <div class="case-nav-buttons">
-        <button class="case-nav-btn" onclick="closeCase('tabs')">Back</button>
-        <button class="case-nav-btn" onclick="copyLink('tabs')">Copy Link</button>
-      </div>
-      <div class="case-content">
-        <div class="case-inner">
-          <h1>Tab Management Redesign</h1>
-          <h2>Cross-platform tab redesign with grouping functionality</h2>
+      <!-- Selected Work Section -->
+      <div class="content-section">
+        <div class="section-header">
+          <p class="section-title">Selected work</p>
+        </div>
 
-          <div class="visual-placeholder">
-            <img src="images/tabs-header.png" alt="Tab Management Redesign" style="width: 100%; height: auto;">
-            <p class="image-caption">Redesigned tab management from cluttered list to organized, groupable interface with improved visual hierarchy</p>
-          </div>
+        <!-- Bento Grid -->
+        <div class="bento-grid">
+          <!-- Large Card -->
+          <a href="tabs.html" class="bento-large" style="text-decoration: none;">
+            <p class="heading-medium" style="color: #0084ff;">Aloha Tab Management Redesign</p>
+            <div class="bento-image-container">
+              <img class="bento-image" src="images/thumbnail_01.png" alt="Aloha Tab Management Redesign" />
+            </div>
+          </a>
 
-          <div class="case-body">
-            <div class="case-section">
-              <h2>Impact</h2>
-
-              <div class="impact-metrics">
-                <p><strong>1.8% Day 1 retention improvement</strong> across iOS and Android (1.2% iOS, 0.6% Android)</p>
+          <!-- Column with Two Small Cards -->
+          <div class="bento-column">
+            <a href="website.html" class="bento-small" style="text-decoration: none;">
+              <p class="heading-medium" style="color: #af52de;">Aloha Website Design System</p>
+              <div class="bento-image-container">
+                <img class="bento-image" src="images/thumbnail_02.png" alt="Aloha Website Design System" />
               </div>
+            </a>
 
-              <p>Led end-to-end design for 4M users. Introduced tab grouping, flexible organization, and platform-specific improvements. Shipped iOS complete in 6 months, Android UI improvements with grouping foundations.</p>
-
-              <p><strong>My Role:</strong> End-to-end design across platforms • Competitive research • Engineering collaboration</p>
-            </div>
-
-            <div class="case-section">
-              <h2>The Problem</h2>
-
-              <p>Power users with 20+ tabs couldn't find what they needed. Chrome and Safari offered grouping. We didn't. This table-stakes gap was hurting retention.</p>
-            </div>
-
-            <div class="case-section">
-              <h2>Solution</h2>
-
-              <h3>Flexible Grouping Interactions</h3>
-
-              <div class="visual-placeholder">
-                <div class="video-border-wrapper">
-                  <video class="tab-grouping-video" autoplay loop muted playsinline style="width: 100%; height: auto;" onloadeddata="this.play()">
-                    <source src="images/Tab Grouoing Drag and drop.mp4" type="video/mp4">
-                  </video>
-                </div>
-                <p class="image-caption">Flexible grouping through batch selection for power users and drag-and-drop for quick organization. Customizable group names and easy menu access</p>
+            <a href="referral.html" class="bento-small" style="text-decoration: none;">
+              <p class="heading-medium" style="color: #5856d6;">Aloha Referral System</p>
+              <div class="bento-image-container">
+                <img class="bento-image" src="images/thumbnail_03.png" alt="Aloha Referral System" />
               </div>
-
-              <p>Designed two interaction paths: batch selection for power users organizing many tabs, and drag-and-drop for quick one-off organization.</p>
-            </div>
-
-            <div class="case-section">
-              <h3>Mode Switcher</h3>
-
-              <div class="visual-placeholder">
-                <img src="images/tabs-mode switcher.png" alt="Tab Mode Switcher" style="width: 100%; height: auto;">
-                <p class="image-caption">Tab mode switcher allowing users to toggle between Synced, Normal, and Private modes directly within the tab manager. Works across devices and adapts to dark mode</p>
-              </div>
-
-              <p>Created an unconventional tab mode switcher letting users toggle between Normal, Private, and Sync modes without leaving the tab manager.</p>
-            </div>
-
-            <div class="case-section">
-              <h3>Private Mode Experience</h3>
-
-              <div class="visual-placeholder">
-                <img src="images/tabs-private mode.png" alt="Private mode interface" style="width: 100%; height: auto;">
-                <p class="image-caption">Private mode with distinct visual experience, different color scheme, and private-specific tab groups—reinforcing Aloha's privacy-first positioning</p>
-              </div>
-
-              <p>Applied full grouping functionality to private tabs with distinct visual treatment that reinforces privacy-first positioning.</p>
-            </div>
-
-            <div class="case-section">
-              <h3>Android Performance Solution</h3>
-
-              <div class="visual-placeholder">
-                <img src="images/tabs-android view.png" alt="Android list view toggle" style="width: 100%; height: auto;">
-                <p class="image-caption">Performance solution for older Android devices—toggle between rich tab previews and efficient list mode. Turned constraint into user control feature</p>
-              </div>
-
-              <p>Turned a constraint into a feature: designed a toggle between rich tab previews and an efficient list mode for older devices.</p>
-            </div>
-
-            <div class="case-section">
-              <h3>Cross-Platform Implementation</h3>
-
-              <div class="visual-placeholder">
-                <img src="images/tabs-shipped.png" alt="Cross-platform comparison" style="width: 100%; height: auto;">
-                <p class="image-caption">Platform-specific implementations—iOS shipped complete grouping functionality, Android received UI improvements and foundational work. Both respect native platform patterns</p>
-              </div>
-
-              <p>Respected iOS and Android conventions rather than forcing identical experiences. iOS shipped complete grouping; Android received UI improvements with grouping foundations laid.</p>
-            </div>
-
-            <div class="case-section">
-              <details class="collapsible-section">
-                <summary>Read about the process</summary>
-                <div class="collapsible-content">
-                  <h2>Discovery & Strategy</h2>
-
-                  <p>Conducted competitive analysis of Chrome, Safari, Edge, and Firefox tab grouping implementations. Identified key patterns: visual grouping, drag-and-drop organization, and persistent group state.</p>
-
-                  <p>Gathered user feedback from community forums and support channels. Power users with 20+ tabs consistently reported frustration with finding specific tabs. Usage data showed that these power users had 3x higher churn than average users.</p>
-
-                  <p>Built business case demonstrating that tab grouping was becoming table stakes in the browser category. Presented competitive gap analysis to leadership (Design Lead, Product Lead, CEO, and engineering leads).</p>
-
-                  <p>Secured buy-in by proposing phased rollout: ship iOS first to validate with real metrics, then decide on Android investment. This de-risked the initiative and allowed us to learn fast. Research directly informed the decision to focus on flexibility—supporting both bulk organization and spontaneous grouping.</p>
-
-                  <h2>Design Decisions & Rationale</h2>
-
-                  <p>Designed two interaction paths after observing that users organize tabs in two distinct ways: bulk organization sessions (reorganizing many tabs at once) and opportunistic grouping (moving one tab while browsing).</p>
-
-                  <p>Batch selection serves power users who need to organize 20+ tabs quickly. Select multiple tabs with checkboxes, then group with one action. Drag-and-drop serves casual users making quick, spontaneous moves between existing groups. This flexibility accommodates different user types and contexts.</p>
-
-                  <p>Most browsers make users exit the tab manager to switch between normal and private modes. This creates unnecessary friction. By embedding the mode switcher directly in the tab manager, we reduced this multi-step process to a single tap, keeping users in their flow.</p>
-
-                  <p>Gave Sync mode (cross-device tab syncing, unique to Aloha) equal prominence with Normal and Private. This positioning elevated sync from a hidden feature to a first-class capability, supporting our power user value proposition.</p>
-
-                  <p>Created distinct visual treatment for private mode using a darker color palette and unique iconography. This clear differentiation helps users feel confident they're in a secure browsing context—critical for a privacy-focused browser. By giving private mode equal prominence and full grouping support, we reinforced Aloha's core privacy-first brand promise.</p>
-
-                  <p>Made groups collapsible with clear visual hierarchy. Group headers show tab count and support quick actions: rename, color picker, and delete. Color coding helps users create mental models ("work" is blue, "shopping" is green, etc.).</p>
-
-                  <h2>Implementation Approach</h2>
-
-                  <p>Shipped iOS first to validate the grouping concept with real user metrics before investing in full Android implementation. This strategy de-risked the feature—if grouping flopped on iOS, we'd save months of Android development.</p>
-
-                  <p>iOS users adopted grouping quickly: 43% created at least one group within the first week, and Day 1 retention improved by 1.2%. This validated the concept and greenlit Android development.</p>
-
-                  <p>Collaborated closely with iOS and Android engineers throughout implementation. Ensured gestures felt platform-native: iOS uses swipe actions for quick group actions, Android uses long-press. Same functionality, platform-appropriate execution.</p>
-
-                  <p>Iterated post-launch when initial tab card shapes caused visual issues across landscape and portrait orientations. Final design simplified the visual system while improving performance.</p>
-
-                  <p>For Android, partnered with the engineering lead to design UI foundations matching Material Design patterns. Android engineering flagged that rich tab previews caused performance issues on devices with limited RAM. Older devices would lag or crash when users had 30+ tabs open.</p>
-
-                  <p>Rather than compromise the experience for all users or abandon visual previews entirely, I designed a user-controlled toggle between preview mode and list mode. List mode uses text-only representation, reducing memory overhead by 60% while maintaining full grouping functionality.</p>
-
-                  <p>Positioned the toggle as a power user feature rather than a technical fallback. The framing was "choose your view" rather than "fix performance problems." This preserved user agency and avoided making legacy device users feel like second-class citizens.</p>
-
-                  <p>Unexpectedly, users with newer devices also switched to list mode when managing 50+ tabs—they discovered it was faster for scanning large collections. The technical constraint became a legitimate feature serving different user needs and contexts.</p>
-
-                  <p>Company pivoted to premium features before Android grouping shipped, but the UI improvements and architecture laid the foundation for future implementation.</p>
-
-                  <h2>Key Learnings</h2>
-
-                  <p>Phased approach (iOS-first) significantly reduced risk. Validating with real metrics before full cross-platform investment saved time and informed better decisions for Android.</p>
-
-                  <p>Platform-specific design decisions (respecting iOS and Android conventions) led to better user adoption than forcing identical experiences would have.</p>
-
-                  <p>Technical constraints can become features when framed correctly. The Android list view toggle became a power user tool, not a compromise.</p>
-
-                  <p>The unconventional mode switcher approach paid off: power users who discovered it had 40% higher engagement with private browsing and 2x higher sync adoption. Sometimes breaking conventions delivers better outcomes.</p>
-                </div>
-              </details>
-            </div>
-
+            </a>
           </div>
         </div>
       </div>
-    </div>
 
-    <div id="website-overlay" class="case-overlay" style="background-color: #E2CDFF;">
-      <div class="case-nav-buttons">
-        <button class="case-nav-btn" onclick="closeCase('website')">Back</button>
-        <button class="case-nav-btn" onclick="copyLink('website')">Copy Link</button>
+      <!-- Selected Cases Section -->
+      <div class="content-section">
+        <div class="section-header">
+          <p class="section-title">Selected cases</p>
+        </div>
+
+        <div class="case-grid">
+          <!-- Aloha Browser Card -->
+          <a href="aloha.html" class="case-card" style="text-decoration: none;">
+            <div class="case-header">
+              <div class="case-info">
+                <div class="case-icon-container">
+                  <object class="case-icon" data="images/SVG/SVG02.svg" type="image/svg+xml" aria-label="Aloha Browser"></object>
+                </div>
+                <div class="case-text">
+                  <p class="case-title">Aloha Browser</p>
+                  <p class="case-link">Read full case study</p>
+                </div>
+              </div>
+              <div class="case-button">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g clip-path="url(#clip0_140_581)">
+                    <path d="M13.8584 21.1866C14.2253 21.1866 14.5795 21.0327 14.8884 20.728L22.5845 13.0554C22.8748 12.7731 23.0404 12.3731 23.0404 11.9721C23.0404 11.5711 22.8748 11.1711 22.5845 10.8888L14.9044 3.22844C14.5795 2.89983 14.2253 2.75391 13.8584 2.75391C13.0159 2.75391 12.4252 3.3472 12.4252 4.14555C12.4252 4.57213 12.5972 4.91992 12.8667 5.18568L15.4917 7.83519L19.9834 11.9721L15.4917 16.109L12.8667 18.7548C12.5972 19.0088 12.4252 19.3683 12.4252 19.7949C12.4252 20.5933 13.0159 21.1866 13.8584 21.1866ZM2.10124 13.4324H15.923L20.1921 13.1906C20.9446 13.148 21.4516 12.6985 21.4516 11.9721C21.4516 11.2457 20.9446 10.7962 20.1921 10.7536L15.923 10.5118H2.10124C1.20866 10.5118 0.60791 11.1056 0.60791 11.9721C0.60791 12.8386 1.20866 13.4324 2.10124 13.4324Z" fill="#0084FF"/>
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_140_581">
+                      <rect width="22.784" height="18.4928" fill="white" transform="translate(0.60791 2.75391)"/>
+                    </clipPath>
+                  </defs>
+                </svg>
+              </div>
+            </div>
+            <div class="case-slideshow">
+              <img class="case-slideshow-image" src="images/Snips03.png" alt="Aloha Browser Case" />
+            </div>
+          </a>
+
+          <!-- Vulners Card -->
+          <a href="#" class="case-card" style="text-decoration: none;" onclick="alert('This case study is under construction'); return false;">
+            <div class="case-header">
+              <div class="case-info">
+                <div class="case-icon-container">
+                  <object class="case-icon" data="images/SVG/SVG03.svg" type="image/svg+xml" aria-label="Vulners"></object>
+                </div>
+                <div class="case-text">
+                  <p class="case-title">Vulners</p>
+                  <p class="case-link">Read full case study</p>
+                </div>
+              </div>
+              <div class="case-button">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g clip-path="url(#clip0_140_581)">
+                    <path d="M13.8584 21.1866C14.2253 21.1866 14.5795 21.0327 14.8884 20.728L22.5845 13.0554C22.8748 12.7731 23.0404 12.3731 23.0404 11.9721C23.0404 11.5711 22.8748 11.1711 22.5845 10.8888L14.9044 3.22844C14.5795 2.89983 14.2253 2.75391 13.8584 2.75391C13.0159 2.75391 12.4252 3.3472 12.4252 4.14555C12.4252 4.57213 12.5972 4.91992 12.8667 5.18568L15.4917 7.83519L19.9834 11.9721L15.4917 16.109L12.8667 18.7548C12.5972 19.0088 12.4252 19.3683 12.4252 19.7949C12.4252 20.5933 13.0159 21.1866 13.8584 21.1866ZM2.10124 13.4324H15.923L20.1921 13.1906C20.9446 13.148 21.4516 12.6985 21.4516 11.9721C21.4516 11.2457 20.9446 10.7962 20.1921 10.7536L15.923 10.5118H2.10124C1.20866 10.5118 0.60791 11.1056 0.60791 11.9721C0.60791 12.8386 1.20866 13.4324 2.10124 13.4324Z" fill="#0084FF"/>
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_140_581">
+                      <rect width="22.784" height="18.4928" fill="white" transform="translate(0.60791 2.75391)"/>
+                    </clipPath>
+                  </defs>
+                </svg>
+              </div>
+            </div>
+            <div class="case-slideshow">
+              <img class="case-slideshow-image" src="images/vulners_thumbnail.png" alt="Vulners Case" />
+            </div>
+          </a>
+        </div>
       </div>
-      <div class="case-content">
-        <div class="case-inner">
-          <h1>Marketing Website & Design System</h1>
-          <h2>Building a responsive design system that increased conversion and velocity</h2>
 
-          <div class="visual-placeholder">
-            <img src="images/website-Homepage with dropdown interaction.png" alt="Marketing Website Redesign" style="width: 100%; height: auto;">
-            <p class="image-caption">Redesigned Aloha Browser marketing site with improved readability, updated positioning, and consistent component usage across all pages.</p>
+      <!-- Selected Experience Section -->
+      <div class="content-section">
+        <p class="heading-large">Selected experience</p>
+
+        <div class="experience-container">
+          <!-- Experience 1: Aloha Browser -->
+          <div class="experience-card">
+            <div class="experience-icon-wrapper">
+              <div class="experience-icon-container rotate-left">
+                <object class="experience-icon" data="images/SVG/SVG04.svg" type="image/svg+xml" aria-label="Aloha Browser"></object>
+              </div>
+            </div>
+            <div class="experience-content">
+              <div class="experience-header">
+                <p class="experience-date">November 2023 – Present</p>
+                <div class="experience-titles">
+                  <p class="experience-role">Product Designer</p>
+                  <p class="experience-company">Aloha Browser</p>
+                </div>
+              </div>
+              <p class="experience-description">
+                Led select iOS/Android design initiatives for a privacy-focused browser startup in a three person design team, shipped improvements end to end that lifted Day 1 retention by 1.2% (iOS) and 0.6% (Android), contributed to retention of 50–70K users.
+              </p>
+            </div>
           </div>
 
-          <div class="case-body">
-            <div class="case-section">
-              <h2>Impact</h2>
-
-              <div class="impact-metrics">
-                <p><strong>+10% conversion</strong> (20% → 30%) and <strong>50% development time reduction</strong></p>
+          <!-- Experience 2: Freelance -->
+          <div class="experience-card">
+            <div class="experience-icon-wrapper">
+              <div class="experience-icon-container rotate-right">
+                <object class="experience-icon" data="images/SVG/SVG05.svg" type="image/svg+xml" aria-label="Freelance"></object>
               </div>
-
-              <p>New pages went from 1 week to 2-3 days. Completed in 4 months: 1 month strategy alignment, 3 months system development and implementation.</p>
-
-              <p><strong>My Role:</strong> End-to-end website redesign • Design system architecture • CMO collaboration • SEO optimization</p>
             </div>
-
-            <div class="case-section">
-              <h2>The Problem</h2>
-
-              <p>Marketing site converted only 20% of visitors. Every page update required custom work—design was the bottleneck. Typography and accessibility issues hurt SEO rankings, limiting organic discovery.</p>
-            </div>
-
-            <div class="case-section">
-              <h2>Solution</h2>
-
-              <h3>Design System Foundations</h3>
-
-              <div class="visual-placeholder">
-                <img src="images/website-Color & Type Systems.png" alt="Design system foundations" style="width: 100%; height: auto;">
-                <p class="image-caption">Comprehensive color and typography systems with documented tokens for text, fill, brand, premium, positive, and warning states. Type system includes scales for both desktop and interactive contexts.</p>
-              </div>
-
-              <p>Built component library, typography scales, color tokens, and layout variables. Used Bootstrap as foundation for proven responsive patterns.</p>
-
-              <h3>Automated Responsive Behavior</h3>
-
-              <div class="visual-placeholder">
-                <img src="images/website-Layout Variables with component annotations.png" alt="Layout variables system" style="width: 100%; height: auto;">
-                <p class="image-caption">Layout system with automated responsive behavior. Every gap, margin, and padding is a Figma variable that adapts across breakpoints—designers create layouts once and copy across resolutions without manual adjustment.</p>
-              </div>
-
-              <div class="visual-placeholder">
-                <video autoplay loop muted playsinline style="width: 100%; height: auto;" onloadeddata="this.play()">
-                  <source src="images/website-Design System Demo.mp4" type="video/mp4">
-                </video>
-                <p class="image-caption">Video demonstrates how a single component adapts automatically across desktop, tablet, and mobile breakpoints using Figma variables.</p>
-              </div>
-
-              <p>Created layout library where designers build once, then copy/paste across breakpoints. All spacing adjusts automatically via Figma variables—eliminated manual adaptation work.</p>
-
-              <h3>Website Implementation</h3>
-
-              <div class="visual-placeholder">
-                <img src="images/website-Multiple pages showing system in use.png" alt="Pages in production" style="width: 100%; height: auto;">
-                <p class="image-caption">Design system components in use across marketing pages—homepage, Private AI, VPN feature, and Ad Block feature. Consistent buttons, cards, typography, and layout patterns.</p>
-              </div>
-
-              <p>Redesigned all pages with improved readability, updated positioning, fixed SEO issues, and optimized performance. Migrated to Bootstrap framework.</p>
-            </div>
-
-            <div class="case-section">
-              <details class="collapsible-section">
-                <summary>Read about the process</summary>
-                <div class="collapsible-content">
-                  <h2>Discovery & Strategy</h2>
-
-                  <p>Collaborated with CMO on marketing strategy alignment. Identified three core problem areas: UX (20% conversion), velocity (design bottleneck), and SEO (typography and accessibility blockers limiting organic traffic).</p>
-
-                  <p>Readability and messaging issues stemmed from inconsistent typography hierarchy and dense layouts. Development bottleneck analysis revealed every page required custom design work—no reusable components or patterns existed.</p>
-
-                  <p>Typography and accessibility SEO blockers included poor heading hierarchy, missing alt text, and insufficient color contrast. These technical issues hurt search rankings and limited organic discovery.</p>
-
-                  <p>Made strategic decision to build design system first rather than redesigning pages immediately. This required upfront investment but would pay dividends on every subsequent page.</p>
-
-                  <h2>Design System Development</h2>
-
-                  <p>Created prototype sandbox for engineering collaboration. This shared environment allowed engineers to extract tokens and test implementation while design work progressed.</p>
-
-                  <p>Automated responsive behavior development started with identifying pain point: designers manually adjusting every margin and padding across three breakpoints. This tedious work consumed hours and introduced inconsistencies.</p>
-
-                  <p>Figma variables became the key innovation. Built library where every spacing value references a variable that changes based on breakpoint. Designers build desktop layout, duplicate frame, switch to tablet mode—all spacing updates automatically.</p>
-
-                  <p>Bootstrap as foundation decision provided proven responsive patterns and reduced engineering effort. Rather than building custom grid system, leveraged Bootstrap's battle-tested framework and customized visual design.</p>
-
-                  <p>Engineering token extraction workflow: prototype sandbox included all components with documented CSS custom properties. Engineers copied values directly into codebase, ensuring design-code consistency.</p>
-
-                  <p>Documentation approach focused on usage examples rather than exhaustive specifications. Showed real page patterns and common combinations, making system immediately useful to marketing team.</p>
-
-                  <h2>Website Redesign Details</h2>
-
-                  <p>Readability improvements included establishing clear typography hierarchy (48px headlines, 18px body), increasing whitespace between sections, and using color contrast to guide attention.</p>
-
-                  <p>Positioning update aligned with privacy-first brand evolution. Updated messaging from generic browser features to privacy benefits, repositioned against Chrome/Safari, and emphasized data protection throughout.</p>
-
-                  <p>Technical SEO fixes included proper heading hierarchy (single H1, logical H2-H3 structure), comprehensive alt text on all images, and improved color contrast ratios meeting WCAG AA standards.</p>
-
-                  <p>Performance optimizations involved lazy loading images, optimizing asset sizes, and reducing unnecessary JavaScript. Page load time improved by 40%, directly impacting SEO rankings.</p>
-
-                  <p>Page-by-page approach started with homepage as proof of concept, then rolled out to feature pages (VPN, Ad Block, Private AI), and finally to support pages. Each iteration refined the system based on real usage.</p>
-
-                  <h2>Collaboration Process</h2>
-
-                  <p>Daily engineering sync on implementation ensured design intent translated accurately to code. Caught issues early and adjusted design system based on technical constraints.</p>
-
-                  <p>CMO strategic alignment meetings validated messaging changes and positioning updates. Design decisions supported broader marketing strategy rather than existing in isolation.</p>
-
-                  <p>ASO manager SEO collaboration focused on technical improvements (heading hierarchy, alt text, contrast) and content optimization. Design system made implementing SEO best practices consistent across all pages.</p>
-
-                  <p>Illustrator asset integration required establishing clear export specifications and naming conventions. Design system documented how illustrations paired with UI components.</p>
-
-                  <p>Design system created shared language between disciplines. Engineers, marketing team, and leadership could reference specific components and patterns, improving communication efficiency.</p>
-
-                  <p>Design-to-code workflow transformation: before system, every page required custom handoff documentation. After system, engineers referenced component library directly, reducing handoff time from days to hours.</p>
-
-                  <h2>The Innovation</h2>
-
-                  <p>Layout library's automated responsive behavior eliminated the most tedious part of web design. This single innovation saved hundreds of hours and became foundation for all new work.</p>
-
-                  <p>Building system first required upfront investment (1 month planning, 2 months development) but paid dividends immediately—every page became faster and more consistent. First post-launch page took 2 days instead of previous 7-day average.</p>
-
-                  <p>The approach proved that investing in infrastructure delivers compounding returns. System continues to accelerate work 18 months later, enabling marketing team to ship faster while maintaining quality.</p>
+            <div class="experience-content">
+              <div class="experience-header">
+                <p class="experience-date">May 2018 – November 2023</p>
+                <div class="experience-titles">
+                  <p class="experience-role">Freelance UI and Product Designer</p>
+                  <p class="experience-company">Various Clients</p>
                 </div>
-              </details>
+              </div>
+              <p class="experience-description">
+                Managed client relationships and project scopes independently, presented work directly to Founders and other senior level stakeholders.
+              </p>
             </div>
+          </div>
 
+          <!-- Experience 3: British Higher School -->
+          <div class="experience-card">
+            <div class="experience-icon-wrapper">
+              <div class="experience-icon-container rotate-left">
+                <object class="experience-icon" data="images/SVG/SVG06.svg" type="image/svg+xml" aria-label="British Higher School of Art and Design"></object>
+              </div>
+            </div>
+            <div class="experience-content">
+              <div class="experience-header">
+                <p class="experience-date">January 2021 – July 2022</p>
+                <div class="experience-titles">
+                  <p class="experience-role">Visiting Lecturer</p>
+                  <p class="experience-company">British Higher School of Art and Design</p>
+                </div>
+              </div>
+              <p class="experience-description">
+                Lectured on creative coding, UI design, and web development, developed syllabi, led student critiques and mentored students to get desired results.
+              </p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <div id="referral-overlay" class="case-overlay" style="background-color: #CDDAFF;">
-      <div class="case-nav-buttons">
-        <button class="case-nav-btn" onclick="closeCase('referral')">Back</button>
-        <button class="case-nav-btn" onclick="copyLink('referral')">Copy Link</button>
+      <!-- Releases Section -->
+      <div class="content-section">
+        <p class="heading-large">Releases</p>
+
+        <div class="releases-list">
+          <!-- Release 1 -->
+          <a href="https://alohabrowser.com/posts-introducing-enhanced-snips-in-aloha-browser-for-desktops/" target="_blank" class="release-card">
+            <div class="release-content">
+              <p class="release-title" style="color: #af52de;">Introducing Enhanced Snips in Aloha Browser for Desktops</p>
+            </div>
+            <div class="release-button release-button-purple">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g clip-path="url(#clip0_140_592)">
+                  <path d="M3.31521 20.5276C3.90159 21.1022 4.72656 21.1368 5.38801 20.4866L16.4031 9.48322L18.7751 6.91254C19.3635 6.28679 19.3114 5.52841 18.8166 5.03416C18.3181 4.52074 17.5368 4.44194 16.9078 5.04534L14.3334 7.4136L3.33011 18.4324C2.64258 19.1274 2.74001 19.9635 3.31521 20.5276ZM17.9286 11.9501V16.36C17.9286 17.1797 18.5587 17.8513 19.3453 17.8513C20.1314 17.8513 20.7955 17.1925 20.7955 16.3318L20.7913 4.59174C20.7913 3.66982 20.1783 3.04883 19.2446 3.04883H7.49287C6.61676 3.04883 5.98139 3.70498 5.98139 4.48735C5.98139 5.26598 6.65672 5.89178 7.46463 5.89178H11.7104L18.2099 5.6425L17.9286 11.9501Z" fill="currentColor"/>
+                </g>
+                <defs>
+                  <clipPath id="clip0_140_592">
+                    <rect width="18.3028" height="17.9325" fill="white" transform="translate(2.84863 3.03418)"/>
+                  </clipPath>
+                </defs>
+              </svg>
+            </div>
+          </a>
+
+          <!-- Release 2 -->
+          <a href="https://alohabrowser.com/posts-5-essential-updates-in-aloha-browser-for-android/" target="_blank" class="release-card">
+            <div class="release-content">
+              <p class="release-title" style="color: #0084ff;">5 Essential Updates in Aloha Browser for Android</p>
+            </div>
+            <div class="release-button release-button-blue">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g clip-path="url(#clip0_140_592)">
+                  <path d="M3.31521 20.5276C3.90159 21.1022 4.72656 21.1368 5.38801 20.4866L16.4031 9.48322L18.7751 6.91254C19.3635 6.28679 19.3114 5.52841 18.8166 5.03416C18.3181 4.52074 17.5368 4.44194 16.9078 5.04534L14.3334 7.4136L3.33011 18.4324C2.64258 19.1274 2.74001 19.9635 3.31521 20.5276ZM17.9286 11.9501V16.36C17.9286 17.1797 18.5587 17.8513 19.3453 17.8513C20.1314 17.8513 20.7955 17.1925 20.7955 16.3318L20.7913 4.59174C20.7913 3.66982 20.1783 3.04883 19.2446 3.04883H7.49287C6.61676 3.04883 5.98139 3.70498 5.98139 4.48735C5.98139 5.26598 6.65672 5.89178 7.46463 5.89178H11.7104L18.2099 5.6425L17.9286 11.9501Z" fill="currentColor"/>
+                </g>
+                <defs>
+                  <clipPath id="clip0_140_592">
+                    <rect width="18.3028" height="17.9325" fill="white" transform="translate(2.84863 3.03418)"/>
+                  </clipPath>
+                </defs>
+              </svg>
+            </div>
+          </a>
+
+          <!-- Release 3 -->
+          <a href="https://alohabrowser.com/posts-aloha-browser-desktop-gets-new-languages-and-updated-vpn/" target="_blank" class="release-card">
+            <div class="release-content">
+              <p class="release-title" style="color: #5856d6;">Aloha Browser Desktop Gets New Languages, Auto-Update & Improved VPN</p>
+            </div>
+            <div class="release-button release-button-indigo">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g clip-path="url(#clip0_140_592)">
+                  <path d="M3.31521 20.5276C3.90159 21.1022 4.72656 21.1368 5.38801 20.4866L16.4031 9.48322L18.7751 6.91254C19.3635 6.28679 19.3114 5.52841 18.8166 5.03416C18.3181 4.52074 17.5368 4.44194 16.9078 5.04534L14.3334 7.4136L3.33011 18.4324C2.64258 19.1274 2.74001 19.9635 3.31521 20.5276ZM17.9286 11.9501V16.36C17.9286 17.1797 18.5587 17.8513 19.3453 17.8513C20.1314 17.8513 20.7955 17.1925 20.7955 16.3318L20.7913 4.59174C20.7913 3.66982 20.1783 3.04883 19.2446 3.04883H7.49287C6.61676 3.04883 5.98139 3.70498 5.98139 4.48735C5.98139 5.26598 6.65672 5.89178 7.46463 5.89178H11.7104L18.2099 5.6425L17.9286 11.9501Z" fill="currentColor"/>
+                </g>
+                <defs>
+                  <clipPath id="clip0_140_592">
+                    <rect width="18.3028" height="17.9325" fill="white" transform="translate(2.84863 3.03418)"/>
+                  </clipPath>
+                </defs>
+              </svg>
+            </div>
+          </a>
+
+          <!-- Release 4 -->
+          <a href="https://alohabrowser.com/posts-aloha-browsers-android-referral-program-got-easier/" target="_blank" class="release-card release-hidden">
+            <div class="release-content">
+              <p class="release-title" style="color: #32ade6;">Aloha Browser's Android Referral Program Got Easier</p>
+            </div>
+            <div class="release-button release-button-light-blue">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g clip-path="url(#clip0_140_592)">
+                  <path d="M3.31521 20.5276C3.90159 21.1022 4.72656 21.1368 5.38801 20.4866L16.4031 9.48322L18.7751 6.91254C19.3635 6.28679 19.3114 5.52841 18.8166 5.03416C18.3181 4.52074 17.5368 4.44194 16.9078 5.04534L14.3334 7.4136L3.33011 18.4324C2.64258 19.1274 2.74001 19.9635 3.31521 20.5276ZM17.9286 11.9501V16.36C17.9286 17.1797 18.5587 17.8513 19.3453 17.8513C20.1314 17.8513 20.7955 17.1925 20.7955 16.3318L20.7913 4.59174C20.7913 3.66982 20.1783 3.04883 19.2446 3.04883H7.49287C6.61676 3.04883 5.98139 3.70498 5.98139 4.48735C5.98139 5.26598 6.65672 5.89178 7.46463 5.89178H11.7104L18.2099 5.6425L17.9286 11.9501Z" fill="currentColor"/>
+                </g>
+                <defs>
+                  <clipPath id="clip0_140_592">
+                    <rect width="18.3028" height="17.9325" fill="white" transform="translate(2.84863 3.03418)"/>
+                  </clipPath>
+                </defs>
+              </svg>
+            </div>
+          </a>
+
+          <!-- Release 5 -->
+          <a href="https://alohabrowser.com/posts-aloha-browsers-referral-program-got-new-upgrade/" target="_blank" class="release-card release-hidden">
+            <div class="release-content">
+              <p class="release-title" style="color: #34c759;">Aloha Browser's Referral Program on iOS Got a New Upgrade</p>
+            </div>
+            <div class="release-button release-button-green">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g clip-path="url(#clip0_140_592)">
+                  <path d="M3.31521 20.5276C3.90159 21.1022 4.72656 21.1368 5.38801 20.4866L16.4031 9.48322L18.7751 6.91254C19.3635 6.28679 19.3114 5.52841 18.8166 5.03416C18.3181 4.52074 17.5368 4.44194 16.9078 5.04534L14.3334 7.4136L3.33011 18.4324C2.64258 19.1274 2.74001 19.9635 3.31521 20.5276ZM17.9286 11.9501V16.36C17.9286 17.1797 18.5587 17.8513 19.3453 17.8513C20.1314 17.8513 20.7955 17.1925 20.7955 16.3318L20.7913 4.59174C20.7913 3.66982 20.1783 3.04883 19.2446 3.04883H7.49287C6.61676 3.04883 5.98139 3.70498 5.98139 4.48735C5.98139 5.26598 6.65672 5.89178 7.46463 5.89178H11.7104L18.2099 5.6425L17.9286 11.9501Z" fill="currentColor"/>
+                </g>
+                <defs>
+                  <clipPath id="clip0_140_592">
+                    <rect width="18.3028" height="17.9325" fill="white" transform="translate(2.84863 3.03418)"/>
+                  </clipPath>
+                </defs>
+              </svg>
+            </div>
+          </a>
+
+          <!-- Release 6 -->
+          <a href="https://alohabrowser.com/posts-vpn-speed-you-can-feel/" target="_blank" class="release-card release-hidden">
+            <div class="release-content">
+              <p class="release-title" style="color: #00c7be;">Speed You Can Feel, Tabs You Can See</p>
+            </div>
+            <div class="release-button release-button-teal">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g clip-path="url(#clip0_140_592)">
+                  <path d="M3.31521 20.5276C3.90159 21.1022 4.72656 21.1368 5.38801 20.4866L16.4031 9.48322L18.7751 6.91254C19.3635 6.28679 19.3114 5.52841 18.8166 5.03416C18.3181 4.52074 17.5368 4.44194 16.9078 5.04534L14.3334 7.4136L3.33011 18.4324C2.64258 19.1274 2.74001 19.9635 3.31521 20.5276ZM17.9286 11.9501V16.36C17.9286 17.1797 18.5587 17.8513 19.3453 17.8513C20.1314 17.8513 20.7955 17.1925 20.7955 16.3318L20.7913 4.59174C20.7913 3.66982 20.1783 3.04883 19.2446 3.04883H7.49287C6.61676 3.04883 5.98139 3.70498 5.98139 4.48735C5.98139 5.26598 6.65672 5.89178 7.46463 5.89178H11.7104L18.2099 5.6425L17.9286 11.9501Z" fill="currentColor"/>
+                </g>
+                <defs>
+                  <clipPath id="clip0_140_592">
+                    <rect width="18.3028" height="17.9325" fill="white" transform="translate(2.84863 3.03418)"/>
+                  </clipPath>
+                </defs>
+              </svg>
+            </div>
+          </a>
+
+          <!-- Release 7 -->
+          <a href="https://alohabrowser.ghost.io/posts-aloha-browser-for-ios-tabs-gets-organized/" target="_blank" class="release-card release-hidden">
+            <div class="release-content">
+              <p class="release-title" style="color: #ff2d55;">Take them. Group them. Tame them. Aloha Browser for iOS gets organized.</p>
+            </div>
+            <div class="release-button release-button-red">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g clip-path="url(#clip0_140_592)">
+                  <path d="M3.31521 20.5276C3.90159 21.1022 4.72656 21.1368 5.38801 20.4866L16.4031 9.48322L18.7751 6.91254C19.3635 6.28679 19.3114 5.52841 18.8166 5.03416C18.3181 4.52074 17.5368 4.44194 16.9078 5.04534L14.3334 7.4136L3.33011 18.4324C2.64258 19.1274 2.74001 19.9635 3.31521 20.5276ZM17.9286 11.9501V16.36C17.9286 17.1797 18.5587 17.8513 19.3453 17.8513C20.1314 17.8513 20.7955 17.1925 20.7955 16.3318L20.7913 4.59174C20.7913 3.66982 20.1783 3.04883 19.2446 3.04883H7.49287C6.61676 3.04883 5.98139 3.70498 5.98139 4.48735C5.98139 5.26598 6.65672 5.89178 7.46463 5.89178H11.7104L18.2099 5.6425L17.9286 11.9501Z" fill="currentColor"/>
+                </g>
+                <defs>
+                  <clipPath id="clip0_140_592">
+                    <rect width="18.3028" height="17.9325" fill="white" transform="translate(2.84863 3.03418)"/>
+                  </clipPath>
+                </defs>
+              </svg>
+            </div>
+          </a>
+
+          <!-- Release 8 -->
+          <a href="https://alohabrowser.ghost.io/posts-hold-it-move-it-sort-it-aloha-browser-for-android-masters-your-tabs/" target="_blank" class="release-card release-hidden">
+            <div class="release-content">
+              <p class="release-title" style="color: #ffcc00;">Hold It, Move It, Sort It: Aloha Browser for Android Masters Your Tabs</p>
+            </div>
+            <div class="release-button release-button-yellow">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g clip-path="url(#clip0_140_592)">
+                  <path d="M3.31521 20.5276C3.90159 21.1022 4.72656 21.1368 5.38801 20.4866L16.4031 9.48322L18.7751 6.91254C19.3635 6.28679 19.3114 5.52841 18.8166 5.03416C18.3181 4.52074 17.5368 4.44194 16.9078 5.04534L14.3334 7.4136L3.33011 18.4324C2.64258 19.1274 2.74001 19.9635 3.31521 20.5276ZM17.9286 11.9501V16.36C17.9286 17.1797 18.5587 17.8513 19.3453 17.8513C20.1314 17.8513 20.7955 17.1925 20.7955 16.3318L20.7913 4.59174C20.7913 3.66982 20.1783 3.04883 19.2446 3.04883H7.49287C6.61676 3.04883 5.98139 3.70498 5.98139 4.48735C5.98139 5.26598 6.65672 5.89178 7.46463 5.89178H11.7104L18.2099 5.6425L17.9286 11.9501Z" fill="currentColor"/>
+                </g>
+                <defs>
+                  <clipPath id="clip0_140_592">
+                    <rect width="18.3028" height="17.9325" fill="white" transform="translate(2.84863 3.03418)"/>
+                  </clipPath>
+                </defs>
+              </svg>
+            </div>
+          </a>
+
+          <!-- Release 9 -->
+          <a href="https://alohabrowser.ghost.io/posts-insight-into-ai-basics-and-securing-your-privacy/" target="_blank" class="release-card release-hidden">
+            <div class="release-content">
+              <p class="release-title" style="color: #ff9500;">Insight into AI and Securing Your Privacy</p>
+            </div>
+            <div class="release-button release-button-orange">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g clip-path="url(#clip0_140_592)">
+                  <path d="M3.31521 20.5276C3.90159 21.1022 4.72656 21.1368 5.38801 20.4866L16.4031 9.48322L18.7751 6.91254C19.3635 6.28679 19.3114 5.52841 18.8166 5.03416C18.3181 4.52074 17.5368 4.44194 16.9078 5.04534L14.3334 7.4136L3.33011 18.4324C2.64258 19.1274 2.74001 19.9635 3.31521 20.5276ZM17.9286 11.9501V16.36C17.9286 17.1797 18.5587 17.8513 19.3453 17.8513C20.1314 17.8513 20.7955 17.1925 20.7955 16.3318L20.7913 4.59174C20.7913 3.66982 20.1783 3.04883 19.2446 3.04883H7.49287C6.61676 3.04883 5.98139 3.70498 5.98139 4.48735C5.98139 5.26598 6.65672 5.89178 7.46463 5.89178H11.7104L18.2099 5.6425L17.9286 11.9501Z" fill="currentColor"/>
+                </g>
+                <defs>
+                  <clipPath id="clip0_140_592">
+                    <rect width="18.3028" height="17.9325" fill="white" transform="translate(2.84863 3.03418)"/>
+                  </clipPath>
+                </defs>
+              </svg>
+            </div>
+          </a>
+
+          <!-- Release 10 -->
+          <a href="https://alohabrowser.ghost.io/posts-aloha-browsers-new-private-ai-assistant/" target="_blank" class="release-card release-hidden">
+            <div class="release-content">
+              <p class="release-title" style="color: #32ade6;">Aloha Browser's New Private AI Assistant: Protecting Privacy in the Age of AI</p>
+            </div>
+            <div class="release-button release-button-light-blue">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g clip-path="url(#clip0_140_592)">
+                  <path d="M3.31521 20.5276C3.90159 21.1022 4.72656 21.1368 5.38801 20.4866L16.4031 9.48322L18.7751 6.91254C19.3635 6.28679 19.3114 5.52841 18.8166 5.03416C18.3181 4.52074 17.5368 4.44194 16.9078 5.04534L14.3334 7.4136L3.33011 18.4324C2.64258 19.1274 2.74001 19.9635 3.31521 20.5276ZM17.9286 11.9501V16.36C17.9286 17.1797 18.5587 17.8513 19.3453 17.8513C20.1314 17.8513 20.7955 17.1925 20.7955 16.3318L20.7913 4.59174C20.7913 3.66982 20.1783 3.04883 19.2446 3.04883H7.49287C6.61676 3.04883 5.98139 3.70498 5.98139 4.48735C5.98139 5.26598 6.65672 5.89178 7.46463 5.89178H11.7104L18.2099 5.6425L17.9286 11.9501Z" fill="currentColor"/>
+                </g>
+                <defs>
+                  <clipPath id="clip0_140_592">
+                    <rect width="18.3028" height="17.9325" fill="white" transform="translate(2.84863 3.03418)"/>
+                  </clipPath>
+                </defs>
+              </svg>
+            </div>
+          </a>
+        </div>
+
+        <p class="show-more-button" onclick="toggleReleases()">Show More</p>
       </div>
-      <div class="case-content">
-        <div class="case-inner">
-          <h1>Referral System Optimization</h1>
-          <h2>Driving organic growth through simplified UX and clearer incentives</h2>
 
-          <div class="visual-placeholder">
-            <img src="images/referral-header.png" alt="Referral System Optimization" style="width: 100%; height: auto;">
-            <p class="image-caption">Simplified referral interface with clearer messaging and streamlined actions. Removed confusing controls in favor of a single "Invite" button based on usage data.</p>
-          </div>
+      <!-- Footer Section -->
+      <div class="content-section">
+        <p class="heading-large">Thanks for visiting!</p>
+        <p class="heading-large">I'm open to new opportunities</p>
 
-          <div class="case-body">
-            <div class="case-section">
-              <h2>Impact</h2>
-
-              <div class="impact-metrics">
-                <p><strong>3.4x increase in monthly referrals</strong> (415 → 1,815)</p>
-              </div>
-
-              <p>Worked iteratively from January through November, shipping improvements based on usage data. Converted underperforming feature into significant organic acquisition channel.</p>
-
-              <p><strong>My Role:</strong> End-to-end redesign • Usage data analysis • iOS and Android implementation</p>
-            </div>
-
-            <div class="case-section">
-              <h2>The Problem</h2>
-
-              <p>Referral system generated only 415 referrals/month despite valuable premium rewards. Vague messaging ("Spread digital freedom"), confusing interface with multiple sharing options, and unrealistic reward structure made the feature ineffective.</p>
-            </div>
-
-            <div class="case-section">
-              <h2>Solution</h2>
-
-              <h3>Simplified Interface</h3>
-
-              <div class="visual-placeholder">
-                <img src="images/referral-ui buttons.png" alt="Simplified interface" style="width: 100%; height: auto;">
-                <p class="image-caption">Streamlined interface with a single "Invite friends" button. Usage data showed this was the only method users actually converted through, so all other options were removed.</p>
-              </div>
-
-              <p>Removed QR code and copy link options entirely. Usage data showed users only converted through the invite button—everything else was friction.</p>
-
-              <h3>Clear Messaging</h3>
-
-              <div class="visual-placeholder">
-                <img src="images/referral-messaging.png" alt="Updated messaging" style="width: 100%; height: auto;">
-                <p class="image-caption">Updated messaging from vague "Spread digital freedom" to clear "Invite friends – get Free Premium." Users immediately understand what they get and what action to take.</p>
-              </div>
-
-              <p>Changed from philosophical language to direct value proposition. Users immediately see what they get and what's required.</p>
-
-              <h3>Realistic Reward Structure</h3>
-
-              <div class="visual-placeholder">
-                <img src="images/referral-tiers.png" alt="Reward structure" style="width: 100%; height: auto;">
-                <p class="image-caption">Tiered reward system showing progression from 1 friend (1 week premium) through lifetime premium status. Clear milestones make the system feel achievable.</p>
-              </div>
-
-              <p>Revised to 1 week premium per friend (up to 10), scaling to lifetime premium. Made early wins attainable while rewarding power users.</p>
-            </div>
-
-            <div class="case-section">
-              <details class="collapsible-section">
-                <summary>Read about the process</summary>
-                <div class="collapsible-content">
-                  <h2>Discovery & Validation</h2>
-
-                  <p>Analyzed usage data showing QR code and copy link had zero conversion. Only the invite button was being used. This data-driven insight informed the simplification strategy.</p>
-
-                  <p>Worked closely with project manager to evolve the feature iteratively. Started as a pet project to improve underperforming system, became strategic organic acquisition initiative as results proved out.</p>
-
-                  <h2>Design Decisions</h2>
-
-                  <p>Removing options improved conversion because decision paralysis was the actual problem. Users weren't confused about how to share—they were confused about why to share and whether it was worth the effort.</p>
-
-                  <p>Messaging transformation moved from clever ("Spread digital freedom") to clear ("Invite friends – get Free Premium"). Clarity beat cleverness. Users needed to understand the value exchange immediately.</p>
-
-                  <p>Reward structure psychology: original system required too many referrals for first reward, making it feel unattainable. New structure gave immediate gratification (1 friend = 1 week) while still incentivizing power users with lifetime premium milestone.</p>
-
-                  <p>Platform-specific considerations around iOS and Android monetization policies required careful navigation to ensure rewards complied with app store guidelines while remaining valuable to users.</p>
-
-                  <h2>Implementation Approach</h2>
-
-                  <p>Shipped iteratively over 11 months rather than one big release. This allowed real-time testing and validation of each change. Measured impact at every step and adjusted based on data.</p>
-
-                  <p>Cross-platform coordination between iOS and Android teams ensured consistent experience while respecting platform-specific patterns and policies.</p>
-
-                  <p>Real-time measurement showed immediate improvements: first simplification increased conversions by 80%, messaging update added another 60%, and reward structure revision drove final 50% increase to reach 3.4x total growth.</p>
-
-                  <h2>Key Insight</h2>
-
-                  <p>Usage data revealed the answer: users weren't confused about how to share—they were confused about why to share. Clear incentive + simple action = 3.4x growth. Sometimes the solution is removing features, not adding them.</p>
-                </div>
-              </details>
-            </div>
-
-          </div>
+        <div class="text-flow">
+          <p class="heading-large">You can read my</p>
+          <a href="https://cdn.glitch.global/cb2683d9-7542-47a3-9caa-215bacfe2645/Vasilii%20Diakonov%20Resume.pdf?v=1734376765886" class="pill pill-purple" target="_blank">
+            Resume
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g clip-path="url(#clip0_184_558)">
+                <path d="M23.6597 11.994C23.6597 18.5159 18.3612 23.8222 11.828 23.8222C5.30623 23.8222 0 18.5159 0 11.994C0 5.46452 5.30623 0.166016 11.828 0.166016C18.3612 0.166016 23.6597 5.46452 23.6597 11.994ZM10.5956 7.09394V13.1697L10.6773 14.848L10.0841 14.1152L8.51632 12.4489C8.30344 12.2164 7.9957 12.0861 7.68592 12.0861C7.10446 12.0861 6.6014 12.52 6.6014 13.1334C6.6014 13.455 6.72459 13.6989 6.94573 13.9159L10.8704 17.6937C11.1987 18.0111 11.5075 18.1153 11.8358 18.1153C12.1677 18.1153 12.4765 18.0111 12.8048 17.6937L16.7218 13.9159C16.9506 13.6989 17.0738 13.455 17.0738 13.1334C17.0738 12.52 16.5629 12.0861 15.9815 12.0861C15.6718 12.0861 15.3718 12.2164 15.1588 12.4489L13.591 14.1152L13.0008 14.8443L13.0873 13.1697V7.09394C13.0873 6.42902 12.5301 5.87286 11.8358 5.87286C11.1487 5.87286 10.5956 6.42902 10.5956 7.09394Z" fill="currentColor"/>
+              </g>
+              <defs>
+                <clipPath id="clip0_184_558">
+                  <rect width="24" height="23.6675" fill="white" transform="translate(0 0.166016)"/>
+                </clipPath>
+              </defs>
+            </svg>
+          </a>
+          <p class="heading-large">or contact me on</p>
+          <a href="https://www.linkedin.com/in/vasiliidiakonov/" class="pill pill-indigo" target="_blank">
+            Linkedin
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g clip-path="url(#clip0_140_592_linkedin)">
+                <path d="M3.31521 20.5276C3.90159 21.1022 4.72656 21.1368 5.38801 20.4866L16.4031 9.48322L18.7751 6.91254C19.3635 6.28679 19.3114 5.52841 18.8166 5.03416C18.3181 4.52074 17.5368 4.44194 16.9078 5.04534L14.3334 7.4136L3.33011 18.4324C2.64258 19.1274 2.74001 19.9635 3.31521 20.5276ZM17.9286 11.9501V16.36C17.9286 17.1797 18.5587 17.8513 19.3453 17.8513C20.1314 17.8513 20.7955 17.1925 20.7955 16.3318L20.7913 4.59174C20.7913 3.66982 20.1783 3.04883 19.2446 3.04883H7.49287C6.61676 3.04883 5.98139 3.70498 5.98139 4.48735C5.98139 5.26598 6.65672 5.89178 7.46463 5.89178H11.7104L18.2099 5.6425L17.9286 11.9501Z" fill="currentColor"/>
+              </g>
+              <defs>
+                <clipPath id="clip0_140_592_linkedin">
+                  <rect width="18.3028" height="17.9325" fill="white" transform="translate(2.84863 3.03418)"/>
+                </clipPath>
+              </defs>
+            </svg>
+          </a>
+          <p class="heading-large">or via</p>
+          <a href="mailto:vasilii.diakonov@gmail.com" class="pill pill-orange">
+            Email
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g clip-path="url(#clip0_140_592_email)">
+                <path d="M3.31521 20.5276C3.90159 21.1022 4.72656 21.1368 5.38801 20.4866L16.4031 9.48322L18.7751 6.91254C19.3635 6.28679 19.3114 5.52841 18.8166 5.03416C18.3181 4.52074 17.5368 4.44194 16.9078 5.04534L14.3334 7.4136L3.33011 18.4324C2.64258 19.1274 2.74001 19.9635 3.31521 20.5276ZM17.9286 11.9501V16.36C17.9286 17.1797 18.5587 17.8513 19.3453 17.8513C20.1314 17.8513 20.7955 17.1925 20.7955 16.3318L20.7913 4.59174C20.7913 3.66982 20.1783 3.04883 19.2446 3.04883H7.49287C6.61676 3.04883 5.98139 3.70498 5.98139 4.48735C5.98139 5.26598 6.65672 5.89178 7.46463 5.89178H11.7104L18.2099 5.6425L17.9286 11.9501Z" fill="currentColor"/>
+              </g>
+              <defs>
+                <clipPath id="clip0_140_592_email">
+                  <rect width="18.3028" height="17.9325" fill="white" transform="translate(2.84863 3.03418)"/>
+                </clipPath>
+              </defs>
+            </svg>
+          </a>
         </div>
       </div>
-    </div>
 
-    <!-- Image Zoom Modal -->
-    <div id="image-zoom-modal" class="image-zoom-modal">
-      <div class="image-zoom-content">
-        <img id="zoomed-image" src="" alt="">
-      </div>
     </div>
 
     <script>
-      // Smooth scroll behavior
-      document.documentElement.style.scrollBehavior = 'smooth';
+      function toggleReleases() {
+        const hiddenReleases = document.querySelectorAll('.release-hidden');
+        const button = document.querySelector('.show-more-button');
+        const isExpanded = button.textContent === 'Show Less';
 
-      // Case study overlay functions
-      function openCase(caseId) {
-        document.getElementById(caseId + '-overlay').style.display = 'block';
-        document.querySelector('.portfolio-content').classList.add('page-hidden');
-      }
-
-      function closeCase(caseId) {
-        document.getElementById(caseId + '-overlay').style.display = 'none';
-        document.querySelector('.portfolio-content').classList.remove('page-hidden');
-      }
-
-      // Close overlay with Escape key
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-          document.querySelectorAll('.case-overlay').forEach(overlay => {
-            overlay.style.display = 'none';
-          });
-          document.querySelector('.portfolio-content').classList.remove('page-hidden');
-        }
-      });
-
-      // Copy link function
-      function copyLink(caseId) {
-        const url = window.location.origin + window.location.pathname + '#' + caseId;
-        navigator.clipboard.writeText(url).then(function() {
-          // Visual feedback - you could add a tooltip or brief message here
-          const btn = event.target;
-          const originalText = btn.textContent;
-          btn.textContent = 'Copied!';
-          setTimeout(function() {
-            btn.textContent = originalText;
-          }, 2000);
-        }).catch(function(err) {
-          console.error('Failed to copy link: ', err);
+        hiddenReleases.forEach(release => {
+          release.style.display = isExpanded ? 'none' : 'flex';
         });
+
+        button.textContent = isExpanded ? 'Show More' : 'Show Less';
       }
 
-      // Image zoom functionality for mobile
-      const imageZoomModal = document.getElementById('image-zoom-modal');
-      const zoomedImage = document.getElementById('zoomed-image');
+      // GSAP Text Animation
+      window.addEventListener('DOMContentLoaded', () => {
+        // Get all heading elements in the header section
+        const headerSection = document.querySelector('.content-section');
+        const headings = headerSection.querySelectorAll('.heading-large, .text-flow, .profile-container');
+        const pills = headerSection.querySelectorAll('.pill, .platform-pills');
 
-      // Check if device is mobile/tablet (1000px or below)
-      function isMobileOrTablet() {
-        return window.innerWidth <= 1000;
-      }
+        // Set initial state - hide all elements
+        gsap.set(headings, { opacity: 0, y: 30 });
+        gsap.set(pills, { opacity: 0, y: 30, scale: 0.8 });
 
-      // Add click handlers to case study images
-      document.addEventListener('click', function(e) {
-        if (!isMobileOrTablet()) return;
+        // Create timeline for sequential animation
+        const tl = gsap.timeline();
 
-        // Check if clicked element is an image inside a case study
-        const target = e.target;
-        if (target.tagName === 'IMG' && target.closest('.case-overlay')) {
-          // Don't zoom work card images or images in captions
-          if (target.closest('.work-image') || target.closest('.image-caption')) {
-            return;
-          }
+        // Animate headings and text with faster timing
+        tl.to(headings, {
+          opacity: 1,
+          y: 0,
+          duration: 0.5,
+          stagger: 0.08,
+          ease: 'power2.out',
+          delay: 0.2
+        });
 
-          // Open zoom modal
-          zoomedImage.src = target.src;
-          zoomedImage.alt = target.alt;
-          imageZoomModal.style.display = 'flex';
-          document.body.style.overflow = 'hidden';
-        }
+        // Animate pills with bounce
+        tl.to(pills, {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.6,
+          stagger: 0.05,
+          ease: 'back.out(1.7)'
+        }, 0.2); // Start with the timeline, no extra delay
       });
-
-      // Close zoom modal when clicking anywhere
-      imageZoomModal.addEventListener('click', function() {
-        imageZoomModal.style.display = 'none';
-        document.body.style.overflow = 'auto';
-      });
-
     </script>
+
   </body>
 </html>
