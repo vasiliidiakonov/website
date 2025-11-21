@@ -557,6 +557,34 @@
 
       // Initialize galleries on page load
       initGalleries();
+
+      // Add keyboard navigation for galleries
+      Object.keys(galleries).forEach(galleryId => {
+        const galleryContainer = document.querySelector(`.gallery-${galleryId}`);
+        if (!galleryContainer) return;
+
+        let isHovering = false;
+
+        galleryContainer.addEventListener('mouseenter', () => {
+          isHovering = true;
+        });
+
+        galleryContainer.addEventListener('mouseleave', () => {
+          isHovering = false;
+        });
+
+        document.addEventListener('keydown', (e) => {
+          if (!isHovering) return;
+
+          if (e.key === 'ArrowLeft') {
+            e.preventDefault();
+            navigateGallery(galleryId, -1);
+          } else if (e.key === 'ArrowRight') {
+            e.preventDefault();
+            navigateGallery(galleryId, 1);
+          }
+        });
+      });
     </script>
 
   </body>
