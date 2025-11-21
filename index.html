@@ -172,7 +172,7 @@
           </a>
 
           <!-- Vulners Card -->
-          <a href="#" class="case-card" style="text-decoration: none;" onclick="alert('This case study is under construction'); return false;">
+          <a href="vulners.html" class="case-card" style="text-decoration: none;">
             <div class="case-header">
               <div class="case-info">
                 <div class="case-icon-container">
@@ -535,11 +535,12 @@
           // Collapse with animation
           gsap.to(hiddenReleases, {
             opacity: 0,
-            y: -20,
-            scale: 0.95,
-            duration: 0.3,
-            stagger: 0.03,
-            ease: 'power2.in',
+            height: 0,
+            marginTop: 0,
+            marginBottom: 0,
+            duration: 0.4,
+            stagger: 0.02,
+            ease: 'power2.inOut',
             onComplete: () => {
               hiddenReleases.forEach(release => {
                 release.style.display = 'none';
@@ -549,24 +550,38 @@
           button.textContent = 'Show More';
         } else {
           // Expand - show with animation
-          hiddenReleases.forEach(release => {
-            release.style.display = 'flex';
-          });
-
-          // Animate hidden releases
-          gsap.fromTo(hiddenReleases,
-            { opacity: 0, y: 20, scale: 0.95 },
-            {
-              opacity: 1,
-              y: 0,
-              scale: 1,
-              duration: 0.5,
-              stagger: 0.05,
-              ease: 'back.out(1.7)'
-            }
-          );
-
           button.textContent = 'Show Less';
+
+          hiddenReleases.forEach((release, index) => {
+            release.style.display = 'flex';
+            release.style.height = 'auto';
+            const autoHeight = release.offsetHeight;
+
+            gsap.fromTo(release,
+              {
+                opacity: 0,
+                height: 0,
+                marginTop: 0,
+                marginBottom: 0,
+                y: 20,
+                scale: 0.95
+              },
+              {
+                opacity: 1,
+                height: autoHeight,
+                marginTop: '', // restore original
+                marginBottom: '', // restore original
+                y: 0,
+                scale: 1,
+                duration: 0.5,
+                delay: index * 0.05,
+                ease: 'back.out(1.2)',
+                onComplete: () => {
+                  gsap.set(release, { clearProps: 'height,marginTop,marginBottom' });
+                }
+              }
+            );
+          });
         }
       }
 
