@@ -187,6 +187,10 @@ body {
   width: 100%;
 }
 
+.mobile-break {
+  display: none;
+}
+
 .platform-pills {
   display: flex;
   flex-wrap: wrap;
@@ -236,10 +240,14 @@ body {
   flex: 1;
   border-radius: 12px;
   overflow: hidden;
+  min-height: 0;
   position: relative;
 }
 
 .bento-image {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -1056,47 +1064,282 @@ body {
 
 @media (max-width: 768px) {
   .portfolio-container {
-    gap: 80px;
-    padding: 48px 24px;
+    gap: 100px;
+    padding: 64px 0;
+    align-items: center;
   }
 
   .content-section {
-    gap: 32px;
+    gap: 24px;
+    width: 326px;
+    max-width: calc(100% - 48px);
   }
 
   .heading-large {
-    font-size: 36px;
+    font-size: 24px;
   }
 
   .pill {
-    font-size: 32px;
-    padding: 6px 12px;
+    font-size: 24px;
+    padding: 8px;
+    border-radius: 12px;
+  }
+
+  .pill svg {
+    width: 24px;
+    height: 24px;
   }
 
   .section-title {
-    font-size: 36px;
+    font-size: 24px;
+    text-align: center;
   }
 
   .heading-medium {
-    font-size: 28px;
+    font-size: 20px;
+  }
+
+  .bento-large .heading-medium,
+  .bento-small .heading-medium {
+    font-size: 20px;
+    line-height: normal;
   }
 
   .platform-pills {
-    gap: 12px;
+    gap: 8px;
   }
 
   .experience-card {
-    gap: 24px;
+    gap: 16px;
+    flex-direction: column;
+    align-items: center;
   }
 
   .experience-icon-wrapper {
-    width: 80px;
-    height: 80px;
+    width: 100px;
+    height: 100px;
   }
 
   .experience-icon-container {
-    width: 80px;
-    height: 80px;
+    width: 100px;
+    height: 100px;
+  }
+
+  .experience-content {
+    width: 100%;
+  }
+
+  .experience-header {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .experience-date {
+    font-size: 12px;
+  }
+
+  .experience-titles {
+    align-items: center;
+    gap: 8px;
+  }
+
+  .experience-role {
+    font-size: 16px;
+  }
+
+  .experience-company {
+    font-size: 16px;
+  }
+
+  .experience-description {
+    font-size: 16px;
+    text-align: center;
+  }
+
+  .experience-container {
+    gap: 60px;
+  }
+
+  .bento-grid {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .bento-large {
+    height: 200px;
+    width: 100%;
+    padding: 8px;
+    gap: 8px;
+    border-radius: 16px;
+    display: grid;
+    grid-template-rows: auto 1fr;
+  }
+
+  .bento-small {
+    height: 200px;
+    width: 100%;
+    padding: 8px;
+    gap: 8px;
+    border-radius: 16px;
+    display: grid;
+    grid-template-rows: auto 1fr;
+  }
+
+  .bento-image-container {
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    min-height: 0;
+  }
+
+  .bento-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 12px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .bento-column {
+    gap: 6.378px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .case-card {
+    height: 240px;
+    width: 100%;
+    padding: 8px;
+    gap: 16px;
+  }
+
+  .case-grid {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .case-slideshow {
+    border-radius: 8px;
+  }
+
+  .case-slideshow-image {
+    border-radius: 8px;
+  }
+
+  .case-icon-container {
+    width: 60px;
+    height: 60px;
+  }
+
+  .case-icon {
+    width: 60px;
+    height: 60px;
+  }
+
+  .case-title {
+    font-size: 16px;
+  }
+
+  .case-link {
+    font-size: 16px;
+  }
+
+  .case-header {
+    gap: 16px;
+  }
+
+  .case-info {
+    gap: 16px;
+  }
+
+  .case-text {
+    gap: 8px;
+  }
+
+  .case-button {
+    width: 32px;
+    height: 32px;
+    padding: 6.4px;
+  }
+
+  .case-button svg {
+    width: 19.2px;
+    height: 19.2px;
+  }
+
+  .section-header {
+    gap: 6.378px;
+    padding-left: 0;
+  }
+
+  .release-card {
+    gap: 16px;
+    padding: 8px;
+  }
+
+  .release-content {
+    padding-right: 0;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .release-title {
+    font-size: 16px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+  }
+
+  .release-button {
+    width: 32px;
+    height: 32px;
+    padding: 6.4px;
+    border-radius: 19.2px;
+  }
+
+  .release-button svg {
+    width: 19.2px;
+    height: 19.2px;
+  }
+
+  .releases-list {
+    gap: 24px;
+  }
+
+  .show-more-button {
+    font-size: 16px;
+  }
+
+  .profile-container {
+    width: 140px;
+    height: 140px;
+    border-radius: 35px;
+    overflow: hidden;
+    box-shadow: 0px 5.437px 10.874px 0px #f8f8f8;
+  }
+
+  .profile-image {
+    width: 140px;
+    height: 140px;
+  }
+
+  .pill-teal {
+    padding: 2.5px 5px;
+    border-radius: 7.5px;
+  }
+
+  .text-flow {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .mobile-break {
+    display: block;
   }
 
   .overlay {
@@ -1146,25 +1389,13 @@ body {
 }
 
 @media (max-width: 480px) {
-  .heading-large {
-    font-size: 28px;
-  }
-
-  .pill {
-    font-size: 24px;
-  }
-
-  .section-title {
-    font-size: 28px;
-  }
-
   .text-flow {
-    gap: 12px;
+    gap: 8px;
   }
 
   .experience-card {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
   }
 
   .case-study-title {
