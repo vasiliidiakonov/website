@@ -191,6 +191,80 @@ body {
   display: none;
 }
 
+/* Mobile/Desktop Visibility */
+.mobile-hide {
+  display: inline !important;
+}
+
+.desktop-hide {
+  display: none !important;
+}
+
+.desktop-only {
+  display: flex;
+}
+
+/* Mobile Text Styles */
+.mobile-text-paragraph {
+  width: 100%;
+  text-align: center;
+}
+
+.mobile-inline-text {
+  display: inline;
+}
+
+.inline-link {
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.inline-icon {
+  width: 24px;
+  height: 24px;
+  vertical-align: middle;
+  display: inline-block;
+}
+
+/* Inline Text Colors */
+.text-teal {
+  color: #00c7be;
+}
+
+.text-red {
+  color: #ff2d55;
+}
+
+.text-blue {
+  color: #0084ff;
+}
+
+.text-green {
+  color: #34c759;
+}
+
+.text-light-blue {
+  color: #32ade6;
+}
+
+.text-yellow {
+  color: #ffcc00;
+}
+
+.text-purple {
+  color: #af52de;
+}
+
+.text-indigo {
+  color: #5856d6;
+}
+
+.text-orange {
+  color: #ff9500;
+}
+
 .platform-pills {
   display: flex;
   flex-wrap: wrap;
@@ -237,20 +311,29 @@ body {
 }
 
 .bento-image-container {
-  flex: 1;
   border-radius: 12px;
   overflow: hidden;
+  flex: 1 1 auto;
   min-height: 0;
+  width: 100%;
   position: relative;
+}
+
+.bento-large .heading-medium,
+.bento-small .heading-medium {
+  flex-shrink: 0;
 }
 
 .bento-image {
   position: absolute;
   top: 0;
   left: 0;
+  right: 0;
+  bottom: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: 50% 50%;
   border-radius: 12px;
 }
 
@@ -1172,8 +1255,12 @@ body {
     padding: 8px;
     gap: 8px;
     border-radius: 16px;
-    display: grid;
-    grid-template-rows: auto 1fr;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .bento-large .heading-medium {
+    flex-shrink: 0;
   }
 
   .bento-small {
@@ -1182,25 +1269,34 @@ body {
     padding: 8px;
     gap: 8px;
     border-radius: 16px;
-    display: grid;
-    grid-template-rows: auto 1fr;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .bento-small .heading-medium {
+    flex-shrink: 0;
   }
 
   .bento-image-container {
     border-radius: 12px;
     overflow: hidden;
+    flex: 1 1 auto;
+    min-height: 152px;
+    width: 100%;
     position: relative;
-    min-height: 0;
   }
 
   .bento-image {
     position: absolute;
     top: 0;
     left: 0;
+    right: 0;
+    bottom: 0;
     border-radius: 12px;
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: 50% 50%;
   }
 
   .bento-column {
@@ -1340,6 +1436,22 @@ body {
 
   .mobile-break {
     display: block;
+  }
+
+  .mobile-hide {
+    display: none !important;
+  }
+
+  .desktop-hide {
+    display: block !important;
+  }
+
+  .desktop-only {
+    display: none !important;
+  }
+
+  .mobile-text-paragraph .heading-large {
+    text-align: center;
   }
 
   .overlay {
