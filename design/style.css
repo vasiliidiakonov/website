@@ -962,6 +962,7 @@ body {
 }
 
 .overlay-copy-text {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
   font-size: 20px;
   font-weight: 600;
   line-height: normal;
@@ -976,8 +977,13 @@ body {
   height: 24px;
 }
 
+.overlay-copy-link svg path {
+  fill: #0084ff;
+}
+
 .overlay-copy-link img {
-  filter: invert(38%) sepia(99%) saturate(2594%) hue-rotate(197deg) brightness(101%) contrast(101%);
+  /* Filter to convert black to #0084ff */
+  filter: brightness(0) saturate(100%) invert(38%) sepia(99%) saturate(2515%) hue-rotate(197deg) brightness(102%) contrast(101%);
 }
 
 /* Featured Work Cards */
@@ -1096,7 +1102,7 @@ body {
 
 .back-to-case-link {
   font-size: 20px;
-  font-weight: 400;
+  font-weight: 500;
   line-height: normal;
   color: #0084ff;
 }
@@ -1455,25 +1461,47 @@ body {
   }
 
   .overlay {
-    padding: 16px;
+    padding: 0;
   }
 
   .overlay-window {
-    padding: 24px;
-    gap: 40px;
+    padding: 80px 40px;
+    gap: 60px;
+    border-radius: 0;
+  }
+
+  .overlay-content {
+    width: 326px;
+    max-width: 100%;
   }
 
   .overlay-close {
-    top: 36px;
-    right: 36px;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    padding: 8px;
+  }
+
+  .overlay-close svg {
+    width: 24px;
+    height: 24px;
   }
 
   .case-study-title {
-    font-size: 36px;
+    font-size: 32px;
+  }
+
+  .case-study-subtitle {
+    font-size: 20px;
   }
 
   .case-study-section-title {
-    font-size: 28px;
+    font-size: 24px;
+  }
+
+  .case-study-section-subtitle {
+    font-size: 20px;
   }
 
   .case-study-image {
@@ -1483,7 +1511,16 @@ body {
 
   .case-study-section .case-study-image,
   .case-study-header .case-study-image {
-    max-width: calc(100vw - 80px);
+    max-width: 100%;
+    border-radius: 8px;
+  }
+
+  .case-study-image img {
+    border-radius: 8px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   .impact-title {
@@ -1492,11 +1529,144 @@ body {
 
   .takeaways-box {
     width: 100%;
-    padding: 32px 24px;
+    padding: 16px;
+    border-radius: 16px;
   }
 
   .takeaways-title {
-    font-size: 28px;
+    font-size: 24px;
+  }
+
+  .takeaways-text {
+    font-size: 16px;
+  }
+
+  .overlay-copy-link {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 40px;
+    top: auto;
+    right: auto;
+    background-color: rgba(0, 132, 255, 0.1);
+    backdrop-filter: blur(5px);
+    padding: 8px 16px;
+    gap: 8px;
+    border-radius: 24px;
+  }
+
+  .overlay-copy-text {
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+  }
+
+  .overlay-copy-link svg,
+  .overlay-copy-link img {
+    width: 24px;
+    height: 24px;
+  }
+
+  .back-to-case-card {
+    width: 326px;
+    max-width: 100%;
+    padding: 8px;
+    border-radius: 16px;
+    gap: 16px;
+  }
+
+  .back-to-case-icon-container {
+    display: none;
+  }
+
+  .back-to-case-info {
+    gap: 8px;
+  }
+
+  .back-to-case-text {
+    gap: 8px;
+  }
+
+  .back-to-case-title {
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  .back-to-case-link {
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  .back-to-case-button {
+    width: 32px;
+    height: 32px;
+    border-radius: 19.2px;
+    padding: 6.4px;
+  }
+
+  .back-to-case-button svg {
+    width: 19.2px;
+    height: 19.2px;
+  }
+
+  .featured-work-card {
+    width: 100%;
+    padding: 8px;
+    border-radius: 16px;
+    gap: 16px;
+  }
+
+  .featured-work-content {
+    gap: 8px;
+  }
+
+  .featured-work-title {
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  .featured-work-description {
+    font-size: 12px;
+    font-weight: 500;
+    white-space: normal;
+  }
+
+  .featured-work-button {
+    width: 32px;
+    height: 32px;
+    border-radius: 19.2px;
+    padding: 6.4px;
+  }
+
+  .featured-work-button svg {
+    width: 19.2px;
+    height: 19.2px;
+  }
+
+  .case-study-subtitle {
+    font-size: 20px;
+  }
+
+  .case-study-section-text {
+    font-size: 20px;
+  }
+
+  .impact-box {
+    border-radius: 16px;
+    padding: 16px;
+  }
+
+  .impact-text {
+    font-size: 16px;
+  }
+
+  .impact-line {
+    height: 100%;
+    min-height: 40px;
+  }
+
+  .impact-title {
+    font-size: 24px;
   }
 }
 

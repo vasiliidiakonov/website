@@ -27,6 +27,12 @@
           </svg>
         </a>
 
+        <!-- Copy Link Button -->
+        <button class="overlay-copy-link" onclick="copyLink()">
+          <p class="overlay-copy-text">Copy link</p>
+          <img src="images/icon_link.svg" alt="Link icon" width="24" height="24" />
+        </button>
+
         <!-- Content -->
         <div class="overlay-content">
 
@@ -158,6 +164,20 @@
 
       </div>
     </div>
+
+    <script>
+      function copyLink() {
+        const url = window.location.href;
+        navigator.clipboard.writeText(url).then(() => {
+          const button = document.querySelector('.overlay-copy-link');
+          const text = button.querySelector('.overlay-copy-text');
+          text.textContent = 'Copied!';
+          setTimeout(() => {
+            text.textContent = 'Copy link';
+          }, 2000);
+        });
+      }
+    </script>
 
   </body>
 </html>
