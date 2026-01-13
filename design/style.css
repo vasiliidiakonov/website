@@ -5,6 +5,10 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: auto;
+}
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
   background-color: #ffffff;
@@ -204,6 +208,14 @@ body {
   display: flex;
 }
 
+.mobile-bento-section {
+  display: none !important;
+}
+
+.desktop-bento-section {
+  display: flex;
+}
+
 /* Mobile Text Styles */
 .mobile-text-paragraph {
   width: 100%;
@@ -290,6 +302,9 @@ body {
   flex-direction: column;
   gap: 8px;
   overflow: hidden;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  contain: layout style paint;
 }
 
 .bento-column {
@@ -308,6 +323,9 @@ body {
   flex-direction: column;
   gap: 8px;
   overflow: hidden;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  contain: layout style paint;
 }
 
 .bento-image-container {
@@ -563,6 +581,9 @@ body {
   gap: 16px;
   width: 100%;
   text-decoration: none;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  contain: layout style paint;
 }
 
 .release-content {
@@ -1453,6 +1474,14 @@ body {
   }
 
   .desktop-only {
+    display: none !important;
+  }
+
+  .mobile-bento-section {
+    display: flex !important;
+  }
+
+  .desktop-bento-section {
     display: none !important;
   }
 

@@ -108,35 +108,70 @@
         </div>
       </div>
 
-      <!-- Selected Work Section -->
-      <div class="content-section">
+      <!-- Selected Work Section - Desktop -->
+      <div class="content-section desktop-bento-section">
         <div class="section-header">
           <p class="section-title">Selected work</p>
         </div>
 
-        <!-- Bento Grid -->
-        <div class="bento-grid">
+        <!-- Bento Grid Desktop -->
+        <div class="bento-grid bento-grid-desktop">
           <!-- Large Card -->
-          <a href="tabs.html" class="bento-large" style="text-decoration: none;">
+          <a href="tabs.html" class="bento-large bento-desktop" style="text-decoration: none;">
             <p class="heading-medium" style="color: #0084ff;">Aloha Tab Management Redesign</p>
             <div class="bento-image-container">
-              <img class="bento-image" src="images/thumbnail_01.png" alt="Aloha Tab Management Redesign" />
+              <img class="bento-image" src="images/thumbnail_01.png" alt="Aloha Tab Management Redesign" loading="eager" decoding="async" />
             </div>
           </a>
 
           <!-- Column with Two Small Cards -->
           <div class="bento-column">
-            <a href="website.html" class="bento-small" style="text-decoration: none;">
+            <a href="website.html" class="bento-small bento-desktop" style="text-decoration: none;">
               <p class="heading-medium" style="color: #af52de;">Aloha Website Design System</p>
               <div class="bento-image-container">
-                <img class="bento-image" src="images/thumbnail_02.png" alt="Aloha Website Design System" />
+                <img class="bento-image" src="images/thumbnail_02.png" alt="Aloha Website Design System" loading="eager" decoding="async" />
               </div>
             </a>
 
-            <a href="referral.html" class="bento-small" style="text-decoration: none;">
+            <a href="referral.html" class="bento-small bento-desktop" style="text-decoration: none;">
               <p class="heading-medium" style="color: #5856d6;">Aloha Referral System</p>
               <div class="bento-image-container">
-                <img class="bento-image" src="images/thumbnail_03.png" alt="Aloha Referral System" />
+                <img class="bento-image" src="images/thumbnail_03.png" alt="Aloha Referral System" loading="eager" decoding="async" />
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Selected Work Section - Mobile -->
+      <div class="content-section mobile-bento-section">
+        <div class="section-header">
+          <p class="section-title">Selected work</p>
+        </div>
+
+        <!-- Bento Grid Mobile -->
+        <div class="bento-grid bento-grid-mobile">
+          <!-- Large Card -->
+          <a href="tabs.html" class="bento-large bento-mobile" style="text-decoration: none;">
+            <p class="heading-medium" style="color: #0084ff;">Aloha Tab Management Redesign</p>
+            <div class="bento-image-container">
+              <img class="bento-image" src="images/thumbnail_01.png" alt="Aloha Tab Management Redesign" loading="eager" decoding="async" />
+            </div>
+          </a>
+
+          <!-- Column with Two Small Cards -->
+          <div class="bento-column">
+            <a href="website.html" class="bento-small bento-mobile" style="text-decoration: none;">
+              <p class="heading-medium" style="color: #af52de;">Aloha Website Design System</p>
+              <div class="bento-image-container">
+                <img class="bento-image" src="images/thumbnail_02.png" alt="Aloha Website Design System" loading="eager" decoding="async" />
+              </div>
+            </a>
+
+            <a href="referral.html" class="bento-small bento-mobile" style="text-decoration: none;">
+              <p class="heading-medium" style="color: #5856d6;">Aloha Referral System</p>
+              <div class="bento-image-container">
+                <img class="bento-image" src="images/thumbnail_03.png" alt="Aloha Referral System" loading="eager" decoding="async" />
               </div>
             </a>
           </div>
@@ -226,7 +261,7 @@
             </div>
             <div class="experience-content">
               <div class="experience-header">
-                <p class="experience-date">November 2023 – November 2025</p>
+                <p class="experience-date">November 2023 – Present</p>
                 <div class="experience-titles">
                   <p class="experience-role">Product Designer</p>
                   <p class="experience-company">Aloha Browser</p>
@@ -604,6 +639,13 @@
       window.addEventListener('DOMContentLoaded', () => {
         gsap.registerPlugin(ScrollTrigger);
 
+        // Configure ScrollTrigger for smoother performance
+        ScrollTrigger.config({
+          limitCallbacks: true,
+          syncInterval: 100,
+          autoRefreshEvents: 'visibilitychange,DOMContentLoaded,load'
+        });
+
         // Header animation (on page load)
         const headerSection = document.querySelector('.content-section');
         const headings = headerSection.querySelectorAll('.heading-large, .text-flow, .profile-container');
@@ -636,99 +678,178 @@
           ease: 'back.out(2.5)'
         }, 0.2);
 
-        // Selected Work animation (on scroll with image preload)
-        const bentoCards = document.querySelectorAll('.bento-large, .bento-small');
-        gsap.set(bentoCards, { opacity: 0, y: 40, scale: 0.9 });
+        // Selected Work animation - Desktop
+        const bentoCardsDesktop = document.querySelectorAll('.bento-desktop');
+        const bentoImagesDesktop = document.querySelectorAll('.bento-grid-desktop img');
 
-        // Preload images before animating
-        const bentoImages = document.querySelectorAll('.bento-grid img');
-        let loadedImages = 0;
-        const totalImages = bentoImages.length;
+        if (bentoCardsDesktop.length > 0) {
+          gsap.set(bentoCardsDesktop, {
+            opacity: 0,
+            scale: 0.96,
+            force3D: true
+          });
 
-        function checkImagesLoaded() {
-          loadedImages++;
-          if (loadedImages === totalImages) {
-            // All images loaded, can animate safely
-            gsap.to(bentoCards, {
-              opacity: 1,
-              y: 0,
-              scale: 1,
-              duration: 0.7,
-              stagger: 0.12,
-              ease: 'back.out(2.2)',
-              delay: 0.1,
-              scrollTrigger: {
-                trigger: '.bento-grid',
-                start: 'top 80%',
-                once: true
-              }
+          // Wait for all desktop images to load
+          Promise.all(
+            Array.from(bentoImagesDesktop).map(img => {
+              if (img.complete) return Promise.resolve();
+              return new Promise(resolve => {
+                img.addEventListener('load', resolve);
+                img.addEventListener('error', resolve);
+              });
+            })
+          ).then(() => {
+            // Images loaded, set up observer
+            const bentoObserverDesktop = new IntersectionObserver((entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  gsap.to(bentoCardsDesktop, {
+                    opacity: 1,
+                    scale: 1,
+                    duration: 0.4,
+                    ease: 'power2.out',
+                    force3D: true,
+                    overwrite: true
+                  });
+                  bentoObserverDesktop.disconnect();
+                }
+              });
+            }, {
+              threshold: 0.1,
+              rootMargin: '0px 0px -15% 0px'
             });
-          }
+
+            const bentoGridDesktop = document.querySelector('.bento-grid-desktop');
+            if (bentoGridDesktop) {
+              bentoObserverDesktop.observe(bentoGridDesktop);
+            }
+          });
         }
 
-        bentoImages.forEach(img => {
-          if (img.complete && img.naturalHeight !== 0) {
-            checkImagesLoaded();
-          } else {
-            img.addEventListener('load', checkImagesLoaded);
-            img.addEventListener('error', checkImagesLoaded);
-          }
-        });
+        // Selected Work animation - Mobile
+        const bentoCardsMobile = document.querySelectorAll('.bento-mobile');
+        const bentoImagesMobile = document.querySelectorAll('.bento-grid-mobile img');
 
-        // Fallback: show cards after 1 second even if images haven't loaded
-        setTimeout(() => {
-          if (loadedImages < totalImages) {
-            gsap.to(bentoCards, {
-              opacity: 1,
-              y: 0,
-              scale: 1,
-              duration: 0.7,
-              stagger: 0.12,
-              ease: 'back.out(2.2)',
-              scrollTrigger: {
-                trigger: '.bento-grid',
-                start: 'top 80%',
-                once: true
+        if (bentoCardsMobile.length > 0) {
+          gsap.set(bentoCardsMobile, {
+            opacity: 0,
+            scale: 0.96,
+            force3D: true
+          });
+
+          // Wait for all mobile images to load
+          Promise.all(
+            Array.from(bentoImagesMobile).map(img => {
+              if (img.complete) return Promise.resolve();
+              return new Promise(resolve => {
+                img.addEventListener('load', resolve);
+                img.addEventListener('error', resolve);
+              });
+            })
+          ).then(() => {
+            // Images loaded, set up observer
+            const bentoObserverMobile = new IntersectionObserver((entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  gsap.to(bentoCardsMobile, {
+                    opacity: 1,
+                    scale: 1,
+                    duration: 0.4,
+                    ease: 'power2.out',
+                    force3D: true,
+                    overwrite: true
+                  });
+                  bentoObserverMobile.disconnect();
+                }
+              });
+            }, {
+              threshold: 0.1,
+              rootMargin: '0px 0px -15% 0px'
+            });
+
+            const bentoGridMobile = document.querySelector('.bento-grid-mobile');
+            if (bentoGridMobile) {
+              bentoObserverMobile.observe(bentoGridMobile);
+            }
+          });
+        }
+
+        // Releases animation - Using Intersection Observer for better performance
+        const releaseCards = document.querySelectorAll('.release-card:not(.release-hidden)');
+
+        if (releaseCards.length > 0) {
+          gsap.set(releaseCards, {
+            opacity: 0,
+            y: 15,
+            force3D: true
+          });
+
+          // Use native Intersection Observer (more performant than ScrollTrigger)
+          const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -10% 0px'
+          };
+
+          const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+              if (entry.isIntersecting) {
+                const card = entry.target;
+                const delay = Array.from(releaseCards).indexOf(card) * 0.08;
+
+                gsap.to(card, {
+                  opacity: 1,
+                  y: 0,
+                  duration: 0.5,
+                  delay: delay,
+                  ease: 'back.out(1.2)',
+                  force3D: true,
+                  overwrite: true
+                });
+
+                observer.unobserve(card);
               }
             });
-          }
-        }, 1000);
+          }, observerOptions);
 
-        // Releases animation (on scroll)
-        const releaseCards = document.querySelectorAll('.release-card:not(.release-hidden)');
-        gsap.set(releaseCards, { opacity: 0, y: 30 });
+          releaseCards.forEach(card => observer.observe(card));
+        }
 
-        gsap.to(releaseCards, {
-          opacity: 1,
-          y: 0,
-          duration: 0.4,
-          stagger: 0.06,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: '.releases-section',
-            start: 'top 80%',
-            once: true
-          }
-        });
-
-        // Footer animation (on scroll)
+        // Footer animation - Using Intersection Observer
         const footer = document.querySelector('.content-section:last-of-type');
         if (footer) {
           const footerElements = footer.querySelectorAll('.experience-item, .heading-large, .text-flow');
-          gsap.set(footerElements, { opacity: 0, y: 30 });
-
-          gsap.to(footerElements, {
-            opacity: 1,
-            y: 0,
-            duration: 0.5,
-            stagger: 0.08,
-            ease: 'power2.out',
-            scrollTrigger: {
-              trigger: footer,
-              start: 'top 80%',
-              once: true
-            }
+          gsap.set(footerElements, {
+            opacity: 0,
+            y: 15,
+            force3D: true
           });
+
+          const footerObserverOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -10% 0px'
+          };
+
+          const footerObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const elements = Array.from(footerElements);
+                elements.forEach((element, index) => {
+                  gsap.to(element, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.5,
+                    delay: index * 0.08,
+                    ease: 'back.out(1.2)',
+                    force3D: true,
+                    overwrite: true
+                  });
+                });
+                footerObserver.unobserve(footer);
+              }
+            });
+          }, footerObserverOptions);
+
+          footerObserver.observe(footer);
         }
       });
     </script>
