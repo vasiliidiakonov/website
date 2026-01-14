@@ -307,7 +307,7 @@ body {
 }
 
 .bento-grid-four {
-  height: 626px;
+  height: 760px;
 }
 
 .bento-large {
@@ -340,7 +340,8 @@ body {
 }
 
 .bento-small {
-  flex: 1;
+  height: 370px;
+  flex-shrink: 0;
   background-color: #f8f8f8;
   border-radius: 24px;
   padding: 16px;
@@ -1243,6 +1244,8 @@ body {
 
   .bento-xl {
     height: 300px;
+    min-height: 300px;
+    max-height: 300px;
   }
 
   .case-grid {
@@ -1374,6 +1377,8 @@ body {
 
   .bento-xl {
     height: 200px;
+    min-height: 200px;
+    max-height: 200px;
   }
 
   .bento-large .heading-medium {
@@ -1429,6 +1434,7 @@ body {
     width: 100%;
     padding: 8px;
     gap: 16px;
+    border-radius: 16px;
   }
 
   .case-grid {
