@@ -87,6 +87,11 @@ body {
   line-height: 44px;
 }
 
+.bento-xl .heading-medium {
+  font-size: 32px;
+  line-height: 44px;
+}
+
 .heading-small {
   font-size: 24px;
   font-weight: 600;
@@ -286,11 +291,23 @@ body {
 }
 
 /* Bento Grid Layout */
+/* Work Cards Container */
+.work-cards-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
 .bento-grid {
   display: flex;
   gap: 20px;
   width: 100%;
   height: 540px;
+}
+
+.bento-grid-four {
+  height: 626px;
 }
 
 .bento-large {
@@ -305,6 +322,14 @@ body {
   transform: translateZ(0);
   backface-visibility: hidden;
   contain: layout style paint;
+}
+
+.bento-xl {
+  width: 100%;
+  height: 540px;
+  min-height: 540px;
+  max-height: 540px;
+  flex-shrink: 0;
 }
 
 .bento-column {
@@ -326,6 +351,12 @@ body {
   transform: translateZ(0);
   backface-visibility: hidden;
   contain: layout style paint;
+}
+
+/* Snips Card Special Styling */
+.snips-image-container {
+  background-color: #b2edfb;
+  border-radius: 16px;
 }
 
 .bento-image-container {
@@ -788,8 +819,51 @@ body {
   overflow: hidden;
 }
 
+.case-study-image-tall {
+  height: 600px;
+}
+
+.case-study-image-xtall {
+  height: 675px;
+}
+
+.case-study-image-video {
+  height: 707px;
+  border-radius: 24px;
+  border: 2px solid #f2f2f2;
+}
+
+.case-study-image-video video {
+  border-radius: 24px;
+}
+
+.case-study-image-wide {
+  height: 410px;
+}
+
+.case-study-image-fullwidth {
+  width: 100vw;
+  max-width: 100vw;
+  height: 487px;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  border: none;
+  border-radius: 0;
+  overflow: hidden;
+}
+
 .case-study-image img,
 .case-study-image video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.case-study-image-fullwidth img,
+.case-study-image-fullwidth video {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -845,7 +919,7 @@ body {
 .case-study-section .case-study-image,
 .case-study-header .case-study-image {
   width: 1056px;
-  max-width: calc(100vw - 144px);
+  max-width: 100%;
 }
 
 .case-study-section .case-study-description {
@@ -1155,11 +1229,19 @@ body {
     height: auto;
   }
 
+  .bento-grid-four {
+    height: auto;
+  }
+
   .bento-large {
-    height: 400px;
+    height: 300px;
   }
 
   .bento-small {
+    height: 300px;
+  }
+
+  .bento-xl {
     height: 300px;
   }
 
@@ -1276,6 +1358,10 @@ body {
     gap: 20px;
   }
 
+  .bento-grid-four {
+    height: auto;
+  }
+
   .bento-large {
     height: 200px;
     width: 100%;
@@ -1284,6 +1370,10 @@ body {
     border-radius: 16px;
     display: flex;
     flex-direction: column;
+  }
+
+  .bento-xl {
+    height: 200px;
   }
 
   .bento-large .heading-medium {
@@ -1305,7 +1395,7 @@ body {
   }
 
   .bento-image-container {
-    border-radius: 12px;
+    border-radius: 8px;
     overflow: hidden;
     flex: 1 1 auto;
     min-height: 152px;
@@ -1319,12 +1409,13 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    border-radius: 12px;
+    border-radius: 8px;
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: 50% 50%;
   }
+
 
   .bento-column {
     gap: 6.378px;
@@ -1536,6 +1627,54 @@ body {
   .case-study-image {
     height: auto;
     aspect-ratio: 1056 / 487;
+  }
+
+  .case-study-image-tall {
+    aspect-ratio: 3580 / 3396;
+  }
+
+  .case-study-image-xtall {
+    height: auto;
+    aspect-ratio: 1056 / 675;
+  }
+
+  .case-study-image-video {
+    height: auto;
+    aspect-ratio: 16 / 9;
+    border-radius: 24px;
+    border: 2px solid #f2f2f2;
+  }
+
+  .case-study-image-video video {
+    border-radius: 24px;
+  }
+
+  .case-study-image-wide {
+    height: auto;
+    aspect-ratio: 16080 / 6240;
+  }
+
+  .case-study-image-fullwidth {
+    width: 100vw;
+    max-width: 100vw;
+    height: auto;
+    aspect-ratio: 1056 / 487;
+    margin-left: -40px;
+    margin-right: -40px;
+    left: 0;
+    right: 0;
+    border: none;
+    border-radius: 0;
+    overflow: hidden;
+  }
+
+  .case-study-image-fullwidth img,
+  .case-study-image-fullwidth video {
+    border-radius: 0;
+    border: none;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   .case-study-section .case-study-image,
