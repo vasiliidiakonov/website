@@ -213,6 +213,62 @@ body {
   display: flex;
 }
 
+.desktop-only-flex-col {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: center;
+  width: 100%;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.no-decoration {
+  text-decoration: none;
+}
+
+.snips-image-contain {
+  object-fit: contain;
+}
+
+.color-purple {
+  color: #af52de;
+}
+
+.color-blue {
+  color: #0084ff;
+}
+
+.color-indigo {
+  color: #5856d6;
+}
+
+.color-light-blue {
+  color: #32ade6;
+}
+
+.color-green {
+  color: #34c759;
+}
+
+.color-orange {
+  color: #ff9500;
+}
+
+.color-teal {
+  color: #00c7be;
+}
+
+.color-red {
+  color: #ff2d55;
+}
+
+.color-yellow {
+  color: #ffcc00;
+}
+
 .mobile-bento-section {
   display: none !important;
 }
@@ -322,6 +378,7 @@ body {
   transform: translateZ(0);
   backface-visibility: hidden;
   contain: layout style paint;
+  text-decoration: none;
 }
 
 .bento-xl {
@@ -352,6 +409,7 @@ body {
   transform: translateZ(0);
   backface-visibility: hidden;
   contain: layout style paint;
+  text-decoration: none;
 }
 
 /* Snips Card Special Styling */
@@ -406,6 +464,7 @@ body {
   gap: 16px;
   height: 580px;
   overflow: hidden;
+  text-decoration: none;
 }
 
 .case-header {
@@ -791,6 +850,44 @@ body {
   max-width: 1056px;
 }
 
+.case-study-header-large-gap {
+  gap: 60px;
+}
+
+.case-study-header-title-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  width: 1056px;
+  max-width: 100%;
+}
+
+.case-study-image-with-icon {
+  background-color: #f2f2f2;
+  position: relative;
+}
+
+.case-study-icon-overlay {
+  position: absolute;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 100px;
+  border-radius: 25px;
+  box-shadow: 0px 0px 160.87px 0px white;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.case-study-icon-overlay object {
+  width: 100px;
+  height: 100px;
+}
+
 .case-study-title {
   font-size: 48px;
   font-weight: 600;
@@ -1134,6 +1231,7 @@ body {
   line-height: normal;
   white-space: nowrap;
   color: inherit;
+  text-decoration: none;
 }
 
 .featured-work-description {
@@ -1172,6 +1270,32 @@ body {
 .featured-work-button-indigo {
   background-color: rgba(88, 86, 214, 0.05);
   color: #5856d6;
+}
+
+.featured-work-button-light-blue {
+  background-color: rgba(50, 173, 230, 0.05);
+  color: #32ade6;
+}
+
+.featured-work-card-blue {
+  color: #0084ff;
+  margin-top: 20px;
+  text-decoration: none;
+}
+
+.featured-work-card-purple {
+  color: #af52de;
+  text-decoration: none;
+}
+
+.featured-work-card-indigo {
+  color: #5856d6;
+  text-decoration: none;
+}
+
+.featured-work-card-light-blue {
+  color: #32ade6;
+  text-decoration: none;
 }
 
 /* Back to Case Card */
