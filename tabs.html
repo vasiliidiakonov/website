@@ -37,13 +37,15 @@
         <div class="overlay-content">
 
           <!-- Header Section -->
-          <div class="case-study-header">
-            <p class="case-study-title">Tab Management Redesign</p>
-            <p class="case-study-subtitle">Cross-platform tab redesign with grouping functionality</p>
-            <div class="case-study-image">
-              <img src="images/tabs-header.png" alt="Tab Management Redesign" />
+          <div class="case-study-header-wrapper">
+            <div class="case-study-header">
+              <p class="case-study-title">Tab Management Redesign</p>
+              <p class="case-study-subtitle">Cross-platform tab redesign with grouping functionality</p>
+              <div class="case-study-image">
+                <img src="images/Tabs Hero.png" alt="Tab Management Redesign" />
+              </div>
+              <p class="case-study-description">Redesigned tab management from cluttered list to organized, groupable interface with improved visual hierarchy</p>
             </div>
-            <p class="case-study-description">Redesigned tab management from cluttered list to organized, groupable interface with improved visual hierarchy</p>
           </div>
 
           <!-- Impact Section -->
@@ -62,24 +64,51 @@
           <div class="case-study-section">
             <p class="case-study-section-title">Problem</p>
             <p class="case-study-section-text">Power users with 20+ tabs couldn't find what they needed. Chrome and Safari offered grouping. We didn't. This table-stakes gap was hurting retention.</p>
-          </div>
 
-          <!-- Process Section -->
-          <div class="case-study-section">
-            <p class="case-study-section-title">Process</p>
-            <p class="case-study-section-text">Started with user research analyzing behavior of power users with 20+ tabs. Mapped pain points around tab discovery and organization. Prototyped multiple grouping interactions, testing drag-and-drop vs batch selection vs auto-grouping. Prioritized iOS for full implementation due to development resources while ensuring Android received foundation for future grouping capabilities.</p>
+            <p class="case-study-section-subtitle">User Feedback</p>
+            <p class="case-study-section-text">Users were complaining that tabs were inconvenient to use and explicitly asking for features like tab grid and grouping that competitors already offered.</p>
+
+            <p class="case-study-section-subtitle">Business Concerns</p>
+            <p class="case-study-section-text">We had a functionality gap to Safari and Chrome—a table-stakes feature we were missing. This was costing us retention opportunities with our most engaged users.</p>
+
+            <p class="case-study-section-subtitle">Design Concerns</p>
+            <p class="case-study-section-text">The interface was using outdated UX patterns from our 2018 launch, with poor visual hierarchy and a split UI that made tab management unnecessarily complex.</p>
+
+            <div class="case-study-image case-study-image-problem">
+              <img src="images/tabs-problem_space.svg" alt="Problem Space" />
+            </div>
           </div>
 
           <!-- Solution Section -->
           <div class="case-study-section">
             <p class="case-study-section-title">Solution</p>
+
+            <p class="case-study-section-subtitle">Discovery</p>
+            <p class="case-study-section-text">Started with user feedback analysis and usage analytics to identify power user behavior patterns with 20+ tabs. Conducted competitor research on Safari, Chrome, and Edge to understand existing solutions.</p>
+
+            <p class="case-study-section-subtitle">Design</p>
+            <p class="case-study-section-text">Built initial prototypes to validate grouping as the top user need. Aligned goals and strategy with product and engineering teams, created a feature roadmap prioritizing iOS for complete implementation. Explored 15+ grouping interaction patterns through iterative design—testing drag-and-drop, batch selection, and menu-based approaches.</p>
+
+            <p class="case-study-section-subtitle">Development</p>
+            <p class="case-study-section-text">Worked closely with iOS and Android teams to align on development strategy. iOS had larger team capacity, enabling faster development. Navigated platform constraints including Android performance limitations. Delivered iOS complete in 6 months, with Android receiving UI improvements and grouping foundations.</p>
+
+            <div class="case-study-image case-study-image-workflow">
+              <img src="images/tabs-workflow.svg" alt="Solution Workflow" />
+            </div>
+
+            <p class="case-study-section-subtitle">Initial prototype</p>
+            <div class="case-study-image case-study-image-prototype">
+              <img src="images/tabs-prototype.png" alt="Initial prototype" />
+            </div>
+            <p class="case-study-description">Explored 15+ interaction patterns before converging on final direction</p>
+
             <p class="case-study-section-subtitle">Flexible grouping interactions</p>
             <div class="case-study-image">
-              <video src="images/Drag and drop video.mp4" autoplay loop muted playsinline></video>
+              <img src="images/Tabs Hero.png" alt="Flexible grouping interactions" />
             </div>
             <p class="case-study-description">Flexible grouping through batch selection for power users and drag-and-drop for quick organization. Customizable group names and easy menu access</p>
             <div class="case-study-image">
-              <img src="images/tabs-grouping modes.png" alt="Tab grouping modes" />
+              <img src="images/Tabs other Grouoing functions.png" alt="Tab grouping modes" />
             </div>
           </div>
 
@@ -87,7 +116,7 @@
           <div class="case-study-section">
             <p class="case-study-section-subtitle">Mode Switcher</p>
             <div class="case-study-image">
-              <img src="images/tabs-mode switcher.png" alt="Mode Switcher" />
+              <img src="images/Tabs Mode switching.png" alt="Mode Switcher" />
             </div>
             <p class="case-study-description">Tab mode switcher allowing users to toggle between Synced, Normal, and Private modes directly within the tab manager. Works across devices and adapts to dark mode.</p>
           </div>
@@ -96,7 +125,7 @@
           <div class="case-study-section">
             <p class="case-study-section-subtitle">Android Performance Solution</p>
             <div class="case-study-image">
-              <img src="images/tabs-android view.png" alt="Android Performance Solution" />
+              <img src="images/Tabs Android preview-less tabs.png" alt="Android Performance Solution" />
             </div>
             <p class="case-study-description">Performance solution for older Android devices—toggle between rich tab previews and efficient list mode. Turned constraint into user control feature.</p>
           </div>
@@ -105,7 +134,7 @@
           <div class="case-study-section">
             <p class="case-study-section-subtitle">Private Mode Experience</p>
             <div class="case-study-image">
-              <img src="images/tabs-private mode.png" alt="Private Mode Experience" />
+              <img src="images/Tabs Hero.png" alt="Private Mode Experience" />
             </div>
             <p class="case-study-description">Private mode with distinct visual experience, different color scheme, and private-specific tab groups—reinforcing Aloha's privacy-first positioning</p>
             <p class="case-study-description">Applied full grouping functionality to private tabs with distinct visual treatment</p>
@@ -115,22 +144,32 @@
           <div class="case-study-section">
             <p class="case-study-section-subtitle">Cross-Platform Implementation</p>
             <div class="case-study-image">
-              <img src="images/tabs-shipped.png" alt="Cross-Platform Implementation" />
+              <img src="images/Tabs iOS vs Android.png" alt="Cross-Platform Implementation" />
             </div>
             <p class="case-study-description">Platform-specific implementations—iOS shipped complete grouping functionality, Android received UI improvements</p>
           </div>
 
-          <!-- Key Takeaways Section -->
+          <!-- Key Learnings Section -->
           <div class="case-study-section impact-section">
             <div class="takeaways-box">
-              <p class="takeaways-title">Key Takeaways</p>
-              <div class="takeaways-list">
-                <ul>
-                  <li class="takeaways-text"><strong>Constraints as features:</strong> <span>Android's performance limitations became user-facing feature</span></li>
-                  <li class="takeaways-text"><strong>Cross-platform balance:</strong> <span>Consistency matters but platform-specific strengths matter more</span></li>
-                  <li class="takeaways-text"><strong>Core workflow impact:</strong> <span>Small improvements to daily tasks significantly impact retention</span></li>
-                  <li class="takeaways-text"><strong>Hierarchy over parity:</strong> <span>Visual organization matters more than feature parity across platforms</span></li>
-                </ul>
+              <p class="takeaways-title">Key Learnings</p>
+              <div class="takeaways-paragraphs">
+                <div class="learning-item">
+                  <p class="learning-title">Platform Pragmatism Over Perfectionism</p>
+                  <p class="learning-text">I initially wanted to ship iOS and Android simultaneously with identical features. Resource constraints forced us to ship iOS complete while Android got foundations. This sequential approach actually worked better—we learned from iOS launch before building Android grouping. Taught me to prioritize user value over process perfection.</p>
+                </div>
+                <div class="learning-item">
+                  <p class="learning-title">User Needs Beat Competitor Parity</p>
+                  <p class="learning-text">Started by matching Safari and Chrome features exactly. User research revealed power users needed organization tools, not just visual parity with competitors. Focusing on the actual problem (too many tabs) rather than feature matching delivered better results—1.8% retention lift proved it.</p>
+                </div>
+                <div class="learning-item">
+                  <p class="learning-title">Small Interactions, Big Impact</p>
+                  <p class="learning-text">The "big" feature was grouping, but users raved about drag-and-drop, batch selection, and mode switching in feedback. These interaction details mattered more than I expected. Now I spend more time on how features work, not just what they do.</p>
+                </div>
+                <div class="learning-item">
+                  <p class="learning-title">Constraints Can Become Features</p>
+                  <p class="learning-text">Android performance issues threatened to delay launch. Instead of waiting for optimization, we added view switching (grid vs list). Turned a technical limitation into user control. This reframed how I think about constraints—they're not just problems to solve, but sometimes opportunities to give users choice.</p>
+                </div>
               </div>
             </div>
           </div>

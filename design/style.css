@@ -841,12 +841,20 @@ body {
 }
 
 /* Case Study Header */
+.case-study-header-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 680px;
+  max-width: 100%;
+}
+
 .case-study-header {
   display: flex;
   flex-direction: column;
   gap: 20px;
   align-items: center;
-  width: 100%;
+  width: 1056px;
   max-width: 1056px;
 }
 
@@ -923,6 +931,24 @@ body {
 
 .case-study-image-xtall {
   height: 675px;
+}
+
+.case-study-image-workflow {
+  height: 595px;
+  margin-bottom: 40px;
+}
+
+.case-study-image-problem {
+  height: 530px;
+}
+
+.case-study-image-prototype {
+  height: 602px;
+  background-color: #f2f2f2;
+}
+
+.case-study-image-prototype img {
+  object-fit: contain;
 }
 
 .case-study-image-video {
@@ -1045,6 +1071,203 @@ body {
   width: 100%;
 }
 
+/* Problem Canvas */
+.problem-canvas {
+  position: relative;
+  width: 1056px;
+  height: 529px;
+  margin-top: 20px;
+}
+
+.problem-block {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.problem-block-user-feedback {
+  left: 0;
+  top: 0;
+  width: 634px;
+  height: 219px;
+}
+
+.problem-block-business {
+  left: 647px;
+  top: 196px;
+  width: 409px;
+  height: 219px;
+}
+
+.problem-block-design {
+  left: 0;
+  top: 312px;
+  width: 293px;
+  height: 217px;
+}
+
+.problem-block-label {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: #a19e9e;
+  padding: 0 10px;
+  margin-bottom: 8px;
+}
+
+.problem-block-frame {
+  border: 1.333px solid #cfcfcf;
+  border-radius: 33px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  flex: 1;
+}
+
+.problem-block-item {
+  background-color: rgba(255, 45, 85, 0.1);
+  border-radius: 16px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.problem-block-item p {
+  font-size: 26.667px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: #ff2d55;
+  letter-spacing: -0.59px;
+}
+
+.problem-canvas::before,
+.problem-canvas::after {
+  content: '';
+  position: absolute;
+  border: 2px dashed #ff2d55;
+  border-radius: 50px;
+  opacity: 0.5;
+}
+
+.problem-canvas::before {
+  left: 293px;
+  top: 460px;
+  width: 380px;
+  height: 60px;
+  border-top: none;
+  border-left: none;
+  transform: rotate(-5deg);
+}
+
+.problem-canvas::after {
+  left: 270px;
+  top: 360px;
+  width: 360px;
+  height: 100px;
+  border-bottom: none;
+  border-right: none;
+  transform: rotate(5deg);
+}
+
+/* Workflow Canvas */
+.workflow-canvas {
+  position: relative;
+  width: 1056px;
+  height: 588px;
+  margin-top: 20px;
+}
+
+.workflow-block {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.workflow-block-discovery {
+  left: 0;
+  top: 0;
+  width: 462px;
+  height: 272px;
+}
+
+.workflow-block-design {
+  left: 640px;
+  top: 98px;
+  width: 416px;
+  height: 347px;
+}
+
+.workflow-block-development {
+  left: 23px;
+  top: 351px;
+  width: 415px;
+  height: 237px;
+}
+
+.workflow-block-label {
+  font-size: 24.354px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: #a19e9e;
+  padding: 0 11px;
+  margin-bottom: 8px;
+}
+
+.workflow-block-frame {
+  border: 1.353px solid #cfcfcf;
+  border-radius: 33.824px;
+  padding: 10.824px;
+  display: flex;
+  flex-direction: column;
+  gap: 13.53px;
+  flex: 1;
+}
+
+.workflow-block-item {
+  border-radius: 16.236px;
+  padding: 10.824px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.workflow-block-item p {
+  font-size: 27.06px;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: -0.595px;
+  text-align: center;
+}
+
+.workflow-block-discovery .workflow-block-item {
+  background-color: rgba(255, 149, 0, 0.1);
+}
+
+.workflow-block-discovery .workflow-block-item p {
+  color: #ff9500;
+}
+
+.workflow-block-design .workflow-block-item {
+  background-color: #f2f9ff;
+}
+
+.workflow-block-design .workflow-block-item p {
+  color: #0088ff;
+}
+
+.workflow-block-development .workflow-block-item {
+  background-color: rgba(0, 255, 64, 0.1);
+}
+
+.workflow-block-development .workflow-block-item p {
+  color: #34c759;
+}
+
 /* Impact Box */
 .impact-box {
   background-color: rgba(0, 132, 255, 0.05);
@@ -1160,6 +1383,51 @@ body {
 
 .takeaways-text span {
   font-weight: 500;
+}
+
+/* Case Study Lists */
+.case-study-list {
+  list-style: disc;
+  margin-left: 0;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.case-study-list-item {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: #000000;
+}
+
+/* Key Learnings Paragraphs */
+.takeaways-paragraphs {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.learning-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.learning-title {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: normal;
+  color: #34C759;
+}
+
+.learning-text {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: #34C759;
 }
 
 /* Copy Link Button */
@@ -1765,6 +2033,15 @@ body {
     height: 24px;
   }
 
+  .case-study-header-wrapper {
+    width: 100%;
+  }
+
+  .case-study-header {
+    width: 100%;
+    max-width: 100%;
+  }
+
   .case-study-title {
     font-size: 32px;
   }
@@ -1793,6 +2070,21 @@ body {
   .case-study-image-xtall {
     height: auto;
     aspect-ratio: 1056 / 675;
+  }
+
+  .case-study-image-workflow {
+    height: auto;
+    aspect-ratio: 1056 / 590;
+  }
+
+  .case-study-image-problem {
+    height: auto;
+    aspect-ratio: 1056 / 530;
+  }
+
+  .case-study-image-prototype {
+    height: auto;
+    aspect-ratio: 4096 / 2346;
   }
 
   .case-study-image-video {
@@ -1863,6 +2155,91 @@ body {
   }
 
   .takeaways-text {
+    font-size: 16px;
+  }
+
+  .case-study-list-item {
+    font-size: 16px;
+  }
+
+  .learning-title {
+    font-size: 16px;
+  }
+
+  .learning-text {
+    font-size: 16px;
+  }
+
+  .problem-canvas {
+    width: 100%;
+    height: auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .problem-block {
+    position: static;
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  .problem-block-label {
+    font-size: 16px;
+  }
+
+  .problem-block-frame {
+    border-radius: 24px;
+    padding: 8px;
+    gap: 10px;
+  }
+
+  .problem-block-item {
+    border-radius: 12px;
+    padding: 8px;
+  }
+
+  .problem-block-item p {
+    font-size: 16px;
+  }
+
+  .problem-canvas::before,
+  .problem-canvas::after {
+    display: none;
+  }
+
+  .workflow-canvas {
+    width: 100%;
+    height: auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .workflow-block {
+    position: static;
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  .workflow-block-label {
+    font-size: 16px;
+  }
+
+  .workflow-block-frame {
+    border-radius: 24px;
+    padding: 8px;
+    gap: 10px;
+  }
+
+  .workflow-block-item {
+    border-radius: 12px;
+    padding: 8px;
+  }
+
+  .workflow-block-item p {
     font-size: 16px;
   }
 
