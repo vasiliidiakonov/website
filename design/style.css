@@ -814,20 +814,18 @@ body {
 .case-study-image {
   width: 1056px;
   max-width: 100%;
+  height: 487px;
   border: 2px solid rgba(255, 255, 255, 0.3);
   border-radius: 24px;
   overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .case-study-image-tall {
-  /* Height determined by image aspect ratio */
+  height: 600px;
 }
 
 .case-study-image-xtall {
-  /* Height determined by image aspect ratio */
+  height: 675px;
 }
 
 .case-study-image-video {
@@ -861,8 +859,14 @@ body {
 .case-study-image img,
 .case-study-image video {
   width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.case-study-section .case-study-image img,
+.case-study-section .case-study-image video {
+  width: 100%;
   height: auto;
-  object-fit: contain;
 }
 
 .case-study-image-fullwidth img,
@@ -881,6 +885,21 @@ body {
   max-width: 100%;
 }
 
+.case-study-description-wide {
+  width: 1056px;
+  max-width: 1056px;
+  align-self: center;
+}
+
+.impact-description-quote {
+  margin-top: 20px;
+  font-style: italic;
+}
+
+.impact-description-detail {
+  margin-top: 10px;
+}
+
 /* Case Study Sections */
 .case-study-section {
   display: flex;
@@ -892,7 +911,7 @@ body {
 }
 
 .case-study-section.impact-section {
-  width: 712px;
+  width: 1056px;
 }
 
 .case-study-section-title {
@@ -922,7 +941,7 @@ body {
 .case-study-section .case-study-image,
 .case-study-header .case-study-image {
   width: 1056px;
-  max-width: 100%;
+  max-width: 1056px;
 }
 
 .case-study-section .case-study-description {
@@ -937,8 +956,8 @@ body {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  width: 1056px;
-  max-width: 100%;
+  width: 712px;
+  max-width: 712px;
 }
 
 .impact-title {
@@ -996,8 +1015,8 @@ body {
   border-radius: 18px;
   padding: 16px;
   color: #34C759;
-  width: 1056px;
-  max-width: 100%;
+  width: 712px;
+  max-width: 712px;
   margin: 0 auto;
 }
 
@@ -1030,7 +1049,12 @@ body {
 }
 
 .takeaways-list ul {
-  padding-left: 20px !important;
+  list-style: disc;
+  margin-left: 0;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .takeaways-text strong {
@@ -1092,8 +1116,8 @@ body {
   display: flex;
   align-items: center;
   gap: 16px;
-  width: 1056px;
-  max-width: 100%;
+  width: 712px;
+  max-width: 712px;
   text-decoration: none;
 }
 
@@ -1159,8 +1183,8 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  width: 1056px;
-  max-width: 100%;
+  width: 712px;
+  max-width: 712px;
   text-decoration: none;
 }
 
