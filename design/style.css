@@ -854,6 +854,7 @@ body {
 
 .release-content {
   flex: 1;
+  min-width: 0;
   padding-right: 16px;
 }
 
@@ -861,6 +862,9 @@ body {
   font-size: 32px;
   font-weight: 500;
   line-height: normal;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .release-button {
