@@ -142,7 +142,7 @@
       /* Close and Copy Link Buttons */
       .tabs-close-button {
         position: fixed;
-        top: 52px;
+        top: 16px;
         right: 52px;
         width: 40px;
         height: 40px;
@@ -162,7 +162,7 @@
 
       .tabs-copy-link {
         position: fixed;
-        top: 52px;
+        top: 16px;
         right: 106px;
         background-color: #ffffff;
         border-radius: 24px;
@@ -196,7 +196,7 @@
       /* Sections Menu */
       .tabs-sections-menu {
         position: fixed;
-        top: 52px;
+        top: 16px;
         left: 52px;
         z-index: 100;
         display: flex;
@@ -1666,6 +1666,18 @@
         const sectionsToggle = document.querySelector('.tabs-sections-toggle');
         let lastScrollTop = 0;
         let hasScrolled = false;
+
+        // Fixed buttons fade in on page load
+        gsap.set(closeButton, { autoAlpha: 0 });
+        gsap.set(copyLinkButton, { autoAlpha: 0 });
+        gsap.set(sectionsMenu, { autoAlpha: 0 });
+
+        gsap.to([closeButton, copyLinkButton, sectionsMenu], {
+          autoAlpha: 1,
+          duration: 1.2,
+          ease: 'power2.out',
+          delay: 0.8
+        });
 
         // Close menu on first scroll
         function handleMenuScroll() {
