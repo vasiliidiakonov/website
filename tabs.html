@@ -337,7 +337,7 @@
 
       .tabs-impact-header {
         width: 100%;
-        padding: 0 36px;
+        padding-left: 16px;
       }
 
       .tabs-impact-grid {
@@ -389,8 +389,24 @@
       .tabs-bento-scroll {
         display: flex;
         gap: 20px;
-        animation: scroll-marquee 30s linear infinite;
         width: max-content;
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      .tabs-bento-scroll.animate {
+        visibility: visible;
+        opacity: 1;
+        animation: scroll-marquee 40s linear infinite, fadeIn 0.6s ease-out forwards;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
       }
 
       .tabs-bento-scroll:hover {
@@ -408,7 +424,7 @@
           transform: translateX(0);
         }
         100% {
-          transform: translateX(-50%);
+          transform: translateX(-33.333%);
         }
       }
 
@@ -484,7 +500,8 @@
       }
 
       .tabs-bento-tag {
-        padding: 12px;
+        height: 40px;
+        padding: 0 12px;
         border-radius: 16px;
         font-size: 20px;
         font-weight: 500;
@@ -492,6 +509,7 @@
         display: flex;
         align-items: center;
         gap: 8px;
+        box-sizing: border-box;
       }
 
       .tabs-bento-tag.blue {
@@ -502,18 +520,18 @@
       .tabs-bento-tag.yellow {
         background-color: #fff9e5;
         color: #404040;
-        padding: 8px 12px 8px 8px;
+        padding: 0 12px 0 8px;
       }
 
       .tabs-bento-tag.orange-bg {
         background-color: #fff4e5;
         color: #404040;
-        padding: 8px 12px 8px 8px;
+        padding: 0 12px 0 8px;
       }
 
       .tabs-bento-tag img {
-        width: 23px;
-        height: 25px;
+        width: 24px;
+        height: 24px;
       }
 
       /* Footer CTA */
@@ -640,8 +658,8 @@
           aspect-ratio: 1136 / 731.515;
         }
 
-        .tabs-bento-scroll {
-          animation-duration: 20s;
+        .tabs-bento-scroll.animate {
+          animation-duration: 30s;
         }
       }
 
@@ -1102,6 +1120,77 @@
               </div>
             </a>
           </div>
+          <!-- Third set as decoy for seamless infinite scroll -->
+          <div class="tabs-bento-container">
+            <a href="referral.html" class="tabs-bento-card">
+              <div class="tabs-bento-text">
+                <p class="tabs-bento-title indigo">Aloha Referral System</p>
+                <p class="tabs-bento-subtitle">Driving organic growth through simplified UX</p>
+              </div>
+              <div class="tabs-bento-image">
+                <img src="images/referral-thumb.png" alt="Referral System" />
+              </div>
+              <div class="tabs-bento-tags">
+                <span class="tabs-bento-tag blue">Growth & Acquisition</span>
+                <span class="tabs-bento-tag yellow">
+                  <img src="images/star-yellow.svg" alt="" />
+                  3.4x monthly referrals
+                </span>
+              </div>
+            </a>
+            <a href="snips.html" class="tabs-bento-card">
+              <div class="tabs-bento-text">
+                <p class="tabs-bento-title light-blue">Aloha Snips AI Notifications</p>
+                <p class="tabs-bento-subtitle">AI-powered content tracking across platforms</p>
+              </div>
+              <div class="tabs-bento-image snips-bg">
+                <img src="images/snips-thumbnail.png" alt="Snips AI" />
+              </div>
+              <div class="tabs-bento-tags">
+                <span class="tabs-bento-tag blue">0→1 Product</span>
+                <span class="tabs-bento-tag orange-bg">
+                  <img src="images/star-orange.svg" alt="" />
+                  Currently in beta
+                </span>
+              </div>
+            </a>
+            <a href="website.html" class="tabs-bento-card">
+              <div class="tabs-bento-text">
+                <p class="tabs-bento-title purple">Aloha Website Design System</p>
+                <p class="tabs-bento-subtitle">Building a scalable design system</p>
+              </div>
+              <div class="tabs-bento-image">
+                <img src="images/website-thumb.png" alt="Website Design System" />
+              </div>
+              <div class="tabs-bento-tags">
+                <span class="tabs-bento-tag blue">Conversion & Design System</span>
+                <span class="tabs-bento-tag yellow">
+                  <img src="images/star-yellow.svg" alt="" />
+                  +10pp conversion
+                </span>
+                <span class="tabs-bento-tag yellow">
+                  <img src="images/star-yellow.svg" alt="" />
+                  -50% dev time
+                </span>
+              </div>
+            </a>
+            <a href="vulners.html" class="tabs-bento-card">
+              <div class="tabs-bento-text">
+                <p class="tabs-bento-title orange">Vulners Visual Design</p>
+                <p class="tabs-bento-subtitle">Design system unifying cybersecurity suite</p>
+              </div>
+              <div class="tabs-bento-image">
+                <img src="images/vulners-hero.png" alt="Vulners" />
+              </div>
+              <div class="tabs-bento-tags">
+                <span class="tabs-bento-tag blue">Brand & Systems</span>
+                <span class="tabs-bento-tag yellow">
+                  <img src="images/star-yellow.svg" alt="" />
+                  Multi-product ecosystem
+                </span>
+              </div>
+            </a>
+          </div>
         </div>
       </section>
 
@@ -1203,40 +1292,35 @@
           delay: 0.3
         });
 
-        // Set initial positions - hidden and offset
-        gsap.set(centerPhone, { y: 150, autoAlpha: 0 });
-        gsap.set(leftPhone, { x: -100, autoAlpha: 0 });
-        gsap.set(rightPhone, { x: 100, autoAlpha: 0 });
+        // Set initial positions - all phones start from below and hidden
+        gsap.set(centerPhone, { y: 80, autoAlpha: 0 });
+        gsap.set(leftPhone, { y: 80, autoAlpha: 0 });
+        gsap.set(rightPhone, { y: 80, autoAlpha: 0 });
 
-        // Create scroll-triggered timeline
-        const tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: heroContainer,
-            start: 'top 85%',
-            end: 'top 20%',
-            scrub: 0.8,
-          }
-        });
-
-        // Animate phones in with fade
-        tl.to(centerPhone, {
+        // Animate phones in from bottom with fade on page load
+        gsap.to(centerPhone, {
           y: 0,
           autoAlpha: 1,
-          duration: 1,
-          ease: 'power2.out'
-        }, 0)
-        .to(leftPhone, {
-          x: 0,
+          duration: 0.8,
+          ease: 'power2.out',
+          delay: 0.4
+        });
+
+        gsap.to(leftPhone, {
+          y: 0,
           autoAlpha: 1,
-          duration: 1,
-          ease: 'power2.out'
-        }, 0.2)
-        .to(rightPhone, {
-          x: 0,
+          duration: 0.8,
+          ease: 'power2.out',
+          delay: 0.5
+        });
+
+        gsap.to(rightPhone, {
+          y: 0,
           autoAlpha: 1,
-          duration: 1,
-          ease: 'power2.out'
-        }, 0.2);
+          duration: 0.8,
+          ease: 'power2.out',
+          delay: 0.5
+        });
 
         // Scroll detection for button background transition
         const closeButton = document.querySelector('.tabs-close-button');
@@ -1256,6 +1340,52 @@
 
         window.addEventListener('scroll', updateButtonStyles);
         updateButtonStyles();
+
+        // Initialize carousel - start animation from beginning with fade in
+        const carousel = document.querySelector('.tabs-bento-scroll');
+        if (carousel) {
+          // Preload carousel images to prevent flicker
+          const carouselImages = carousel.querySelectorAll('img');
+          let loadedCount = 0;
+          const totalImages = carouselImages.length;
+
+          const startCarousel = () => {
+            // Use IntersectionObserver to start animation when carousel comes into view
+            const observer = new IntersectionObserver((entries) => {
+              entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                  // Small delay to ensure smooth start
+                  setTimeout(() => {
+                    carousel.classList.add('animate');
+                  }, 100);
+                  observer.disconnect();
+                }
+              });
+            }, { threshold: 0.1 });
+
+            observer.observe(carousel);
+          };
+
+          // Wait for images to load or timeout after 2s
+          const onImageLoad = () => {
+            loadedCount++;
+            if (loadedCount >= totalImages) {
+              startCarousel();
+            }
+          };
+
+          carouselImages.forEach(img => {
+            if (img.complete) {
+              onImageLoad();
+            } else {
+              img.addEventListener('load', onImageLoad);
+              img.addEventListener('error', onImageLoad);
+            }
+          });
+
+          // Fallback timeout in case images take too long
+          setTimeout(startCarousel, 2000);
+        }
       });
     </script>
 
