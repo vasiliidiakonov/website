@@ -20,12 +20,16 @@
         align-items: center;
         gap: 60px;
         padding-bottom: 80px;
+        background-color: #e0f1ff;
+        transition: background-color 0.5s ease;
+      }
+
+      .tabs-page.scrolled-past-header {
         background-color: #ffffff;
       }
 
       /* Header Section */
       .tabs-header {
-        background-color: #e0f1ff;
         padding: 64px 32px;
         display: flex;
         flex-direction: column;
@@ -353,65 +357,51 @@
         line-height: normal;
       }
 
-      /* Concern Blocks Grid */
-      .tabs-concerns-grid {
+      /* Challenge Cards Grid */
+      .tabs-challenge-grid {
         display: flex;
-        flex-wrap: wrap;
         gap: 20px;
         max-width: 764px;
         width: 100%;
       }
 
-      .tabs-concern-block {
+      .tabs-challenge-column {
         display: flex;
         flex-direction: column;
-        gap: 2px;
-        width: 372px;
-      }
-
-      .tabs-concern-block.full-width {
-        width: 100%;
-      }
-
-      .tabs-concern-label {
-        font-size: 25px;
-        font-weight: 500;
-        color: #404040;
-        padding: 0 16px;
-        line-height: normal;
-        letter-spacing: -0.55px;
-      }
-
-      .tabs-concern-frame {
-        border: 1px solid #d0d8e6;
-        border-radius: 32px;
-        padding: 12px;
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-      }
-
-      .tabs-concern-frame.horizontal {
-        flex-direction: row;
-      }
-
-      .tabs-concern-pill {
-        background-color: #fff4e5;
-        border-radius: 24px;
-        padding: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        gap: 24px;
         flex: 1;
+        align-items: center;
       }
 
-      .tabs-concern-pill p {
-        font-size: 22px;
+      .tabs-challenge-label {
+        font-size: 28px;
         font-weight: 500;
         color: #ff9500;
         text-align: center;
-        line-height: normal;
-        letter-spacing: -0.48px;
+        line-height: 1;
+        letter-spacing: -0.616px;
+      }
+
+      .tabs-challenge-card {
+        background-image: url('images/challenge-card.svg');
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        padding: 32px 16px;
+        width: 100%;
+        aspect-ratio: 241 / 214;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .tabs-challenge-card p {
+        font-size: 24px;
+        font-weight: 500;
+        color: #404040;
+        text-align: center;
+        line-height: 1;
+        letter-spacing: -0.528px;
+        max-width: 207px;
       }
 
       /* Solution Section */
@@ -926,26 +916,33 @@
           font-size: 16px;
         }
 
-        .tabs-concern-block {
+        .tabs-challenge-grid {
+          flex-direction: column;
+          gap: 40px;
+        }
+
+        .tabs-challenge-column {
+          flex-direction: row;
+          flex-wrap: wrap;
+          gap: 16px;
+        }
+
+        .tabs-challenge-label {
+          font-size: 22px;
           width: 100%;
         }
 
-        .tabs-concern-label {
+        .tabs-challenge-card {
+          aspect-ratio: auto;
+          min-height: 140px;
+          padding: 20px 16px;
+          flex: 1;
+          min-width: 140px;
+        }
+
+        .tabs-challenge-card p {
           font-size: 18px;
-        }
-
-        .tabs-concern-pill p {
-          font-size: 14px;
-        }
-
-        .tabs-concern-frame {
-          border-radius: 24px;
-          padding: 8px;
-          gap: 10px;
-        }
-
-        .tabs-concern-frame.horizontal {
-          flex-direction: column;
+          max-width: none;
         }
 
         .tabs-subsection-title {
@@ -1043,7 +1040,7 @@
       </button>
 
       <!-- Sections Menu -->
-      <nav class="tabs-sections-menu open">
+      <nav class="tabs-sections-menu">
         <button class="tabs-sections-toggle">
           <span>Sections</span>
           <img src="images/chevronup.svg" alt="" class="tabs-chevron" />
@@ -1123,38 +1120,32 @@
           <p class="tabs-section-text">Analytics showed 9% of our 5 million users (450,000 people) managed 30+ tabs simultaneously in a flat list with no organisation. These power users drove our referral program and had the highest engagement - they were our growth engine.</p>
         </div>
 
-        <div class="tabs-concerns-grid">
-          <div class="tabs-concern-block">
-            <p class="tabs-concern-label">User Feedback</p>
-            <div class="tabs-concern-frame">
-              <div class="tabs-concern-pill">
-                <p>Users complaining that tabs are inconvenient to use</p>
-              </div>
-              <div class="tabs-concern-pill">
-                <p>Users asking for features like tab grid and grouping</p>
-              </div>
+        <div class="tabs-challenge-grid">
+          <div class="tabs-challenge-column">
+            <p class="tabs-challenge-label">User Feedback</p>
+            <div class="tabs-challenge-card">
+              <p>Users asking for features like tab grid and grouping</p>
+            </div>
+            <div class="tabs-challenge-card">
+              <p>Users highlighting that tabs are inconvenient to use</p>
             </div>
           </div>
-          <div class="tabs-concern-block">
-            <p class="tabs-concern-label">Business Concerns</p>
-            <div class="tabs-concern-frame">
-              <div class="tabs-concern-pill">
-                <p>Functionality gap to competitors</p>
-              </div>
-              <div class="tabs-concern-pill">
-                <p>Losing retention opportunities</p>
-              </div>
+          <div class="tabs-challenge-column">
+            <p class="tabs-challenge-label">Business</p>
+            <div class="tabs-challenge-card">
+              <p>Functionality gap to competitors</p>
+            </div>
+            <div class="tabs-challenge-card">
+              <p>Losing retention opportunities</p>
             </div>
           </div>
-          <div class="tabs-concern-block full-width">
-            <p class="tabs-concern-label">Design Concerns</p>
-            <div class="tabs-concern-frame horizontal">
-              <div class="tabs-concern-pill">
-                <p>Outdated UX patterns</p>
-              </div>
-              <div class="tabs-concern-pill">
-                <p>Outdated UI</p>
-              </div>
+          <div class="tabs-challenge-column">
+            <p class="tabs-challenge-label">Design</p>
+            <div class="tabs-challenge-card">
+              <p>Outdated UX patterns</p>
+            </div>
+            <div class="tabs-challenge-card">
+              <p>Outdated UI</p>
             </div>
           </div>
         </div>
@@ -1647,14 +1638,25 @@
         const copyLinkButton = document.querySelector('.tabs-copy-link');
         const header = document.querySelector('.tabs-header');
 
+        const tabsPage = document.querySelector('.tabs-page');
+
         function updateButtonStyles() {
           const headerBottom = header.getBoundingClientRect().bottom;
+          const metricsBottom = metricsBadges.getBoundingClientRect().bottom;
+
           if (headerBottom < 100) {
             closeButton.classList.add('on-white');
             copyLinkButton.classList.add('on-white');
           } else {
             closeButton.classList.remove('on-white');
             copyLinkButton.classList.remove('on-white');
+          }
+
+          // Page background color transition (triggers when badges are halfway up screen)
+          if (metricsBottom < window.innerHeight / 2) {
+            tabsPage.classList.add('scrolled-past-header');
+          } else {
+            tabsPage.classList.remove('scrolled-past-header');
           }
         }
 
