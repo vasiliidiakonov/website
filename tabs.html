@@ -193,6 +193,136 @@
         height: 24px;
       }
 
+      /* Sections Menu */
+      .tabs-sections-menu {
+        position: fixed;
+        top: 52px;
+        left: 52px;
+        z-index: 100;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+      }
+
+      .tabs-sections-toggle {
+        background-color: #ffffff;
+        border: none;
+        border-radius: 24px;
+        padding: 8px 12px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .tabs-sections-menu.on-white .tabs-sections-toggle {
+        background-color: rgba(0, 0, 0, 0.05);
+      }
+
+      .tabs-sections-toggle span {
+        font-size: 20px;
+        font-weight: 500;
+        color: #000000;
+        line-height: normal;
+      }
+
+      .tabs-chevron {
+        width: 17px;
+        height: 10px;
+        transition: transform 0.3s ease;
+      }
+
+      .tabs-sections-menu:not(.open) .tabs-chevron {
+        transform: rotate(180deg);
+      }
+
+      .tabs-sections-list {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+        opacity: 1;
+        max-height: 400px;
+        overflow: hidden;
+        transition: opacity 0.3s ease, max-height 0.3s ease;
+      }
+
+      .tabs-sections-menu:not(.open) .tabs-sections-list {
+        opacity: 0;
+        max-height: 0;
+      }
+
+      .tabs-section-link {
+        background-color: #ffffff;
+        border-radius: 24px;
+        padding: 8px 12px 8px 8px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+      }
+
+      /* Colored backgrounds when on white (BG=False variant) */
+      .tabs-sections-menu.on-white .tabs-section-link-orange {
+        background-color: rgba(255, 149, 0, 0.05);
+      }
+
+      .tabs-sections-menu.on-white .tabs-section-link-purple {
+        background-color: rgba(175, 82, 222, 0.05);
+      }
+
+      .tabs-sections-menu.on-white .tabs-section-link-blue {
+        background-color: rgba(0, 132, 255, 0.05);
+      }
+
+      .tabs-sections-menu.on-white .tabs-section-link-yellow {
+        background-color: rgba(255, 204, 0, 0.05);
+      }
+
+      .tabs-sections-menu.on-white .tabs-section-link-green {
+        background-color: rgba(52, 199, 89, 0.05);
+      }
+
+      .tabs-section-link:hover {
+        background-color: rgba(0, 0, 0, 0.05);
+      }
+
+      .tabs-sections-menu.on-white .tabs-section-link-orange:hover {
+        background-color: rgba(255, 149, 0, 0.1);
+      }
+
+      .tabs-sections-menu.on-white .tabs-section-link-purple:hover {
+        background-color: rgba(175, 82, 222, 0.1);
+      }
+
+      .tabs-sections-menu.on-white .tabs-section-link-blue:hover {
+        background-color: rgba(0, 132, 255, 0.1);
+      }
+
+      .tabs-sections-menu.on-white .tabs-section-link-yellow:hover {
+        background-color: rgba(255, 204, 0, 0.1);
+      }
+
+      .tabs-sections-menu.on-white .tabs-section-link-green:hover {
+        background-color: rgba(52, 199, 89, 0.1);
+      }
+
+      .tabs-section-link-icon {
+        width: 20px;
+        height: 20px;
+        flex-shrink: 0;
+      }
+
+      .tabs-section-link span {
+        font-size: 20px;
+        font-weight: 500;
+        color: #000000;
+        line-height: normal;
+      }
+
       /* Problem Section */
       .tabs-problem-section {
         display: flex;
@@ -373,6 +503,80 @@
 
       .tabs-impact-card p {
         font-size: 29px;
+        font-weight: 500;
+        color: #404040;
+        line-height: normal;
+      }
+
+      /* Section Title Row with Icon */
+      .tabs-section-title-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+        padding-left: 16px;
+      }
+
+      .tabs-section-icon {
+        height: 32px;
+        width: auto;
+        flex-shrink: 0;
+      }
+
+      /* Key Learnings Section */
+      .tabs-learnings-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        max-width: 764px;
+        width: 100%;
+      }
+
+      .tabs-learnings-header {
+        width: 100%;
+        padding-left: 36px;
+      }
+
+      .tabs-learnings-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        width: 100%;
+      }
+
+      .tabs-learning-card {
+        background-color: #e5ffeb;
+        border-radius: 16px;
+        padding: 32px 20px;
+        display: flex;
+        gap: 32px;
+        align-items: flex-start;
+        width: 100%;
+      }
+
+      .tabs-learning-icon {
+        width: 43px;
+        height: 48px;
+        flex-shrink: 0;
+      }
+
+      .tabs-learning-content {
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+        flex: 1;
+      }
+
+      .tabs-learning-title {
+        font-size: 32px;
+        font-weight: 500;
+        color: #000000;
+        line-height: normal;
+      }
+
+      .tabs-learning-text {
+        font-size: 24px;
         font-weight: 500;
         color: #404040;
         line-height: normal;
@@ -709,7 +913,8 @@
         }
 
         .tabs-close-button,
-        .tabs-copy-link {
+        .tabs-copy-link,
+        .tabs-sections-menu {
           display: none;
         }
 
@@ -783,8 +988,40 @@
 
         .tabs-textbox,
         .tabs-concerns-grid,
-        .tabs-impact-section {
+        .tabs-impact-section,
+        .tabs-learnings-section {
           padding: 0 24px;
+        }
+
+        .tabs-section-title-row {
+          padding-left: 0;
+        }
+
+        .tabs-learnings-header {
+          padding-left: 0;
+        }
+
+        .tabs-learning-card {
+          flex-direction: column;
+          gap: 20px;
+          padding: 20px;
+        }
+
+        .tabs-learning-icon {
+          width: 32px;
+          height: 36px;
+        }
+
+        .tabs-learning-content {
+          gap: 16px;
+        }
+
+        .tabs-learning-title {
+          font-size: 22px;
+        }
+
+        .tabs-learning-text {
+          font-size: 16px;
         }
       }
     </style>
@@ -804,6 +1041,36 @@
         <span>Copy link</span>
         <img src="images/icon_link.svg" alt="Link" width="24" height="24" />
       </button>
+
+      <!-- Sections Menu -->
+      <nav class="tabs-sections-menu open">
+        <button class="tabs-sections-toggle">
+          <span>Sections</span>
+          <img src="images/chevronup.svg" alt="" class="tabs-chevron" />
+        </button>
+        <div class="tabs-sections-list">
+          <a href="#challenge" class="tabs-section-link tabs-section-link-orange">
+            <img src="images/zap.svg" alt="" class="tabs-section-link-icon" />
+            <span>Challenge</span>
+          </a>
+          <a href="#my-role" class="tabs-section-link tabs-section-link-purple">
+            <img src="images/team.svg" alt="" class="tabs-section-link-icon" />
+            <span>My Role</span>
+          </a>
+          <a href="#solution" class="tabs-section-link tabs-section-link-blue">
+            <img src="images/star.svg" alt="" class="tabs-section-link-icon" />
+            <span>Solution</span>
+          </a>
+          <a href="#impact" class="tabs-section-link tabs-section-link-yellow">
+            <img src="images/star-yellow.svg" alt="" class="tabs-section-link-icon" />
+            <span>Impact</span>
+          </a>
+          <a href="#learnings" class="tabs-section-link tabs-section-link-green">
+            <img src="images/star-green.svg" alt="" class="tabs-section-link-icon" />
+            <span>Learnings</span>
+          </a>
+        </div>
+      </nav>
 
       <!-- Header Section -->
       <header class="tabs-header">
@@ -844,11 +1111,16 @@
         </div>
       </header>
 
-      <!-- Problem Section -->
-      <section class="tabs-problem-section">
+      <!-- Challenge Section -->
+      <section id="challenge" class="tabs-problem-section">
         <div class="tabs-textbox">
-          <h2 class="tabs-section-title">Problem</h2>
-          <p class="tabs-section-text">Analytics showed 9% of our 5 million users (450,000 people) managed 30+ tabs simultaneously in a flat list with no organization. These power users drove our referral program and had the highest engagement - they were our growth engine.</p>
+          <div class="tabs-section-title-row">
+            <img src="images/zap.svg" alt="" class="tabs-section-icon" />
+            <h2 class="tabs-section-title">Challenge</h2>
+          </div>
+          <p class="tabs-section-text">Aloha Browser served 5 million users with roughly 1% market share in the privacy browser segment. We competed against dedicated privacy browsers like Brave and DuckDuckGo, and mainstream browsers Chrome, Safari, and Edge - all of which offered tab grouping.</p>
+          <p class="tabs-section-text">Our power users, who drove our referral program and represented our highest-paying customer segment, were requesting this feature weekly through support channels and community forums.</p>
+          <p class="tabs-section-text">Analytics showed 9% of our 5 million users (450,000 people) managed 30+ tabs simultaneously in a flat list with no organisation. These power users drove our referral program and had the highest engagement - they were our growth engine.</p>
         </div>
 
         <div class="tabs-concerns-grid">
@@ -889,20 +1161,25 @@
       </section>
 
       <!-- My Role Section -->
-      <section class="tabs-problem-section">
+      <section id="my-role" class="tabs-problem-section">
         <div class="tabs-textbox">
-          <h2 class="tabs-section-title">My Role</h2>
-          <p class="tabs-section-text">I led design end-to-end for this project, reporting to our Design Lead and working closely with the Product Lead and Engineering Leads for iOS and Android.</p>
-   <p class="tabs-section-text">
-I owned the visual design, prototyping, and design specifications across both platforms. I collaborated with the PM on research insights and testing, and worked directly with engineering to ensure designs were achievable within technical constraints. I created hundreds of screens and dozens of flows throughout the project.</p>
-   <p class="tabs-section-text">
-I advocated for deeper group customization—specifically color coding and drag-and-drop organization—which the Founder supported. I shared responsibility with the PM and Engineering Leads for defining the 6-month iOS-first timeline and keeping the project on track.</p>
+          <div class="tabs-section-title-row">
+            <img src="images/team.svg" alt="" class="tabs-section-icon" />
+            <h2 class="tabs-section-title">My Role</h2>
+          </div>
+          <p class="tabs-section-text">I led design end-to-end for this project, reporting to Design Lead and working closely with the Product Lead and Engineering Leads for iOS and Android.</p>
+          <p class="tabs-section-text">I owned the visual design, prototyping, and design specifications across both platforms. I collaborated with the PM on research insights and testing, and worked directly with engineering to ensure designs were achievable within technical constraints. I created hundreds of screens and dozens of flows throughout the project.</p>
+          <p class="tabs-section-text">I advocated for deeper group customization—specifically color coding and drag-and-drop organization—which the Founder supported. I shared responsibility with the PM and Engineering Leads for defining the 6-month iOS-first timeline and keeping the project on track.</p>
+        </div>
       </section>
 
       <!-- Solution Section -->
-      <section class="tabs-solution-section">
+      <section id="solution" class="tabs-solution-section">
         <div class="tabs-textbox">
-          <h2 class="tabs-section-title">Solution</h2>
+          <div class="tabs-section-title-row">
+            <img src="images/star.svg" alt="" class="tabs-section-icon" />
+            <h2 class="tabs-section-title">Solution</h2>
+          </div>
           <p class="tabs-section-text">Built initial prototypes to validate grouping as the top user need. Aligned goals and strategy with product and engineering teams, created a feature roadmap prioritizing iOS for complete implementation.</p>
         </div>
 
@@ -968,7 +1245,7 @@ I advocated for deeper group customization—specifically color coding and drag-
       </section>
 
       <!-- Impact Section -->
-      <section class="tabs-impact-section">
+      <section id="impact" class="tabs-impact-section">
         <div class="tabs-impact-header">
           <h2 class="tabs-section-title">Impact</h2>
         </div>
@@ -984,6 +1261,36 @@ I advocated for deeper group customization—specifically color coding and drag-
           <div class="tabs-impact-card full-width">
             <img src="images/star-yellow.svg" alt="" />
             <p>10% increase in tab usage post-launch</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Key Learnings Section -->
+      <section id="learnings" class="tabs-learnings-section">
+        <div class="tabs-learnings-header">
+          <h2 class="tabs-section-title">Key Learnings</h2>
+        </div>
+        <div class="tabs-learnings-grid">
+          <div class="tabs-learning-card">
+            <img src="images/star-green.svg" alt="" class="tabs-learning-icon" />
+            <div class="tabs-learning-content">
+              <p class="tabs-learning-title">Platform-specific design beats universal design</p>
+              <p class="tabs-learning-text">Working within the constraints of specific hardware and software was more rewarding than pursuing a universal solution. The best experience on a given device comes from both design and engineering understanding limitations and working around them together.</p>
+            </div>
+          </div>
+          <div class="tabs-learning-card">
+            <img src="images/star-green.svg" alt="" class="tabs-learning-icon" />
+            <div class="tabs-learning-content">
+              <p class="tabs-learning-title">User needs beat competitor parity</p>
+              <p class="tabs-learning-text">It's not enough to implement features from competitors. You have to think about what people love your product for. We deviated significantly from mainstream browsers in tab management micro-interactions, which made for a unique experience that felt distinctly Aloha.</p>
+            </div>
+          </div>
+          <div class="tabs-learning-card">
+            <img src="images/star-green.svg" alt="" class="tabs-learning-icon" />
+            <div class="tabs-learning-content">
+              <p class="tabs-learning-title">Cross-functional relationships drive impact</p>
+              <p class="tabs-learning-text">My biggest win was building cross-functional ties and managing relationships across product and engineering. This allowed us to compete with companies that are much larger and better funded while maintaining design quality.</p>
+            </div>
           </div>
         </div>
       </section>
@@ -1353,6 +1660,48 @@ I advocated for deeper group customization—specifically color coding and drag-
 
         window.addEventListener('scroll', updateButtonStyles);
         updateButtonStyles();
+
+        // Sections menu functionality
+        const sectionsMenu = document.querySelector('.tabs-sections-menu');
+        const sectionsToggle = document.querySelector('.tabs-sections-toggle');
+        let lastScrollTop = 0;
+        let hasScrolled = false;
+
+        // Close menu on first scroll
+        function handleMenuScroll() {
+          const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+          const menuHeaderBottom = header.getBoundingClientRect().bottom;
+
+          // Update on-white class based on header position
+          if (menuHeaderBottom < 100) {
+            sectionsMenu.classList.add('on-white');
+          } else {
+            sectionsMenu.classList.remove('on-white');
+          }
+
+          // Close menu on first scroll down
+          if (!hasScrolled && scrollTop > 50) {
+            hasScrolled = true;
+            sectionsMenu.classList.remove('open');
+          }
+
+          lastScrollTop = scrollTop;
+        }
+
+        window.addEventListener('scroll', handleMenuScroll);
+
+        // Toggle menu on button click
+        sectionsToggle.addEventListener('click', function() {
+          sectionsMenu.classList.toggle('open');
+        });
+
+        // Close menu when clicking a link
+        const sectionLinks = document.querySelectorAll('.tabs-section-link');
+        sectionLinks.forEach(link => {
+          link.addEventListener('click', function() {
+            sectionsMenu.classList.remove('open');
+          });
+        });
 
         // Initialize carousel - start animation from beginning with fade in
         const carousel = document.querySelector('.tabs-bento-scroll');
