@@ -9,174 +9,1652 @@
     <link rel="apple-touch-icon" href="images/favicon.png" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css" />
     <link rel="stylesheet" href="design/style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+      /* Snips Case Study Full Page Styles */
+      .snips-page {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 60px;
+        padding-bottom: 80px;
+        background-color: #dbf3ff;
+        transition: background-color 0.5s ease;
+      }
+
+      .snips-page.scrolled-past-header {
+        background-color: #ffffff;
+      }
+
+      /* Header Section */
+      .snips-header {
+        padding: 64px 32px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+        width: 100%;
+      }
+
+      .snips-header-content {
+        max-width: 728px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .snips-header-title {
+        font-size: 64px;
+        font-weight: 500;
+        color: #32ade6;
+        line-height: normal;
+      }
+
+      .snips-header-subtitle {
+        font-size: 30px;
+        font-weight: 500;
+        color: #32ade6;
+        line-height: normal;
+      }
+
+      /* Hero Phone Container */
+      .snips-hero-container {
+        width: 1136px;
+        max-width: calc(100vw - 64px);
+        height: 752px;
+        background-color: #ffffff;
+        border-radius: 32px;
+        position: relative;
+        overflow: visible;
+      }
+
+      .snips-phone {
+        position: absolute;
+        overflow: visible;
+      }
+
+      .snips-phone-left {
+        left: 211px;
+        top: 63px;
+        width: 293px;
+        height: 632px;
+      }
+
+      .snips-phone-right {
+        left: 602px;
+        top: 57px;
+        width: 293px;
+        height: 633px;
+      }
+
+      .snips-phone img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        display: block;
+      }
+
+      /* Metrics Badges */
+      .snips-metrics {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
+
+      .snips-metric-badge {
+        background-color: #fff4e5;
+        border-radius: 24px;
+        padding: 12px 18px 12px 12px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .snips-metric-badge img {
+        width: 34px;
+        height: 38px;
+      }
+
+      .snips-metric-badge span {
+        font-size: 27px;
+        font-weight: 500;
+        color: #404040;
+        line-height: normal;
+      }
+
+      /* Close and Copy Link Buttons */
+      .snips-close-button {
+        position: fixed;
+        top: 16px;
+        right: 12px;
+        width: 40px;
+        height: 40px;
+        background-color: #ffffff;
+        border-radius: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 100;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+      }
+
+      .snips-close-button.on-white {
+        background-color: rgba(255, 45, 85, 0.1);
+      }
+
+      .snips-copy-link {
+        position: fixed;
+        top: 16px;
+        right: 66px;
+        background-color: #ffffff;
+        border-radius: 24px;
+        padding: 8px 8px 8px 12px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        z-index: 100;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .snips-copy-link.on-white {
+        background-color: rgba(0, 132, 255, 0.1);
+      }
+
+      .snips-copy-link span {
+        font-size: 20px;
+        font-weight: 500;
+        color: #0084ff;
+        line-height: normal;
+      }
+
+      .snips-copy-link svg {
+        width: 24px;
+        height: 24px;
+      }
+
+      /* Sections Menu */
+      .snips-sections-menu {
+        position: fixed;
+        top: 16px;
+        left: 12px;
+        z-index: 100;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+      }
+
+      .snips-sections-toggle {
+        background-color: #ffffff;
+        border: none;
+        border-radius: 24px;
+        padding: 8px 12px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .snips-sections-menu.on-white .snips-sections-toggle {
+        background-color: rgba(0, 0, 0, 0.05);
+      }
+
+      .snips-sections-toggle span {
+        font-size: 20px;
+        font-weight: 500;
+        color: #000000;
+        line-height: normal;
+      }
+
+      .snips-chevron {
+        width: 17px;
+        height: 10px;
+        transition: transform 0.3s ease;
+      }
+
+      .snips-sections-menu:not(.open) .snips-chevron {
+        transform: rotate(180deg);
+      }
+
+      .snips-sections-list {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+        opacity: 1;
+        max-height: 400px;
+        overflow: hidden;
+        transition: opacity 0.3s ease, max-height 0.3s ease;
+      }
+
+      .snips-sections-menu:not(.open) .snips-sections-list {
+        opacity: 0;
+        max-height: 0;
+      }
+
+      .snips-section-link {
+        background-color: #ffffff;
+        border-radius: 24px;
+        padding: 8px 12px 8px 8px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+      }
+
+      .snips-sections-menu.on-white .snips-section-link-orange {
+        background-color: rgba(255, 149, 0, 0.05);
+      }
+
+      .snips-sections-menu.on-white .snips-section-link-purple {
+        background-color: rgba(175, 82, 222, 0.05);
+      }
+
+      .snips-sections-menu.on-white .snips-section-link-blue {
+        background-color: rgba(0, 132, 255, 0.05);
+      }
+
+      .snips-sections-menu.on-white .snips-section-link-yellow {
+        background-color: rgba(255, 204, 0, 0.05);
+      }
+
+      .snips-sections-menu.on-white .snips-section-link-green {
+        background-color: rgba(52, 199, 89, 0.05);
+      }
+
+      .snips-section-link-icon {
+        width: 20px;
+        height: 20px;
+        flex-shrink: 0;
+      }
+
+      .snips-section-link span {
+        font-size: 20px;
+        font-weight: 500;
+        color: #000000;
+        line-height: normal;
+      }
+
+      /* Content Sections */
+      .snips-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 60px;
+      }
+
+      .snips-textbox {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        max-width: 728px;
+        width: 100%;
+      }
+
+      .snips-section-title-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+        padding-left: 16px;
+      }
+
+      .snips-section-icon {
+        height: 32px;
+        width: auto;
+        flex-shrink: 0;
+      }
+
+      .snips-section-title {
+        font-size: 48px;
+        font-weight: 500;
+        color: #000000;
+        line-height: normal;
+      }
+
+      .snips-section-text {
+        font-size: 24px;
+        font-weight: 500;
+        color: #000000;
+        line-height: normal;
+      }
+
+      /* Challenge Cards Container */
+      .snips-challenge-container {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        max-width: 770px;
+        width: 100%;
+      }
+
+      .snips-challenge-label {
+        font-size: 28px;
+        font-weight: 500;
+        color: #ff9500;
+        padding-left: 16px;
+        line-height: 1;
+        letter-spacing: -0.616px;
+      }
+
+      .snips-challenge-cards-row {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        width: 100%;
+      }
+
+      .snips-challenge-card {
+        position: relative;
+        width: 241px;
+        height: 214px;
+        flex-shrink: 0;
+      }
+
+      .snips-challenge-card-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+      }
+
+      .snips-challenge-card p {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 24px;
+        font-weight: 500;
+        color: #404040;
+        line-height: 1;
+        letter-spacing: -0.528px;
+        text-align: center;
+        width: 207px;
+      }
+
+      /* Blue sticky cards (smaller) */
+      .snips-sticky-card {
+        position: relative;
+        width: 241px;
+        height: 104px;
+        flex-shrink: 0;
+      }
+
+      .snips-sticky-card-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+      }
+
+      .snips-sticky-card p {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 24px;
+        font-weight: 500;
+        color: #404040;
+        line-height: 1;
+        letter-spacing: -0.528px;
+        text-align: center;
+        width: 207px;
+      }
+
+      /* Image Blocks */
+      .snips-image-block {
+        width: 1136px;
+        height: 732px;
+        max-width: calc(100vw - 64px);
+        border-radius: 32px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .snips-image-block > img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        border-radius: 32px;
+      }
+
+      .snips-subsection-title {
+        font-size: 32px;
+        font-weight: 500;
+        color: #000000;
+        line-height: normal;
+      }
+
+      .snips-subsection-text {
+        font-size: 24px;
+        font-weight: 500;
+        color: #000000;
+        line-height: normal;
+      }
+
+      /* Impact Section */
+      .snips-impact-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        max-width: 764px;
+        width: 100%;
+      }
+
+      .snips-impact-header {
+        width: 100%;
+        padding-left: 16px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .snips-impact-icon {
+        width: 43px;
+        height: 48px;
+      }
+
+      /* Key Learnings Section */
+      .snips-learnings-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        max-width: 764px;
+        width: 100%;
+      }
+
+      .snips-learnings-header {
+        width: 100%;
+        padding-left: 36px;
+      }
+
+      .snips-learnings-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        width: 100%;
+      }
+
+      .snips-learning-card {
+        background-color: #e5ffeb;
+        border-radius: 16px;
+        padding: 32px 20px;
+        display: flex;
+        gap: 32px;
+        align-items: flex-start;
+        width: 100%;
+      }
+
+      .snips-learning-icon {
+        width: 43px;
+        height: 48px;
+        flex-shrink: 0;
+      }
+
+      .snips-learning-content {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        flex: 1;
+      }
+
+      .snips-learning-title {
+        font-size: 32px;
+        font-weight: 500;
+        color: #000000;
+        line-height: normal;
+      }
+
+      .snips-learning-text {
+        font-size: 24px;
+        font-weight: 500;
+        color: #404040;
+        line-height: normal;
+      }
+
+      /* Other Cases Section */
+      .snips-other-cases {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 80px;
+        width: 100%;
+        overflow: hidden;
+      }
+
+      .snips-bento-scroll {
+        display: flex;
+        gap: 20px;
+        width: max-content;
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      .snips-bento-scroll.animate {
+        visibility: visible;
+        opacity: 1;
+        animation: scroll-marquee-snips 40s linear infinite, fadeInSnips 0.6s ease-out forwards;
+      }
+
+      @keyframes fadeInSnips {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+
+      @keyframes scroll-marquee-snips {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-33.333%); }
+      }
+
+      .snips-bento-scroll:hover {
+        animation-play-state: paused;
+      }
+
+      .snips-bento-container {
+        display: flex;
+        gap: 20px;
+        flex-shrink: 0;
+      }
+
+      /* Bento Cards */
+      .snips-bento-card {
+        background: #ffffff;
+        border: 2px solid #f8f8f8;
+        border-radius: 24px;
+        padding: 16px;
+        width: 502px;
+        height: 500px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        text-decoration: none;
+        overflow: hidden;
+        flex-shrink: 0;
+      }
+
+      .snips-bento-text {
+        padding: 0 12px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .snips-bento-title {
+        font-size: 32px;
+        font-weight: 500;
+        line-height: normal;
+      }
+
+      .snips-bento-title.blue { color: #0084ff; }
+      .snips-bento-title.indigo { color: #5856d6; }
+      .snips-bento-title.purple { color: #af52de; }
+      .snips-bento-title.orange { color: #ff9500; }
+
+      .snips-bento-subtitle {
+        font-size: 20px;
+        font-weight: 500;
+        color: #404040;
+        line-height: normal;
+      }
+
+      .snips-bento-image {
+        flex: 1;
+        min-height: 200px;
+        border-radius: 12px;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .snips-bento-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .snips-bento-image.tabs-blue-bg {
+        background-color: #93b9f9;
+        border-radius: 12px;
+      }
+
+      .snips-bento-image.tabs-blue-bg img {
+        object-fit: cover;
+      }
+
+      .snips-bento-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .snips-bento-tags.nowrap {
+        flex-wrap: nowrap;
+      }
+
+      .snips-bento-tag {
+        padding: 12px;
+        border-radius: 16px;
+        font-size: 20px;
+        font-weight: 500;
+        line-height: normal;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        white-space: nowrap;
+      }
+
+      .snips-bento-tag.blue {
+        background-color: #f2f9ff;
+        color: #0084ff;
+      }
+
+      .snips-bento-tag.yellow {
+        background-color: #fff9e5;
+        color: #404040;
+        padding: 8px 12px 8px 8px;
+      }
+
+      .snips-bento-tag img {
+        width: 23px;
+        height: 25px;
+      }
+
+      /* Footer CTA */
+      .snips-footer-cta {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 32px;
+        max-width: 1024px;
+        width: 100%;
+        text-align: center;
+      }
+
+      .snips-footer-title {
+        font-size: 48px;
+        font-weight: 500;
+        color: #000000;
+        line-height: normal;
+      }
+
+      .snips-footer-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .snips-footer-text {
+        font-size: 48px;
+        font-weight: 500;
+        color: #000000;
+        line-height: normal;
+      }
+
+      .snips-footer-pill {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 16px;
+        border-radius: 24px;
+        text-decoration: none;
+      }
+
+      .snips-footer-pill span {
+        font-size: 48px;
+        font-weight: 500;
+        line-height: normal;
+      }
+
+      .snips-footer-pill img {
+        width: 48px;
+        height: 48px;
+      }
+
+      .snips-footer-pill.purple {
+        background-color: rgba(175, 82, 222, 0.1);
+      }
+
+      .snips-footer-pill.purple span {
+        color: #af52de;
+      }
+
+      .snips-footer-pill.indigo {
+        background-color: rgba(88, 86, 214, 0.1);
+      }
+
+      .snips-footer-pill.indigo span {
+        color: #5856d6;
+      }
+
+      .snips-footer-pill.orange {
+        background-color: rgba(255, 149, 0, 0.1);
+      }
+
+      .snips-footer-pill.orange span {
+        color: #ff9500;
+      }
+
+      /* Responsive */
+      @media (max-width: 1200px) {
+        .snips-hero-container {
+          width: calc(100vw - 64px);
+          height: auto;
+          aspect-ratio: 1136 / 752;
+        }
+
+        .snips-phone-left {
+          left: 18.6%;
+          top: 8.4%;
+          width: 25.8%;
+          height: auto;
+          aspect-ratio: 293 / 632;
+        }
+
+        .snips-phone-right {
+          left: 53%;
+          top: 7.6%;
+          width: 25.8%;
+          height: auto;
+          aspect-ratio: 293 / 633;
+        }
+
+        .snips-image-block {
+          width: calc(100vw - 64px);
+          height: auto;
+          aspect-ratio: 1136 / 732;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .snips-page {
+          gap: 40px;
+        }
+
+        .snips-header {
+          padding: 40px 24px;
+          gap: 24px;
+        }
+
+        .snips-header-title {
+          font-size: 32px;
+        }
+
+        .snips-header-subtitle {
+          font-size: 18px;
+        }
+
+        .snips-hero-container {
+          border-radius: 24px;
+        }
+
+        .snips-metrics {
+          flex-direction: column;
+        }
+
+        .snips-metric-badge {
+          padding: 8px 12px;
+        }
+
+        .snips-metric-badge span {
+          font-size: 18px;
+          line-height: normal;
+        }
+
+        .snips-metric-badge img {
+          width: 24px;
+          height: 28px;
+        }
+
+        .snips-close-button,
+        .snips-copy-link,
+        .snips-sections-menu {
+          display: none;
+        }
+
+        .snips-section-title {
+          font-size: 29px;
+        }
+
+        .snips-section-text {
+          font-size: 16px;
+        }
+
+        .snips-subsection-title {
+          font-size: 22px;
+        }
+
+        .snips-subsection-text {
+          font-size: 16px;
+        }
+
+        .snips-image-block {
+          border-radius: 16px;
+          width: calc(100vw - 48px);
+        }
+
+        .snips-footer-title,
+        .snips-footer-text {
+          font-size: 25px;
+        }
+
+        .snips-footer-pill span {
+          font-size: 25px;
+        }
+
+        .snips-footer-pill img {
+          width: 32px;
+          height: 32px;
+        }
+
+        .snips-textbox,
+        .snips-challenge-container,
+        .snips-impact-section,
+        .snips-learnings-section {
+          padding: 0 24px;
+        }
+
+        .snips-section-title-row {
+          padding-left: 0;
+        }
+
+        .snips-impact-header,
+        .snips-learnings-header {
+          padding-left: 0;
+        }
+
+        .snips-learning-card {
+          flex-direction: column;
+          gap: 20px;
+          padding: 20px;
+        }
+
+        .snips-learning-icon {
+          width: 32px;
+          height: 36px;
+        }
+
+        .snips-learning-content {
+          gap: 16px;
+        }
+
+        .snips-learning-title {
+          font-size: 22px;
+        }
+
+        .snips-learning-text {
+          font-size: 16px;
+        }
+
+        .snips-challenge-cards-row {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .snips-challenge-card {
+          width: 100%;
+          max-width: 300px;
+        }
+      }
+    </style>
   </head>
   <body>
-    <!-- Overlay -->
-    <div class="overlay">
-      <div class="overlay-window">
+    <div class="snips-page">
 
-        <!-- Close Button -->
-        <a href="index.html" class="overlay-close">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <g clip-path="url(#clip0_140_570)">
-              <path d="M18.8045 2.89132L2.69631 19.0032C2.14136 19.5545 2.12964 20.5509 2.70749 21.1245C3.28906 21.6943 4.29295 21.6832 4.84045 21.1357L20.9486 5.02747C21.5148 4.46134 21.519 3.48354 20.9337 2.90623C20.3484 2.32093 19.3823 2.30921 18.8045 2.89132ZM20.9486 18.9958L4.84045 2.8876C4.28923 2.33211 3.2848 2.30921 2.70749 2.9025C2.13391 3.4878 2.14509 4.47252 2.69631 5.02374L18.8045 21.1319C19.3706 21.6981 20.3564 21.7023 20.9337 21.1208C21.511 20.5355 21.5148 19.5656 20.9486 18.9958Z" fill="#FF2D55"/>
-            </g>
-            <defs>
-              <clipPath id="clip0_140_570">
-                <rect width="19.446" height="19.1136" fill="white" transform="translate(2.2771 2.44336)"/>
-              </clipPath>
-            </defs>
-          </svg>
-        </a>
+      <!-- Close Button -->
+      <a href="index.html" class="snips-close-button">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M18.8045 2.89132L2.69631 19.0032C2.14136 19.5545 2.12964 20.5509 2.70749 21.1245C3.28906 21.6943 4.29295 21.6832 4.84045 21.1357L20.9486 5.02747C21.5148 4.46134 21.519 3.48354 20.9337 2.90623C20.3484 2.32093 19.3823 2.30921 18.8045 2.89132ZM20.9486 18.9958L4.84045 2.8876C4.28923 2.33211 3.2848 2.30921 2.70749 2.9025C2.13391 3.4878 2.14509 4.47252 2.69631 5.02374L18.8045 21.1319C19.3706 21.6981 20.3564 21.7023 20.9337 21.1208C21.511 20.5355 21.5148 19.5656 20.9486 18.9958Z" fill="#FF2D55"/>
+        </svg>
+      </a>
 
-        <!-- Copy Link Button -->
-        <button class="overlay-copy-link" onclick="copyLink()">
-          <p class="overlay-copy-text">Copy link</p>
-          <img src="images/icon_link.svg" alt="Link icon" width="24" height="24" />
+      <!-- Copy Link Button -->
+      <button class="snips-copy-link" onclick="copyLink()">
+        <span>Copy link</span>
+        <img src="images/icon_link.svg" alt="Link" width="24" height="24" />
+      </button>
+
+      <!-- Sections Menu -->
+      <nav class="snips-sections-menu">
+        <button class="snips-sections-toggle">
+          <span>Sections</span>
+          <img src="images/chevronup.svg" alt="" class="snips-chevron" />
         </button>
+        <div class="snips-sections-list">
+          <a href="#challenge" class="snips-section-link snips-section-link-orange">
+            <img src="images/zap.svg" alt="" class="snips-section-link-icon" />
+            <span>Challenge</span>
+          </a>
+          <a href="#my-role" class="snips-section-link snips-section-link-purple">
+            <img src="images/team.svg" alt="" class="snips-section-link-icon" />
+            <span>My Role</span>
+          </a>
+          <a href="#solution" class="snips-section-link snips-section-link-blue">
+            <img src="images/star.svg" alt="" class="snips-section-link-icon" />
+            <span>Solution</span>
+          </a>
+          <a href="#impact" class="snips-section-link snips-section-link-yellow">
+            <img src="images/star-yellow.svg" alt="" class="snips-section-link-icon" />
+            <span>Impact</span>
+          </a>
+          <a href="#learnings" class="snips-section-link snips-section-link-green">
+            <img src="images/star-green.svg" alt="" class="snips-section-link-icon" />
+            <span>Learnings</span>
+          </a>
+        </div>
+      </nav>
 
-        <!-- Content -->
-        <div class="overlay-content">
-
-          <!-- Header Section -->
-          <div class="case-study-header-wrapper">
-            <div class="case-study-header">
-              <p class="case-study-title">Snips AI Assistant</p>
-              <p class="case-study-subtitle">AI-powered content tracking for prices, deals, and page changes</p>
-              <div class="case-study-image case-study-image-video">
-                <video src="images/snips-video.mov" autoplay loop muted playsinline></video>
-              </div>
-              <p class="case-study-description">AI-powered tool that tracks price changes, content updates, and deals across websites—eliminating manual checking</p>
-            </div>
-          </div>
-
-          <!-- Impact Section -->
-          <div class="case-study-section">
-            <div class="impact-box">
-              <p class="impact-title">Impact</p>
-              <div class="impact-highlight">
-                <div class="impact-line"></div>
-                <p class="impact-text">Currently in beta with positive tester feedback</p>
-              </div>
-              <p class="impact-description">Designed AI-powered tracking across iOS, Android, and Desktop. Users can track flights, stocks, products, and custom content changes without manual monitoring.</p>
-              <p class="impact-description impact-description-quote">"Finally, I don't have to check flight prices manually every day" — Beta tester</p>
-              <p class="impact-description impact-description-detail">Beta testing showed strong engagement with stock price tracking, flight monitoring, and e-commerce deal alerts as top use cases. Users appreciated flexible notification prompts over rigid templates.</p>
-            </div>
-          </div>
-
-          <!-- Problem Section -->
-          <div class="case-study-section">
-            <p class="case-study-section-title">The Problem</p>
-            <p class="case-study-section-text">Users wanted to track price changes, content updates, and deals across websites without manually checking back. Existing solutions required technical knowledge or lacked flexibility for diverse use cases.</p>
-          </div>
-
-          <!-- My Role Section -->
-          <div class="case-study-section">
-            <p class="case-study-section-title">My Role</p>
-            <p class="case-study-section-text">Designed AI-powered tracking tool for iOS, Android, and Desktop. Focused on making AI behavior intuitive and trustworthy through transparent notifications and flexible organization.</p>
-          </div>
-
-          <!-- Process Section -->
-          <div class="case-study-section">
-            <p class="case-study-section-title">Process</p>
-            <p class="case-study-section-text">Started with user research on existing tracking behaviors and pain points with competitor tools. Mapped out diverse tracking scenarios from stock prices to flight deals. Prototyped multiple AI prompt patterns, testing natural language vs structured templates. Prioritized transparency in how AI interprets tracking requests to build user trust.</p>
-          </div>
-
-          <!-- Solution Section -->
-          <div class="case-study-section">
-            <p class="case-study-section-title">Solution</p>
-            <p class="case-study-section-subtitle">Visual Examples</p>
-          </div>
-          <div class="case-study-image case-study-image-wide">
-            <img src="images/snips-visuals.png" alt="Snips use cases - TV shows, flights, shopping" />
-          </div>
-          <p class="case-study-description" class="case-study-description-wide">Track TV show releases, flight prices, and shopping deals all in one place with custom AI notifications</p>
-
-          <!-- Mobile Solution Section -->
-          <div class="case-study-section">
-            <p class="case-study-section-subtitle">Mobile Solution</p>
-          </div>
-          <div class="case-study-image">
-            <img src="images/Snips02.png" alt="Mobile groups and organization" />
-          </div>
-          <p class="case-study-description" class="case-study-description-wide">Groups (Stocks, Gaming) with update notifications and recent activity feed</p>
-
-          <div class="case-study-image">
-            <img src="images/Snips03.png" alt="Custom notification prompts" />
-          </div>
-          <p class="case-study-description" class="case-study-description-wide">Natural language prompts let users define exactly what changes they want to track</p>
-
-          <!-- Desktop Solution Section -->
-          <div class="case-study-section">
-            <p class="case-study-section-subtitle">Desktop Solution</p>
-          </div>
-          <div class="case-study-image">
-            <img src="images/Snips04.png" alt="Desktop snip creation" />
-          </div>
-          <p class="case-study-description" class="case-study-description-wide">Create snips directly from hotel booking sites with customizable notification triggers</p>
-
-          <div class="case-study-image">
-            <img src="images/Snips01.png" alt="Desktop flight tracking dashboard" />
-          </div>
-          <p class="case-study-description" class="case-study-description-wide">Comprehensive dashboard showing all tracked items with real-time updates and notifications</p>
-
-          <!-- Key Takeaways Section -->
-          <div class="case-study-section impact-section">
-            <div class="takeaways-box">
-              <p class="takeaways-title">Key Takeaways</p>
-              <div class="takeaways-list">
-                <ul>
-                  <li class="takeaways-text"><strong>AI transparency builds trust:</strong> <span>Made AI behavior predictable through clear notification prompts</span></li>
-                  <li class="takeaways-text"><strong>Flexibility over rigidity:</strong> <span>Custom prompts handle diverse use cases better than predefined templates</span></li>
-                  <li class="takeaways-text"><strong>Balance automation with control:</strong> <span>Users needed to understand what AI was tracking and why</span></li>
-                  <li class="takeaways-text"><strong>Organization prevents overwhelm:</strong> <span>Grouping and categorization essential for managing multiple tracked items</span></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
+      <!-- Header Section -->
+      <header class="snips-header">
+        <div class="snips-header-content">
+          <h1 class="snips-header-title">Snips AI Assistant</h1>
+          <p class="snips-header-subtitle">0→1 AI-powered content tracking - exploring new use cases for desktop power users</p>
         </div>
 
-        <!-- Back to Case Card -->
-        <a href="aloha.html" class="back-to-case-card">
-          <div class="back-to-case-info">
-            <div class="back-to-case-icon-container">
-              <object class="back-to-case-icon" data="images/SVG/SVG02.svg" type="image/svg+xml" aria-label="Aloha Browser"></object>
+        <!-- Hero Phone Container -->
+        <div class="snips-hero-container">
+          <div class="snips-phone snips-phone-left">
+            <img src="images/New Snips Images/snips-header.png" alt="Snips AI - Screen 1" />
+          </div>
+          <div class="snips-phone snips-phone-right">
+            <img src="images/New Snips Images/snips-header-1.png" alt="Snips AI - Screen 2" />
+          </div>
+        </div>
+
+        <!-- Metrics Badge -->
+        <div class="snips-metrics">
+          <div class="snips-metric-badge">
+            <img src="images/star-orange.svg" alt="" />
+            <span>Currently in beta</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Challenge Section -->
+      <section id="challenge" class="snips-section">
+        <div class="snips-textbox">
+          <div class="snips-section-title-row">
+            <img src="images/zap.svg" alt="" class="snips-section-icon" />
+            <h2 class="snips-section-title">Challenge</h2>
+          </div>
+          <p class="snips-section-text">The founder and CEO wanted to explore browsing use cases beyond privacy, building on Aloha's existing infrastructure. With AI becoming increasingly relevant, they saw an opportunity to add value for desktop and iOS power users. This was an innovation push - market exploration to see if we could capture desktop users and expand our product offering. Engineering built an MVP that showed sufficient user signal. I was brought in to take it to the next level.</p>
+        </div>
+
+        <div class="snips-challenge-container">
+          <p class="snips-challenge-label">Innovation Goal</p>
+          <div class="snips-challenge-cards-row">
+            <div class="snips-challenge-card">
+              <img src="images/challenge-card.svg" alt="" class="snips-challenge-card-bg" />
+              <p>Explore AI-powered tracking use cases</p>
             </div>
-            <div class="back-to-case-text">
-              <p class="back-to-case-title">Aloha Browser</p>
-              <p class="back-to-case-link">Read full case study</p>
+            <div class="snips-challenge-card">
+              <img src="images/challenge-card.svg" alt="" class="snips-challenge-card-bg" />
+              <p>Expand desktop offering beyond privacy</p>
+            </div>
+            <div class="snips-challenge-card">
+              <img src="images/challenge-card.svg" alt="" class="snips-challenge-card-bg" />
+              <p>Build potential cloud service foundation</p>
             </div>
           </div>
-          <div class="back-to-case-button">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <g clip-path="url(#clip0_140_581)">
-                <path d="M13.8584 21.1866C14.2253 21.1866 14.5795 21.0327 14.8884 20.728L22.5845 13.0554C22.8748 12.7731 23.0404 12.3731 23.0404 11.9721C23.0404 11.5711 22.8748 11.1711 22.5845 10.8888L14.9044 3.22844C14.5795 2.89983 14.2253 2.75391 13.8584 2.75391C13.0159 2.75391 12.4252 3.3472 12.4252 4.14555C12.4252 4.57213 12.5972 4.91992 12.8667 5.18568L15.4917 7.83519L19.9834 11.9721L15.4917 16.109L12.8667 18.7548C12.5972 19.0088 12.4252 19.3683 12.4252 19.7949C12.4252 20.5933 13.0159 21.1866 13.8584 21.1866ZM2.10124 13.4324H15.923L20.1921 13.1906C20.9446 13.148 21.4516 12.6985 21.4516 11.9721C21.4516 11.2457 20.9446 10.7962 20.1921 10.7536L15.923 10.5118H2.10124C1.20866 10.5118 0.60791 11.1056 0.60791 11.9721C0.60791 12.8386 1.20866 13.4324 2.10124 13.4324Z" fill="#0084FF"/>
+
+          <p class="snips-challenge-label">MVP Limitations</p>
+          <div class="snips-challenge-cards-row">
+            <div class="snips-challenge-card">
+              <img src="images/challenge-card.svg" alt="" class="snips-challenge-card-bg" />
+              <p>Bare-bones UI and dated visual design</p>
+            </div>
+            <div class="snips-challenge-card">
+              <img src="images/challenge-card.svg" alt="" class="snips-challenge-card-bg" />
+              <p>Capture frames looked like screenshots</p>
+            </div>
+            <div class="snips-challenge-card">
+              <img src="images/challenge-card.svg" alt="" class="snips-challenge-card-bg" />
+              <p>No visual feedback for snip updates</p>
+            </div>
+          </div>
+
+          <p class="snips-challenge-label">Design Challenges</p>
+          <div class="snips-challenge-cards-row">
+            <div class="snips-challenge-card">
+              <img src="images/challenge-card.svg" alt="" class="snips-challenge-card-bg" />
+              <p>Polish MVP for beta testing appeal</p>
+            </div>
+            <div class="snips-challenge-card">
+              <img src="images/challenge-card.svg" alt="" class="snips-challenge-card-bg" />
+              <p>Make AI behavior trustworthy for privacy-focused users</p>
+            </div>
+            <div class="snips-challenge-card">
+              <img src="images/challenge-card.svg" alt="" class="snips-challenge-card-bg" />
+              <p>Balance flexibility (diverse use cases) with simplicity</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- My Role Section -->
+      <section id="my-role" class="snips-section">
+        <div class="snips-textbox">
+          <div class="snips-section-title-row">
+            <img src="images/team.svg" alt="" class="snips-section-icon" />
+            <h2 class="snips-section-title">My Role</h2>
+          </div>
+          <p class="snips-section-text">I joined the project after engineering built an MVP that showed sufficient user signal to invest further. I reported to the Founder (acting as product lead) and Design Lead, working closely with Desktop engineering lead and iOS developer.</p>
+          <p class="snips-section-text">I owned the UI, UX, and feature roadmap. I pitched how web services should work and collaborated across the company on use case exploration - people tested the product internally and reported back. The tracking mechanics were a team effort informed by early user interviews.</p>
+          <p class="snips-section-text">This project required more autonomy and less direction than typical feature work. Because product vision and validation were shallow, it was hard to define what this should be. But I understood the technical direction and potential, so I shaped what needed to be done.</p>
+        </div>
+      </section>
+
+      <!-- Solution Section -->
+      <section id="solution" class="snips-section">
+        <div class="snips-textbox">
+          <div class="snips-section-title-row">
+            <img src="images/star.svg" alt="" class="snips-section-icon" />
+            <h2 class="snips-section-title">Solution</h2>
+          </div>
+        </div>
+
+        <div class="snips-textbox">
+          <h3 class="snips-subsection-title">Hybrid AI Prompts</h3>
+          <p class="snips-subsection-text">Built both natural language and structured prompts. The AI model detects keywords on pages and suggests structured prompts, but users can modify or write their own.</p>
+          <p class="snips-subsection-text">For shopping pages: users preferred suggested templates. For complex tracking: users modified prompts for specificity.</p>
+        </div>
+
+        <div class="snips-image-block">
+          <img src="images/New Snips Images/snips01.png" alt="Hybrid AI Prompts" />
+        </div>
+
+        <div class="snips-textbox">
+          <h3 class="snips-subsection-title">User Control Over AI</h3>
+        </div>
+
+        <div class="snips-challenge-container">
+          <div class="snips-challenge-cards-row">
+            <div class="snips-sticky-card">
+              <img src="images/New Snips Images/sticky_blue.svg" alt="" class="snips-sticky-card-bg" />
+              <p>Clear feedback when AI processes requests</p>
+            </div>
+            <div class="snips-sticky-card">
+              <img src="images/New Snips Images/sticky_blue.svg" alt="" class="snips-sticky-card-bg" />
+              <p>Users control notification timing</p>
+            </div>
+            <div class="snips-sticky-card">
+              <img src="images/New Snips Images/sticky_blue.svg" alt="" class="snips-sticky-card-bg" />
+              <p>Users define which page area to track</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="snips-image-block">
+          <img src="images/New Snips Images/snips02.png" alt="User Control Over AI" />
+        </div>
+
+        <div class="snips-textbox">
+          <h3 class="snips-subsection-title">Organization System</h3>
+          <p class="snips-subsection-text">Designed groups and categorization - testing showed users tracked 5-10+ items simultaneously.</p>
+        </div>
+
+        <div class="snips-image-block">
+          <img src="images/New Snips Images/snips03.png" alt="Organization System" />
+        </div>
+
+        <div class="snips-textbox">
+          <h3 class="snips-subsection-title">Redesigning the Capture System</h3>
+          <p class="snips-subsection-text">The MVP's capture frames looked like screenshots, misdirecting users about functionality. I redesigned the capture experience with distinct visual identity and clear tracking indicators, so users understood they were creating live tracking instances, not saving static images.</p>
+        </div>
+
+        <div class="snips-image-block">
+          <img src="images/New Snips Images/snips04.png" alt="Redesigning the Capture System" />
+        </div>
+      </section>
+
+      <!-- Impact Section -->
+      <section id="impact" class="snips-impact-section">
+        <div class="snips-impact-header">
+          <img src="images/star-yellow.svg" alt="" class="snips-impact-icon" />
+          <h2 class="snips-section-title">Impact</h2>
+        </div>
+
+        <div class="snips-challenge-container">
+          <p class="snips-challenge-label" style="color: #000000;">What We Learned</p>
+          <div class="snips-challenge-cards-row">
+            <div class="snips-challenge-card">
+              <img src="images/New Snips Images/sticky_yellow.svg" alt="" class="snips-challenge-card-bg" />
+              <p><strong>Shopping tracking</strong><br>had strongest engagement (price monitoring, deal alerts)</p>
+            </div>
+            <div class="snips-challenge-card">
+              <img src="images/New Snips Images/sticky_yellow.svg" alt="" class="snips-challenge-card-bg" />
+              <p><strong>Flight monitoring</strong><br>is the second most common use case</p>
+            </div>
+            <div class="snips-challenge-card">
+              <img src="images/New Snips Images/sticky_yellow.svg" alt="" class="snips-challenge-card-bg" />
+              <p><strong>Stock tracking</strong><br>is the third most common use case</p>
+            </div>
+          </div>
+
+          <p class="snips-challenge-label" style="color: #000000; font-size: 24px;">Beta testers particularly appreciated:</p>
+          <div class="snips-challenge-cards-row">
+            <div class="snips-challenge-card">
+              <img src="images/New Snips Images/sticky_yellow.svg" alt="" class="snips-challenge-card-bg" />
+              <p>Improved capture flow</p>
+            </div>
+            <div class="snips-challenge-card">
+              <img src="images/New Snips Images/sticky_yellow.svg" alt="" class="snips-challenge-card-bg" />
+              <p>UI polish and modern feel</p>
+            </div>
+            <div class="snips-challenge-card">
+              <img src="images/New Snips Images/sticky_yellow.svg" alt="" class="snips-challenge-card-bg" />
+              <p>Organization via groups</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="snips-textbox">
+          <h3 class="snips-subsection-title">Market Insights</h3>
+          <p class="snips-subsection-text">We proved there are use cases where this product works for users, primarily in shopping. However, wider release hasn't happened yet. The product is still in exploration phase - validating technical feasibility and user interest before committing to full launch and potential web service infrastructure.</p>
+        </div>
+      </section>
+
+      <!-- Key Learnings Section -->
+      <section id="learnings" class="snips-learnings-section">
+        <div class="snips-learnings-header">
+          <h2 class="snips-section-title">Key Learnings</h2>
+        </div>
+        <div class="snips-learnings-grid">
+          <div class="snips-learning-card">
+            <img src="images/star-green.svg" alt="" class="snips-learning-icon" />
+            <div class="snips-learning-content">
+              <p class="snips-learning-title">Balancing flexibility and simplicity</p>
+              <p class="snips-learning-text">The product needed to handle diverse use cases (shopping, flights, visa queues) without becoming complex. The hybrid prompt approach - structured suggestions with natural language fallback - solved this by adapting to context.</p>
+            </div>
+          </div>
+          <div class="snips-learning-card">
+            <img src="images/star-green.svg" alt="" class="snips-learning-icon" />
+            <div class="snips-learning-content">
+              <p class="snips-learning-title">0→1 scope is fundamentally different</p>
+              <p class="snips-learning-text">The breadth of scope and potential in new products is different from normal features. There's no clear "success metric" yet - you're proving feasibility and exploring market fit simultaneously.</p>
+            </div>
+          </div>
+          <div class="snips-learning-card">
+            <img src="images/star-green.svg" alt="" class="snips-learning-icon" />
+            <div class="snips-learning-content">
+              <p class="snips-learning-title">Working in ambiguity requires judgment</p>
+              <p class="snips-learning-text">Looking at use cases and working through edge cases was paramount to achieving coherent direction. This is fundamentally different from optimizing existing features with clear metrics.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Other Cases Section -->
+      <section class="snips-other-cases">
+        <div class="snips-bento-scroll">
+          <!-- First set of cards -->
+          <div class="snips-bento-container">
+            <a href="tabs.html" class="snips-bento-card">
+              <div class="snips-bento-text">
+                <p class="snips-bento-title blue">Tab Management Redesign</p>
+                <p class="snips-bento-subtitle">Driving organic growth through simplified UX</p>
+              </div>
+              <div class="snips-bento-image tabs-blue-bg">
+                <img src="images/tabs_thumb.png" alt="Tab Management Redesign" />
+              </div>
+              <div class="snips-bento-tags nowrap">
+                <span class="snips-bento-tag blue">Retention & Engagement</span>
+                <span class="snips-bento-tag yellow">
+                  <img src="images/star-yellow.svg" alt="" />
+                  1.8% retention lift
+                </span>
+              </div>
+            </a>
+            <a href="referral.html" class="snips-bento-card">
+              <div class="snips-bento-text">
+                <p class="snips-bento-title indigo">Aloha Referral System</p>
+                <p class="snips-bento-subtitle">Driving organic growth through simplified UX</p>
+              </div>
+              <div class="snips-bento-image">
+                <img src="images/referral-bento.png" alt="Referral System" />
+              </div>
+              <div class="snips-bento-tags">
+                <span class="snips-bento-tag blue">Growth & Acquisition</span>
+                <span class="snips-bento-tag yellow">
+                  <img src="images/star-yellow.svg" alt="" />
+                  3.4x monthly referrals
+                </span>
+              </div>
+            </a>
+            <a href="website.html" class="snips-bento-card">
+              <div class="snips-bento-text">
+                <p class="snips-bento-title purple">Aloha Website Design System</p>
+                <p class="snips-bento-subtitle">Building a scalable design system</p>
+              </div>
+              <div class="snips-bento-image">
+                <img src="images/website-thumb.png" alt="Website Design System" />
+              </div>
+              <div class="snips-bento-tags">
+                <span class="snips-bento-tag blue">Conversion & Design System</span>
+                <span class="snips-bento-tag yellow">
+                  <img src="images/star-yellow.svg" alt="" />
+                  +10pp conversion
+                </span>
+                <span class="snips-bento-tag yellow">
+                  <img src="images/star-yellow.svg" alt="" />
+                  -50% dev time
+                </span>
+              </div>
+            </a>
+            <a href="vulners.html" class="snips-bento-card">
+              <div class="snips-bento-text">
+                <p class="snips-bento-title orange">Vulners Visual Design</p>
+                <p class="snips-bento-subtitle">Design system unifying cybersecurity suite</p>
+              </div>
+              <div class="snips-bento-image">
+                <img src="images/vulners-hero.png" alt="Vulners" />
+              </div>
+              <div class="snips-bento-tags">
+                <span class="snips-bento-tag blue">Brand & Systems</span>
+                <span class="snips-bento-tag yellow">
+                  <img src="images/star-yellow.svg" alt="" />
+                  Multi-product ecosystem
+                </span>
+              </div>
+            </a>
+          </div>
+          <!-- Duplicate set for seamless loop -->
+          <div class="snips-bento-container">
+            <a href="tabs.html" class="snips-bento-card">
+              <div class="snips-bento-text">
+                <p class="snips-bento-title blue">Tab Management Redesign</p>
+                <p class="snips-bento-subtitle">Driving organic growth through simplified UX</p>
+              </div>
+              <div class="snips-bento-image tabs-blue-bg">
+                <img src="images/tabs_thumb.png" alt="Tab Management Redesign" />
+              </div>
+              <div class="snips-bento-tags nowrap">
+                <span class="snips-bento-tag blue">Retention & Engagement</span>
+                <span class="snips-bento-tag yellow">
+                  <img src="images/star-yellow.svg" alt="" />
+                  1.8% retention lift
+                </span>
+              </div>
+            </a>
+            <a href="referral.html" class="snips-bento-card">
+              <div class="snips-bento-text">
+                <p class="snips-bento-title indigo">Aloha Referral System</p>
+                <p class="snips-bento-subtitle">Driving organic growth through simplified UX</p>
+              </div>
+              <div class="snips-bento-image">
+                <img src="images/referral-bento.png" alt="Referral System" />
+              </div>
+              <div class="snips-bento-tags">
+                <span class="snips-bento-tag blue">Growth & Acquisition</span>
+                <span class="snips-bento-tag yellow">
+                  <img src="images/star-yellow.svg" alt="" />
+                  3.4x monthly referrals
+                </span>
+              </div>
+            </a>
+            <a href="website.html" class="snips-bento-card">
+              <div class="snips-bento-text">
+                <p class="snips-bento-title purple">Aloha Website Design System</p>
+                <p class="snips-bento-subtitle">Building a scalable design system</p>
+              </div>
+              <div class="snips-bento-image">
+                <img src="images/website-thumb.png" alt="Website Design System" />
+              </div>
+              <div class="snips-bento-tags">
+                <span class="snips-bento-tag blue">Conversion & Design System</span>
+                <span class="snips-bento-tag yellow">
+                  <img src="images/star-yellow.svg" alt="" />
+                  +10pp conversion
+                </span>
+                <span class="snips-bento-tag yellow">
+                  <img src="images/star-yellow.svg" alt="" />
+                  -50% dev time
+                </span>
+              </div>
+            </a>
+            <a href="vulners.html" class="snips-bento-card">
+              <div class="snips-bento-text">
+                <p class="snips-bento-title orange">Vulners Visual Design</p>
+                <p class="snips-bento-subtitle">Design system unifying cybersecurity suite</p>
+              </div>
+              <div class="snips-bento-image">
+                <img src="images/vulners-hero.png" alt="Vulners" />
+              </div>
+              <div class="snips-bento-tags">
+                <span class="snips-bento-tag blue">Brand & Systems</span>
+                <span class="snips-bento-tag yellow">
+                  <img src="images/star-yellow.svg" alt="" />
+                  Multi-product ecosystem
+                </span>
+              </div>
+            </a>
+          </div>
+          <!-- Third set for seamless infinite scroll -->
+          <div class="snips-bento-container">
+            <a href="tabs.html" class="snips-bento-card">
+              <div class="snips-bento-text">
+                <p class="snips-bento-title blue">Tab Management Redesign</p>
+                <p class="snips-bento-subtitle">Driving organic growth through simplified UX</p>
+              </div>
+              <div class="snips-bento-image tabs-blue-bg">
+                <img src="images/tabs_thumb.png" alt="Tab Management Redesign" />
+              </div>
+              <div class="snips-bento-tags nowrap">
+                <span class="snips-bento-tag blue">Retention & Engagement</span>
+                <span class="snips-bento-tag yellow">
+                  <img src="images/star-yellow.svg" alt="" />
+                  1.8% retention lift
+                </span>
+              </div>
+            </a>
+            <a href="referral.html" class="snips-bento-card">
+              <div class="snips-bento-text">
+                <p class="snips-bento-title indigo">Aloha Referral System</p>
+                <p class="snips-bento-subtitle">Driving organic growth through simplified UX</p>
+              </div>
+              <div class="snips-bento-image">
+                <img src="images/referral-bento.png" alt="Referral System" />
+              </div>
+              <div class="snips-bento-tags">
+                <span class="snips-bento-tag blue">Growth & Acquisition</span>
+                <span class="snips-bento-tag yellow">
+                  <img src="images/star-yellow.svg" alt="" />
+                  3.4x monthly referrals
+                </span>
+              </div>
+            </a>
+            <a href="website.html" class="snips-bento-card">
+              <div class="snips-bento-text">
+                <p class="snips-bento-title purple">Aloha Website Design System</p>
+                <p class="snips-bento-subtitle">Building a scalable design system</p>
+              </div>
+              <div class="snips-bento-image">
+                <img src="images/website-thumb.png" alt="Website Design System" />
+              </div>
+              <div class="snips-bento-tags">
+                <span class="snips-bento-tag blue">Conversion & Design System</span>
+                <span class="snips-bento-tag yellow">
+                  <img src="images/star-yellow.svg" alt="" />
+                  +10pp conversion
+                </span>
+                <span class="snips-bento-tag yellow">
+                  <img src="images/star-yellow.svg" alt="" />
+                  -50% dev time
+                </span>
+              </div>
+            </a>
+            <a href="vulners.html" class="snips-bento-card">
+              <div class="snips-bento-text">
+                <p class="snips-bento-title orange">Vulners Visual Design</p>
+                <p class="snips-bento-subtitle">Design system unifying cybersecurity suite</p>
+              </div>
+              <div class="snips-bento-image">
+                <img src="images/vulners-hero.png" alt="Vulners" />
+              </div>
+              <div class="snips-bento-tags">
+                <span class="snips-bento-tag blue">Brand & Systems</span>
+                <span class="snips-bento-tag yellow">
+                  <img src="images/star-yellow.svg" alt="" />
+                  Multi-product ecosystem
+                </span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer CTA -->
+      <section class="snips-footer-cta">
+        <p class="snips-footer-title">Thanks for scrolling all the way down!</p>
+        <p class="snips-footer-title">I'm open to new opportunities</p>
+        <div class="snips-footer-links">
+          <span class="snips-footer-text">You can read my</span>
+          <a href="docs/Vasilii_Diakonov_Resume_26.pdf" class="snips-footer-pill purple" target="_blank" download>
+            <span>Resume</span>
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g clip-path="url(#clip0_snips_download)">
+                <path d="M23.6597 11.994C23.6597 18.5159 18.3612 23.8222 11.828 23.8222C5.30623 23.8222 0 18.5159 0 11.994C0 5.46452 5.30623 0.166016 11.828 0.166016C18.3612 0.166016 23.6597 5.46452 23.6597 11.994ZM10.5956 7.09394V13.1697L10.6773 14.848L10.0841 14.1152L8.51632 12.4489C8.30344 12.2164 7.9957 12.0861 7.68592 12.0861C7.10446 12.0861 6.6014 12.52 6.6014 13.1334C6.6014 13.455 6.72459 13.6989 6.94573 13.9159L10.8704 17.6937C11.1987 18.0111 11.5075 18.1153 11.8358 18.1153C12.1677 18.1153 12.4765 18.0111 12.8048 17.6937L16.7218 13.9159C16.9506 13.6989 17.0738 13.455 17.0738 13.1334C17.0738 12.52 16.5629 12.0861 15.9815 12.0861C15.6718 12.0861 15.3718 12.2164 15.1588 12.4489L13.591 14.1152L13.0008 14.8443L13.0873 13.1697V7.09394C13.0873 6.42902 12.5301 5.87286 11.8358 5.87286C11.1487 5.87286 10.5956 6.42902 10.5956 7.09394Z" fill="#AF52DE"/>
               </g>
               <defs>
-                <clipPath id="clip0_140_581">
-                  <rect width="22.784" height="18.4928" fill="white" transform="translate(0.60791 2.75391)"/>
+                <clipPath id="clip0_snips_download">
+                  <rect width="24" height="23.6675" fill="white" transform="translate(0 0.166016)"/>
                 </clipPath>
               </defs>
             </svg>
-          </div>
-        </a>
+          </a>
+          <span class="snips-footer-text">or contact me on</span>
+          <a href="https://www.linkedin.com/in/vasiliidiakonov/" class="snips-footer-pill indigo" target="_blank">
+            <span>Linkedin</span>
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g clip-path="url(#clip0_snips_linkedin)">
+                <path d="M3.31521 20.5276C3.90159 21.1022 4.72656 21.1368 5.38801 20.4866L16.4031 9.48322L18.7751 6.91254C19.3635 6.28679 19.3114 5.52841 18.8166 5.03416C18.3181 4.52074 17.5368 4.44194 16.9078 5.04534L14.3334 7.4136L3.33011 18.4324C2.64258 19.1274 2.74001 19.9635 3.31521 20.5276ZM17.9286 11.9501V16.36C17.9286 17.1797 18.5587 17.8513 19.3453 17.8513C20.1314 17.8513 20.7955 17.1925 20.7955 16.3318L20.7913 4.59174C20.7913 3.66982 20.1783 3.04883 19.2446 3.04883H7.49287C6.61676 3.04883 5.98139 3.70498 5.98139 4.48735C5.98139 5.26598 6.65672 5.89178 7.46463 5.89178H11.7104L18.2099 5.6425L17.9286 11.9501Z" fill="#5856D6"/>
+              </g>
+              <defs>
+                <clipPath id="clip0_snips_linkedin">
+                  <rect width="18.3028" height="17.9325" fill="white" transform="translate(2.84863 3.03418)"/>
+                </clipPath>
+              </defs>
+            </svg>
+          </a>
+          <span class="snips-footer-text">or via</span>
+          <a href="mailto:vasilii.diakonov@gmail.com" class="snips-footer-pill orange">
+            <span>Email</span>
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g clip-path="url(#clip0_snips_email)">
+                <path d="M3.31521 20.5276C3.90159 21.1022 4.72656 21.1368 5.38801 20.4866L16.4031 9.48322L18.7751 6.91254C19.3635 6.28679 19.3114 5.52841 18.8166 5.03416C18.3181 4.52074 17.5368 4.44194 16.9078 5.04534L14.3334 7.4136L3.33011 18.4324C2.64258 19.1274 2.74001 19.9635 3.31521 20.5276ZM17.9286 11.9501V16.36C17.9286 17.1797 18.5587 17.8513 19.3453 17.8513C20.1314 17.8513 20.7955 17.1925 20.7955 16.3318L20.7913 4.59174C20.7913 3.66982 20.1783 3.04883 19.2446 3.04883H7.49287C6.61676 3.04883 5.98139 3.70498 5.98139 4.48735C5.98139 5.26598 6.65672 5.89178 7.46463 5.89178H11.7104L18.2099 5.6425L17.9286 11.9501Z" fill="#FF9500"/>
+              </g>
+              <defs>
+                <clipPath id="clip0_snips_email">
+                  <rect width="18.3028" height="17.9325" fill="white" transform="translate(2.84863 3.03418)"/>
+                </clipPath>
+              </defs>
+            </svg>
+          </a>
+        </div>
+      </section>
 
-      </div>
     </div>
 
+    <!-- Scripts -->
     <script>
+      // Copy link functionality
       function copyLink() {
         const url = window.location.href;
         navigator.clipboard.writeText(url).then(() => {
-          const button = document.querySelector('.overlay-copy-link');
-          const originalText = button.querySelector('.overlay-copy-text').textContent;
-          button.querySelector('.overlay-copy-text').textContent = 'Copied!';
+          const button = document.querySelector('.snips-copy-link span');
+          button.textContent = 'Copied!';
           setTimeout(() => {
-            button.querySelector('.overlay-copy-text').textContent = originalText;
+            button.textContent = 'Copy link';
           }, 2000);
         });
       }
+
+      // GSAP Animations
+      document.addEventListener('DOMContentLoaded', function() {
+        gsap.registerPlugin(ScrollTrigger);
+
+        const headerContent = document.querySelector('.snips-header-content');
+        const metricsBadges = document.querySelector('.snips-metrics');
+        const phoneLeft = document.querySelector('.snips-phone-left');
+        const phoneRight = document.querySelector('.snips-phone-right');
+
+        // Header fade in on entry
+        gsap.set(headerContent, { y: 30, autoAlpha: 0 });
+        gsap.set(metricsBadges, { y: 20, autoAlpha: 0 });
+        gsap.set(phoneLeft, { y: 80, autoAlpha: 0 });
+        gsap.set(phoneRight, { y: 80, autoAlpha: 0 });
+
+        gsap.to(headerContent, {
+          y: 0,
+          autoAlpha: 1,
+          duration: 0.8,
+          ease: 'power2.out',
+          delay: 0.1
+        });
+
+        gsap.to(metricsBadges, {
+          y: 0,
+          autoAlpha: 1,
+          duration: 0.6,
+          ease: 'power2.out',
+          delay: 0.3
+        });
+
+        gsap.to(phoneLeft, {
+          y: 0,
+          autoAlpha: 1,
+          duration: 0.8,
+          ease: 'power2.out',
+          delay: 0.4
+        });
+
+        gsap.to(phoneRight, {
+          y: 0,
+          autoAlpha: 1,
+          duration: 0.8,
+          ease: 'power2.out',
+          delay: 0.5
+        });
+
+        // Scroll detection for button background transition
+        const closeButton = document.querySelector('.snips-close-button');
+        const copyLinkButton = document.querySelector('.snips-copy-link');
+        const header = document.querySelector('.snips-header');
+        const snipsPage = document.querySelector('.snips-page');
+
+        function updateButtonStyles() {
+          const headerBottom = header.getBoundingClientRect().bottom;
+          const metricsBottom = metricsBadges.getBoundingClientRect().bottom;
+
+          if (headerBottom < 100) {
+            closeButton.classList.add('on-white');
+            copyLinkButton.classList.add('on-white');
+          } else {
+            closeButton.classList.remove('on-white');
+            copyLinkButton.classList.remove('on-white');
+          }
+
+          // Page background color transition
+          if (metricsBottom < window.innerHeight / 2) {
+            snipsPage.classList.add('scrolled-past-header');
+          } else {
+            snipsPage.classList.remove('scrolled-past-header');
+          }
+        }
+
+        window.addEventListener('scroll', updateButtonStyles);
+        updateButtonStyles();
+
+        // Sections menu functionality
+        const sectionsMenu = document.querySelector('.snips-sections-menu');
+        const sectionsToggle = document.querySelector('.snips-sections-toggle');
+        let hasScrolled = false;
+
+        // Fixed buttons fade in on page load
+        gsap.set(closeButton, { autoAlpha: 0 });
+        gsap.set(copyLinkButton, { autoAlpha: 0 });
+        gsap.set(sectionsMenu, { autoAlpha: 0 });
+
+        gsap.to([closeButton, copyLinkButton, sectionsMenu], {
+          autoAlpha: 1,
+          duration: 1.2,
+          ease: 'power2.out',
+          delay: 0.8
+        });
+
+        // Close menu on first scroll
+        function handleMenuScroll() {
+          const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+          const menuHeaderBottom = header.getBoundingClientRect().bottom;
+
+          // Update on-white class based on header position
+          if (menuHeaderBottom < 100) {
+            sectionsMenu.classList.add('on-white');
+          } else {
+            sectionsMenu.classList.remove('on-white');
+          }
+
+          // Close menu on first scroll down
+          if (!hasScrolled && scrollTop > 50) {
+            hasScrolled = true;
+            sectionsMenu.classList.remove('open');
+          }
+        }
+
+        window.addEventListener('scroll', handleMenuScroll);
+
+        // Toggle menu on button click
+        sectionsToggle.addEventListener('click', function() {
+          sectionsMenu.classList.toggle('open');
+        });
+
+        // Close menu when clicking a link
+        const sectionLinks = document.querySelectorAll('.snips-section-link');
+        sectionLinks.forEach(link => {
+          link.addEventListener('click', function() {
+            sectionsMenu.classList.remove('open');
+          });
+        });
+
+        // Initialize carousel
+        const carousel = document.querySelector('.snips-bento-scroll');
+        if (carousel) {
+          const carouselImages = carousel.querySelectorAll('img');
+          let loadedCount = 0;
+          const totalImages = carouselImages.length;
+
+          const startCarousel = () => {
+            const observer = new IntersectionObserver((entries) => {
+              entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                  setTimeout(() => {
+                    carousel.classList.add('animate');
+                  }, 100);
+                  observer.disconnect();
+                }
+              });
+            }, { threshold: 0.1 });
+
+            observer.observe(carousel);
+          };
+
+          const onImageLoad = () => {
+            loadedCount++;
+            if (loadedCount >= totalImages) {
+              startCarousel();
+            }
+          };
+
+          carouselImages.forEach(img => {
+            if (img.complete) {
+              onImageLoad();
+            } else {
+              img.addEventListener('load', onImageLoad);
+              img.addEventListener('error', onImageLoad);
+            }
+          });
+
+          setTimeout(startCarousel, 2000);
+        }
+      });
     </script>
+
   </body>
 </html>
