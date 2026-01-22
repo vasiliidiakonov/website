@@ -9,166 +9,1681 @@
     <link rel="apple-touch-icon" href="images/favicon.png" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css" />
     <link rel="stylesheet" href="design/style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+      /* Referral Case Study Full Page Styles */
+      .referral-page {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 60px;
+        padding-bottom: 80px;
+        background-color: #eeeefa;
+        transition: background-color 0.5s ease;
+      }
+
+      .referral-page.scrolled-past-header {
+        background-color: #ffffff;
+      }
+
+      /* Header Section */
+      .referral-header {
+        padding: 64px 32px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+        width: 100%;
+      }
+
+      .referral-header-content {
+        max-width: 728px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .referral-header-title {
+        font-size: 64px;
+        font-weight: 500;
+        color: #5856d6;
+        line-height: normal;
+      }
+
+      .referral-header-subtitle {
+        font-size: 30px;
+        font-weight: 500;
+        color: #5856d6;
+        line-height: normal;
+      }
+
+      /* Hero Phone Container */
+      .referral-hero-container {
+        width: 1136px;
+        max-width: calc(100vw - 64px);
+        height: 752px;
+        background-color: #ffffff;
+        border-radius: 32px;
+        position: relative;
+        overflow: visible;
+      }
+
+      .referral-phone {
+        position: absolute;
+        overflow: visible;
+      }
+
+      .referral-phone-left {
+        left: 211px;
+        top: 57px;
+        width: 293px;
+        height: 637px;
+      }
+
+      .referral-phone-right {
+        left: 602px;
+        top: 57px;
+        width: 293px;
+        height: 637px;
+      }
+
+      .referral-phone img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        display: block;
+      }
+
+      /* Metrics Badges */
+      .referral-metrics {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
+
+      .referral-metric-badge {
+        background-color: #fff9e5;
+        border-radius: 24px;
+        padding: 12px 18px 12px 12px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .referral-metric-badge img {
+        width: 34px;
+        height: 38px;
+      }
+
+      .referral-metric-badge span {
+        font-size: 30px;
+        font-weight: 500;
+        color: #404040;
+        line-height: 66px;
+      }
+
+      /* Close and Copy Link Buttons */
+      .referral-close-button {
+        position: fixed;
+        top: 16px;
+        right: 12px;
+        width: 40px;
+        height: 40px;
+        background-color: #ffffff;
+        border-radius: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 100;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+      }
+
+      .referral-close-button.on-white {
+        background-color: rgba(255, 45, 85, 0.1);
+      }
+
+      .referral-copy-link {
+        position: fixed;
+        top: 16px;
+        right: 66px;
+        background-color: #ffffff;
+        border-radius: 24px;
+        padding: 8px 8px 8px 12px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        z-index: 100;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .referral-copy-link.on-white {
+        background-color: rgba(0, 132, 255, 0.1);
+      }
+
+      .referral-copy-link span {
+        font-size: 20px;
+        font-weight: 500;
+        color: #0084ff;
+        line-height: normal;
+      }
+
+      .referral-copy-link svg {
+        width: 24px;
+        height: 24px;
+      }
+
+      /* Sections Menu */
+      .referral-sections-menu {
+        position: fixed;
+        top: 16px;
+        left: 12px;
+        z-index: 100;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+      }
+
+      .referral-sections-toggle {
+        background-color: #ffffff;
+        border: none;
+        border-radius: 24px;
+        padding: 8px 12px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .referral-sections-menu.on-white .referral-sections-toggle {
+        background-color: rgba(0, 0, 0, 0.05);
+      }
+
+      .referral-sections-toggle span {
+        font-size: 20px;
+        font-weight: 500;
+        color: #000000;
+        line-height: normal;
+      }
+
+      .referral-chevron {
+        width: 17px;
+        height: 10px;
+        transition: transform 0.3s ease;
+      }
+
+      .referral-sections-menu:not(.open) .referral-chevron {
+        transform: rotate(180deg);
+      }
+
+      .referral-sections-list {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+        opacity: 1;
+        max-height: 400px;
+        overflow: hidden;
+        transition: opacity 0.3s ease, max-height 0.3s ease;
+      }
+
+      .referral-sections-menu:not(.open) .referral-sections-list {
+        opacity: 0;
+        max-height: 0;
+      }
+
+      .referral-section-link {
+        background-color: #ffffff;
+        border-radius: 24px;
+        padding: 8px 12px 8px 8px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+      }
+
+      .referral-sections-menu.on-white .referral-section-link-orange {
+        background-color: rgba(255, 149, 0, 0.05);
+      }
+
+      .referral-sections-menu.on-white .referral-section-link-purple {
+        background-color: rgba(175, 82, 222, 0.05);
+      }
+
+      .referral-sections-menu.on-white .referral-section-link-blue {
+        background-color: rgba(0, 132, 255, 0.05);
+      }
+
+      .referral-sections-menu.on-white .referral-section-link-yellow {
+        background-color: rgba(255, 204, 0, 0.05);
+      }
+
+      .referral-sections-menu.on-white .referral-section-link-green {
+        background-color: rgba(52, 199, 89, 0.05);
+      }
+
+      .referral-section-link-icon {
+        width: 20px;
+        height: 20px;
+        flex-shrink: 0;
+      }
+
+      .referral-section-link span {
+        font-size: 20px;
+        font-weight: 500;
+        color: #000000;
+        line-height: normal;
+      }
+
+      /* Content Sections */
+      .referral-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 60px;
+      }
+
+      .referral-textbox {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        max-width: 728px;
+        width: 100%;
+      }
+
+      .referral-section-title-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+        padding-left: 16px;
+      }
+
+      .referral-section-icon {
+        height: 32px;
+        width: auto;
+        flex-shrink: 0;
+      }
+
+      .referral-section-title {
+        font-size: 48px;
+        font-weight: 500;
+        color: #000000;
+        line-height: normal;
+      }
+
+      .referral-section-text {
+        font-size: 24px;
+        font-weight: 500;
+        color: #000000;
+        line-height: normal;
+      }
+
+      /* Challenge Cards - Full Width */
+      .referral-challenge-container {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        max-width: 764px;
+        width: 100%;
+        padding-bottom: 20px;
+      }
+
+      .referral-challenge-block {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        width: 100%;
+      }
+
+      .referral-challenge-label {
+        font-size: 28px;
+        font-weight: 500;
+        color: #ff9500;
+        padding-left: 16px;
+        line-height: 1;
+        letter-spacing: -0.616px;
+      }
+
+      .referral-challenge-card {
+        position: relative;
+        width: 100%;
+        height: 214px;
+      }
+
+      .referral-challenge-card-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      .referral-challenge-card p {
+        position: absolute;
+        top: 50%;
+        left: 71px;
+        transform: translateY(-50%);
+        font-size: 24px;
+        font-weight: 500;
+        color: #404040;
+        line-height: 1;
+        letter-spacing: -0.528px;
+        width: 622px;
+      }
+
+      /* Image Blocks */
+      .referral-image-block {
+        width: 1136px;
+        height: 732px;
+        max-width: calc(100vw - 64px);
+        border-radius: 32px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .referral-image-block > img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        border-radius: 32px;
+      }
+
+      /* Sticky Annotations */
+      .referral-sticky {
+        position: absolute;
+        width: 241px;
+        height: 104px;
+      }
+
+      .referral-sticky-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 0 !important;
+      }
+
+      .referral-sticky img {
+        border-radius: 0 !important;
+      }
+
+      .referral-sticky p {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 24px;
+        font-weight: 500;
+        color: #404040;
+        text-align: center;
+        line-height: 1;
+        letter-spacing: -0.528px;
+        width: 207px;
+      }
+
+      .referral-subsection-title {
+        font-size: 32px;
+        font-weight: 500;
+        color: #000000;
+        line-height: normal;
+      }
+
+      .referral-subsection-text {
+        font-size: 24px;
+        font-weight: 500;
+        color: #000000;
+        line-height: normal;
+      }
+
+      /* Impact Section */
+      .referral-impact-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        max-width: 764px;
+        width: 100%;
+      }
+
+      .referral-impact-header {
+        width: 100%;
+        padding-left: 36px;
+      }
+
+      .referral-impact-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        width: 100%;
+      }
+
+      .referral-impact-card {
+        background-color: #fff9e5;
+        border-radius: 16px;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        width: 372px;
+      }
+
+      .referral-impact-card img {
+        width: 43px;
+        height: 48px;
+      }
+
+      .referral-impact-card p {
+        font-size: 32px;
+        font-weight: 500;
+        color: #404040;
+        line-height: normal;
+      }
+
+      /* Key Learnings Section */
+      .referral-learnings-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        max-width: 764px;
+        width: 100%;
+      }
+
+      .referral-learnings-header {
+        width: 100%;
+        padding-left: 36px;
+      }
+
+      .referral-learnings-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        width: 100%;
+      }
+
+      .referral-learning-card {
+        background-color: #e5ffeb;
+        border-radius: 16px;
+        padding: 32px 20px;
+        display: flex;
+        gap: 32px;
+        align-items: flex-start;
+        width: 100%;
+      }
+
+      .referral-learning-icon {
+        width: 43px;
+        height: 48px;
+        flex-shrink: 0;
+      }
+
+      .referral-learning-content {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        flex: 1;
+      }
+
+      .referral-learning-title {
+        font-size: 32px;
+        font-weight: 500;
+        color: #000000;
+        line-height: normal;
+      }
+
+      .referral-learning-text {
+        font-size: 24px;
+        font-weight: 500;
+        color: #404040;
+        line-height: normal;
+      }
+
+      /* Other Cases Section */
+      .referral-other-cases {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 80px;
+        width: 100%;
+        overflow: hidden;
+      }
+
+      .referral-bento-scroll {
+        display: flex;
+        gap: 20px;
+        width: max-content;
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      .referral-bento-scroll.animate {
+        visibility: visible;
+        opacity: 1;
+        animation: scroll-marquee-referral 40s linear infinite, fadeInReferral 0.6s ease-out forwards;
+      }
+
+      @keyframes fadeInReferral {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+
+      @keyframes scroll-marquee-referral {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-33.333%); }
+      }
+
+      .referral-bento-scroll:hover {
+        animation-play-state: paused;
+      }
+
+      .referral-bento-container {
+        display: flex;
+        gap: 20px;
+        flex-shrink: 0;
+      }
+
+      /* Bento Cards */
+      .referral-bento-card {
+        background: #ffffff;
+        border: 2px solid #f8f8f8;
+        border-radius: 24px;
+        padding: 16px;
+        width: 502px;
+        height: 500px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        text-decoration: none;
+        overflow: hidden;
+        flex-shrink: 0;
+      }
+
+      .referral-bento-text {
+        padding: 0 12px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .referral-bento-title {
+        font-size: 32px;
+        font-weight: 500;
+        line-height: normal;
+      }
+
+      .referral-bento-title.blue { color: #0084ff; }
+      .referral-bento-title.light-blue { color: #32ade6; }
+      .referral-bento-title.purple { color: #af52de; }
+      .referral-bento-title.orange { color: #ff9500; }
+      .referral-bento-title.indigo { color: #5856d6; }
+
+      .referral-bento-subtitle {
+        font-size: 20px;
+        font-weight: 500;
+        color: #404040;
+        line-height: normal;
+      }
+
+      .referral-bento-image {
+        flex: 1;
+        min-height: 200px;
+        border-radius: 12px;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .referral-bento-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .referral-bento-image.snips-bg {
+        background-color: #b2edfb;
+        border-radius: 16px;
+      }
+
+      .referral-bento-image.snips-bg img {
+        object-fit: contain;
+      }
+
+      .referral-bento-image.tabs-blue-bg {
+        background-color: #93b9f9;
+        border-radius: 12px;
+      }
+
+      .referral-bento-image.tabs-blue-bg img {
+        object-fit: cover;
+      }
+
+      .referral-bento-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .referral-bento-tags.nowrap {
+        flex-wrap: nowrap;
+      }
+
+      .referral-bento-tag {
+        padding: 12px;
+        border-radius: 16px;
+        font-size: 20px;
+        font-weight: 500;
+        line-height: normal;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        white-space: nowrap;
+      }
+
+      .referral-bento-tag.blue {
+        background-color: #f2f9ff;
+        color: #0084ff;
+      }
+
+      .referral-bento-tag.yellow {
+        background-color: #fff9e5;
+        color: #404040;
+        padding: 8px 12px 8px 8px;
+      }
+
+      .referral-bento-tag.orange-bg {
+        background-color: #fff4e5;
+        color: #404040;
+        padding: 8px 12px 8px 8px;
+      }
+
+      .referral-bento-tag img {
+        width: 23px;
+        height: 25px;
+      }
+
+      /* Footer CTA */
+      .referral-footer-cta {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 32px;
+        max-width: 1024px;
+        width: 100%;
+        text-align: center;
+      }
+
+      .referral-footer-title {
+        font-size: 48px;
+        font-weight: 500;
+        color: #000000;
+        line-height: normal;
+      }
+
+      .referral-footer-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .referral-footer-text {
+        font-size: 48px;
+        font-weight: 500;
+        color: #000000;
+        line-height: normal;
+      }
+
+      .referral-footer-pill {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 16px;
+        border-radius: 24px;
+        text-decoration: none;
+      }
+
+      .referral-footer-pill span {
+        font-size: 48px;
+        font-weight: 500;
+        line-height: normal;
+      }
+
+      .referral-footer-pill img {
+        width: 48px;
+        height: 48px;
+      }
+
+      .referral-footer-pill.purple {
+        background-color: rgba(175, 82, 222, 0.1);
+      }
+
+      .referral-footer-pill.purple span {
+        color: #af52de;
+      }
+
+      .referral-footer-pill.indigo {
+        background-color: rgba(88, 86, 214, 0.1);
+      }
+
+      .referral-footer-pill.indigo span {
+        color: #5856d6;
+      }
+
+      .referral-footer-pill.orange {
+        background-color: rgba(255, 149, 0, 0.1);
+      }
+
+      .referral-footer-pill.orange span {
+        color: #ff9500;
+      }
+
+      /* Responsive */
+      @media (max-width: 1200px) {
+        .referral-hero-container {
+          width: calc(100vw - 64px);
+          height: auto;
+          aspect-ratio: 1136 / 752;
+        }
+
+        .referral-phone-left {
+          left: 18.6%;
+          top: 7.6%;
+          width: 25.8%;
+          height: auto;
+          aspect-ratio: 293 / 637;
+        }
+
+        .referral-phone-right {
+          left: 53%;
+          top: 7.6%;
+          width: 25.8%;
+          height: auto;
+          aspect-ratio: 293 / 637;
+        }
+
+        .referral-image-block {
+          width: calc(100vw - 64px);
+          height: auto;
+          aspect-ratio: 1136 / 732;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .referral-page {
+          gap: 40px;
+        }
+
+        .referral-header {
+          padding: 40px 24px;
+          gap: 24px;
+        }
+
+        .referral-header-title {
+          font-size: 32px;
+        }
+
+        .referral-header-subtitle {
+          font-size: 18px;
+        }
+
+        .referral-hero-container {
+          border-radius: 24px;
+        }
+
+        .referral-phone {
+          border-width: 6px;
+          border-radius: 20px;
+        }
+
+        .referral-metrics {
+          flex-direction: column;
+        }
+
+        .referral-metric-badge {
+          padding: 8px 12px;
+        }
+
+        .referral-metric-badge span {
+          font-size: 18px;
+          line-height: normal;
+        }
+
+        .referral-metric-badge img {
+          width: 24px;
+          height: 28px;
+        }
+
+        .referral-close-button,
+        .referral-copy-link,
+        .referral-sections-menu {
+          display: none;
+        }
+
+        .referral-section-title {
+          font-size: 29px;
+        }
+
+        .referral-section-text {
+          font-size: 16px;
+        }
+
+        .referral-subsection-title {
+          font-size: 22px;
+        }
+
+        .referral-subsection-text {
+          font-size: 16px;
+        }
+
+        .referral-image-block {
+          border-radius: 16px;
+          width: calc(100vw - 48px);
+        }
+
+        .referral-impact-card {
+          width: 100%;
+        }
+
+        .referral-impact-card p {
+          font-size: 22px;
+        }
+
+        .referral-footer-title,
+        .referral-footer-text {
+          font-size: 25px;
+        }
+
+        .referral-footer-pill span {
+          font-size: 25px;
+        }
+
+        .referral-footer-pill img {
+          width: 32px;
+          height: 32px;
+        }
+
+        .referral-textbox,
+        .referral-challenge-container,
+        .referral-impact-section,
+        .referral-learnings-section {
+          padding: 0 24px;
+        }
+
+        .referral-section-title-row {
+          padding-left: 0;
+        }
+
+        .referral-impact-header,
+        .referral-learnings-header {
+          padding-left: 0;
+        }
+
+        .referral-learning-card {
+          flex-direction: column;
+          gap: 20px;
+          padding: 20px;
+        }
+
+        .referral-learning-icon {
+          width: 32px;
+          height: 36px;
+        }
+
+        .referral-learning-content {
+          gap: 16px;
+        }
+
+        .referral-learning-title {
+          font-size: 22px;
+        }
+
+        .referral-learning-text {
+          font-size: 16px;
+        }
+
+        .referral-challenge-card {
+          height: auto;
+          min-height: 160px;
+        }
+
+        .referral-challenge-card p {
+          position: relative;
+          top: auto;
+          left: auto;
+          transform: none;
+          width: auto;
+          padding: 40px 24px;
+        }
+      }
+    </style>
   </head>
   <body>
-    <!-- Overlay -->
-    <div class="overlay">
-      <div class="overlay-window">
+    <div class="referral-page">
 
-        <!-- Close Button -->
-        <a href="index.html" class="overlay-close">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <g clip-path="url(#clip0_140_570)">
-              <path d="M18.8045 2.89132L2.69631 19.0032C2.14136 19.5545 2.12964 20.5509 2.70749 21.1245C3.28906 21.6943 4.29295 21.6832 4.84045 21.1357L20.9486 5.02747C21.5148 4.46134 21.519 3.48354 20.9337 2.90623C20.3484 2.32093 19.3823 2.30921 18.8045 2.89132ZM20.9486 18.9958L4.84045 2.8876C4.28923 2.33211 3.2848 2.30921 2.70749 2.9025C2.13391 3.4878 2.14509 4.47252 2.69631 5.02374L18.8045 21.1319C19.3706 21.6981 20.3564 21.7023 20.9337 21.1208C21.511 20.5355 21.5148 19.5656 20.9486 18.9958Z" fill="#FF2D55"/>
-            </g>
-            <defs>
-              <clipPath id="clip0_140_570">
-                <rect width="19.446" height="19.1136" fill="white" transform="translate(2.2771 2.44336)"/>
-              </clipPath>
-            </defs>
-          </svg>
-        </a>
+      <!-- Close Button -->
+      <a href="index.html" class="referral-close-button">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M18.8045 2.89132L2.69631 19.0032C2.14136 19.5545 2.12964 20.5509 2.70749 21.1245C3.28906 21.6943 4.29295 21.6832 4.84045 21.1357L20.9486 5.02747C21.5148 4.46134 21.519 3.48354 20.9337 2.90623C20.3484 2.32093 19.3823 2.30921 18.8045 2.89132ZM20.9486 18.9958L4.84045 2.8876C4.28923 2.33211 3.2848 2.30921 2.70749 2.9025C2.13391 3.4878 2.14509 4.47252 2.69631 5.02374L18.8045 21.1319C19.3706 21.6981 20.3564 21.7023 20.9337 21.1208C21.511 20.5355 21.5148 19.5656 20.9486 18.9958Z" fill="#FF2D55"/>
+        </svg>
+      </a>
 
-        <!-- Copy Link Button -->
-        <button class="overlay-copy-link" onclick="copyLink()">
-          <p class="overlay-copy-text">Copy link</p>
-          <img src="images/icon_link.svg" alt="Link icon" width="24" height="24" />
+      <!-- Copy Link Button -->
+      <button class="referral-copy-link" onclick="copyLink()">
+        <span>Copy link</span>
+        <img src="images/icon_link.svg" alt="Link" width="24" height="24" />
+      </button>
+
+      <!-- Sections Menu -->
+      <nav class="referral-sections-menu">
+        <button class="referral-sections-toggle">
+          <span>Sections</span>
+          <img src="images/chevronup.svg" alt="" class="referral-chevron" />
         </button>
+        <div class="referral-sections-list">
+          <a href="#challenge" class="referral-section-link referral-section-link-orange">
+            <img src="images/zap.svg" alt="" class="referral-section-link-icon" />
+            <span>Challenge</span>
+          </a>
+          <a href="#my-role" class="referral-section-link referral-section-link-purple">
+            <img src="images/team.svg" alt="" class="referral-section-link-icon" />
+            <span>My Role</span>
+          </a>
+          <a href="#solution" class="referral-section-link referral-section-link-blue">
+            <img src="images/star.svg" alt="" class="referral-section-link-icon" />
+            <span>Solution</span>
+          </a>
+          <a href="#impact" class="referral-section-link referral-section-link-yellow">
+            <img src="images/star-yellow.svg" alt="" class="referral-section-link-icon" />
+            <span>Impact</span>
+          </a>
+          <a href="#learnings" class="referral-section-link referral-section-link-green">
+            <img src="images/star-green.svg" alt="" class="referral-section-link-icon" />
+            <span>Learnings</span>
+          </a>
+        </div>
+      </nav>
 
-        <!-- Content -->
-        <div class="overlay-content">
-
-          <!-- Header Section -->
-          <div class="case-study-header-wrapper">
-            <div class="case-study-header">
-              <p class="case-study-title">Referral System Optimization</p>
-              <p class="case-study-subtitle">Driving organic growth through simplified UX and clearer incentives</p>
-              <div class="case-study-image">
-                <img src="images/referral-header.png" alt="Referral System Optimization" />
-              </div>
-            </div>
-          </div>
-
-          <!-- Impact Section -->
-          <div class="case-study-section">
-            <div class="impact-box">
-              <p class="impact-title">Impact</p>
-              <div class="impact-highlight">
-                <div class="impact-line"></div>
-                <p class="impact-text">3.4x increase in monthly referrals. Worked iteratively from January through November</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Problem Section -->
-          <div class="case-study-section">
-            <p class="case-study-section-title">The Problem</p>
-            <p class="case-study-section-text">Referral system wasn't performing despite valuable premium rewards. Vague messaging, confusing interface, and unrealistic reward structure</p>
-          </div>
-
-          <!-- My Role Section -->
-          <div class="case-study-section">
-            <p class="case-study-section-title">My Role</p>
-            <p class="case-study-section-text">Led iterative redesign working with project manager and iOS/Android engineering teams. Started as small project, became significant organic acquisition channel</p>
-          </div>
-
-          <!-- Process Section -->
-          <div class="case-study-section">
-            <p class="case-study-section-title">Process</p>
-            <p class="case-study-section-text">Started with analytics deep-dive on existing referral system. Identified that QR code and copy link had near-zero usage. Interviewed users who successfully referred friends vs those who didn't. Tested clearer messaging in prototypes with small user groups. Iteratively adjusted reward structure based on conversion data. Worked closely with PM to balance growth goals with sustainable premium economics. Shipped changes incrementally from January through November, measuring impact at each stage.</p>
-          </div>
-
-          <!-- Simplified Interface Section -->
-          <div class="case-study-section">
-            <p class="case-study-section-title">Simplified Interface</p>
-            <p class="case-study-section-text">Removed QR code and copy link options—usage data showed users only converted through the native share button. One clear action instead of decision paralysis</p>
-            <div class="case-study-image">
-              <img src="images/referral-ui buttons.png" alt="Simplified interface" />
-            </div>
-          </div>
-
-          <!-- Clear Messaging Section -->
-          <div class="case-study-section">
-            <p class="case-study-section-title">Clear Messaging</p>
-            <p class="case-study-section-text">Changed "Spread digital freedom" to "Invite friends – get Free Premium." Users immediately understood the value exchange</p>
-            <div class="case-study-image">
-              <img src="images/referral-messaging.png" alt="Updated messaging" />
-            </div>
-          </div>
-
-          <!-- Realistic Rewards Section -->
-          <div class="case-study-section">
-            <p class="case-study-section-title">Realistic Rewards</p>
-            <p class="case-study-section-text">Revised structure: 1 week premium per friend (up to 10), scaling to lifetime premium. Made early wins attainable while rewarding power users</p>
-            <div class="case-study-image">
-              <img src="images/referral-tiers.png" alt="Reward structure" />
-            </div>
-          </div>
-
-          <!-- Key Insight Section -->
-          <div class="case-study-section">
-            <p class="case-study-section-title">Key Insight</p>
-            <p class="case-study-section-text">Usage data revealed the answer: users weren't confused about how to share—they were confused about why to share. Clear incentive + simple action = 3.4x growth</p>
-          </div>
-
-          <!-- Key Takeaways Section -->
-          <div class="case-study-section impact-section">
-            <div class="takeaways-box">
-              <p class="takeaways-title">Key Takeaways</p>
-              <div class="takeaways-list">
-                <ul>
-                  <li class="takeaways-text"><strong>Data over assumptions:</strong> <span>Analytics revealed what users actually do vs what we assume</span></li>
-                  <li class="takeaways-text"><strong>Remove friction:</strong> <span>Fewer options drove more action—simplicity beats choice paralysis</span></li>
-                  <li class="takeaways-text"><strong>Clear incentives:</strong> <span>Benefits must be immediately understandable and attainable</span></li>
-                  <li class="takeaways-text"><strong>Iterative validation:</strong> <span>Incremental releases enabled measurement and adjustment</span></li>
-                  <li class="takeaways-text"><strong>Compound effects:</strong> <span>Small optimizations grew minor feature into major acquisition channel</span></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
+      <!-- Header Section -->
+      <header class="referral-header">
+        <div class="referral-header-content">
+          <h1 class="referral-header-title">Referral System Optimization</h1>
+          <p class="referral-header-subtitle">Driving organic growth through simplified UX and clearer incentives</p>
         </div>
 
-        <!-- Back to Case Card -->
-        <a href="aloha.html" class="back-to-case-card">
-          <div class="back-to-case-info">
-            <div class="back-to-case-icon-container">
-              <object class="back-to-case-icon" data="images/SVG/SVG02.svg" type="image/svg+xml" aria-label="Aloha Browser"></object>
-            </div>
-            <div class="back-to-case-text">
-              <p class="back-to-case-title">Aloha Browser</p>
-              <p class="back-to-case-link">Read full case study</p>
+        <!-- Hero Phone Container -->
+        <div class="referral-hero-container">
+          <div class="referral-phone referral-phone-left">
+            <img src="images/New Referral Images/referral-header.png" alt="Referral System - Before" />
+          </div>
+          <div class="referral-phone referral-phone-right">
+            <img src="images/New Referral Images/referral-header-1.png" alt="Referral System - After" />
+          </div>
+        </div>
+
+        <!-- Metrics Badges -->
+        <div class="referral-metrics">
+          <div class="referral-metric-badge">
+            <img src="images/star-yellow.svg" alt="" />
+            <span>3.4x monthly referrals</span>
+          </div>
+          <div class="referral-metric-badge">
+            <img src="images/star-yellow.svg" alt="" />
+            <span>50% conversion rate</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Challenge Section -->
+      <section id="challenge" class="referral-section">
+        <div class="referral-textbox">
+          <div class="referral-section-title-row">
+            <img src="images/zap.svg" alt="" class="referral-section-icon" />
+            <h2 class="referral-section-title">Challenge</h2>
+          </div>
+          <p class="referral-section-text">Aloha's primary acquisition came from paid ads, word of mouth, and press mentions. The CEO initiated a referral program to expand natural channels, inspired by successful programs at Wise and Uber.</p>
+          <p class="referral-section-text">When I started work on the referral system, it generated only 400 successful referrals per month. Customer success channels and surveys revealed the core issue: users didn't understand what we wanted from them or why they should participate. The reward structure was unclear, the motivation was vague, and the interface created decision paralysis.</p>
+        </div>
+
+        <div class="referral-challenge-container">
+          <div class="referral-challenge-block">
+            <p class="referral-challenge-label">User Feedback</p>
+            <div class="referral-challenge-card">
+              <img src="images/New Referral Images/challenge_large.svg" alt="" class="referral-challenge-card-bg" />
+              <p>Users found the referral program confusing and unclear. Support feedback showed they didn't understand the value proposition or how the program worked.</p>
             </div>
           </div>
-          <div class="back-to-case-button">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <g clip-path="url(#clip0_140_581)">
-                <path d="M13.8584 21.1866C14.2253 21.1866 14.5795 21.0327 14.8884 20.728L22.5845 13.0554C22.8748 12.7731 23.0404 12.3731 23.0404 11.9721C23.0404 11.5711 22.8748 11.1711 22.5845 10.8888L14.9044 3.22844C14.5795 2.89983 14.2253 2.75391 13.8584 2.75391C13.0159 2.75391 12.4252 3.3472 12.4252 4.14555C12.4252 4.57213 12.5972 4.91992 12.8667 5.18568L15.4917 7.83519L19.9834 11.9721L15.4917 16.109L12.8667 18.7548C12.5972 19.0088 12.4252 19.3683 12.4252 19.7949C12.4252 20.5933 13.0159 21.1866 13.8584 21.1866ZM2.10124 13.4324H15.923L20.1921 13.1906C20.9446 13.148 21.4516 12.6985 21.4516 11.9721C21.4516 11.2457 20.9446 10.7962 20.1921 10.7536L15.923 10.5118H2.10124C1.20866 10.5118 0.60791 11.1056 0.60791 11.9721C0.60791 12.8386 1.20866 13.4324 2.10124 13.4324Z" fill="#0084FF"/>
+
+          <div class="referral-challenge-block">
+            <p class="referral-challenge-label">Business</p>
+            <div class="referral-challenge-card">
+              <img src="images/New Referral Images/challenge_large.svg" alt="" class="referral-challenge-card-bg" />
+              <p>Referral programs at comparable software products drove significant growth. Our program was underperforming - generating only 400 referrals/month when it should be a major acquisition channel.</p>
+            </div>
+          </div>
+
+          <div class="referral-challenge-block">
+            <p class="referral-challenge-label">Design</p>
+            <div class="referral-challenge-card">
+              <img src="images/New Referral Images/challenge_large.svg" alt="" class="referral-challenge-card-bg" />
+              <p>The interface prioritized brand messaging ("Spread digital freedom") over functional clarity.<br><br>Multiple sharing options (QR code, copy link, native share) created friction. QR code had a near-zero success rate - people clicked it but failed to convert referrals.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- My Role Section -->
+      <section id="my-role" class="referral-section">
+        <div class="referral-textbox">
+          <div class="referral-section-title-row">
+            <img src="images/team.svg" alt="" class="referral-section-icon" />
+            <h2 class="referral-section-title">My Role</h2>
+          </div>
+          <p class="referral-section-text">I co-led this project with our junior PM, reporting progress to Product Lead. I owned all design decisions and worked directly with iOS/Android engineering teams to ship iterative improvements.</p>
+          <p class="referral-section-text">The project ran intermittently from January through August as I worked on it between other priorities. I collaborated with the PM on analytics insights and reward structure, using support feedback and Amplitude behavioural data to guide decisions. One of my biggest challenges was maintaining engineering engagement on an intermittent project - I had to repeatedly communicate the initiative's value until the data proved the case.</p>
+          <p class="referral-section-text">I shipped 5 releases testing different messaging approaches, reward structures, and interface changes. The final release in June - which removed the profile requirement - drove the largest spike in adoption.</p>
+        </div>
+      </section>
+
+      <!-- Solution Section -->
+      <section id="solution" class="referral-section">
+        <div class="referral-textbox">
+          <div class="referral-section-title-row">
+            <img src="images/star.svg" alt="" class="referral-section-icon" />
+            <h2 class="referral-section-title">Solution</h2>
+          </div>
+          <p class="referral-section-text">Started by analyzing button clicks, successful referral rates, and geographic patterns in Amplitude. Discovered that QR code and copy link weren't just unused - they had near-zero success rates. Users who clicked these options rarely converted referrals. The native share button had significantly higher success.</p>
+        </div>
+
+        <!-- Before/After Image 1 -->
+        <div class="referral-image-block" style="position: relative;">
+          <img src="images/New Referral Images/referral02.png" alt="Simplified Interface - Before and After" />
+          <!-- Red stickies (Before) -->
+          <div class="referral-sticky" style="left: 154px; top: 354px;">
+            <img src="images/New Referral Images/sticky_red.svg" alt="" class="referral-sticky-bg" />
+            <p>Confusing UI</p>
+          </div>
+          <div class="referral-sticky" style="left: 154px; top: 480px;">
+            <img src="images/New Referral Images/sticky_red.svg" alt="" class="referral-sticky-bg" />
+            <p>Unnecessary functions</p>
+          </div>
+          <!-- Green stickies (After) -->
+          <div class="referral-sticky" style="left: 748px; top: 354px;">
+            <img src="images/New Referral Images/sticky_green.svg" alt="" class="referral-sticky-bg" />
+            <p>Clear Call to Action</p>
+          </div>
+          <div class="referral-sticky" style="left: 748px; top: 480px;">
+            <img src="images/New Referral Images/sticky_green.svg" alt="" class="referral-sticky-bg" />
+            <p>No bloat</p>
+          </div>
+        </div>
+
+        <div class="referral-textbox">
+          <h3 class="referral-subsection-title">Simplified Interface</h3>
+          <p class="referral-subsection-text">Removed QR code and copy link options—usage data showed users only converted through the native share button. One clear action instead of decision paralysis</p>
+        </div>
+
+        <!-- Before/After Image 2 -->
+        <div class="referral-image-block" style="position: relative;">
+          <img src="images/New Referral Images/referral03.png" alt="Clear Messaging - Before and After" />
+          <!-- Red stickies (Before) -->
+          <div class="referral-sticky" style="left: 148px; top: 47px;">
+            <img src="images/New Referral Images/sticky_red.svg" alt="" class="referral-sticky-bg" />
+            <p>Unclear messaging</p>
+          </div>
+          <div class="referral-sticky" style="left: 148px; top: 173px;">
+            <img src="images/New Referral Images/sticky_red.svg" alt="" class="referral-sticky-bg" />
+            <p>Muddled incentive</p>
+          </div>
+          <!-- Green stickies (After) -->
+          <div class="referral-sticky" style="left: 748px; top: 47px;">
+            <img src="images/New Referral Images/sticky_green.svg" alt="" class="referral-sticky-bg" />
+            <p>Clear value proposition</p>
+          </div>
+          <div class="referral-sticky" style="left: 748px; top: 173px;">
+            <img src="images/New Referral Images/sticky_green.svg" alt="" class="referral-sticky-bg" />
+            <p>Tells the user exactly how it works</p>
+          </div>
+        </div>
+
+        <div class="referral-textbox">
+          <h3 class="referral-subsection-title">The Brand vs. Clarity Tension</h3>
+          <p class="referral-subsection-text">There was internal push to communicate Aloha's privacy mission ("Spread digital freedom"). But this mission wasn't fully fleshed out internally and appeared shallow. I advocated strongly for functional clarity over brand messaging: users needed to understand what they were getting, not vague mission statements.</p>
+          <p class="referral-subsection-text">Changed "Spread digital freedom" to "Invite friends – get Free Premium." Our users span the globe from Indonesia to the US - clarity is paramount. Users immediately understood the value exchange.</p>
+        </div>
+
+        <!-- Rewards Image -->
+        <div class="referral-image-block">
+          <img src="images/New Referral Images/referral01.png" alt="Realistic Rewards" />
+        </div>
+
+        <div class="referral-textbox">
+          <h3 class="referral-subsection-title">Realistic Rewards</h3>
+          <p class="referral-subsection-text">Worked closely with PM to balance growth goals with sustainable premium economics. The consensus: rewards should be achievable but not too easy. While real revenue came from paid premium subscriptions, we needed to show subscription growth to justify the program.</p>
+          <p class="referral-subsection-text">Revised structure: 1 week premium per friend (up to 10 referrals), scaling to lifetime premium for power referrers. This made early wins attainable while rewarding our most engaged users without cannibalizing paid subscriptions.</p>
+        </div>
+      </section>
+
+      <!-- Impact Section -->
+      <section id="impact" class="referral-impact-section">
+        <div class="referral-impact-header">
+          <h2 class="referral-section-title">Impact</h2>
+        </div>
+        <div class="referral-impact-grid">
+          <div class="referral-impact-card">
+            <img src="images/star-yellow.svg" alt="" />
+            <p>3.4x growth in monthly successful referrals from January to August</p>
+          </div>
+          <div class="referral-impact-card">
+            <img src="images/star-yellow.svg" alt="" />
+            <p>50% conversion rate from referral attempt to successful referral</p>
+          </div>
+          <div class="referral-impact-card">
+            <img src="images/star-yellow.svg" alt="" />
+            <p>Growing acquisition channel - referrals becoming significant natural growth driver</p>
+          </div>
+          <div class="referral-impact-card">
+            <img src="images/star-yellow.svg" alt="" />
+            <p>Increased premium subscriptions through reward distribution</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Key Learnings Section -->
+      <section id="learnings" class="referral-learnings-section">
+        <div class="referral-learnings-header">
+          <h2 class="referral-section-title">Key Learnings</h2>
+        </div>
+        <div class="referral-learnings-grid">
+          <div class="referral-learning-card">
+            <img src="images/star-green.svg" alt="" class="referral-learning-icon" />
+            <div class="referral-learning-content">
+              <p class="referral-learning-title">Clarity beats brand messaging</p>
+              <p class="referral-learning-text">I was adamant that functional communication ("get Free Premium") was more valuable than shallow mission statements. The data proved it - users across different markets needed clear value propositions, not vague ideals. This tension between brand and clarity is common, but user needs should win.</p>
+            </div>
+          </div>
+          <div class="referral-learning-card">
+            <img src="images/star-green.svg" alt="" class="referral-learning-icon" />
+            <div class="referral-learning-content">
+              <p class="referral-learning-title">Data reveals behavior, not intent</p>
+              <p class="referral-learning-text">QR code wasn't just unused - it actively hurt conversions. People clicked it but failed to refer successfully. Analytics showed what users actually did versus what we assumed they wanted. Removing failed options drove better outcomes than adding more.</p>
+            </div>
+          </div>
+          <div class="referral-learning-card">
+            <img src="images/star-green.svg" alt="" class="referral-learning-icon" />
+            <div class="referral-learning-content">
+              <p class="referral-learning-title">Economics shape product decisions</p>
+              <p class="referral-learning-text">Balancing growth goals with sustainable premium economics meant rewards had to be achievable but not too generous. Understanding the business model (referrals drive subscriptions, but revenue comes from paid premium) shaped the final reward structure.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Other Cases Section -->
+      <section class="referral-other-cases">
+        <div class="referral-bento-scroll">
+          <!-- First set of cards -->
+          <div class="referral-bento-container">
+            <a href="tabs.html" class="referral-bento-card">
+              <div class="referral-bento-text">
+                <p class="referral-bento-title blue">Tab Management Redesign</p>
+                <p class="referral-bento-subtitle">Driving organic growth through simplified UX</p>
+              </div>
+              <div class="referral-bento-image tabs-blue-bg">
+                <img src="images/tabs_thumb.png" alt="Tab Management Redesign" />
+              </div>
+              <div class="referral-bento-tags nowrap">
+                <span class="referral-bento-tag blue">Retention & Engagement</span>
+                <span class="referral-bento-tag yellow">
+                  <img src="images/star-yellow.svg" alt="" />
+                  1.8% retention lift
+                </span>
+              </div>
+            </a>
+            <a href="snips.html" class="referral-bento-card">
+              <div class="referral-bento-text">
+                <p class="referral-bento-title light-blue">Aloha Snips AI Notifications</p>
+                <p class="referral-bento-subtitle">AI-powered content tracking across platforms</p>
+              </div>
+              <div class="referral-bento-image snips-bg">
+                <img src="images/snips-thumbnail.png" alt="Snips AI" />
+              </div>
+              <div class="referral-bento-tags">
+                <span class="referral-bento-tag blue">0→1 Product</span>
+                <span class="referral-bento-tag orange-bg">
+                  <img src="images/star-orange.svg" alt="" />
+                  Currently in beta
+                </span>
+              </div>
+            </a>
+            <a href="website.html" class="referral-bento-card">
+              <div class="referral-bento-text">
+                <p class="referral-bento-title purple">Aloha Website Design System</p>
+                <p class="referral-bento-subtitle">Building a scalable design system</p>
+              </div>
+              <div class="referral-bento-image">
+                <img src="images/website-thumb.png" alt="Website Design System" />
+              </div>
+              <div class="referral-bento-tags">
+                <span class="referral-bento-tag blue">Conversion & Design System</span>
+                <span class="referral-bento-tag yellow">
+                  <img src="images/star-yellow.svg" alt="" />
+                  +10pp conversion
+                </span>
+                <span class="referral-bento-tag yellow">
+                  <img src="images/star-yellow.svg" alt="" />
+                  -50% dev time
+                </span>
+              </div>
+            </a>
+            <a href="vulners.html" class="referral-bento-card">
+              <div class="referral-bento-text">
+                <p class="referral-bento-title orange">Vulners Visual Design</p>
+                <p class="referral-bento-subtitle">Design system unifying cybersecurity suite</p>
+              </div>
+              <div class="referral-bento-image">
+                <img src="images/vulners-hero.png" alt="Vulners" />
+              </div>
+              <div class="referral-bento-tags">
+                <span class="referral-bento-tag blue">Brand & Systems</span>
+                <span class="referral-bento-tag yellow">
+                  <img src="images/star-yellow.svg" alt="" />
+                  Multi-product ecosystem
+                </span>
+              </div>
+            </a>
+          </div>
+          <!-- Duplicate set for seamless loop -->
+          <div class="referral-bento-container">
+            <a href="tabs.html" class="referral-bento-card">
+              <div class="referral-bento-text">
+                <p class="referral-bento-title blue">Tab Management Redesign</p>
+                <p class="referral-bento-subtitle">Driving organic growth through simplified UX</p>
+              </div>
+              <div class="referral-bento-image tabs-blue-bg">
+                <img src="images/tabs_thumb.png" alt="Tab Management Redesign" />
+              </div>
+              <div class="referral-bento-tags nowrap">
+                <span class="referral-bento-tag blue">Retention & Engagement</span>
+                <span class="referral-bento-tag yellow">
+                  <img src="images/star-yellow.svg" alt="" />
+                  1.8% retention lift
+                </span>
+              </div>
+            </a>
+            <a href="snips.html" class="referral-bento-card">
+              <div class="referral-bento-text">
+                <p class="referral-bento-title light-blue">Aloha Snips AI Notifications</p>
+                <p class="referral-bento-subtitle">AI-powered content tracking across platforms</p>
+              </div>
+              <div class="referral-bento-image snips-bg">
+                <img src="images/snips-thumbnail.png" alt="Snips AI" />
+              </div>
+              <div class="referral-bento-tags">
+                <span class="referral-bento-tag blue">0→1 Product</span>
+                <span class="referral-bento-tag orange-bg">
+                  <img src="images/star-orange.svg" alt="" />
+                  Currently in beta
+                </span>
+              </div>
+            </a>
+            <a href="website.html" class="referral-bento-card">
+              <div class="referral-bento-text">
+                <p class="referral-bento-title purple">Aloha Website Design System</p>
+                <p class="referral-bento-subtitle">Building a scalable design system</p>
+              </div>
+              <div class="referral-bento-image">
+                <img src="images/website-thumb.png" alt="Website Design System" />
+              </div>
+              <div class="referral-bento-tags">
+                <span class="referral-bento-tag blue">Conversion & Design System</span>
+                <span class="referral-bento-tag yellow">
+                  <img src="images/star-yellow.svg" alt="" />
+                  +10pp conversion
+                </span>
+                <span class="referral-bento-tag yellow">
+                  <img src="images/star-yellow.svg" alt="" />
+                  -50% dev time
+                </span>
+              </div>
+            </a>
+            <a href="vulners.html" class="referral-bento-card">
+              <div class="referral-bento-text">
+                <p class="referral-bento-title orange">Vulners Visual Design</p>
+                <p class="referral-bento-subtitle">Design system unifying cybersecurity suite</p>
+              </div>
+              <div class="referral-bento-image">
+                <img src="images/vulners-hero.png" alt="Vulners" />
+              </div>
+              <div class="referral-bento-tags">
+                <span class="referral-bento-tag blue">Brand & Systems</span>
+                <span class="referral-bento-tag yellow">
+                  <img src="images/star-yellow.svg" alt="" />
+                  Multi-product ecosystem
+                </span>
+              </div>
+            </a>
+          </div>
+          <!-- Third set for seamless infinite scroll -->
+          <div class="referral-bento-container">
+            <a href="tabs.html" class="referral-bento-card">
+              <div class="referral-bento-text">
+                <p class="referral-bento-title blue">Tab Management Redesign</p>
+                <p class="referral-bento-subtitle">Driving organic growth through simplified UX</p>
+              </div>
+              <div class="referral-bento-image tabs-blue-bg">
+                <img src="images/tabs_thumb.png" alt="Tab Management Redesign" />
+              </div>
+              <div class="referral-bento-tags nowrap">
+                <span class="referral-bento-tag blue">Retention & Engagement</span>
+                <span class="referral-bento-tag yellow">
+                  <img src="images/star-yellow.svg" alt="" />
+                  1.8% retention lift
+                </span>
+              </div>
+            </a>
+            <a href="snips.html" class="referral-bento-card">
+              <div class="referral-bento-text">
+                <p class="referral-bento-title light-blue">Aloha Snips AI Notifications</p>
+                <p class="referral-bento-subtitle">AI-powered content tracking across platforms</p>
+              </div>
+              <div class="referral-bento-image snips-bg">
+                <img src="images/snips-thumbnail.png" alt="Snips AI" />
+              </div>
+              <div class="referral-bento-tags">
+                <span class="referral-bento-tag blue">0→1 Product</span>
+                <span class="referral-bento-tag orange-bg">
+                  <img src="images/star-orange.svg" alt="" />
+                  Currently in beta
+                </span>
+              </div>
+            </a>
+            <a href="website.html" class="referral-bento-card">
+              <div class="referral-bento-text">
+                <p class="referral-bento-title purple">Aloha Website Design System</p>
+                <p class="referral-bento-subtitle">Building a scalable design system</p>
+              </div>
+              <div class="referral-bento-image">
+                <img src="images/website-thumb.png" alt="Website Design System" />
+              </div>
+              <div class="referral-bento-tags">
+                <span class="referral-bento-tag blue">Conversion & Design System</span>
+                <span class="referral-bento-tag yellow">
+                  <img src="images/star-yellow.svg" alt="" />
+                  +10pp conversion
+                </span>
+                <span class="referral-bento-tag yellow">
+                  <img src="images/star-yellow.svg" alt="" />
+                  -50% dev time
+                </span>
+              </div>
+            </a>
+            <a href="vulners.html" class="referral-bento-card">
+              <div class="referral-bento-text">
+                <p class="referral-bento-title orange">Vulners Visual Design</p>
+                <p class="referral-bento-subtitle">Design system unifying cybersecurity suite</p>
+              </div>
+              <div class="referral-bento-image">
+                <img src="images/vulners-hero.png" alt="Vulners" />
+              </div>
+              <div class="referral-bento-tags">
+                <span class="referral-bento-tag blue">Brand & Systems</span>
+                <span class="referral-bento-tag yellow">
+                  <img src="images/star-yellow.svg" alt="" />
+                  Multi-product ecosystem
+                </span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer CTA -->
+      <section class="referral-footer-cta">
+        <p class="referral-footer-title">Thanks for scrolling all the way down!</p>
+        <p class="referral-footer-title">I'm open to new opportunities</p>
+        <div class="referral-footer-links">
+          <span class="referral-footer-text">You can read my</span>
+          <a href="docs/Vasilii_Diakonov_Resume_26.pdf" class="referral-footer-pill purple" target="_blank" download>
+            <span>Resume</span>
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g clip-path="url(#clip0_referral_download)">
+                <path d="M23.6597 11.994C23.6597 18.5159 18.3612 23.8222 11.828 23.8222C5.30623 23.8222 0 18.5159 0 11.994C0 5.46452 5.30623 0.166016 11.828 0.166016C18.3612 0.166016 23.6597 5.46452 23.6597 11.994ZM10.5956 7.09394V13.1697L10.6773 14.848L10.0841 14.1152L8.51632 12.4489C8.30344 12.2164 7.9957 12.0861 7.68592 12.0861C7.10446 12.0861 6.6014 12.52 6.6014 13.1334C6.6014 13.455 6.72459 13.6989 6.94573 13.9159L10.8704 17.6937C11.1987 18.0111 11.5075 18.1153 11.8358 18.1153C12.1677 18.1153 12.4765 18.0111 12.8048 17.6937L16.7218 13.9159C16.9506 13.6989 17.0738 13.455 17.0738 13.1334C17.0738 12.52 16.5629 12.0861 15.9815 12.0861C15.6718 12.0861 15.3718 12.2164 15.1588 12.4489L13.591 14.1152L13.0008 14.8443L13.0873 13.1697V7.09394C13.0873 6.42902 12.5301 5.87286 11.8358 5.87286C11.1487 5.87286 10.5956 6.42902 10.5956 7.09394Z" fill="#AF52DE"/>
               </g>
               <defs>
-                <clipPath id="clip0_140_581">
-                  <rect width="22.784" height="18.4928" fill="white" transform="translate(0.60791 2.75391)"/>
+                <clipPath id="clip0_referral_download">
+                  <rect width="24" height="23.6675" fill="white" transform="translate(0 0.166016)"/>
                 </clipPath>
               </defs>
             </svg>
-          </div>
-        </a>
+          </a>
+          <span class="referral-footer-text">or contact me on</span>
+          <a href="https://www.linkedin.com/in/vasiliidiakonov/" class="referral-footer-pill indigo" target="_blank">
+            <span>Linkedin</span>
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g clip-path="url(#clip0_referral_linkedin)">
+                <path d="M3.31521 20.5276C3.90159 21.1022 4.72656 21.1368 5.38801 20.4866L16.4031 9.48322L18.7751 6.91254C19.3635 6.28679 19.3114 5.52841 18.8166 5.03416C18.3181 4.52074 17.5368 4.44194 16.9078 5.04534L14.3334 7.4136L3.33011 18.4324C2.64258 19.1274 2.74001 19.9635 3.31521 20.5276ZM17.9286 11.9501V16.36C17.9286 17.1797 18.5587 17.8513 19.3453 17.8513C20.1314 17.8513 20.7955 17.1925 20.7955 16.3318L20.7913 4.59174C20.7913 3.66982 20.1783 3.04883 19.2446 3.04883H7.49287C6.61676 3.04883 5.98139 3.70498 5.98139 4.48735C5.98139 5.26598 6.65672 5.89178 7.46463 5.89178H11.7104L18.2099 5.6425L17.9286 11.9501Z" fill="#5856D6"/>
+              </g>
+              <defs>
+                <clipPath id="clip0_referral_linkedin">
+                  <rect width="18.3028" height="17.9325" fill="white" transform="translate(2.84863 3.03418)"/>
+                </clipPath>
+              </defs>
+            </svg>
+          </a>
+          <span class="referral-footer-text">or via</span>
+          <a href="mailto:vasilii.diakonov@gmail.com" class="referral-footer-pill orange">
+            <span>Email</span>
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g clip-path="url(#clip0_referral_email)">
+                <path d="M3.31521 20.5276C3.90159 21.1022 4.72656 21.1368 5.38801 20.4866L16.4031 9.48322L18.7751 6.91254C19.3635 6.28679 19.3114 5.52841 18.8166 5.03416C18.3181 4.52074 17.5368 4.44194 16.9078 5.04534L14.3334 7.4136L3.33011 18.4324C2.64258 19.1274 2.74001 19.9635 3.31521 20.5276ZM17.9286 11.9501V16.36C17.9286 17.1797 18.5587 17.8513 19.3453 17.8513C20.1314 17.8513 20.7955 17.1925 20.7955 16.3318L20.7913 4.59174C20.7913 3.66982 20.1783 3.04883 19.2446 3.04883H7.49287C6.61676 3.04883 5.98139 3.70498 5.98139 4.48735C5.98139 5.26598 6.65672 5.89178 7.46463 5.89178H11.7104L18.2099 5.6425L17.9286 11.9501Z" fill="#FF9500"/>
+              </g>
+              <defs>
+                <clipPath id="clip0_referral_email">
+                  <rect width="18.3028" height="17.9325" fill="white" transform="translate(2.84863 3.03418)"/>
+                </clipPath>
+              </defs>
+            </svg>
+          </a>
+        </div>
+      </section>
 
-      </div>
     </div>
 
+    <!-- Scripts -->
     <script>
+      // Copy link functionality
       function copyLink() {
         const url = window.location.href;
         navigator.clipboard.writeText(url).then(() => {
-          const button = document.querySelector('.overlay-copy-link');
-          const text = button.querySelector('.overlay-copy-text');
-          text.textContent = 'Copied!';
+          const button = document.querySelector('.referral-copy-link span');
+          button.textContent = 'Copied!';
           setTimeout(() => {
-            text.textContent = 'Copy link';
+            button.textContent = 'Copy link';
           }, 2000);
         });
       }
+
+      // GSAP Animations
+      document.addEventListener('DOMContentLoaded', function() {
+        gsap.registerPlugin(ScrollTrigger);
+
+        const headerContent = document.querySelector('.referral-header-content');
+        const metricsBadges = document.querySelector('.referral-metrics');
+        const phoneLeft = document.querySelector('.referral-phone-left');
+        const phoneRight = document.querySelector('.referral-phone-right');
+
+        // Header fade in on entry
+        gsap.set(headerContent, { y: 30, autoAlpha: 0 });
+        gsap.set(metricsBadges, { y: 20, autoAlpha: 0 });
+        gsap.set(phoneLeft, { y: 80, autoAlpha: 0 });
+        gsap.set(phoneRight, { y: 80, autoAlpha: 0 });
+
+        gsap.to(headerContent, {
+          y: 0,
+          autoAlpha: 1,
+          duration: 0.8,
+          ease: 'power2.out',
+          delay: 0.1
+        });
+
+        gsap.to(metricsBadges, {
+          y: 0,
+          autoAlpha: 1,
+          duration: 0.6,
+          ease: 'power2.out',
+          delay: 0.3
+        });
+
+        gsap.to(phoneLeft, {
+          y: 0,
+          autoAlpha: 1,
+          duration: 0.8,
+          ease: 'power2.out',
+          delay: 0.4
+        });
+
+        gsap.to(phoneRight, {
+          y: 0,
+          autoAlpha: 1,
+          duration: 0.8,
+          ease: 'power2.out',
+          delay: 0.5
+        });
+
+        // Scroll detection for button background transition
+        const closeButton = document.querySelector('.referral-close-button');
+        const copyLinkButton = document.querySelector('.referral-copy-link');
+        const header = document.querySelector('.referral-header');
+        const referralPage = document.querySelector('.referral-page');
+
+        function updateButtonStyles() {
+          const headerBottom = header.getBoundingClientRect().bottom;
+          const metricsBottom = metricsBadges.getBoundingClientRect().bottom;
+
+          if (headerBottom < 100) {
+            closeButton.classList.add('on-white');
+            copyLinkButton.classList.add('on-white');
+          } else {
+            closeButton.classList.remove('on-white');
+            copyLinkButton.classList.remove('on-white');
+          }
+
+          // Page background color transition
+          if (metricsBottom < window.innerHeight / 2) {
+            referralPage.classList.add('scrolled-past-header');
+          } else {
+            referralPage.classList.remove('scrolled-past-header');
+          }
+        }
+
+        window.addEventListener('scroll', updateButtonStyles);
+        updateButtonStyles();
+
+        // Sections menu functionality
+        const sectionsMenu = document.querySelector('.referral-sections-menu');
+        const sectionsToggle = document.querySelector('.referral-sections-toggle');
+        let hasScrolled = false;
+
+        // Fixed buttons fade in on page load
+        gsap.set(closeButton, { autoAlpha: 0 });
+        gsap.set(copyLinkButton, { autoAlpha: 0 });
+        gsap.set(sectionsMenu, { autoAlpha: 0 });
+
+        gsap.to([closeButton, copyLinkButton, sectionsMenu], {
+          autoAlpha: 1,
+          duration: 1.2,
+          ease: 'power2.out',
+          delay: 0.8
+        });
+
+        // Close menu on first scroll
+        function handleMenuScroll() {
+          const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+          const menuHeaderBottom = header.getBoundingClientRect().bottom;
+
+          // Update on-white class based on header position
+          if (menuHeaderBottom < 100) {
+            sectionsMenu.classList.add('on-white');
+          } else {
+            sectionsMenu.classList.remove('on-white');
+          }
+
+          // Close menu on first scroll down
+          if (!hasScrolled && scrollTop > 50) {
+            hasScrolled = true;
+            sectionsMenu.classList.remove('open');
+          }
+        }
+
+        window.addEventListener('scroll', handleMenuScroll);
+
+        // Toggle menu on button click
+        sectionsToggle.addEventListener('click', function() {
+          sectionsMenu.classList.toggle('open');
+        });
+
+        // Close menu when clicking a link
+        const sectionLinks = document.querySelectorAll('.referral-section-link');
+        sectionLinks.forEach(link => {
+          link.addEventListener('click', function() {
+            sectionsMenu.classList.remove('open');
+          });
+        });
+
+        // Initialize carousel
+        const carousel = document.querySelector('.referral-bento-scroll');
+        if (carousel) {
+          const carouselImages = carousel.querySelectorAll('img');
+          let loadedCount = 0;
+          const totalImages = carouselImages.length;
+
+          const startCarousel = () => {
+            const observer = new IntersectionObserver((entries) => {
+              entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                  setTimeout(() => {
+                    carousel.classList.add('animate');
+                  }, 100);
+                  observer.disconnect();
+                }
+              });
+            }, { threshold: 0.1 });
+
+            observer.observe(carousel);
+          };
+
+          const onImageLoad = () => {
+            loadedCount++;
+            if (loadedCount >= totalImages) {
+              startCarousel();
+            }
+          };
+
+          carouselImages.forEach(img => {
+            if (img.complete) {
+              onImageLoad();
+            } else {
+              img.addEventListener('load', onImageLoad);
+              img.addEventListener('error', onImageLoad);
+            }
+          });
+
+          setTimeout(startCarousel, 2000);
+        }
+      });
     </script>
 
   </body>
