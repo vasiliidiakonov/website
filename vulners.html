@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Vulners – Vasilii Diakonov</title>
+    <title>Vulners Design System – Vasilii Diakonov</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/png" href="images/favicon.png" />
@@ -9,66 +9,451 @@
     <link rel="apple-touch-icon" href="images/favicon.png" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css" />
     <link rel="stylesheet" href="design/style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <style>
-      /* Override image heights for Vulners */
-      .case-study-header .case-study-image,
-      .case-study-section > .case-study-image {
-        height: 680px;
+      /* Vulners Case Study Full Page Styles */
+      .vulners-page {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 60px;
+        padding-bottom: 80px;
+        background-color: #fff4e5;
+        transition: background-color 0.5s ease;
       }
 
-      /* Gallery specific styles */
+      .vulners-page.scrolled-past-header {
+        background-color: #ffffff;
+      }
+
+      /* Header Section */
+      .vulners-header {
+        padding: 64px 32px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+        width: 100%;
+      }
+
+      .vulners-header-content {
+        max-width: 728px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .vulners-header-title {
+        font-size: 58px;
+        font-weight: 500;
+        color: #ff9500;
+        line-height: normal;
+      }
+
+      .vulners-header-subtitle {
+        font-size: 27px;
+        font-weight: 500;
+        color: #ff9500;
+        line-height: normal;
+      }
+
+      /* Hero Container */
+      .vulners-hero-container {
+        width: 1136px;
+        max-width: calc(100vw - 64px);
+        height: 752px;
+        background-color: #ffffff;
+        border-radius: 32px;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+      }
+
+      .vulners-hero-video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      /* Metrics Badges */
+      .vulners-metrics {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
+
+      .vulners-metric-badge {
+        background-color: #fff9e5;
+        border-radius: 24px;
+        padding: 12px 18px 12px 12px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .vulners-metric-badge img {
+        width: 34px;
+        height: 38px;
+      }
+
+      .vulners-metric-badge span {
+        font-size: 27px;
+        font-weight: 500;
+        color: #404040;
+        line-height: normal;
+      }
+
+      /* Close and Copy Link Buttons */
+      .vulners-close-button {
+        position: fixed;
+        top: 16px;
+        right: 12px;
+        width: 40px;
+        height: 40px;
+        background-color: #ffffff;
+        border-radius: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 100;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+      }
+
+      .vulners-close-button.on-white {
+        background-color: rgba(255, 45, 85, 0.1);
+      }
+
+      .vulners-copy-link {
+        position: fixed;
+        top: 16px;
+        right: 66px;
+        background-color: #ffffff;
+        border-radius: 24px;
+        padding: 8px 8px 8px 12px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        z-index: 100;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .vulners-copy-link.on-white {
+        background-color: rgba(0, 132, 255, 0.1);
+      }
+
+      .vulners-copy-link span {
+        font-size: 20px;
+        font-weight: 500;
+        color: #0084ff;
+        line-height: normal;
+      }
+
+      .vulners-copy-link svg {
+        width: 24px;
+        height: 24px;
+      }
+
+      /* Sections Menu */
+      .vulners-sections-menu {
+        position: fixed;
+        top: 16px;
+        left: 12px;
+        z-index: 100;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+      }
+
+      .vulners-sections-toggle {
+        background-color: #ffffff;
+        border: none;
+        border-radius: 24px;
+        padding: 8px 12px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .vulners-sections-menu.on-white .vulners-sections-toggle {
+        background-color: rgba(0, 0, 0, 0.05);
+      }
+
+      .vulners-sections-toggle span {
+        font-size: 20px;
+        font-weight: 500;
+        color: #000000;
+        line-height: normal;
+      }
+
+      .vulners-chevron {
+        width: 17px;
+        height: 10px;
+        transition: transform 0.3s ease;
+      }
+
+      .vulners-sections-menu:not(.open) .vulners-chevron {
+        transform: rotate(180deg);
+      }
+
+      .vulners-sections-list {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+        opacity: 1;
+        max-height: 400px;
+        overflow: hidden;
+        transition: opacity 0.3s ease, max-height 0.3s ease;
+      }
+
+      .vulners-sections-menu:not(.open) .vulners-sections-list {
+        opacity: 0;
+        max-height: 0;
+      }
+
+      .vulners-section-link {
+        background-color: #ffffff;
+        border-radius: 24px;
+        padding: 8px 12px 8px 8px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+      }
+
+      /* Colored backgrounds when on white (BG=False variant) */
+      .vulners-sections-menu.on-white .vulners-section-link-orange {
+        background-color: rgba(255, 149, 0, 0.05);
+      }
+
+      .vulners-sections-menu.on-white .vulners-section-link-purple {
+        background-color: rgba(175, 82, 222, 0.05);
+      }
+
+      .vulners-sections-menu.on-white .vulners-section-link-blue {
+        background-color: rgba(0, 132, 255, 0.05);
+      }
+
+      .vulners-sections-menu.on-white .vulners-section-link-yellow {
+        background-color: rgba(255, 204, 0, 0.05);
+      }
+
+      .vulners-sections-menu.on-white .vulners-section-link-green {
+        background-color: rgba(52, 199, 89, 0.05);
+      }
+
+      .vulners-section-link:hover {
+        background-color: rgba(0, 0, 0, 0.05);
+      }
+
+      .vulners-section-link-icon {
+        width: 20px;
+        height: 20px;
+        flex-shrink: 0;
+      }
+
+      .vulners-section-link span {
+        font-size: 20px;
+        font-weight: 500;
+        color: #000000;
+        line-height: normal;
+      }
+
+      /* Problem Section */
+      .vulners-problem-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 60px;
+      }
+
+      .vulners-textbox {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        max-width: 728px;
+        width: 100%;
+      }
+
+      .vulners-section-title {
+        font-size: 43px;
+        font-weight: 500;
+        color: #000000;
+        line-height: normal;
+      }
+
+      .vulners-section-text {
+        font-size: 22px;
+        font-weight: 500;
+        color: #000000;
+        line-height: normal;
+      }
+
+      .vulners-list {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        width: 100%;
+        padding-left: 20px;
+        list-style-type: disc;
+      }
+
+      .vulners-list-item {
+        font-size: 22px;
+        font-weight: 500;
+        color: #000000;
+        line-height: normal;
+      }
+
+      /* Challenge Cards Grid - Adapted for Vulners content */
+      .vulners-challenge-grid {
+        display: flex;
+        gap: 20px;
+        max-width: 764px;
+        width: 100%;
+      }
+
+      .vulners-challenge-column {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        flex: 1;
+        align-items: center;
+      }
+
+      .vulners-challenge-label {
+        font-size: 28px;
+        font-weight: 500;
+        color: #ff9500;
+        text-align: center;
+        line-height: 1;
+        letter-spacing: -0.616px;
+      }
+
+      .vulners-challenge-card {
+        background-image: url('images/challenge-card.svg');
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        padding: 32px 16px;
+        width: 100%;
+        min-height: 214px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .vulners-challenge-card p {
+        font-size: 24px;
+        font-weight: 500;
+        color: #404040;
+        text-align: center;
+        line-height: 1;
+        letter-spacing: -0.528px;
+        max-width: 207px;
+      }
+
+      /* Solution Section */
+      .vulners-solution-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 60px;
+      }
+
+      .vulners-subsection-title {
+        font-size: 29px;
+        font-weight: 500;
+        color: #000000;
+        line-height: normal;
+      }
+
+      .vulners-subsection-text {
+        font-size: 22px;
+        font-weight: 500;
+        color: #000000;
+        line-height: normal;
+      }
+
+      /* Image Blocks */
+      .vulners-image-block {
+        width: 1136px;
+        height: auto;
+        min-height: 600px;
+        max-width: calc(100vw - 64px);
+        border-radius: 26px;
+        position: relative;
+        background-color: #f3f8ff;
+        overflow: hidden;
+      }
+
+      .vulners-image-block img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        border-radius: 26px;
+      }
+
+      /* Gallery Styles */
       .gallery-container {
         display: flex;
         flex-direction: column;
         gap: 20px;
         align-items: center;
-        margin-top: 24px;
+        width: 100%;
+        max-width: 1136px;
       }
 
       .gallery-wrapper {
-        overflow: visible;
-        width: 1056px;
-        max-width: 100%;
+        overflow: hidden;
+        width: 100%;
         position: relative;
+        border-radius: 26px;
       }
 
       .gallery-track {
         display: flex;
         transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        gap: 20px;
+        width: 100%;
       }
 
       .gallery-slide {
         flex-shrink: 0;
-        width: 1056px;
+        width: 100%;
+        position: relative;
       }
 
-      /* Research gallery - taller */
-      .gallery-research .case-study-image {
-        width: 1056px;
-        height: 747px;
-        border: 2px solid #F8F8F8;
-        margin: 0;
-      }
-
-      /* Other galleries - standard height */
-      .gallery-system .case-study-image,
-      .gallery-visual .case-study-image {
-        width: 1056px;
-        height: 680px;
-        border: 2px solid #F8F8F8;
-        margin: 0;
+      .gallery-slide img {
+        width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 26px;
       }
 
       .gallery-controls {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-top: 20px;
-        max-width: 1056px;
-        margin-left: auto;
-        margin-right: auto;
         width: 100%;
+        max-width: 728px;
+      }
+
+      .gallery-buttons {
+        display: flex;
+        gap: 24px;
+        align-items: center;
       }
 
       .gallery-button {
@@ -76,38 +461,41 @@
         height: 40px;
         border-radius: 24px;
         border: none;
-        background: rgba(242, 242, 242, 1);
+        background: #F2F2F2;
         cursor: pointer;
         display: flex;
         align-items: center;
         justify-content: center;
         transition: all 0.2s ease;
-        color: rgba(0, 0, 0, 0.6);
-        backdrop-filter: blur(5px);
         padding: 8px;
-      }
-
-      .gallery-button:hover:not(:disabled) {
-        background: rgba(0, 132, 255, 0.1);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
       }
 
       .gallery-button:not(:disabled) {
-        background: rgba(0, 132, 255, 0.05);
-        color: #0084FF;
+        background: rgba(0, 132, 255, 0.1); /* Blue tint */
+      }
+
+      .gallery-button:hover:not(:disabled) {
+        background: rgba(0, 132, 255, 0.2); /* Slightly darker blue tint */
       }
 
       .gallery-button:disabled {
-        background: rgba(242, 242, 242, 1);
-        color: rgba(0, 0, 0, 0.3);
+        opacity: 0.5;
         cursor: not-allowed;
       }
 
-      .gallery-button svg {
+      .gallery-button img {
         width: 24px;
         height: 24px;
+        display: block;
       }
 
-      .gallery-button:first-child svg {
+      .gallery-button:not(:disabled) img {
+        filter: brightness(0) saturate(100%) invert(38%) sepia(99%) saturate(2515%) hue-rotate(197deg) brightness(102%) contrast(101%); /* Approximation of #0084ff */
+      }
+
+      .gallery-button:first-child {
         transform: rotate(180deg);
       }
 
@@ -118,8 +506,8 @@
       }
 
       .gallery-dot {
-        width: 8px;
-        height: 8px;
+        width: 10px;
+        height: 10px;
         border-radius: 50%;
         background: rgba(0, 0, 0, 0.15);
         border: none;
@@ -129,500 +517,1540 @@
       }
 
       .gallery-dot.active {
-        background: #0084FF;
-        width: 16px;
-        height: 16px;
+        background: #0084ff; /* Blue */
+        width: 20px;
+        border-radius: 10px;
       }
 
-      /* Key Takeaways box - light green background with bullets */
-      .takeaways-box {
-        background: rgba(0, 255, 64, 0.1);
-        border-radius: 18px;
-        padding: 16px;
-        color: #34C759;
-        width: 712px;
-        margin: 0 auto;
+      /* Research Gallery UI overrides to keep orange theme */
+      .gallery-container.gallery-research .gallery-button:not(:disabled) {
+        background: rgba(255, 149, 0, 0.1); /* Orange tint */
       }
 
-      .takeaways-title {
-        font-size: 32px;
-        font-weight: 600;
-        letter-spacing: -0.02em;
-        margin-bottom: 20px;
-        color: #34C759;
+      .gallery-container.gallery-research .gallery-button:hover:not(:disabled) {
+        background: rgba(255, 149, 0, 0.2); /* Slightly darker orange tint */
       }
 
-      .takeaways-list {
+      .gallery-container.gallery-research .gallery-button:not(:disabled) img {
+        filter: brightness(0) saturate(100%) invert(66%) sepia(34%) saturate(5734%) hue-rotate(1deg) brightness(101%) contrast(106%); /* Approximation of #ff9500 */
+      }
+
+      .gallery-container.gallery-research .gallery-dot.active {
+        background: #ff9500; /* Orange */
+      }
+
+      /* Impact Section */
+      .vulners-impact-section {
         display: flex;
         flex-direction: column;
-        gap: 10px;
+        align-items: center;
+        gap: 12px;
+        max-width: 764px;
+        width: 100%;
       }
 
-      .takeaways-text {
-        font-size: 20px;
-        line-height: 1.5;
-        letter-spacing: -0.01em;
-        color: #34C759;
-        position: relative;
-        list-style: disc;
-        margin-left: 0;
+      .vulners-impact-header {
+        width: 100%;
+        padding-left: 16px;
       }
 
-      .takeaways-text::marker {
-        color: #34C759;
+      .vulners-impact-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        width: 100%;
       }
 
-      .takeaways-list ul {
-        padding-left: 20px !important;
+      .vulners-impact-card {
+        background-color: #fff9e5;
+        border-radius: 16px;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        width: 372px;
       }
 
-      .takeaways-text strong {
-        font-weight: 600;
+      .vulners-impact-card.full-width {
+        flex-direction: row;
+        align-items: center;
+        width: 100%;
+        flex: 1;
       }
 
-      .takeaways-text span {
+      .vulners-impact-card img {
+        width: 43.425px;
+        height: 48px;
+      }
+
+      .vulners-impact-card p {
+        font-size: 29px;
         font-weight: 500;
+        color: #404040;
+        line-height: normal;
       }
 
+      /* Section Title Row with Icon */
+      .vulners-section-title-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+        padding-left: 16px;
+      }
+
+      .vulners-section-icon {
+        height: 32px;
+        width: auto;
+        flex-shrink: 0;
+      }
+
+      /* Key Learnings Section */
+      .vulners-learnings-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        max-width: 764px;
+        width: 100%;
+      }
+
+      .vulners-learnings-header {
+        width: 100%;
+        padding-left: 16px;
+      }
+
+      .vulners-learnings-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        width: 100%;
+      }
+
+      .vulners-learning-card {
+        background-color: #e5ffeb;
+        border-radius: 16px;
+        padding: 32px 20px;
+        display: flex;
+        gap: 32px;
+        align-items: flex-start;
+        width: 100%;
+      }
+
+      .vulners-learning-icon {
+        width: 43px;
+        height: 48px;
+        flex-shrink: 0;
+      }
+
+      .vulners-learning-content {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        flex: 1;
+      }
+
+      .vulners-learning-title {
+        font-size: 32px;
+        font-weight: 500;
+        color: #000000;
+        line-height: normal;
+      }
+
+      .vulners-learning-text {
+        font-size: 24px;
+        font-weight: 500;
+        color: #404040;
+        line-height: normal;
+      }
+
+      /* Other Cases Section */
+      .vulners-other-cases {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 80px;
+        width: 100%;
+        overflow: hidden;
+      }
+
+      .vulners-bento-scroll {
+        display: flex;
+        gap: 20px;
+        width: max-content;
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      .vulners-bento-scroll.animate {
+        visibility: visible;
+        opacity: 1;
+        animation: scroll-marquee 40s linear infinite, fadeIn 0.6s ease-out forwards;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      .vulners-bento-scroll:hover {
+        animation-play-state: paused;
+      }
+
+      .vulners-bento-container {
+        display: flex;
+        gap: 20px;
+        flex-shrink: 0;
+      }
+
+      @keyframes scroll-marquee {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-33.333%);
+        }
+      }
+
+      /* Bento Cards */
+      .vulners-bento-card {
+        background: #ffffff;
+        border: 2px solid #f8f8f8;
+        border-radius: 24px;
+        padding: 16px;
+        width: 502px;
+        height: 500px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        text-decoration: none;
+        overflow: hidden;
+        flex-shrink: 0;
+      }
+
+      .vulners-bento-text {
+        padding: 0 12px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .vulners-bento-title {
+        font-size: 32px;
+        font-weight: 500;
+        line-height: normal;
+      }
+
+      .vulners-bento-title.indigo { color: #5856d6; }
+      .vulners-bento-title.light-blue { color: #32ade6; }
+      .vulners-bento-title.purple { color: #af52de; }
+      .vulners-bento-title.blue { color: #0084ff; }
+      .vulners-bento-title.orange { color: #ff9500; }
+
+      .vulners-bento-subtitle {
+        font-size: 20px;
+        font-weight: 500;
+        color: #404040;
+        line-height: normal;
+      }
+
+      .vulners-bento-image {
+        flex: 1;
+        min-height: 200px;
+        border-radius: 12px;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .vulners-bento-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .vulners-bento-image.snips-bg {
+        background-color: #b2edfb;
+        border-radius: 16px;
+      }
+      
+      .vulners-bento-image.tabs-blue-bg {
+        background-color: #93b9f9;
+        border-radius: 12px;
+      }
+
+      .vulners-bento-image.snips-bg img {
+        object-fit: contain;
+      }
+
+      .vulners-bento-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .vulners-bento-tags.nowrap {
+        flex-wrap: nowrap;
+      }
+
+      .vulners-bento-tag {
+        padding: 12px;
+        border-radius: 16px;
+        font-size: 20px;
+        font-weight: 500;
+        line-height: normal;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        box-sizing: border-box;
+        white-space: nowrap;
+      }
+
+      .vulners-bento-tag.blue {
+        background-color: #f2f9ff;
+        color: #0084ff;
+      }
+
+      .vulners-bento-tag.yellow {
+        background-color: #fff9e5;
+        color: #404040;
+        padding: 8px 12px 8px 8px;
+      }
+
+      .vulners-bento-tag.orange-bg {
+        background-color: #fff4e5;
+        color: #404040;
+        padding: 8px 12px 8px 8px;
+      }
+
+      .vulners-bento-tag img {
+        width: 23px;
+        height: 25px;
+      }
+
+      /* Footer CTA */
+      .vulners-footer-cta {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 32px;
+        max-width: 1024px;
+        width: 100%;
+        text-align: center;
+      }
+
+      .vulners-footer-title {
+        font-size: 43px;
+        font-weight: 500;
+        color: #000000;
+        line-height: normal;
+      }
+
+      .vulners-footer-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .vulners-footer-text {
+        font-size: 43px;
+        font-weight: 500;
+        color: #000000;
+        line-height: normal;
+      }
+
+      .vulners-footer-pill {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 16px;
+        border-radius: 24px;
+        text-decoration: none;
+      }
+
+      .vulners-footer-pill span {
+        font-size: 43px;
+        font-weight: 500;
+        line-height: normal;
+      }
+
+      .vulners-footer-pill img {
+        width: 48px;
+        height: 48px;
+      }
+
+      .vulners-footer-pill.purple {
+        background-color: rgba(175, 82, 222, 0.1);
+        color: #af52de;
+      }
+      
+      .vulners-footer-pill.purple span {
+        color: #af52de;
+      }
+
+      .vulners-footer-pill.indigo {
+        background-color: rgba(88, 86, 214, 0.1);
+        color: #5856d6;
+      }
+      
+      .vulners-footer-pill.indigo span {
+        color: #5856d6;
+      }
+
+      .vulners-footer-pill.orange {
+        background-color: rgba(255, 149, 0, 0.1);
+        color: #ff9500;
+      }
+      
+      .vulners-footer-pill.orange span {
+        color: #ff9500;
+      }
+
+      /* Responsive */
       @media (max-width: 1200px) {
-        .case-study-header .case-study-image,
-        .case-study-section > .case-study-image,
-        .gallery-research .case-study-image,
-        .gallery-system .case-study-image,
-        .gallery-visual .case-study-image {
+        .vulners-hero-container {
+          width: calc(100vw - 64px);
+        }
+
+        .vulners-image-block {
+          width: calc(100vw - 64px);
           height: auto;
-          aspect-ratio: 1056 / 680;
+          aspect-ratio: 16/9;
         }
 
-        .takeaways-box {
-          width: 100%;
-          padding: 32px 24px;
-        }
-
-        .takeaways-title {
-          font-size: 24px;
-        }
-
-        .takeaways-text {
-          font-size: 17px;
+        .vulners-bento-scroll.animate {
+          animation-duration: 30s;
         }
       }
 
       @media (max-width: 768px) {
-        .gallery-container {
-          margin-top: 20px;
-          gap: 0;
+        .vulners-page {
+          gap: 40px;
         }
 
-        .gallery-wrapper {
+        .vulners-header {
+          padding: 40px 24px;
+          gap: 24px;
+        }
+
+        .vulners-header-title {
+          font-size: 32px;
+        }
+
+        .vulners-header-subtitle {
+          font-size: 18px;
+        }
+
+        .vulners-hero-container {
+          border-radius: 24px;
+        }
+
+        .vulners-metrics {
+          flex-direction: column;
+        }
+
+        .vulners-metric-badge {
+          padding: 8px 12px;
+        }
+
+        .vulners-metric-badge span {
+          font-size: 18px;
+        }
+
+        .vulners-metric-badge img {
+          width: 24px;
+          height: 28px;
+        }
+
+        .vulners-close-button,
+        .vulners-copy-link,
+        .vulners-sections-menu {
+          display: none;
+        }
+
+        .vulners-section-title {
+          font-size: 29px;
+        }
+
+        .vulners-section-text {
+          font-size: 16px;
+        }
+
+        .vulners-challenge-grid {
+          flex-direction: column;
+          gap: 40px;
+        }
+
+        .vulners-challenge-column {
+          flex-direction: row;
+          flex-wrap: wrap;
+          gap: 16px;
+        }
+
+        .vulners-challenge-label {
+          font-size: 22px;
           width: 100%;
         }
 
-        .gallery-track {
+        .vulners-challenge-card {
+          min-height: 140px;
+          padding: 20px 16px;
+          flex: 1;
+        }
+
+        .vulners-challenge-card p {
+          font-size: 18px;
+          max-width: none;
+        }
+
+        .vulners-subsection-title {
+          font-size: 22px;
+        }
+
+        .vulners-subsection-text {
+          font-size: 16px;
+        }
+
+        .vulners-image-block {
+          border-radius: 16px;
+          width: calc(100vw - 48px);
+          min-height: auto;
+        }
+
+        .vulners-impact-card {
+          width: 100%;
+        }
+
+        .vulners-impact-card p {
+          font-size: 22px;
+        }
+
+        .vulners-footer-title,
+        .vulners-footer-text {
+          font-size: 25px;
+        }
+
+        .vulners-footer-pill span {
+          font-size: 25px;
+        }
+
+        .vulners-footer-pill img {
+          width: 32px;
+          height: 32px;
+        }
+
+        .vulners-textbox,
+        .vulners-impact-section,
+        .vulners-learnings-section {
+          padding: 0 24px;
+        }
+
+        .vulners-section-title-row {
+          padding-left: 0;
+        }
+
+        .vulners-learnings-header {
+          padding-left: 0;
+        }
+
+        .vulners-learning-card {
           flex-direction: column;
           gap: 20px;
-          transform: none !important;
+          padding: 20px;
         }
 
-        .gallery-slide {
-          width: 100%;
+        .vulners-learning-icon {
+          width: 32px;
+          height: 36px;
         }
 
-        .gallery-research .case-study-image,
-        .gallery-system .case-study-image,
-        .gallery-visual .case-study-image {
-          width: 100%;
-          height: auto;
-          aspect-ratio: 1056 / 680;
-          border: 2px solid rgba(255, 255, 255, 0.3);
-          border-radius: 8px;
+        .vulners-learning-content {
+          gap: 16px;
         }
 
-        .gallery-research .case-study-image {
-          aspect-ratio: 1056 / 747;
+        .vulners-learning-title {
+          font-size: 22px;
         }
 
+        .vulners-learning-text {
+          font-size: 16px;
+        }
+        
         .gallery-controls {
           display: none;
+        }
+        
+        .gallery-slide img {
+          border-radius: 16px;
         }
       }
     </style>
   </head>
   <body>
-    <!-- Overlay -->
-    <div class="overlay">
-      <div class="overlay-window">
+    <div class="vulners-page">
 
-        <!-- Close Button -->
-        <a href="index.html" class="overlay-close">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <g clip-path="url(#clip0_140_570)">
-              <path d="M18.8045 2.89132L2.69631 19.0032C2.14136 19.5545 2.12964 20.5509 2.70749 21.1245C3.28906 21.6943 4.29295 21.6832 4.84045 21.1357L20.9486 5.02747C21.5148 4.46134 21.519 3.48354 20.9337 2.90623C20.3484 2.32093 19.3823 2.30921 18.8045 2.89132ZM20.9486 18.9958L4.84045 2.8876C4.28923 2.33211 3.2848 2.30921 2.70749 2.9025C2.13391 3.4878 2.14509 4.47252 2.69631 5.02374L18.8045 21.1319C19.3706 21.6981 20.3564 21.7023 20.9337 21.1208C21.511 20.5355 21.5148 19.5656 20.9486 18.9958Z" fill="#FF2D55"/>
-            </g>
-            <defs>
-              <clipPath id="clip0_140_570">
-                <rect width="19.446" height="19.1136" fill="white" transform="translate(2.2771 2.44336)"/>
-              </clipPath>
-            </defs>
-          </svg>
-        </a>
+      <!-- Close Button -->
+      <a href="index.html" class="vulners-close-button">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M18.8045 2.89132L2.69631 19.0032C2.14136 19.5545 2.12964 20.5509 2.70749 21.1245C3.28906 21.6943 4.29295 21.6832 4.84045 21.1357L20.9486 5.02747C21.5148 4.46134 21.519 3.48354 20.9337 2.90623C20.3484 2.32093 19.3823 2.30921 18.8045 2.89132ZM20.9486 18.9958L4.84045 2.8876C4.28923 2.33211 3.2848 2.30921 2.70749 2.9025C2.13391 3.4878 2.14509 4.47252 2.69631 5.02374L18.8045 21.1319C19.3706 21.6981 20.3564 21.7023 20.9337 21.1208C21.511 20.5355 21.5148 19.5656 20.9486 18.9958Z" fill="#FF2D55"/>
+        </svg>
+      </a>
 
-        <!-- Copy Link Button -->
-        <button class="overlay-copy-link" onclick="copyLink()">
-          <p class="overlay-copy-text">Copy link</p>
-          <img src="images/icon_link.svg" alt="Link icon" width="24" height="24" />
+      <!-- Copy Link Button -->
+      <button class="vulners-copy-link" onclick="copyLink()">
+        <span>Copy link</span>
+        <img src="images/icon_link.svg" alt="Link" width="24" height="24" />
+      </button>
+
+      <!-- Sections Menu -->
+      <nav class="vulners-sections-menu">
+        <button class="vulners-sections-toggle">
+          <span>Sections</span>
+          <img src="images/chevronup.svg" alt="" class="vulners-chevron" />
         </button>
-
-        <!-- Content -->
-        <div class="overlay-content">
-
-          <!-- Header Section -->
-          <div class="case-study-header">
-            <p class="case-study-title">Vulners</p>
-            <p class="case-study-subtitle">Product design and strategy, branding, web</p>
-            <div class="case-study-image">
-              <img src="images/vulners/vulners header.png" alt="Vulners" />
-            </div>
-          </div>
-
-          <!-- Challenge Section -->
-          <div class="case-study-section">
-            <p class="case-study-section-title">Challenge</p>
-            <p class="case-study-section-text">Vulners needed a strategy to acquire and retain customers for their cybersecurity product suite. Their existing brand lacked cohesion across multiple products (Database, Scanner, Notifications), making it difficult to communicate their offering's strengths.</p>
-          </div>
-
-          <!-- Solution Section -->
-          <div class="case-study-section">
-            <p class="case-study-section-title">Solution</p>
-            <p class="case-study-section-text">Developed a comprehensive design system and marketing strategy that unified the brand experience across all touchpoints—from product to marketing to customer acquisition.</p>
-          </div>
-
-          <!-- Impact Section -->
-          <div class="case-study-section impact-section">
-            <div class="impact-box">
-              <p class="impact-title">Impact</p>
-              <div class="impact-highlight">
-                <div class="impact-line"></div>
-                <div class="impact-list">
-                  <p class="impact-text">Established consistent visual language across product ecosystem</p>
-                  <p class="impact-text">Created scalable design system for marketing and product teams</p>
-                  <p class="impact-text">Improved brand clarity and customer understanding</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Research Section -->
-          <div class="case-study-section">
-            <p class="case-study-section-title">Research</p>
-            <p class="case-study-section-text">Vulners offered a suite of cybersecurity products, but struggled to communicate how they worked together.</p>
-
-            <div class="gallery-container gallery-research">
-              <div class="gallery-wrapper">
-                <div class="gallery-track" id="research-gallery">
-                  <div class="gallery-slide">
-                    <div class="case-study-image">
-                      <img src="images/vulners/research/Vulners intro 1.png" alt="Research 1" />
-                    </div>
-                  </div>
-                  <div class="gallery-slide">
-                    <div class="case-study-image">
-                      <img src="images/vulners/research/Vulners intro 2.png" alt="Research 2" />
-                    </div>
-                  </div>
-                  <div class="gallery-slide">
-                    <div class="case-study-image">
-                      <img src="images/vulners/research/Vulners intro 3.png" alt="Research 3" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="gallery-controls">
-                <button class="gallery-button" onclick="navigateGallery('research', -1)" id="research-prev">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M13.8584 21.1866C14.2253 21.1866 14.5795 21.0327 14.8884 20.728L22.5845 13.0554C22.8748 12.7731 23.0404 12.3731 23.0404 11.9721C23.0404 11.5711 22.8748 11.1711 22.5845 10.8888L14.9044 3.22844C14.5795 2.89983 14.2253 2.75391 13.8584 2.75391C13.0159 2.75391 12.4252 3.3472 12.4252 4.14555C12.4252 4.57213 12.5972 4.91992 12.8667 5.18568L15.4917 7.83519L19.9834 11.9721L15.4917 16.109L12.8667 18.7548C12.5972 19.0088 12.4252 19.3683 12.4252 19.7949C12.4252 20.5933 13.0159 21.1866 13.8584 21.1866ZM2.10124 13.4324H15.923L20.1921 13.1906C20.9446 13.148 21.4516 12.6985 21.4516 11.9721C21.4516 11.2457 20.9446 10.7962 20.1921 10.7536L15.923 10.5118H2.10124C1.20866 10.5118 0.60791 11.1056 0.60791 11.9721C0.60791 12.8386 1.20866 13.4324 2.10124 13.4324Z" fill="currentColor"/>
-                  </svg>
-                </button>
-                <div class="gallery-dots" id="research-dots"></div>
-                <button class="gallery-button" onclick="navigateGallery('research', 1)" id="research-next">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M13.8584 21.1866C14.2253 21.1866 14.5795 21.0327 14.8884 20.728L22.5845 13.0554C22.8748 12.7731 23.0404 12.3731 23.0404 11.9721C23.0404 11.5711 22.8748 11.1711 22.5845 10.8888L14.9044 3.22844C14.5795 2.89983 14.2253 2.75391 13.8584 2.75391C13.0159 2.75391 12.4252 3.3472 12.4252 4.14555C12.4252 4.57213 12.5972 4.91992 12.8667 5.18568L15.4917 7.83519L19.9834 11.9721L15.4917 16.109L12.8667 18.7548C12.5972 19.0088 12.4252 19.3683 12.4252 19.7949C12.4252 20.5933 13.0159 21.1866 13.8584 21.1866ZM2.10124 13.4324H15.923L20.1921 13.1906C20.9446 13.148 21.4516 12.6985 21.4516 11.9721C21.4516 11.2457 20.9446 10.7962 20.1921 10.7536L15.923 10.5118H2.10124C1.20866 10.5118 0.60791 11.1056 0.60791 11.9721C0.60791 12.8386 1.20866 13.4324 2.10124 13.4324Z" fill="currentColor"/>
-                  </svg>
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Defining Success Metrics -->
-          <div class="case-study-section">
-            <p class="case-study-section-title">Defining Success Metrics</p>
-            <p class="case-study-section-text">Within a rapidly growing suite of offerings, implementing new features required understanding customer goals and needs. We conducted research and detailed analysis to understand the next steps.</p>
-            <p class="case-study-section-text">Key Insights:</p>
-            <p class="case-study-section-text">• Customers needed to see the full ecosystem, not individual products</p>
-            <p class="case-study-section-text">• Integration patterns were more important than features lists</p>
-            <p class="case-study-section-text">• Trust signals (compliance, security standards) were critical</p>
-          </div>
-
-          <!-- Design System Section -->
-          <div class="case-study-section">
-            <p class="case-study-section-title">Design System</p>
-            <p class="case-study-section-text">Created a comprehensive design system that worked across:</p>
-            <p class="case-study-section-text">• Product UI (web applications, dashboards)</p>
-            <p class="case-study-section-text">• Marketing (landing pages, campaigns)</p>
-            <p class="case-study-section-text">• Data visualization (security reports, analytics)</p>
-
-            <div class="gallery-container gallery-system">
-              <div class="gallery-wrapper">
-                <div class="gallery-track" id="system-gallery">
-                  <div class="gallery-slide">
-                    <div class="case-study-image">
-                      <img src="images/vulners/system/system.png" alt="Design System 1" />
-                    </div>
-                  </div>
-                  <div class="gallery-slide">
-                    <div class="case-study-image">
-                      <img src="images/vulners/system/system2.png" alt="Design System 2" />
-                    </div>
-                  </div>
-                  <div class="gallery-slide">
-                    <div class="case-study-image">
-                      <img src="images/vulners/system/system3.png" alt="Design System 3" />
-                    </div>
-                  </div>
-                  <div class="gallery-slide">
-                    <div class="case-study-image">
-                      <img src="images/vulners/system/system4.png" alt="Design System 4" />
-                    </div>
-                  </div>
-                  <div class="gallery-slide">
-                    <div class="case-study-image">
-                      <img src="images/vulners/system/system5.png" alt="Design System 5" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="gallery-controls">
-                <button class="gallery-button" onclick="navigateGallery('system', -1)" id="system-prev">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M13.8584 21.1866C14.2253 21.1866 14.5795 21.0327 14.8884 20.728L22.5845 13.0554C22.8748 12.7731 23.0404 12.3731 23.0404 11.9721C23.0404 11.5711 22.8748 11.1711 22.5845 10.8888L14.9044 3.22844C14.5795 2.89983 14.2253 2.75391 13.8584 2.75391C13.0159 2.75391 12.4252 3.3472 12.4252 4.14555C12.4252 4.57213 12.5972 4.91992 12.8667 5.18568L15.4917 7.83519L19.9834 11.9721L15.4917 16.109L12.8667 18.7548C12.5972 19.0088 12.4252 19.3683 12.4252 19.7949C12.4252 20.5933 13.0159 21.1866 13.8584 21.1866ZM2.10124 13.4324H15.923L20.1921 13.1906C20.9446 13.148 21.4516 12.6985 21.4516 11.9721C21.4516 11.2457 20.9446 10.7962 20.1921 10.7536L15.923 10.5118H2.10124C1.20866 10.5118 0.60791 11.1056 0.60791 11.9721C0.60791 12.8386 1.20866 13.4324 2.10124 13.4324Z" fill="currentColor"/>
-                  </svg>
-                </button>
-                <div class="gallery-dots" id="system-dots"></div>
-                <button class="gallery-button" onclick="navigateGallery('system', 1)" id="system-next">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M13.8584 21.1866C14.2253 21.1866 14.5795 21.0327 14.8884 20.728L22.5845 13.0554C22.8748 12.7731 23.0404 12.3731 23.0404 11.9721C23.0404 11.5711 22.8748 11.1711 22.5845 10.8888L14.9044 3.22844C14.5795 2.89983 14.2253 2.75391 13.8584 2.75391C13.0159 2.75391 12.4252 3.3472 12.4252 4.14555C12.4252 4.57213 12.5972 4.91992 12.8667 5.18568L15.4917 7.83519L19.9834 11.9721L15.4917 16.109L12.8667 18.7548C12.5972 19.0088 12.4252 19.3683 12.4252 19.7949C12.4252 20.5933 13.0159 21.1866 13.8584 21.1866ZM2.10124 13.4324H15.923L20.1921 13.1906C20.9446 13.148 21.4516 12.6985 21.4516 11.9721C21.4516 11.2457 20.9446 10.7962 20.1921 10.7536L15.923 10.5118H2.10124C1.20866 10.5118 0.60791 11.1056 0.60791 11.9721C0.60791 12.8386 1.20866 13.4324 2.10124 13.4324Z" fill="currentColor"/>
-                  </svg>
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Visual Language Section -->
-          <div class="case-study-section">
-            <p class="case-study-section-title">Visual Language</p>
-            <p class="case-study-section-text">Developed a unique illustration style that:</p>
-            <p class="case-study-section-text">• Unified the Vulners ecosystem visually</p>
-            <p class="case-study-section-text">• Made complex security concepts approachable</p>
-            <p class="case-study-section-text">• Scaled across different contexts (abstract to specific)</p>
-            <p class="case-study-section-text">• Maintained consistency from marketing to product</p>
-            <p class="case-study-section-text">The illustration system could adapt from high-level concepts (data flows, integrations) to specific tools (Python SDK, Linux Scanner).</p>
-
-            <div class="gallery-container gallery-visual">
-              <div class="gallery-wrapper">
-                <div class="gallery-track" id="visual-gallery">
-                  <div class="gallery-slide">
-                    <div class="case-study-image">
-                      <img src="images/vulners/visual/visual1.png" alt="Visual Language 1" />
-                    </div>
-                  </div>
-                  <div class="gallery-slide">
-                    <div class="case-study-image">
-                      <img src="images/vulners/visual/visual2.png" alt="Visual Language 2" />
-                    </div>
-                  </div>
-                  <div class="gallery-slide">
-                    <div class="case-study-image">
-                      <img src="images/vulners/visual/visual3.png" alt="Visual Language 3" />
-                    </div>
-                  </div>
-                  <div class="gallery-slide">
-                    <div class="case-study-image">
-                      <img src="images/vulners/visual/visual4.png" alt="Visual Language 4" />
-                    </div>
-                  </div>
-                  <div class="gallery-slide">
-                    <div class="case-study-image">
-                      <img src="images/vulners/visual/visual5.png" alt="Visual Language 5" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="gallery-controls">
-                <button class="gallery-button" onclick="navigateGallery('visual', -1)" id="visual-prev">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M13.8584 21.1866C14.2253 21.1866 14.5795 21.0327 14.8884 20.728L22.5845 13.0554C22.8748 12.7731 23.0404 12.3731 23.0404 11.9721C23.0404 11.5711 22.8748 11.1711 22.5845 10.8888L14.9044 3.22844C14.5795 2.89983 14.2253 2.75391 13.8584 2.75391C13.0159 2.75391 12.4252 3.3472 12.4252 4.14555C12.4252 4.57213 12.5972 4.91992 12.8667 5.18568L15.4917 7.83519L19.9834 11.9721L15.4917 16.109L12.8667 18.7548C12.5972 19.0088 12.4252 19.3683 12.4252 19.7949C12.4252 20.5933 13.0159 21.1866 13.8584 21.1866ZM2.10124 13.4324H15.923L20.1921 13.1906C20.9446 13.148 21.4516 12.6985 21.4516 11.9721C21.4516 11.2457 20.9446 10.7962 20.1921 10.7536L15.923 10.5118H2.10124C1.20866 10.5118 0.60791 11.1056 0.60791 11.9721C0.60791 12.8386 1.20866 13.4324 2.10124 13.4324Z" fill="currentColor"/>
-                  </svg>
-                </button>
-                <div class="gallery-dots" id="visual-dots"></div>
-                <button class="gallery-button" onclick="navigateGallery('visual', 1)" id="visual-next">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M13.8584 21.1866C14.2253 21.1866 14.5795 21.0327 14.8884 20.728L22.5845 13.0554C22.8748 12.7731 23.0404 12.3731 23.0404 11.9721C23.0404 11.5711 22.8748 11.1711 22.5845 10.8888L14.9044 3.22844C14.5795 2.89983 14.2253 2.75391 13.8584 2.75391C13.0159 2.75391 12.4252 3.3472 12.4252 4.14555C12.4252 4.57213 12.5972 4.91992 12.8667 5.18568L15.4917 7.83519L19.9834 11.9721L15.4917 16.109L12.8667 18.7548C12.5972 19.0088 12.4252 19.3683 12.4252 19.7949C12.4252 20.5933 13.0159 21.1866 13.8584 21.1866ZM2.10124 13.4324H15.923L20.1921 13.1906C20.9446 13.148 21.4516 12.6985 21.4516 11.9721C21.4516 11.2457 20.9446 10.7962 20.1921 10.7536L15.923 10.5118H2.10124C1.20866 10.5118 0.60791 11.1056 0.60791 11.9721C0.60791 12.8386 1.20866 13.4324 2.10124 13.4324Z" fill="currentColor"/>
-                  </svg>
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Implementation Section -->
-          <div class="case-study-section">
-            <p class="case-study-section-title">Implementation</p>
-            <p class="case-study-section-text">Applied the design system across:</p>
-            <p class="case-study-section-text">• Marketing site: Clear product positioning and customer journey</p>
-            <p class="case-study-section-text">• Product pages: Feature-specific landing pages</p>
-            <p class="case-study-section-text">• Documentation: Developer resources with consistent UI</p>
-            <p class="case-study-section-text">• Customer portal: Unified dashboard experience</p>
-
-            <div class="case-study-image">
-              <img src="images/vulners/end.png" alt="Implementation" />
-            </div>
-          </div>
-
-          <!-- Results Section -->
-          <div class="case-study-section">
-            <p class="case-study-section-title">Results</p>
-            <p class="case-study-section-text">Applied the design system across:</p>
-            <p class="case-study-section-text">• Consistent brand experience across all touchpoints</p>
-            <p class="case-study-section-text">• Faster development time with reusable components</p>
-            <p class="case-study-section-text">• Improved customer understanding of product offering</p>
-          </div>
-
-          <!-- Key Takeaways Section -->
-          <div class="case-study-section impact-section">
-            <div class="takeaways-box">
-              <p class="takeaways-title">Key Takeaways</p>
-              <div class="takeaways-list">
-                <ul>
-                  <li class="takeaways-text"><strong>Systems thinking:</strong> <span>Designed for scalability across products and teams</span></li>
-                  <li class="takeaways-text"><strong>Brand consistency:</strong> <span>Unified visual language improved clarity</span></li>
-                  <li class="takeaways-text"><strong>Accessibility:</strong> <span>WCAG 2.1 standards ensured inclusive design</span></li>
-                  <li class="takeaways-text"><strong>Cross-functional impact:</strong> <span>System served marketing, product, and engineering</span></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
+        <div class="vulners-sections-list">
+          <a href="#challenge" class="vulners-section-link vulners-section-link-orange">
+            <img src="images/zap.svg" alt="" class="vulners-section-link-icon" />
+            <span>Challenge</span>
+          </a>
+          <a href="#solution" class="vulners-section-link vulners-section-link-blue">
+            <img src="images/star.svg" alt="" class="vulners-section-link-icon" />
+            <span>Solution</span>
+          </a>
+          <a href="#impact" class="vulners-section-link vulners-section-link-yellow">
+            <img src="images/star-yellow.svg" alt="" class="vulners-section-link-icon" />
+            <span>Impact</span>
+          </a>
+          <a href="#learnings" class="vulners-section-link vulners-section-link-green">
+            <img src="images/star-green.svg" alt="" class="vulners-section-link-icon" />
+            <span>Learnings</span>
+          </a>
         </div>
-      </div>
+      </nav>
+
+      <!-- Header Section -->
+      <header class="vulners-header">
+        <div class="vulners-header-content">
+          <h1 class="vulners-header-title">Vulners Visual Design</h1>
+          <p class="vulners-header-subtitle">Product design and strategy, branding, web</p>
+        </div>
+
+        <!-- Hero Container (Video) -->
+        <div class="vulners-hero-container">
+           <video class="vulners-hero-video" autoplay muted playsinline poster="images/New Vulners Images/vul_hero.png" id="heroVideo">
+             <source src="images/New Vulners Images/vulners_header_video.mp4" type="video/mp4">
+             Your browser does not support the video tag.
+           </video>
+           <script>
+             document.getElementById('heroVideo').addEventListener('ended', function() {
+               var img = document.createElement('img');
+               img.src = 'images/New Vulners Images/vul_hero.png';
+               img.className = 'vulners-hero-video';
+               this.replaceWith(img);
+             });
+           </script>
+        </div>
+
+        <!-- Metrics Badges -->
+        <div class="vulners-metrics">
+          <div class="vulners-metric-badge">
+            <img src="images/star-yellow.svg" alt="" />
+            <span>Multi-product ecosystem</span>
+          </div>
+          <div class="vulners-metric-badge">
+            <img src="images/star-yellow.svg" alt="" />
+            <span>Design System</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Challenge Section -->
+      <section id="challenge" class="vulners-problem-section">
+        <div class="vulners-textbox">
+          <div class="vulners-section-title-row">
+            <img src="images/zap.svg" alt="" class="vulners-section-icon" />
+            <h2 class="vulners-section-title">Challenge</h2>
+          </div>
+          <p class="vulners-section-text">Vulners offered a suite of cybersecurity products, but struggled to communicate how they worked together.</p>
+          <p class="vulners-section-text">Vulners needed a strategy to acquire and retain customers for their cybersecurity product suite. Their existing brand lacked cohesion across multiple products (Database, Scanner, Notifications), making it difficult to communicate their offering's strengths.</p>
+        </div>
+
+
+
+        <!-- Research Gallery -->
+        <div class="vulners-textbox">
+          <h3 class="vulners-subsection-title">Research</h3>
+          <p class="vulners-subsection-text">We explored how different stakeholders viewed the ecosystem.</p>
+        </div>
+
+        <div class="gallery-container gallery-research">
+          <div class="gallery-wrapper">
+            <div class="gallery-track" id="research-gallery">
+              <div class="gallery-slide">
+                <img src="images/vulners/research/Vulners intro 1.png" alt="Research 1" />
+              </div>
+              <div class="gallery-slide">
+                <img src="images/vulners/research/Vulners intro 2.png" alt="Research 2" />
+              </div>
+              <div class="gallery-slide">
+                <img src="images/vulners/research/Vulners intro 3.png" alt="Research 3" />
+              </div>
+            </div>
+          </div>
+          <div class="gallery-controls">
+            <div class="gallery-dots" id="research-dots"></div>
+            <div class="gallery-buttons">
+              <button class="gallery-button" onclick="navigateGallery('research', -1)" id="research-prev">
+                <img src="images/icon_arrow_right.svg" alt="Previous" />
+              </button>
+              <button class="gallery-button" onclick="navigateGallery('research', 1)" id="research-next">
+                <img src="images/icon_arrow_right.svg" alt="Next" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+            <!-- Solution Section -->
+
+            <section id="solution" class="vulners-solution-section">
+
+              <div class="vulners-textbox">
+
+                <div class="vulners-section-title-row">
+
+                  <img src="images/star.svg" alt="" class="vulners-section-icon" />
+
+                  <h2 class="vulners-section-title">Solution</h2>
+
+                </div>
+
+                <p class="vulners-section-text">Developed a comprehensive design system and marketing strategy that unified the brand experience across all touchpoints—from product to marketing to customer acquisition.</p>
+
+              </div>
+
+      
+
+              <!-- Design System Gallery (Corresponds to Figma's first Gallery_container 443:1402) -->
+
+              <div class="vulners-textbox">
+
+                <h3 class="vulners-subsection-title">Design System</h3>
+
+                <p class="vulners-subsection-text">Created a comprehensive design system that worked across product UI, marketing, and data visualization.</p>
+
+              </div>
+
+              <div class="gallery-container gallery-system">
+
+                <div class="gallery-wrapper">
+
+                  <div class="gallery-track" id="system-gallery">
+
+                    <div class="gallery-slide">
+
+                      <img src="images/vulners/system/system.png" alt="Design System 1" />
+
+                    </div>
+
+                    <div class="gallery-slide">
+
+                      <img src="images/vulners/system/system2.png" alt="Design System 2" />
+
+                    </div>
+
+                    <div class="gallery-slide">
+
+                      <img src="images/vulners/system/system3.png" alt="Design System 3" />
+
+                    </div>
+
+                    <div class="gallery-slide">
+
+                      <img src="images/vulners/system/system4.png" alt="Design System 4" />
+
+                    </div>
+
+                    <div class="gallery-slide">
+
+                      <img src="images/vulners/system/system5.png" alt="Design System 5" />
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+                <div class="gallery-controls">
+
+                  <div class="gallery-dots" id="system-dots"></div>
+
+                  <div class="gallery-buttons">
+
+                    <button class="gallery-button" onclick="navigateGallery('system', -1)" id="system-prev">
+
+                      <img src="images/icon_arrow_right.svg" alt="Previous" />
+
+                    </button>
+
+                    <button class="gallery-button" onclick="navigateGallery('system', 1)" id="system-next">
+
+                      <img src="images/icon_arrow_right.svg" alt="Next" />
+
+                    </button>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+      
+
+              <!-- Visual Language Gallery (Corresponds to Figma's second Gallery_container 489:844) -->
+
+              <div class="vulners-textbox">
+
+                <h3 class="vulners-subsection-title">Visual Language</h3>
+
+                <p class="vulners-subsection-text">Developed a unique illustration style that:</p>
+
+                <ul class="vulners-list">
+
+                  <li class="vulners-list-item">Unified the Vulners ecosystem visually</li>
+
+                  <li class="vulners-list-item">Made complex security concepts approachable</li>
+
+                  <li class="vulners-list-item">Scaled across different contexts (abstract to specific)</li>
+
+                  <li class="vulners-list-item">Maintained consistency from marketing to product</li>
+
+                </ul>
+
+                <p class="vulners-subsection-text">The illustration system could adapt from high-level concepts (data flows, integrations) to specific tools (Python SDK, Linux Scanner).</p>
+
+              </div>
+
+              <div class="gallery-container gallery-visual">
+
+                <div class="gallery-wrapper">
+
+                  <div class="gallery-track" id="visual-gallery">
+
+                    <div class="gallery-slide">
+
+                      <img src="images/vulners/visual/visual1.png" alt="Visual Language 1" />
+
+                    </div>
+
+                    <div class="gallery-slide">
+
+                      <img src="images/vulners/visual/visual2.png" alt="Visual Language 2" />
+
+                    </div>
+
+                    <div class="gallery-slide">
+
+                      <img src="images/vulners/visual/visual3.png" alt="Visual Language 3" />
+
+                    </div>
+
+                    <div class="gallery-slide">
+
+                      <img src="images/vulners/visual/visual4.png" alt="Visual Language 4" />
+
+                    </div>
+
+                    <div class="gallery-slide">
+
+                      <img src="images/vulners/visual/visual5.png" alt="Visual Language 5" />
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+                <div class="gallery-controls">
+
+                  <div class="gallery-dots" id="visual-dots"></div>
+
+                  <div class="gallery-buttons">
+
+                    <button class="gallery-button" onclick="navigateGallery('visual', -1)" id="visual-prev">
+
+                      <img src="images/icon_arrow_right.svg" alt="Previous" />
+
+                    </button>
+
+                    <button class="gallery-button" onclick="navigateGallery('visual', 1)" id="visual-next">
+
+                      <img src="images/icon_arrow_right.svg" alt="Next" />
+
+                    </button>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+      
+
+              <!-- vulners01.png image (Figma ID 494:1058) -->
+
+              <div class="vulners-image-block">
+
+                <img src="images/New Vulners Images/vulners01.png" alt="Vulners Design System Overview" />
+
+              </div>
+
+      
+
+              <!-- vulners02.png image (Figma ID 494:1374) -->
+
+              <div class="vulners-image-block">
+
+                  <img src="images/New Vulners Images/vulners02.png" alt="Vulners Visual Elements" />
+
+              </div>
+
+      
+
+              <!-- Implementation section and end.png image (Figma ID 442:1166) -->
+
+              <div class="vulners-textbox">
+
+                <h3 class="vulners-subsection-title">Implementation</h3>
+
+                <p class="vulners-subsection-text">Applied the design system across:</p>
+
+                <ul class="vulners-list">
+
+                  <li class="vulners-list-item">Marketing site: Clear product positioning and customer journey</li>
+
+                  <li class="vulners-list-item">Product pages: Feature-specific landing pages</li>
+
+                  <li class="vulners-list-item">Documentation: Developer resources with consistent UI</li>
+
+                  <li class="vulners-list-item">Customer portal: Unified dashboard experience</li>
+
+                </ul>
+
+              </div>
+
+              <div class="vulners-image-block">
+
+                <img src="images/vulners/end.png" alt="Implementation" />
+
+              </div>
+
+            </section>
+      <!-- Impact Section -->
+      <section id="impact" class="vulners-impact-section">
+        <div class="vulners-impact-header">
+          <h2 class="vulners-section-title">Impact</h2>
+        </div>
+        <div class="vulners-impact-grid">
+          <div class="vulners-impact-card">
+            <img src="images/star-yellow.svg" alt="" />
+            <p>Established consistent visual language across product ecosystem</p>
+          </div>
+          <div class="vulners-impact-card">
+            <img src="images/star-yellow.svg" alt="" />
+            <p>Improved brand clarity and customer understanding</p>
+          </div>
+          <div class="vulners-impact-card full-width">
+            <img src="images/star-yellow.svg" alt="" />
+            <p>Created scalable design system for marketing and product teams, reducing dev time</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Key Learnings Section -->
+      <section id="learnings" class="vulners-learnings-section">
+        <div class="vulners-learnings-header">
+          <h2 class="vulners-section-title">Key Learnings</h2>
+        </div>
+        <div class="vulners-learnings-grid">
+          <div class="vulners-learning-card">
+            <img src="images/star-green.svg" alt="" class="vulners-learning-icon" />
+            <div class="vulners-learning-content">
+              <p class="vulners-learning-title">Systems thinking</p>
+              <p class="vulners-learning-text">Designed for scalability across products and teams, ensuring that the system could grow with the company.</p>
+            </div>
+          </div>
+          <div class="vulners-learning-card">
+            <img src="images/star-green.svg" alt="" class="vulners-learning-icon" />
+            <div class="vulners-learning-content">
+              <p class="vulners-learning-title">Brand consistency</p>
+              <p class="vulners-learning-text">Unified visual language improved clarity significantly, proving that consistency is key to building trust in security products.</p>
+            </div>
+          </div>
+          <div class="vulners-learning-card">
+            <img src="images/star-green.svg" alt="" class="vulners-learning-icon" />
+            <div class="vulners-learning-content">
+              <p class="vulners-learning-title">Cross-functional impact</p>
+              <p class="vulners-learning-text">The system served marketing, product, and engineering, demonstrating the value of design in connecting different parts of the organization.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Other Cases Section -->
+      <section class="vulners-other-cases">
+        <div class="vulners-bento-scroll">
+          <!-- First set of cards -->
+          <div class="vulners-bento-container">
+            <a href="tabs.html" class="vulners-bento-card">
+              <div class="vulners-bento-text">
+                <p class="vulners-bento-title blue">Tab Management Redesign</p>
+                <p class="vulners-bento-subtitle">Driving organic growth through simplified UX</p>
+              </div>
+              <div class="vulners-bento-image tabs-blue-bg">
+                <img src="images/tabs_thumb.png" alt="Tab Management Redesign" />
+              </div>
+              <div class="vulners-bento-tags nowrap">
+                <span class="vulners-bento-tag blue">Retention & Engagement</span>
+                <span class="vulners-bento-tag yellow">
+                  <img src="images/star-yellow.svg" alt="" />
+                  1.8% retention lift
+                </span>
+              </div>
+            </a>
+            <a href="referral.html" class="vulners-bento-card">
+              <div class="vulners-bento-text">
+                <p class="vulners-bento-title indigo">Aloha Referral System</p>
+                <p class="vulners-bento-subtitle">Driving organic growth through simplified UX</p>
+              </div>
+              <div class="vulners-bento-image">
+                <img src="images/referral-thumb.png" alt="Referral System" />
+              </div>
+              <div class="vulners-bento-tags">
+                <span class="vulners-bento-tag blue">Growth & Acquisition</span>
+                <span class="vulners-bento-tag yellow">
+                  <img src="images/star-yellow.svg" alt="" />
+                  3.4x monthly referrals
+                </span>
+              </div>
+            </a>
+            <a href="snips.html" class="vulners-bento-card">
+              <div class="vulners-bento-text">
+                <p class="vulners-bento-title light-blue">Aloha Snips AI Notifications</p>
+                <p class="vulners-bento-subtitle">AI-powered content tracking across platforms</p>
+              </div>
+              <div class="vulners-bento-image snips-bg">
+                <img src="images/snips-thumbnail.png" alt="Snips AI" />
+              </div>
+              <div class="vulners-bento-tags">
+                <span class="vulners-bento-tag blue">0→1 Product</span>
+                <span class="vulners-bento-tag orange-bg">
+                  <img src="images/star-orange.svg" alt="" />
+                  Currently in beta
+                </span>
+              </div>
+            </a>
+            <a href="website.html" class="vulners-bento-card">
+              <div class="vulners-bento-text">
+                <p class="vulners-bento-title purple">Aloha Website Design System</p>
+                <p class="vulners-bento-subtitle">Building a scalable design system</p>
+              </div>
+              <div class="vulners-bento-image">
+                <img src="images/website-thumb.png" alt="Website Design System" />
+              </div>
+              <div class="vulners-bento-tags">
+                <span class="vulners-bento-tag blue">Conversion & Design System</span>
+                <span class="vulners-bento-tag yellow">
+                  <img src="images/star-yellow.svg" alt="" />
+                  +10pp conversion
+                </span>
+                <span class="vulners-bento-tag yellow">
+                  <img src="images/star-yellow.svg" alt="" />
+                  -50% dev time
+                </span>
+              </div>
+            </a>
+          </div>
+          <!-- Duplicate set for seamless loop -->
+          <div class="vulners-bento-container">
+            <a href="tabs.html" class="vulners-bento-card">
+              <div class="vulners-bento-text">
+                <p class="vulners-bento-title blue">Tab Management Redesign</p>
+                <p class="vulners-bento-subtitle">Driving organic growth through simplified UX</p>
+              </div>
+              <div class="vulners-bento-image tabs-blue-bg">
+                <img src="images/tabs_thumb.png" alt="Tab Management Redesign" />
+              </div>
+              <div class="vulners-bento-tags nowrap">
+                <span class="vulners-bento-tag blue">Retention & Engagement</span>
+                <span class="vulners-bento-tag yellow">
+                  <img src="images/star-yellow.svg" alt="" />
+                  1.8% retention lift
+                </span>
+              </div>
+            </a>
+            <a href="referral.html" class="vulners-bento-card">
+              <div class="vulners-bento-text">
+                <p class="vulners-bento-title indigo">Aloha Referral System</p>
+                <p class="vulners-bento-subtitle">Driving organic growth through simplified UX</p>
+              </div>
+              <div class="vulners-bento-image">
+                <img src="images/referral-bento.png" alt="Referral System" />
+              </div>
+              <div class="vulners-bento-tags">
+                <span class="vulners-bento-tag blue">Growth & Acquisition</span>
+                <span class="vulners-bento-tag yellow">
+                  <img src="images/star-yellow.svg" alt="" />
+                  3.4x monthly referrals
+                </span>
+              </div>
+            </a>
+            <a href="snips.html" class="vulners-bento-card">
+              <div class="vulners-bento-text">
+                <p class="vulners-bento-title light-blue">Aloha Snips AI Notifications</p>
+                <p class="vulners-bento-subtitle">AI-powered content tracking across platforms</p>
+              </div>
+              <div class="vulners-bento-image snips-bg">
+                <img src="images/snips-thumbnail.png" alt="Snips AI" />
+              </div>
+              <div class="vulners-bento-tags">
+                <span class="vulners-bento-tag blue">0→1 Product</span>
+                <span class="vulners-bento-tag orange-bg">
+                  <img src="images/star-orange.svg" alt="" />
+                  Currently in beta
+                </span>
+              </div>
+            </a>
+            <a href="website.html" class="vulners-bento-card">
+              <div class="vulners-bento-text">
+                <p class="vulners-bento-title purple">Aloha Website Design System</p>
+                <p class="vulners-bento-subtitle">Building a scalable design system</p>
+              </div>
+              <div class="vulners-bento-image">
+                <img src="images/website-thumb.png" alt="Website Design System" />
+              </div>
+              <div class="vulners-bento-tags">
+                <span class="vulners-bento-tag blue">Conversion & Design System</span>
+                <span class="vulners-bento-tag yellow">
+                  <img src="images/star-yellow.svg" alt="" />
+                  +10pp conversion
+                </span>
+                <span class="vulners-bento-tag yellow">
+                  <img src="images/star-yellow.svg" alt="" />
+                  -50% dev time
+                </span>
+              </div>
+            </a>
+          </div>
+          <!-- Third set as decoy for seamless infinite scroll -->
+          <div class="vulners-bento-container">
+            <a href="tabs.html" class="vulners-bento-card">
+              <div class="vulners-bento-text">
+                <p class="vulners-bento-title blue">Tab Management Redesign</p>
+                <p class="vulners-bento-subtitle">Driving organic growth through simplified UX</p>
+              </div>
+              <div class="vulners-bento-image tabs-blue-bg">
+                <img src="images/tabs_thumb.png" alt="Tab Management Redesign" />
+              </div>
+              <div class="vulners-bento-tags nowrap">
+                <span class="vulners-bento-tag blue">Retention & Engagement</span>
+                <span class="vulners-bento-tag yellow">
+                  <img src="images/star-yellow.svg" alt="" />
+                  1.8% retention lift
+                </span>
+              </div>
+            </a>
+            <a href="referral.html" class="vulners-bento-card">
+              <div class="vulners-bento-text">
+                <p class="vulners-bento-title indigo">Aloha Referral System</p>
+                <p class="vulners-bento-subtitle">Driving organic growth through simplified UX</p>
+              </div>
+              <div class="vulners-bento-image">
+                <img src="images/referral-bento.png" alt="Referral System" />
+              </div>
+              <div class="vulners-bento-tags">
+                <span class="vulners-bento-tag blue">Growth & Acquisition</span>
+                <span class="vulners-bento-tag yellow">
+                  <img src="images/star-yellow.svg" alt="" />
+                  3.4x monthly referrals
+                </span>
+              </div>
+            </a>
+            <a href="snips.html" class="vulners-bento-card">
+              <div class="vulners-bento-text">
+                <p class="vulners-bento-title light-blue">Aloha Snips AI Notifications</p>
+                <p class="vulners-bento-subtitle">AI-powered content tracking across platforms</p>
+              </div>
+              <div class="vulners-bento-image snips-bg">
+                <img src="images/snips-thumbnail.png" alt="Snips AI" />
+              </div>
+              <div class="vulners-bento-tags">
+                <span class="vulners-bento-tag blue">0→1 Product</span>
+                <span class="vulners-bento-tag orange-bg">
+                  <img src="images/star-orange.svg" alt="" />
+                  Currently in beta
+                </span>
+              </div>
+            </a>
+            <a href="website.html" class="vulners-bento-card">
+              <div class="vulners-bento-text">
+                <p class="vulners-bento-title purple">Aloha Website Design System</p>
+                <p class="vulners-bento-subtitle">Building a scalable design system</p>
+              </div>
+              <div class="vulners-bento-image">
+                <img src="images/website-thumb.png" alt="Website Design System" />
+              </div>
+              <div class="vulners-bento-tags">
+                <span class="vulners-bento-tag blue">Conversion & Design System</span>
+                <span class="vulners-bento-tag yellow">
+                  <img src="images/star-yellow.svg" alt="" />
+                  +10pp conversion
+                </span>
+                <span class="vulners-bento-tag yellow">
+                  <img src="images/star-yellow.svg" alt="" />
+                  -50% dev time
+                </span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer CTA -->
+      <section class="vulners-footer-cta">
+        <p class="vulners-footer-title">Thanks for scrolling all the way down!</p>
+        <p class="vulners-footer-title">I'm open to new opportunities</p>
+        <div class="vulners-footer-links">
+          <span class="vulners-footer-text">You can read my</span>
+          <a href="docs/Vasilii_Diakonov_Resume_26.pdf" class="vulners-footer-pill purple" target="_blank" download>
+            <span>Resume</span>
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g clip-path="url(#clip0_184_558_vulners)">
+                <path d="M23.6597 11.994C23.6597 18.5159 18.3612 23.8222 11.828 23.8222C5.30623 23.8222 0 18.5159 0 11.994C0 5.46452 5.30623 0.166016 11.828 0.166016C18.3612 0.166016 23.6597 5.46452 23.6597 11.994ZM10.5956 7.09394V13.1697L10.6773 14.848L10.0841 14.1152L8.51632 12.4489C8.30344 12.2164 7.9957 12.0861 7.68592 12.0861C7.10446 12.0861 6.6014 12.52 6.6014 13.1334C6.6014 13.455 6.72459 13.6989 6.94573 13.9159L10.8704 17.6937C11.1987 18.0111 11.5075 18.1153 11.8358 18.1153C12.1677 18.1153 12.4765 18.0111 12.8048 17.6937L16.7218 13.9159C16.9506 13.6989 17.0738 13.455 17.0738 13.1334C17.0738 12.52 16.5629 12.0861 15.9815 12.0861C15.6718 12.0861 15.3718 12.2164 15.1588 12.4489L13.591 14.1152L13.0008 14.8443L13.0873 13.1697V7.09394C13.0873 6.42902 12.5301 5.87286 11.8358 5.87286C11.1487 5.87286 10.5956 6.42902 10.5956 7.09394Z" fill="#AF52DE"/>
+              </g>
+              <defs>
+                <clipPath id="clip0_184_558_vulners">
+                  <rect width="24" height="23.6675" fill="white" transform="translate(0 0.166016)"/>
+                </clipPath>
+              </defs>
+            </svg>
+          </a>
+          <span class="vulners-footer-text">or contact me on</span>
+          <a href="https://www.linkedin.com/in/vasiliidiakonov/" class="vulners-footer-pill indigo" target="_blank">
+            <span>Linkedin</span>
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g clip-path="url(#clip0_140_592_vulners_linkedin)">
+                <path d="M3.31521 20.5276C3.90159 21.1022 4.72656 21.1368 5.38801 20.4866L16.4031 9.48322L18.7751 6.91254C19.3635 6.28679 19.3114 5.52841 18.8166 5.03416C18.3181 4.52074 17.5368 4.44194 16.9078 5.04534L14.3334 7.4136L3.33011 18.4324C2.64258 19.1274 2.74001 19.9635 3.31521 20.5276ZM17.9286 11.9501V16.36C17.9286 17.1797 18.5587 17.8513 19.3453 17.8513C20.1314 17.8513 20.7955 17.1925 20.7955 16.3318L20.7913 4.59174C20.7913 3.66982 20.1783 3.04883 19.2446 3.04883H7.49287C6.61676 3.04883 5.98139 3.70498 5.98139 4.48735C5.98139 5.26598 6.65672 5.89178 7.46463 5.89178H11.7104L18.2099 5.6425L17.9286 11.9501Z" fill="#5856D6"/>
+              </g>
+              <defs>
+                <clipPath id="clip0_140_592_vulners_linkedin">
+                  <rect width="18.3028" height="17.9325" fill="white" transform="translate(2.84863 3.03418)"/>
+                </clipPath>
+              </defs>
+            </svg>
+          </a>
+          <span class="vulners-footer-text">or via</span>
+          <a href="mailto:vasilii.diakonov@gmail.com" class="vulners-footer-pill orange">
+            <span>Email</span>
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g clip-path="url(#clip0_140_592_vulners_email)">
+                <path d="M3.31521 20.5276C3.90159 21.1022 4.72656 21.1368 5.38801 20.4866L16.4031 9.48322L18.7751 6.91254C19.3635 6.28679 19.3114 5.52841 18.8166 5.03416C18.3181 4.52074 17.5368 4.44194 16.9078 5.04534L14.3334 7.4136L3.33011 18.4324C2.64258 19.1274 2.74001 19.9635 3.31521 20.5276ZM17.9286 11.9501V16.36C17.9286 17.1797 18.5587 17.8513 19.3453 17.8513C20.1314 17.8513 20.7955 17.1925 20.7955 16.3318L20.7913 4.59174C20.7913 3.66982 20.1783 3.04883 19.2446 3.04883H7.49287C6.61676 3.04883 5.98139 3.70498 5.98139 4.48735C5.98139 5.26598 6.65672 5.89178 7.46463 5.89178H11.7104L18.2099 5.6425L17.9286 11.9501Z" fill="#FF9500"/>
+              </g>
+              <defs>
+                <clipPath id="clip0_140_592_vulners_email">
+                  <rect width="18.3028" height="17.9325" fill="white" transform="translate(2.84863 3.03418)"/>
+                </clipPath>
+              </defs>
+            </svg>
+          </a>
+        </div>
+      </section>
+
     </div>
 
+    <!-- Scripts -->
     <script>
       // Copy link functionality
       function copyLink() {
         const url = window.location.href;
         navigator.clipboard.writeText(url).then(() => {
-          const button = document.querySelector('.overlay-copy-link');
-          const text = button.querySelector('.overlay-copy-text');
-          text.textContent = 'Copied!';
+          const button = document.querySelector('.vulners-copy-link span');
+          button.textContent = 'Copied!';
           setTimeout(() => {
-            text.textContent = 'Copy link';
+            button.textContent = 'Copy link';
           }, 2000);
         });
       }
 
-      // Gallery functionality
-      const galleries = {
-        research: { currentIndex: 0, totalSlides: 3 },
-        system: { currentIndex: 0, totalSlides: 5 },
-        visual: { currentIndex: 0, totalSlides: 5 }
-      };
+      // GSAP Animations
+      document.addEventListener('DOMContentLoaded', function() {
+        gsap.registerPlugin(ScrollTrigger);
 
-      function initGalleries() {
-        Object.keys(galleries).forEach(galleryId => {
-          updateGallery(galleryId);
-          initDots(galleryId);
+        const headerContent = document.querySelector('.vulners-header-content');
+        const metricsBadges = document.querySelector('.vulners-metrics');
+        const heroContainer = document.querySelector('.vulners-hero-container');
+
+        // Header fade in on entry
+        gsap.set(headerContent, { y: 30, autoAlpha: 0 });
+        gsap.set(metricsBadges, { y: 20, autoAlpha: 0 });
+        gsap.set(heroContainer, { y: 40, autoAlpha: 0 });
+
+        gsap.to(headerContent, {
+          y: 0,
+          autoAlpha: 1,
+          duration: 0.8,
+          ease: 'power2.out',
+          delay: 0.1
         });
-      }
 
-      function initDots(galleryId) {
-        const dotsContainer = document.getElementById(`${galleryId}-dots`);
-        const totalSlides = galleries[galleryId].totalSlides;
+        gsap.to(metricsBadges, {
+          y: 0,
+          autoAlpha: 1,
+          duration: 0.6,
+          ease: 'power2.out',
+          delay: 0.3
+        });
 
-        for (let i = 0; i < totalSlides; i++) {
-          const dot = document.createElement('button');
-          dot.className = 'gallery-dot';
-          if (i === 0) dot.classList.add('active');
-          dot.onclick = () => goToSlide(galleryId, i);
-          dotsContainer.appendChild(dot);
-        }
-      }
+        gsap.to(heroContainer, {
+          y: 0,
+          autoAlpha: 1,
+          duration: 0.8,
+          ease: 'power2.out',
+          delay: 0.4
+        });
 
-      function navigateGallery(galleryId, direction) {
-        const gallery = galleries[galleryId];
-        gallery.currentIndex += direction;
+        // Scroll detection for button background transition
+        const closeButton = document.querySelector('.vulners-close-button');
+        const copyLinkButton = document.querySelector('.vulners-copy-link');
+        const header = document.querySelector('.vulners-header');
+        const vulnersPage = document.querySelector('.vulners-page');
 
-        if (gallery.currentIndex < 0) gallery.currentIndex = 0;
-        if (gallery.currentIndex >= gallery.totalSlides) gallery.currentIndex = gallery.totalSlides - 1;
+        function updateButtonStyles() {
+          const headerBottom = header.getBoundingClientRect().bottom;
+          const metricsBottom = metricsBadges.getBoundingClientRect().bottom;
 
-        updateGallery(galleryId);
-      }
-
-      function goToSlide(galleryId, index) {
-        galleries[galleryId].currentIndex = index;
-        updateGallery(galleryId);
-      }
-
-      function updateGallery(galleryId) {
-        const gallery = galleries[galleryId];
-        const track = document.getElementById(`${galleryId}-gallery`);
-        const prevButton = document.getElementById(`${galleryId}-prev`);
-        const nextButton = document.getElementById(`${galleryId}-next`);
-        const dots = document.querySelectorAll(`#${galleryId}-dots .gallery-dot`);
-
-        // Update track position
-        const offset = -gallery.currentIndex * 100;
-        track.style.transform = `translateX(${offset}%)`;
-
-        // Update button states
-        prevButton.disabled = gallery.currentIndex === 0;
-        nextButton.disabled = gallery.currentIndex === gallery.totalSlides - 1;
-
-        // Update dots
-        dots.forEach((dot, index) => {
-          if (index === gallery.currentIndex) {
-            dot.classList.add('active');
+          if (headerBottom < 100) {
+            closeButton.classList.add('on-white');
+            copyLinkButton.classList.add('on-white');
           } else {
-            dot.classList.remove('active');
+            closeButton.classList.remove('on-white');
+            copyLinkButton.classList.remove('on-white');
           }
+
+          // Page background color transition
+          if (metricsBottom < window.innerHeight / 2) {
+            vulnersPage.classList.add('scrolled-past-header');
+          } else {
+            vulnersPage.classList.remove('scrolled-past-header');
+          }
+        }
+
+        window.addEventListener('scroll', updateButtonStyles);
+        updateButtonStyles();
+
+        // Sections menu functionality
+        const sectionsMenu = document.querySelector('.vulners-sections-menu');
+        const sectionsToggle = document.querySelector('.vulners-sections-toggle');
+        let hasScrolled = false;
+
+        // Fixed buttons fade in on page load
+        gsap.set(closeButton, { autoAlpha: 0 });
+        gsap.set(copyLinkButton, { autoAlpha: 0 });
+        gsap.set(sectionsMenu, { autoAlpha: 0 });
+
+        gsap.to([closeButton, copyLinkButton, sectionsMenu], {
+          autoAlpha: 1,
+          duration: 1.2,
+          ease: 'power2.out',
+          delay: 0.8
         });
-      }
 
-      // Initialize galleries on page load
-      initGalleries();
+        // Close menu on first scroll
+        function handleMenuScroll() {
+          const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+          const menuHeaderBottom = header.getBoundingClientRect().bottom;
 
-      // Add keyboard navigation for galleries
-      Object.keys(galleries).forEach(galleryId => {
-        const galleryContainer = document.querySelector(`.gallery-${galleryId}`);
-        if (!galleryContainer) return;
+          // Update on-white class based on header position
+          if (menuHeaderBottom < 100) {
+            sectionsMenu.classList.add('on-white');
+          } else {
+            sectionsMenu.classList.remove('on-white');
+          }
 
-        let isHovering = false;
+          // Close menu on first scroll down
+          if (!hasScrolled && scrollTop > 50) {
+            hasScrolled = true;
+            sectionsMenu.classList.remove('open');
+          }
+        }
 
-        galleryContainer.addEventListener('mouseenter', () => {
-          isHovering = true;
+        window.addEventListener('scroll', handleMenuScroll);
+
+        // Toggle menu on button click
+        sectionsToggle.addEventListener('click', function() {
+          sectionsMenu.classList.toggle('open');
         });
 
-        galleryContainer.addEventListener('mouseleave', () => {
-          isHovering = false;
+        // Close menu when clicking a link
+        const sectionLinks = document.querySelectorAll('.vulners-section-link');
+        sectionLinks.forEach(link => {
+          link.addEventListener('click', function() {
+            sectionsMenu.classList.remove('open');
+          });
         });
 
+        // Initialize carousel
+        const carousel = document.querySelector('.vulners-bento-scroll');
+        if (carousel) {
+          const carouselImages = carousel.querySelectorAll('img');
+          let loadedCount = 0;
+          const totalImages = carouselImages.length;
+
+          const startCarousel = () => {
+            const observer = new IntersectionObserver((entries) => {
+              entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                  setTimeout(() => {
+                    carousel.classList.add('animate');
+                  }, 100);
+                  observer.disconnect();
+                }
+              });
+            }, { threshold: 0.1 });
+
+            observer.observe(carousel);
+          };
+
+          const onImageLoad = () => {
+            loadedCount++;
+            if (loadedCount >= totalImages) {
+              startCarousel();
+            }
+          };
+
+          carouselImages.forEach(img => {
+            if (img.complete) {
+              onImageLoad();
+            } else {
+              img.addEventListener('load', onImageLoad);
+              img.addEventListener('error', onImageLoad);
+            }
+          });
+
+          setTimeout(startCarousel, 2000);
+        }
+        
+        // Gallery functionality
+        const galleries = {
+          research: { currentIndex: 0, totalSlides: 3 },
+          system: { currentIndex: 0, totalSlides: 5 },
+          visual: { currentIndex: 0, totalSlides: 5 }
+        };
+
+        function initGalleries() {
+          Object.keys(galleries).forEach(galleryId => {
+            updateGallery(galleryId);
+            initDots(galleryId);
+          });
+        }
+
+        function initDots(galleryId) {
+          const dotsContainer = document.getElementById(`${galleryId}-dots`);
+          const totalSlides = galleries[galleryId].totalSlides;
+
+          for (let i = 0; i < totalSlides; i++) {
+            const dot = document.createElement('button');
+            dot.className = 'gallery-dot';
+            if (i === 0) dot.classList.add('active');
+            dot.onclick = () => goToSlide(galleryId, i);
+            dotsContainer.appendChild(dot);
+          }
+        }
+
+        window.navigateGallery = function(galleryId, direction) {
+          const gallery = galleries[galleryId];
+          gallery.currentIndex += direction;
+
+          if (gallery.currentIndex < 0) gallery.currentIndex = 0;
+          if (gallery.currentIndex >= gallery.totalSlides) gallery.currentIndex = gallery.totalSlides - 1;
+
+          updateGallery(galleryId);
+        }
+
+        function goToSlide(galleryId, index) {
+          galleries[galleryId].currentIndex = index;
+          updateGallery(galleryId);
+        }
+
+        function updateGallery(galleryId) {
+          const gallery = galleries[galleryId];
+          const track = document.getElementById(`${galleryId}-gallery`);
+          const prevButton = document.getElementById(`${galleryId}-prev`);
+          const nextButton = document.getElementById(`${galleryId}-next`);
+          const dots = document.querySelectorAll(`#${galleryId}-dots .gallery-dot`);
+
+          // Calculate slide movement for peek effect
+          const slideElement = track.querySelector('.gallery-slide');
+          const slideWidth = slideElement.offsetWidth; // This is the actual rendered width of the slide
+          const slideMarginRight = parseFloat(getComputedStyle(slideElement).marginRight); // Get right margin
+          const slideTotalMovement = slideWidth + slideMarginRight; // Total distance to move for one slide
+
+          const offset = -(gallery.currentIndex * slideTotalMovement);
+
+          track.style.transform = `translateX(${offset}px)`;
+
+          // Update button states
+          prevButton.disabled = gallery.currentIndex === 0;
+          nextButton.disabled = gallery.currentIndex === gallery.totalSlides - 1;
+
+          // Update dots
+          if (dots.length > 0) {
+            dots.forEach((dot, index) => {
+              if (index === gallery.currentIndex) {
+                dot.classList.add('active');
+              } else {
+                dot.classList.remove('active');
+              }
+            });
+          }
+        }
+
+        // Initialize galleries
+        initGalleries();
+
+        let activeGalleryId = null; // To keep track of the last interacted gallery
+
+        // Add mouseenter/mouseleave listeners to gallery containers
+        document.querySelectorAll('.gallery-container').forEach(container => {
+          container.addEventListener('mouseenter', () => {
+            // Extract galleryId from class name, e.g., 'gallery-research' -> 'research'
+            const classList = Array.from(container.classList);
+            const galleryClass = classList.find(cls => cls.startsWith('gallery-'));
+            if (galleryClass) {
+              activeGalleryId = galleryClass.split('-')[1];
+            }
+          });
+          container.addEventListener('mouseleave', () => {
+            activeGalleryId = null;
+          });
+        });
+
+        // Add global keyboard event listener
         document.addEventListener('keydown', (e) => {
-          if (!isHovering) return;
-
-          if (e.key === 'ArrowLeft') {
-            e.preventDefault();
-            navigateGallery(galleryId, -1);
-          } else if (e.key === 'ArrowRight') {
-            e.preventDefault();
-            navigateGallery(galleryId, 1);
+          if (activeGalleryId) {
+            if (e.key === 'ArrowLeft') {
+              e.preventDefault(); // Prevent default scroll behavior
+              window.navigateGallery(activeGalleryId, -1);
+            } else if (e.key === 'ArrowRight') {
+              e.preventDefault(); // Prevent default scroll behavior
+              window.navigateGallery(activeGalleryId, 1);
+            }
           }
         });
       });
