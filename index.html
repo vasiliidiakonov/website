@@ -147,6 +147,95 @@
         border-radius: 21px;
       }
 
+      /* My Superpowers Section */
+      .superpowers-section {
+        gap: 40px;
+      }
+
+      .superpowers-row {
+        display: flex;
+        gap: 40px;
+        width: 100%;
+      }
+
+      .testimonial-card {
+        flex: 1;
+        background-color: #eeeefa;
+        border-radius: 24px;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+      }
+
+      .quote-icon {
+        width: 48px;
+        height: auto;
+      }
+
+      .testimonial-text {
+        font-size: 32px;
+        font-weight: 500;
+        color: #5856d6;
+        line-height: normal;
+      }
+
+      .testimonial-author {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .author-photo {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      .author-name {
+        font-size: 20px;
+        font-weight: 500;
+        color: #5856d6;
+        line-height: normal;
+      }
+
+      .skill-card {
+        flex: 1;
+        background-color: rgba(255, 149, 0, 0.05);
+        border-radius: 24px;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+      }
+
+      .skill-header {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .skill-icon {
+        width: 20px;
+        height: 32px;
+        object-fit: contain;
+      }
+
+      .skill-title {
+        font-size: 32px;
+        font-weight: 500;
+        color: #ff9500;
+        line-height: normal;
+      }
+
+      .skill-text {
+        font-size: 28px;
+        font-weight: 500;
+        color: #292c31;
+        line-height: normal;
+      }
+
       @media (max-width: 768px) {
         .homepage-header .heading-large {
           color: #0084ff;
@@ -171,6 +260,28 @@
         .bento-featured-flipped .bento-featured-text-right {
           order: 2;
           width: 100%;
+        }
+
+        /* Superpowers section mobile */
+        .superpowers-row {
+          flex-direction: column;
+          gap: 20px;
+        }
+
+        .testimonial-text {
+          font-size: 22px;
+        }
+
+        .author-name {
+          font-size: 16px;
+        }
+
+        .skill-title {
+          font-size: 24px;
+        }
+
+        .skill-text {
+          font-size: 20px;
         }
       }
     </style>
@@ -365,6 +476,49 @@
               </div>
             </div>
           </a>
+        </div>
+      </div>
+
+      <!-- My Superpowers Section -->
+      <div class="content-section superpowers-section">
+        <p class="heading-large text-center">My superpowers</p>
+
+        <!-- Testimonials Row -->
+        <div class="superpowers-row">
+          <div class="testimonial-card">
+            <img src="images/quote.svg" alt="" class="quote-icon" />
+            <p class="testimonial-text">Vasilii is a pleasure to work with...<br>[he] fosters a collaborative atmosphere that made cross-functional work smooth and effective.</p>
+            <div class="testimonial-author">
+              <img src="images/testimonials01.png" alt="Nikita Kozhemiakin" class="author-photo" />
+              <p class="author-name">Nikita Kozhemiakin • Android Lead • Aloha</p>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <img src="images/quote.svg" alt="" class="quote-icon" />
+            <p class="testimonial-text">Vasilii strikes an excellent balance between product needs and technical constraints, making collaboration both productive and inspiring.</p>
+            <div class="testimonial-author">
+              <img src="images/testimonials02.png" alt="Anastasia Zhukova" class="author-photo" />
+              <p class="author-name">Anastasia Zhukova • PM • Aloha</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Skills Row -->
+        <div class="superpowers-row">
+          <div class="skill-card">
+            <div class="skill-header">
+              <img src="images/zap.svg" alt="" class="skill-icon" />
+              <p class="skill-title">Collaboration</p>
+            </div>
+            <p class="skill-text">I build strong cross-functional relationships by treating engineering constraints as design opportunities, not blockers. This approach makes collaboration productive and inspiring engineers become partners in solving problems.</p>
+          </div>
+          <div class="skill-card">
+            <div class="skill-header">
+              <img src="images/zap.svg" alt="" class="skill-icon" />
+              <p class="skill-title">Product Thinking</p>
+            </div>
+            <p class="skill-text">I understand how business goals, user needs, and technical constraints intersect. I independently move the needle forward by owning what my decisions mean for the product months down the line.</p>
+          </div>
         </div>
       </div>
 
@@ -972,6 +1126,62 @@
           }, observerOptions);
 
           releaseCards.forEach(card => observer.observe(card));
+        }
+
+        // Superpowers section animation
+        const superpowersSection = document.querySelector('.superpowers-section');
+        if (superpowersSection) {
+          const superpowersTitle = superpowersSection.querySelector('.heading-large');
+          const testimonialCards = superpowersSection.querySelectorAll('.testimonial-card');
+          const skillCards = superpowersSection.querySelectorAll('.skill-card');
+
+          // Set initial states
+          gsap.set(superpowersTitle, { opacity: 0, y: 30, force3D: true });
+          gsap.set(testimonialCards, { opacity: 0, y: 40, force3D: true });
+          gsap.set(skillCards, { opacity: 0, y: 40, force3D: true });
+
+          const superpowersObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                // Animate title first
+                gsap.to(superpowersTitle, {
+                  opacity: 1,
+                  y: 0,
+                  duration: 0.6,
+                  ease: 'power2.out',
+                  force3D: true
+                });
+
+                // Animate testimonial cards with stagger
+                testimonialCards.forEach((card, index) => {
+                  gsap.to(card, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.6,
+                    delay: 0.2 + (index * 0.15),
+                    ease: 'back.out(1.2)',
+                    force3D: true
+                  });
+                });
+
+                // Animate skill cards with stagger
+                skillCards.forEach((card, index) => {
+                  gsap.to(card, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.6,
+                    delay: 0.5 + (index * 0.15),
+                    ease: 'back.out(1.2)',
+                    force3D: true
+                  });
+                });
+
+                superpowersObserver.unobserve(superpowersSection);
+              }
+            });
+          }, { threshold: 0.1, rootMargin: '0px 0px -10% 0px' });
+
+          superpowersObserver.observe(superpowersSection);
         }
 
         // Footer animation - Using Intersection Observer
