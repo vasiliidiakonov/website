@@ -296,6 +296,10 @@
         background-color: rgba(52, 199, 89, 0.05);
       }
 
+      .tabs-sections-menu.on-white .tabs-section-link-indigo {
+        background-color: rgba(88, 86, 214, 0.05);
+      }
+
       .tabs-section-link:hover {
         background-color: rgba(0, 0, 0, 0.05);
       }
@@ -318,6 +322,10 @@
 
       .tabs-sections-menu.on-white .tabs-section-link-green:hover {
         background-color: rgba(52, 199, 89, 0.1);
+      }
+
+      .tabs-sections-menu.on-white .tabs-section-link-indigo:hover {
+        background-color: rgba(88, 86, 214, 0.1);
       }
 
       .tabs-section-link-icon {
@@ -1067,6 +1075,10 @@
             <img src="images/team.svg" alt="" class="tabs-section-link-icon" />
             <span>My Role</span>
           </a>
+          <a href="#process" class="tabs-section-link tabs-section-link-indigo">
+            <img src="images/gear.svg" alt="" class="tabs-section-link-icon" />
+            <span>Process</span>
+          </a>
           <a href="#solution" class="tabs-section-link tabs-section-link-blue">
             <img src="images/star.svg" alt="" class="tabs-section-link-icon" />
             <span>Solution</span>
@@ -1177,13 +1189,14 @@
         </div>
       </section>
 
-      <!-- Solution Section -->
-      <section id="solution" class="tabs-solution-section">
+      <!-- Process Section -->
+      <section id="process" class="tabs-solution-section">
         <div class="tabs-textbox">
           <div class="tabs-section-title-row">
-            <img src="images/star.svg" alt="" class="tabs-section-icon" />
-            <h2 class="tabs-section-title">Solution</h2>
+            <img src="images/gear.svg" alt="" class="tabs-section-icon" />
+            <h2 class="tabs-section-title">Process</h2>
           </div>
+          <p class="tabs-section-text">Analyzed Amplitude data showing 30% of users managed 10+ tabs, with 9% managing 30+ tabs. Compiled community reports from support channels (weekly requests mentioning "tab groups," "tab organization").</p>
           <p class="tabs-section-text">Built initial prototypes to validate grouping as the top user need. Aligned goals and strategy with product and engineering teams, created a feature roadmap prioritizing iOS for complete implementation.</p>
         </div>
 
@@ -1194,7 +1207,17 @@
 
         <div class="tabs-textbox">
           <h3 class="tabs-subsection-title">Initial Release</h3>
-          <p class="tabs-subsection-text">Initial release used square tab previews. User feedback revealed rectangular tabs showed more page content, making tabs more scannable. We shipped this update along with improvements to private mode switching.</p>
+          <p class="tabs-subsection-text">Initial release used square tab previews. Testing with 10 power users revealed rectangular tabs showed more page content, making tabs more scannable. Users also found it inconvenient switch modes on top.</p>
+        </div>
+      </section>
+
+      <!-- Solution Section -->
+      <section id="solution" class="tabs-solution-section">
+        <div class="tabs-textbox">
+          <div class="tabs-section-title-row">
+            <img src="images/star.svg" alt="" class="tabs-section-icon" />
+            <h2 class="tabs-section-title">Solution</h2>
+          </div>
         </div>
 
         <!-- Before and After Image -->
