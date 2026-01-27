@@ -53,7 +53,6 @@ body {
 /* Profile Image */
 .profile-container {
   border-radius: 35.204px;
-  box-shadow: 0px 5.437px 10.874px 0px #f8f8f8;
   overflow: hidden;
   width: 140px;
   height: 140px;
@@ -402,7 +401,7 @@ body {
   height: 519px;
   flex-shrink: 0;
   background-color: #ffffff;
-  border: 2px solid #f8f8f8;
+  border: 1px solid #f8f8f8;
   border-radius: 24px;
   padding: 16px;
   display: flex;
@@ -410,6 +409,7 @@ body {
   gap: 12px;
   overflow: hidden;
   text-decoration: none;
+  box-shadow: 0px 4px 80px 0px #f8f8f8;
 }
 
 .bento-featured-left {
@@ -482,9 +482,10 @@ body {
 .bento-featured-right {
   flex: 1;
   min-width: 0;
-  border-radius: 16px;
+  border-radius: 24px;
   overflow: hidden;
   background-color: #e0f1ff;
+  border: 3px solid rgba(255, 255, 255, 0.2);
 }
 
 .bento-featured-video {
@@ -492,14 +493,14 @@ body {
   height: 100%;
   object-fit: cover;
   display: block;
-  border-radius: 16px;
+  border-radius: 21px;
 }
 
 .bento-small {
   height: 450px;
   flex-shrink: 0;
   background-color: #ffffff;
-  border: 2px solid #f8f8f8;
+  border: 1px solid #f8f8f8;
   border-radius: 24px;
   padding: 16px;
   display: flex;
@@ -510,6 +511,7 @@ body {
   backface-visibility: hidden;
   contain: layout style paint;
   text-decoration: none;
+  box-shadow: 0px 4px 80px 0px #f8f8f8;
 }
 
 
@@ -591,16 +593,18 @@ body {
 /* Snips Card Special Styling */
 .snips-image-container {
   background-color: #b2edfb;
-  border-radius: 16px;
+  border-radius: 24px;
+  border: 3px solid rgba(255, 255, 255, 0.2);
 }
 
 .bento-image-container {
-  border-radius: 12px;
+  border-radius: 24px;
   overflow: hidden;
   flex: 1 1 auto;
   min-height: 0;
   width: 100%;
   position: relative;
+  border: 3px solid rgba(255, 255, 255, 0.2);
 }
 
 .bento-large .heading-medium,
@@ -2087,12 +2091,13 @@ body {
   }
 
   .bento-image-container {
-    border-radius: 8px;
+    border-radius: 16px;
     overflow: hidden;
     flex: 1 1 auto;
     min-height: 120px;
     width: 100%;
     position: relative;
+    border: 2px solid rgba(255, 255, 255, 0.2);
   }
 
   .bento-image {
@@ -2227,7 +2232,6 @@ body {
     height: 140px;
     border-radius: 35px;
     overflow: hidden;
-    box-shadow: 0px 5.437px 10.874px 0px #f8f8f8;
   }
 
   .profile-image {

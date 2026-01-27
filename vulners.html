@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Vulners Design System – Vasilii Diakonov</title>
+    <title>Cybersecurity Product Acquisition – Vasilii Diakonov</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/png" href="images/favicon.png" />
@@ -20,7 +20,7 @@
         align-items: center;
         gap: 60px;
         padding-bottom: 80px;
-        background-color: #fff4e5;
+        background-color: #ffedd5;
         transition: background-color 0.5s ease;
       }
 
@@ -47,14 +47,14 @@
       }
 
       .vulners-header-title {
-        font-size: 58px;
+        font-size: 64px;
         font-weight: 500;
         color: #ff9500;
         line-height: normal;
       }
 
       .vulners-header-subtitle {
-        font-size: 27px;
+        font-size: 30px;
         font-weight: 500;
         color: #ff9500;
         line-height: normal;
@@ -69,7 +69,6 @@
         border-radius: 32px;
         position: relative;
         overflow: hidden;
-        box-shadow: 0 20px 40px rgba(0,0,0,0.05);
       }
 
       .vulners-hero-video {
@@ -412,34 +411,51 @@
         flex-direction: column;
         gap: 20px;
         align-items: center;
-        width: 100%;
-        max-width: 1136px;
+        width: 100vw;
+        margin-left: calc(-50vw + 50%);
+        position: relative;
       }
 
       .gallery-wrapper {
-        overflow: hidden;
+        overflow: visible;
         width: 100%;
         position: relative;
-        border-radius: 26px;
+        padding: 0 calc((100vw - 1136px) / 2);
+        box-sizing: border-box;
       }
 
       .gallery-track {
         display: flex;
+        gap: 20px;
         transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        width: 100%;
       }
 
       .gallery-slide {
         flex-shrink: 0;
-        width: 100%;
+        width: 1136px;
+        max-width: calc(100vw - 64px);
         position: relative;
+        opacity: 0.4;
+        transform: scale(0.95);
+        transition: opacity 0.4s ease, transform 0.4s ease;
+      }
+
+      .gallery-slide.active {
+        opacity: 1;
+        transform: scale(1);
       }
 
       .gallery-slide img {
         width: 100%;
         height: auto;
         display: block;
-        border-radius: 26px;
+        border-radius: 24px;
+      }
+
+      /* Challenge gallery slides with border */
+      .gallery-research .gallery-slide img {
+        border: 2px solid #f8f8f8;
+        box-sizing: border-box;
       }
 
       .gallery-controls {
@@ -550,8 +566,8 @@
       }
 
       .vulners-impact-header {
-        width: 100%;
-        padding-left: 16px;
+        width: 728px;
+        max-width: 100%;
       }
 
       .vulners-impact-grid {
@@ -595,8 +611,8 @@
         display: flex;
         align-items: center;
         gap: 10px;
-        width: 100%;
-        padding-left: 16px;
+        width: 728px;
+        max-width: 100%;
       }
 
       .vulners-section-icon {
@@ -616,8 +632,8 @@
       }
 
       .vulners-learnings-header {
-        width: 100%;
-        padding-left: 16px;
+        width: 728px;
+        max-width: 100%;
       }
 
       .vulners-learnings-grid {
@@ -1085,7 +1101,15 @@
         .gallery-controls {
           display: none;
         }
-        
+
+        .gallery-wrapper {
+          padding: 0 24px;
+        }
+
+        .gallery-slide {
+          width: calc(100vw - 48px);
+        }
+
         .gallery-slide img {
           border-radius: 16px;
         }
@@ -1119,6 +1143,10 @@
             <img src="images/zap.svg" alt="" class="vulners-section-link-icon" />
             <span>Challenge</span>
           </a>
+          <a href="#role" class="vulners-section-link vulners-section-link-orange">
+            <img src="images/team.svg" alt="" class="vulners-section-link-icon" />
+            <span>My Role</span>
+          </a>
           <a href="#solution" class="vulners-section-link vulners-section-link-blue">
             <img src="images/star.svg" alt="" class="vulners-section-link-icon" />
             <span>Solution</span>
@@ -1137,7 +1165,7 @@
       <!-- Header Section -->
       <header class="vulners-header">
         <div class="vulners-header-content">
-          <h1 class="vulners-header-title">Vulners Visual Design</h1>
+          <h1 class="vulners-header-title">Cybersecurity Product Acquisition</h1>
           <p class="vulners-header-subtitle">Product design and strategy, branding, web</p>
         </div>
 
@@ -1163,10 +1191,6 @@
             <img src="images/star-yellow.svg" alt="" />
             <span>Multi-product ecosystem</span>
           </div>
-          <div class="vulners-metric-badge">
-            <img src="images/star-yellow.svg" alt="" />
-            <span>Design System</span>
-          </div>
         </div>
       </header>
 
@@ -1177,29 +1201,22 @@
             <img src="images/zap.svg" alt="" class="vulners-section-icon" />
             <h2 class="vulners-section-title">Challenge</h2>
           </div>
-          <p class="vulners-section-text">Vulners offered a suite of cybersecurity products, but struggled to communicate how they worked together.</p>
-          <p class="vulners-section-text">Vulners needed a strategy to acquire and retain customers for their cybersecurity product suite. Their existing brand lacked cohesion across multiple products (Database, Scanner, Notifications), making it difficult to communicate their offering's strengths.</p>
+          <p class="vulners-section-text">Vulners is a cybersecurity startup with multiple products—Database, Scanner, Feed, Notifications, API, and AI Scoring—competing with companies like Snyk, Feedly, and Debricked in a crowded market of similar offerings. Each product had different endpoints and narratives, when they made more sense as part of a unified suite.</p>
+          <p class="vulners-section-text">The founders identified a critical problem through direct user feedback: the fragmented brand was costing them revenue and failing to attract target customers. Decision-makers—often managers without deep technical expertise—struggled to understand what made Vulners valuable.</p>
         </div>
 
-
-
-        <!-- Research Gallery -->
-        <div class="vulners-textbox">
-          <h3 class="vulners-subsection-title">Research</h3>
-          <p class="vulners-subsection-text">We explored how different stakeholders viewed the ecosystem.</p>
-        </div>
-
+        <!-- Challenge Gallery -->
         <div class="gallery-container gallery-research">
           <div class="gallery-wrapper">
             <div class="gallery-track" id="research-gallery">
               <div class="gallery-slide">
-                <img src="images/vulners/research/Vulners intro 1.png" alt="Research 1" />
+                <img src="images/vulners/research/Vulners intro 1.png" alt="Challenge 1" />
               </div>
               <div class="gallery-slide">
-                <img src="images/vulners/research/Vulners intro 2.png" alt="Research 2" />
+                <img src="images/vulners/research/Vulners intro 2.png" alt="Challenge 2" />
               </div>
               <div class="gallery-slide">
-                <img src="images/vulners/research/Vulners intro 3.png" alt="Research 3" />
+                <img src="images/vulners/research/Vulners intro 3.png" alt="Challenge 3" />
               </div>
             </div>
           </div>
@@ -1217,6 +1234,19 @@
         </div>
       </section>
 
+      <!-- My Role Section -->
+      <section id="role" class="vulners-problem-section">
+        <div class="vulners-textbox">
+          <div class="vulners-section-title-row">
+            <img src="images/team.svg" alt="" class="vulners-section-icon" />
+            <h2 class="vulners-section-title">My Role</h2>
+          </div>
+          <p class="vulners-section-text">I was brought in as a contractor for 2 months, reporting directly to the CTO on a team of fewer than 10 people. I contributed to every aspect: research, brand identity, design system, and implementation across landing pages, product UI, and data visualization.</p>
+          <p class="vulners-section-text">I conducted research with founders and users to understand their experience, motivations, and what could increase interest in Vulners. Based on business metrics and strategic goals, I identified that a design system would provide consistency between landing pages and the web-based product, while enabling scalability beyond the initial implementations.</p>
+          <p class="vulners-section-text">The timeline was aggressive—research, brand adjustments, design system foundations, and implementations all within 2 months. I worked directly with the CTO, balancing speed with quality handoffs for the small team.</p>
+        </div>
+      </section>
+
             <!-- Solution Section -->
 
             <section id="solution" class="vulners-solution-section">
@@ -1230,20 +1260,6 @@
                   <h2 class="vulners-section-title">Solution</h2>
 
                 </div>
-
-                <p class="vulners-section-text">Developed a comprehensive design system and marketing strategy that unified the brand experience across all touchpoints—from product to marketing to customer acquisition.</p>
-
-              </div>
-
-      
-
-              <!-- Design System Gallery (Corresponds to Figma's first Gallery_container 443:1402) -->
-
-              <div class="vulners-textbox">
-
-                <h3 class="vulners-subsection-title">Design System</h3>
-
-                <p class="vulners-subsection-text">Created a comprehensive design system that worked across product UI, marketing, and data visualization.</p>
 
               </div>
 
@@ -1313,27 +1329,25 @@
 
       
 
-              <!-- Visual Language Gallery (Corresponds to Figma's second Gallery_container 489:844) -->
+              <!-- Design System Foundations -->
 
               <div class="vulners-textbox">
 
-                <h3 class="vulners-subsection-title">Visual Language</h3>
+                <h3 class="vulners-subsection-title">Design System Foundations</h3>
 
-                <p class="vulners-subsection-text">Developed a unique illustration style that:</p>
+                <p class="vulners-subsection-text">Created comprehensive system covering:</p>
 
                 <ul class="vulners-list">
 
-                  <li class="vulners-list-item">Unified the Vulners ecosystem visually</li>
+                  <li class="vulners-list-item">Color tokens and typography for brand consistency</li>
 
-                  <li class="vulners-list-item">Made complex security concepts approachable</li>
+                  <li class="vulners-list-item">Component library for product UI and marketing</li>
 
-                  <li class="vulners-list-item">Scaled across different contexts (abstract to specific)</li>
+                  <li class="vulners-list-item">Data visualization patterns for security analytics</li>
 
-                  <li class="vulners-list-item">Maintained consistency from marketing to product</li>
+                  <li class="vulners-list-item">Layout systems for landing pages and product</li>
 
                 </ul>
-
-                <p class="vulners-subsection-text">The illustration system could adapt from high-level concepts (data flows, integrations) to specific tools (Python SDK, Linux Scanner).</p>
 
               </div>
 
@@ -1401,54 +1415,47 @@
 
               </div>
 
-      
+              <!-- Approachable Visual Language Section -->
+              <div class="vulners-textbox">
+                <h3 class="vulners-subsection-title">Approachable Visual Language</h3>
+                <p class="vulners-subsection-text">Developed an illustration style that:</p>
+                <ul class="vulners-list">
+                  <li class="vulners-list-item">Made complex security concepts approachable for managers</li>
+                  <li class="vulners-list-item">Maintained technical credibility for security engineers</li>
+                  <li class="vulners-list-item">Unified the Vulners ecosystem visually</li>
+                  <li class="vulners-list-item">Scaled from abstract concepts to specific tools</li>
+                </ul>
+                <p class="vulners-subsection-text">The visual approach balanced friendliness with professionalism—approachable without looking "too cute" for a security product.</p>
+              </div>
 
               <!-- vulners01.png image (Figma ID 494:1058) -->
-
               <div class="vulners-image-block">
-
                 <img src="images/New Vulners Images/vulners01.png" alt="Vulners Design System Overview" />
-
               </div>
-
-      
 
               <!-- vulners02.png image (Figma ID 494:1374) -->
-
               <div class="vulners-image-block">
-
-                  <img src="images/New Vulners Images/vulners02.png" alt="Vulners Visual Elements" />
-
+                <img src="images/New Vulners Images/vulners02.png" alt="Vulners Visual Elements" />
               </div>
 
-      
+              <!-- Implementation section -->
+              <div class="vulners-textbox">
+                <h3 class="vulners-subsection-title">Implementation</h3>
+                <p class="vulners-subsection-text">Applied the system across:</p>
+                <ul class="vulners-list">
+                  <li class="vulners-list-item">Landing pages: Improved conversion narrative</li>
+                  <li class="vulners-list-item">Data visualization: Consistent, readable security analytics</li>
+                  <li class="vulners-list-item">Marketing materials: Clear product positioning</li>
+                  <li class="vulners-list-item">Product foundations: Component library for future development</li>
+                </ul>
+              </div>
 
-              <!-- Implementation section and end.png image (Figma ID 442:1166) -->
+              <div class="vulners-image-block">
+                <img src="images/vulners/end.png" alt="Implementation" />
+              </div>
 
               <div class="vulners-textbox">
-
-                <h3 class="vulners-subsection-title">Implementation</h3>
-
-                <p class="vulners-subsection-text">Applied the design system across:</p>
-
-                <ul class="vulners-list">
-
-                  <li class="vulners-list-item">Marketing site: Clear product positioning and customer journey</li>
-
-                  <li class="vulners-list-item">Product pages: Feature-specific landing pages</li>
-
-                  <li class="vulners-list-item">Documentation: Developer resources with consistent UI</li>
-
-                  <li class="vulners-list-item">Customer portal: Unified dashboard experience</li>
-
-                </ul>
-
-              </div>
-
-              <div class="vulners-image-block">
-
-                <img src="images/vulners/end.png" alt="Implementation" />
-
+                <p class="vulners-subsection-text">Data visualization and landing pages shipped during my engagement. Product UI foundations were handed off for continued development.</p>
               </div>
 
             </section>
@@ -1460,16 +1467,20 @@
         <div class="vulners-impact-grid">
           <div class="vulners-impact-card">
             <img src="images/star-yellow.svg" alt="" />
-            <p>Established consistent visual language across product ecosystem</p>
+            <p>20% improvement in signups</p>
           </div>
           <div class="vulners-impact-card">
             <img src="images/star-yellow.svg" alt="" />
-            <p>Improved brand clarity and customer understanding</p>
+            <p>10% increase in conversions</p>
           </div>
-          <div class="vulners-impact-card full-width">
-            <img src="images/star-yellow.svg" alt="" />
-            <p>Created scalable design system for marketing and product teams, reducing dev time</p>
-          </div>
+        </div>
+        <div class="vulners-textbox" style="padding: 0 18px;">
+          <h3 class="vulners-subsection-title">Foundations Delivered</h3>
+          <p class="vulners-subsection-text">Handed off comprehensive deliverables: research reports, design system, and visual identity—all in Figma. The team built on these foundations after I moved to another role.</p>
+        </div>
+        <div class="vulners-textbox" style="padding: 0 18px;">
+          <h3 class="vulners-subsection-title">Long-term Adoption</h3>
+          <p class="vulners-subsection-text">The original design system building blocks are still in use, though Vulners has evolved the aesthetic as they've grown. Data visualization and landing pages shipped as designed.</p>
         </div>
       </section>
 
@@ -1482,22 +1493,22 @@
           <div class="vulners-learning-card">
             <img src="images/star-green.svg" alt="" class="vulners-learning-icon" />
             <div class="vulners-learning-content">
-              <p class="vulners-learning-title">Systems thinking</p>
-              <p class="vulners-learning-text">Designed for scalability across products and teams, ensuring that the system could grow with the company.</p>
+              <p class="vulners-learning-title">Technical depth is rewarding</p>
+              <p class="vulners-learning-text">Diving into cybersecurity concepts was challenging but rewarding. Understanding the technical domain deeply enough to explain it simply made the visual direction more effective.</p>
             </div>
           </div>
           <div class="vulners-learning-card">
             <img src="images/star-green.svg" alt="" class="vulners-learning-icon" />
             <div class="vulners-learning-content">
-              <p class="vulners-learning-title">Brand consistency</p>
-              <p class="vulners-learning-text">Unified visual language improved clarity significantly, proving that consistency is key to building trust in security products.</p>
+              <p class="vulners-learning-title">Small teams need clean handoffs</p>
+              <p class="vulners-learning-text">For teams under 10 people, less is more. Assets need to be easy to use and well-documented. Clean handoff matters more than perfect execution when you won't be there for implementation.</p>
             </div>
           </div>
           <div class="vulners-learning-card">
             <img src="images/star-green.svg" alt="" class="vulners-learning-icon" />
             <div class="vulners-learning-content">
-              <p class="vulners-learning-title">Cross-functional impact</p>
-              <p class="vulners-learning-text">The system served marketing, product, and engineering, demonstrating the value of design in connecting different parts of the organization.</p>
+              <p class="vulners-learning-title">Balance approachability with credibility</p>
+              <p class="vulners-learning-text">Cybersecurity audiences range from technical engineers to non-technical managers. The visual direction needed to appeal to decision-makers without alienating the experts who would actually use the product.</p>
             </div>
           </div>
         </div>
@@ -1601,7 +1612,7 @@
                 <p class="vulners-bento-subtitle">Driving organic growth through simplified UX</p>
               </div>
               <div class="vulners-bento-image">
-                <img src="images/referral-bento.png" alt="Referral System" />
+                <img src="images/referral-thumb.png" alt="Referral System" />
               </div>
               <div class="vulners-bento-tags">
                 <span class="vulners-bento-tag blue">Growth & Acquisition</span>
@@ -1672,7 +1683,7 @@
                 <p class="vulners-bento-subtitle">Driving organic growth through simplified UX</p>
               </div>
               <div class="vulners-bento-image">
-                <img src="images/referral-bento.png" alt="Referral System" />
+                <img src="images/referral-thumb.png" alt="Referral System" />
               </div>
               <div class="vulners-bento-tags">
                 <span class="vulners-bento-tag blue">Growth & Acquisition</span>
@@ -1994,16 +2005,26 @@
           const prevButton = document.getElementById(`${galleryId}-prev`);
           const nextButton = document.getElementById(`${galleryId}-next`);
           const dots = document.querySelectorAll(`#${galleryId}-dots .gallery-dot`);
+          const slides = track.querySelectorAll('.gallery-slide');
 
-          // Calculate slide movement for peek effect
-          const slideElement = track.querySelector('.gallery-slide');
-          const slideWidth = slideElement.offsetWidth; // This is the actual rendered width of the slide
-          const slideMarginRight = parseFloat(getComputedStyle(slideElement).marginRight); // Get right margin
-          const slideTotalMovement = slideWidth + slideMarginRight; // Total distance to move for one slide
+          // Calculate slide movement - slide width + gap
+          const slideElement = slides[0];
+          const slideWidth = slideElement.offsetWidth;
+          const gap = 20; // matches CSS gap
+          const slideTotalMovement = slideWidth + gap;
 
           const offset = -(gallery.currentIndex * slideTotalMovement);
 
           track.style.transform = `translateX(${offset}px)`;
+
+          // Update active slide class
+          slides.forEach((slide, index) => {
+            if (index === gallery.currentIndex) {
+              slide.classList.add('active');
+            } else {
+              slide.classList.remove('active');
+            }
+          });
 
           // Update button states
           prevButton.disabled = gallery.currentIndex === 0;
@@ -2024,32 +2045,44 @@
         // Initialize galleries
         initGalleries();
 
-        let activeGalleryId = null; // To keep track of the last interacted gallery
+        // Find the gallery most visible in the viewport
+        function getMostVisibleGallery() {
+          const galleryContainers = document.querySelectorAll('.gallery-container');
+          let mostVisible = null;
+          let maxVisibility = 0;
 
-        // Add mouseenter/mouseleave listeners to gallery containers
-        document.querySelectorAll('.gallery-container').forEach(container => {
-          container.addEventListener('mouseenter', () => {
-            // Extract galleryId from class name, e.g., 'gallery-research' -> 'research'
-            const classList = Array.from(container.classList);
-            const galleryClass = classList.find(cls => cls.startsWith('gallery-'));
-            if (galleryClass) {
-              activeGalleryId = galleryClass.split('-')[1];
+          galleryContainers.forEach(container => {
+            const rect = container.getBoundingClientRect();
+            const viewportHeight = window.innerHeight;
+
+            // Calculate how much of the gallery is visible
+            const top = Math.max(0, rect.top);
+            const bottom = Math.min(viewportHeight, rect.bottom);
+            const visibleHeight = Math.max(0, bottom - top);
+            const visibility = visibleHeight / rect.height;
+
+            // Only consider galleries that are at least 30% visible
+            if (visibility > 0.3 && visibility > maxVisibility) {
+              maxVisibility = visibility;
+              const classList = Array.from(container.classList);
+              const galleryClass = classList.find(cls => cls.startsWith('gallery-') && cls !== 'gallery-container');
+              if (galleryClass) {
+                mostVisible = galleryClass.split('-')[1];
+              }
             }
           });
-          container.addEventListener('mouseleave', () => {
-            activeGalleryId = null;
-          });
-        });
 
-        // Add global keyboard event listener
+          return mostVisible;
+        }
+
+        // Add global keyboard event listener for arrow keys
         document.addEventListener('keydown', (e) => {
-          if (activeGalleryId) {
-            if (e.key === 'ArrowLeft') {
+          if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+            const activeGalleryId = getMostVisibleGallery();
+            if (activeGalleryId) {
               e.preventDefault(); // Prevent default scroll behavior
-              window.navigateGallery(activeGalleryId, -1);
-            } else if (e.key === 'ArrowRight') {
-              e.preventDefault(); // Prevent default scroll behavior
-              window.navigateGallery(activeGalleryId, 1);
+              const direction = e.key === 'ArrowLeft' ? -1 : 1;
+              window.navigateGallery(activeGalleryId, direction);
             }
           }
         });

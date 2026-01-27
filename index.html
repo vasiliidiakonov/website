@@ -11,46 +11,207 @@
     <link rel="stylesheet" href="design/style.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <style>
+      /* Homepage Header Background */
+      .homepage-wrapper {
+        background-color: #e0f1ff;
+        transition: background-color 0.5s ease;
+      }
+
+      .homepage-wrapper.scrolled-past-header {
+        background-color: #ffffff;
+      }
+
+      .homepage-wrapper .portfolio-container {
+        padding-top: 64px;
+      }
+
+      /* Header text colors for light blue background */
+      .homepage-header .heading-large {
+        color: #0084ff;
+      }
+
+      .homepage-header .pill-highlight {
+        background-color: #ffffff;
+        color: #0084ff;
+        padding: 8px 16px;
+        border-radius: 24px;
+        font-size: 48px;
+        font-weight: 500;
+        line-height: normal;
+        display: inline-flex;
+        align-items: center;
+      }
+
+      .homepage-header .text-flow {
+        gap: 12px;
+      }
+
+      .homepage-header {
+        gap: 32px;
+      }
+
+      .homepage-header .header-sentence {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .homepage-header .pill-teal {
+        background-color: #ffffff;
+        color: #0084ff;
+      }
+
+      .homepage-header .text-teal {
+        color: #0084ff;
+      }
+
+      .homepage-header .pill-purple {
+        background-color: #ffffff;
+        color: #0084ff;
+      }
+
+      .homepage-header .pill-indigo {
+        background-color: #ffffff;
+        color: #0084ff;
+      }
+
+      .homepage-header .pill-orange {
+        background-color: #ffffff;
+        color: #0084ff;
+      }
+
+      .homepage-header .text-purple,
+      .homepage-header .text-indigo,
+      .homepage-header .text-orange {
+        color: #0084ff;
+      }
+
+      .homepage-header .inline-link {
+        color: #0084ff;
+      }
+
+      /* Vulners Featured Card */
+      .bento-featured-vulners {
+        background-color: #ffffff;
+        border: 1px solid #f8f8f8;
+      }
+
+      .bento-featured-vulners .bento-featured-title {
+        color: #ff9500;
+      }
+
+      .bento-featured-vulners .bento-featured-right {
+        background-color: #f5f0eb;
+        border: 3px solid rgba(255, 255, 255, 0.2);
+        border-radius: 24px;
+      }
+
+      .bento-featured-vulners .bento-featured-video {
+        border-radius: 21px;
+      }
+
+      /* Flipped layout for Vulners - image on left, text on right */
+      .bento-featured-flipped {
+        flex-direction: row;
+      }
+
+      .bento-featured-flipped .bento-featured-media-left {
+        order: 1;
+        flex: 1;
+        min-width: 0;
+      }
+
+      .bento-featured-flipped .bento-featured-text-right {
+        order: 2;
+        width: 470px;
+        flex-shrink: 0;
+      }
+
+      /* Referral card image background */
+      .referral-image-container {
+        background-color: #d4e4f7;
+        border-radius: 24px;
+        border: 3px solid rgba(255, 255, 255, 0.2);
+      }
+
+      /* Tabs card image background */
+      .bento-featured-right {
+        background-color: #93b9f9;
+        border: 3px solid rgba(255, 255, 255, 0.2);
+        border-radius: 24px;
+      }
+
+      .bento-featured-right .bento-featured-video {
+        border-radius: 21px;
+      }
+
+      @media (max-width: 768px) {
+        .homepage-header .heading-large {
+          color: #0084ff;
+        }
+
+        .homepage-header .pill-highlight {
+          font-size: 25px;
+          padding: 6px 12px;
+          border-radius: 16px;
+        }
+
+        /* Mobile: stack flipped card vertically with media on top */
+        .bento-featured-flipped {
+          flex-direction: column;
+        }
+
+        .bento-featured-flipped .bento-featured-media-left {
+          order: 1;
+          width: 100%;
+        }
+
+        .bento-featured-flipped .bento-featured-text-right {
+          order: 2;
+          width: 100%;
+        }
+      }
+    </style>
   </head>
   <body>
+    <div class="homepage-wrapper">
     <!-- Main Portfolio Content -->
     <div class="portfolio-container">
 
       <!-- Header Section -->
-      <div class="content-section">
+      <div class="content-section homepage-header">
         <!-- Profile Image -->
         <div class="profile-container">
-          <object class="profile-image" data="images/SVG/SVG01.svg" type="image/svg+xml" aria-label="Vasilii Diakonov"></object>
+          <object class="profile-image" data="images/SVG01.svg" type="image/svg+xml" aria-label="Vasilii Diakonov"></object>
         </div>
 
         <!-- Heading -->
         <p class="heading-large">Hi, I'm Vasilii</p>
 
         <!-- Location Line -->
-        <div class="text-flow">
-          <p class="heading-large heading-location">I'm a Product Designer <br class="mobile-break">based in <span class="mobile-inline-text text-teal desktop-hide">London</span></p>
-          <div class="pill pill-teal mobile-hide">London</div>
-        </div>
-
-        <!-- Product Design Line -->
-        <div class="mobile-text-paragraph desktop-hide">
-          <p class="heading-large">I design products <span class="text-red">End-to-End</span> across <span class="text-blue">iOS</span> <span class="text-green">Android</span> <span class="text-light-blue">Windows & MacOS</span> <span class="text-yellow">Web</span></p>
-        </div>
-
-        <div class="desktop-only desktop-only-flex-col">
+        <div class="header-sentence">
           <div class="text-flow">
-            <p class="heading-large">I design products</p>
-            <div class="pill pill-red">End-to-End</div>
-            <p class="heading-large">across</p>
+            <span class="heading-large">I'm an</span>
+            <span class="pill pill-highlight">Impact</span>
+            <span class="heading-large">driven Product Designer</span>
           </div>
+          <div class="text-flow">
+            <span class="heading-large">based in</span>
+            <span class="pill pill-highlight">London</span>
+          </div>
+        </div>
 
-          <!-- Platform Pills -->
-          <div class="platform-pills">
-            <div class="pill pill-blue">iOS</div>
-            <div class="pill pill-green">Android</div>
-            <div class="pill pill-light-blue">Windows & MacOS</div>
-            <div class="pill pill-yellow">Web</div>
-          </div>
+        <!-- Focus Line -->
+        <div class="text-flow">
+          <span class="heading-large">My focus is on designing</span>
+          <span class="pill pill-highlight">Consumer</span>
+          <span class="heading-large">products that bring</span>
+          <span class="pill pill-highlight">Value</span>
+          <span class="heading-large">and</span>
+          <span class="pill pill-highlight">Delight</span>
+          <span class="heading-large">to users</span>
         </div>
 
         <!-- Description -->
@@ -140,17 +301,16 @@
             </div>
           </a>
 
-          <!-- 2x2 Grid Layout -->
+          <!-- 2 Column Grid: Referral + Snips -->
           <div class="bento-grid bento-grid-four">
-            <!-- Column 1 -->
+            <!-- Column 1: Referral -->
             <div class="bento-column">
-              <!-- Referral System -->
               <a href="referral.html" class="bento-small no-decoration">
                 <div class="bento-text-container">
-                  <p class="bento-title color-indigo">Aloha Referral System</p>
+                  <p class="bento-title color-indigo">Aloha Referral System </p>
                   <p class="bento-subtitle color-gray">Driving organic growth through simplified UX</p>
                 </div>
-                <div class="bento-image-container">
+                <div class="bento-image-container referral-image-container">
                   <img class="bento-image" src="images/referral-thumb.png" alt="Aloha Referral System" loading="eager" decoding="async" />
                 </div>
                 <div class="bento-tags">
@@ -161,8 +321,10 @@
                   </span>
                 </div>
               </a>
+            </div>
 
-              <!-- Snips AI Notifications -->
+            <!-- Column 2: Snips -->
+            <div class="bento-column">
               <a href="snips.html" class="bento-small snips-card no-decoration">
                 <div class="bento-text-container">
                   <p class="bento-title color-light-blue">Aloha Snips AI Notifications</p>
@@ -180,50 +342,29 @@
                 </div>
               </a>
             </div>
-
-            <!-- Column 2 -->
-            <div class="bento-column">
-              <!-- Website Design System -->
-              <a href="website.html" class="bento-small no-decoration" style="display: none;">
-                <div class="bento-text-container">
-                  <p class="bento-title color-purple">Aloha Website Design System</p>
-                  <p class="bento-subtitle color-gray">Building a scalable design system</p>
-                </div>
-                <div class="bento-image-container">
-                  <img class="bento-image" src="images/website-thumb.png" alt="Aloha Website Design System" loading="eager" decoding="async" />
-                </div>
-                <div class="bento-tags bento-tags-wrap">
-                  <span class="bento-tag bento-tag-blue">Conversion & Design System</span>
-                  <span class="bento-tag bento-tag-metric">
-                    <img class="bento-star" src="images/star-yellow.svg" alt="" width="24" height="26" />
-                    +10pp conversion
-                  </span>
-                  <span class="bento-tag bento-tag-metric">
-                    <img class="bento-star" src="images/star-yellow.svg" alt="" width="24" height="26" />
-                    -50% dev time
-                  </span>
-                </div>
-              </a>
-
-              <!-- Vulners Visual Design -->
-              <a href="vulners.html" class="bento-small no-decoration">
-                <div class="bento-text-container">
-                  <p class="bento-title color-orange">Vulners Visual Design</p>
-                  <p class="bento-subtitle color-gray">Design system unifying cybersecurity suite</p>
-                </div>
-                <div class="bento-image-container">
-                  <img class="bento-image" src="images/vulners-hero.png" alt="Vulners Visual Design" loading="lazy" decoding="async" />
-                </div>
-                <div class="bento-tags">
-                  <span class="bento-tag bento-tag-blue">Brand & Systems</span>
-                  <span class="bento-tag bento-tag-metric">
-                    <img class="bento-star" src="images/star-yellow.svg" alt="" width="24" height="26" />
-                    Multi-product ecosystem
-                  </span>
-                </div>
-              </a>
-            </div>
           </div>
+
+          <!-- Vulners Full Width Card at Bottom (flipped layout: image left, text right) -->
+          <a href="vulners.html" class="bento-featured bento-featured-vulners bento-featured-flipped no-decoration">
+            <div class="bento-featured-right bento-featured-media-left">
+              <video class="bento-featured-video" autoplay muted playsinline>
+                <source src="images/New Vulners Images/vulners_header_video.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <div class="bento-featured-left bento-featured-text-right">
+              <div class="bento-featured-text">
+                <p class="bento-featured-title">Vulners Product Acquisition</p>
+                <p class="bento-featured-subtitle">Design system unifying cybersecurity suite</p>
+              </div>
+              <div class="bento-featured-tags">
+                <span class="bento-featured-tag bento-featured-tag-blue">Systems & Visual</span>
+                <span class="bento-featured-tag bento-featured-tag-metric">
+                  <img src="images/star-yellow.svg" alt="" />
+                  Multi-product ecosystem
+                </span>
+              </div>
+            </div>
+          </a>
         </div>
       </div>
 
@@ -623,6 +764,7 @@
       </div>
 
     </div>
+    </div><!-- End homepage-wrapper -->
 
     <script>
       function toggleReleases() {
@@ -694,6 +836,24 @@
           syncInterval: 100,
           autoRefreshEvents: 'visibilitychange,DOMContentLoaded,load'
         });
+
+        // Homepage background color transition on scroll
+        const homepageWrapper = document.querySelector('.homepage-wrapper');
+        const homepageHeader = document.querySelector('.homepage-header');
+
+        function updateBackgroundColor() {
+          if (homepageHeader && homepageWrapper) {
+            const headerBottom = homepageHeader.getBoundingClientRect().bottom;
+            if (headerBottom < window.innerHeight / 2) {
+              homepageWrapper.classList.add('scrolled-past-header');
+            } else {
+              homepageWrapper.classList.remove('scrolled-past-header');
+            }
+          }
+        }
+
+        window.addEventListener('scroll', updateBackgroundColor);
+        updateBackgroundColor();
 
         // Header animation (on page load)
         const headerSection = document.querySelector('.content-section');
