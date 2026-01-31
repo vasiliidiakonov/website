@@ -117,6 +117,47 @@
         padding-left: 24px;
       }
 
+      /* Hide video controls for autoplay videos */
+      video.bento-featured-video {
+        pointer-events: none;
+      }
+      video.bento-featured-video::-webkit-media-controls,
+      video.bento-featured-video::-webkit-media-controls-panel,
+      video.bento-featured-video::-webkit-media-controls-panel-container,
+      video.bento-featured-video::-webkit-media-controls-start-playback-button,
+      video.bento-featured-video::-webkit-media-controls-play-button,
+      video.bento-featured-video::-webkit-media-controls-overlay-play-button,
+      video.bento-featured-video::-webkit-media-controls-current-time-display,
+      video.bento-featured-video::-webkit-media-controls-time-remaining-display,
+      video.bento-featured-video::-webkit-media-controls-timeline,
+      video.bento-featured-video::-webkit-media-controls-volume-slider,
+      video.bento-featured-video::-webkit-media-controls-mute-button,
+      video.bento-featured-video::-webkit-media-controls-fullscreen-button,
+      video.bento-featured-video::-webkit-media-controls-enclosure {
+        display: none !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+        -webkit-appearance: none !important;
+        width: 0 !important;
+        height: 0 !important;
+      }
+
+      /* Wrapper to cover any remaining controls */
+      .bento-featured-right {
+        position: relative;
+        overflow: hidden;
+      }
+      .bento-featured-right::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        pointer-events: none;
+      }
+
       /* Flipped layout for Vulners - image on left, text on right */
       .bento-featured-flipped {
         flex-direction: row;
@@ -411,8 +452,9 @@
               </div>
             </div>
             <div class="bento-featured-right">
-              <video class="bento-featured-video" autoplay loop muted playsinline>
-                <source src="images/tabs_highlight_video.mp4" type="video/mp4" />
+              <video class="bento-featured-video" autoplay loop muted playsinline preload="auto" disablepictureinpicture poster="images/tabs_highlight_poster.jpg">
+                <source src="images/tabs_highlight_video.mov" type="video/quicktime" />
+                <source src="images/tabs_highlight_video_noaudio.mp4" type="video/mp4" />
               </video>
             </div>
           </a>
@@ -463,8 +505,9 @@
           <!-- Vulners Full Width Card at Bottom (flipped layout: image left, text right) -->
           <a href="vulners.html" class="bento-featured bento-featured-vulners bento-featured-flipped no-decoration">
             <div class="bento-featured-right bento-featured-media-left">
-              <video class="bento-featured-video" autoplay muted playsinline>
-                <source src="images/New Vulners Images/vulners_header_video.mp4" type="video/mp4" />
+              <video class="bento-featured-video" autoplay loop muted playsinline preload="auto" disablepictureinpicture poster="images/New Vulners Images/vulners_header_poster.jpg">
+                <source src="images/New Vulners Images/vulners_header_video.mov" type="video/quicktime" />
+                <source src="images/New Vulners Images/vulners_header_video_noaudio.mp4" type="video/mp4" />
               </video>
             </div>
             <div class="bento-featured-left bento-featured-text-right">
@@ -987,6 +1030,37 @@
 
       // GSAP Text Animation
       window.addEventListener('DOMContentLoaded', () => {
+        // Safari autoplay fix - force muted and play
+        const videos = document.querySelectorAll('video[autoplay]');
+        videos.forEach(video => {
+          // Force properties via JS
+          video.muted = true;
+          video.playsInline = true;
+          video.autoplay = true;
+          video.controls = false;
+          video.defaultMuted = true;
+
+          const forcePlay = () => {
+            const playPromise = video.play();
+            if (playPromise !== undefined) {
+              playPromise.catch(() => {});
+            }
+          };
+
+          // Try multiple events
+          video.addEventListener('canplay', forcePlay);
+          video.addEventListener('canplaythrough', forcePlay);
+          video.addEventListener('loadedmetadata', forcePlay);
+
+          // Immediate attempt
+          forcePlay();
+
+          // Delayed attempts
+          setTimeout(forcePlay, 100);
+          setTimeout(forcePlay, 500);
+          setTimeout(forcePlay, 1000);
+        });
+
         gsap.registerPlugin(ScrollTrigger);
 
         // Configure ScrollTrigger for smoother performance
