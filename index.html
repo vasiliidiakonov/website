@@ -333,6 +333,20 @@
     </style>
   </head>
   <body>
+    <!-- Mobile Placeholder -->
+    <div class="mobile-placeholder">
+      <div class="mobile-placeholder-content">
+        <p class="mobile-placeholder-text">Hi!</p>
+        <p class="mobile-placeholder-text">Unfortunately this website is unavailable on mobile at this time.</p>
+        <p class="mobile-placeholder-text">While I'm building it, please send yourself a link to view it on desktop.</p>
+        <button class="mobile-placeholder-button" onclick="navigator.clipboard.writeText(window.location.href).then(() => { this.querySelector('span').textContent = 'Copied!'; setTimeout(() => { this.querySelector('span').textContent = 'Copy link'; }, 2000); })">
+          <span>Copy link</span>
+          <img src="images/icon_link.svg" alt="Link" />
+        </button>
+        <p class="mobile-placeholder-text">Thanks!</p>
+      </div>
+    </div>
+
     <div class="homepage-wrapper">
     <!-- Main Portfolio Content -->
     <div class="portfolio-container">
