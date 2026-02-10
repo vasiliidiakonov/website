@@ -14,7 +14,8 @@
     <style>
       /* Homepage Header Background */
       .homepage-wrapper {
-        background-color: #e0f1ff;
+        background-color: #ffffff;
+        position: relative;
         transition: background-color 0.5s ease;
       }
 
@@ -22,7 +23,19 @@
         background-color: #ffffff;
       }
 
+      #dotGrid {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 0;
+      }
+
       .homepage-wrapper .portfolio-container {
+        position: relative;
+        z-index: 1;
         padding-top: 64px;
       }
 
@@ -328,6 +341,7 @@
   </head>
   <body>
     <div class="homepage-wrapper">
+    <canvas id="dotGrid"></canvas>
     <!-- Main Portfolio Content -->
     <div class="portfolio-container">
 
@@ -1009,6 +1023,276 @@
 
       // GSAP Text Animation
       window.addEventListener('DOMContentLoaded', () => {
+        // Dot Grid Animation
+        const dotCanvas = document.getElementById('dotGrid');
+        const dotCtx = dotCanvas.getContext('2d');
+        const wrapper = document.querySelector('.homepage-wrapper');
+
+        const DOT_SPACING = 6;
+        const DOT_RADIUS = 1;
+        const DOT_COLOR = '#ffffff';
+        const INFLUENCE_RADIUS = 120;
+        const ACTIVE_COLOR = '#0084ff';
+        let onPill = false;
+        let pillType = null;
+        let pulseTime = 0;
+        let particles = [];
+        let spawnTimer = 0;
+
+        // Pre-render star mask for fast lookups
+        const STAR_MASK_SIZE = 128;
+        const starMaskCanvas = document.createElement('canvas');
+        starMaskCanvas.width = STAR_MASK_SIZE;
+        starMaskCanvas.height = STAR_MASK_SIZE;
+        const starMaskCtx = starMaskCanvas.getContext('2d');
+        (function drawStarMask() {
+          // Use the star-yellow.svg sparkle shape scaled to mask size
+          const scale = STAR_MASK_SIZE / 25; // SVG viewBox is ~24x25
+          starMaskCtx.save();
+          starMaskCtx.translate((STAR_MASK_SIZE - 22.3 * scale) / 2, 0);
+          starMaskCtx.scale(scale, scale);
+          starMaskCtx.fillStyle = '#fff';
+          const p = new Path2D('M11.1514 25.0291C12.701 25.0291 13.5761 24.1753 13.5492 22.6622C13.5492 22.4948 13.5375 22.2412 13.5017 21.9483L12.9705 15.5878L17.8389 19.0064C18.5169 19.5224 19.243 19.7897 19.9774 19.7897C21.3251 19.7897 22.2974 18.7817 22.2974 17.4105C22.2974 16.3225 21.7283 15.4986 20.6768 15.0568L14.9941 12.5145L20.6768 9.9695C21.7283 9.5305 22.2974 8.7038 22.2974 7.6186C22.2974 6.2502 21.3279 5.2394 19.9774 5.2394C19.243 5.2394 18.5169 5.5067 17.8389 6.0226L12.9705 9.4413L13.5017 3.0807C13.5375 2.7851 13.5492 2.5343 13.5492 2.3641C13.5761 0.85096 12.701 0 11.1514 0C9.6019 0 8.733 0.85096 8.7509 2.3641C8.7509 2.5343 8.7626 2.7851 8.7985 3.0807L9.3296 9.4413L4.4674 6.0226C3.7895 5.5067 3.0544 5.2394 2.3172 5.2394C0.97841 5.2394 0 6.2474 0 7.6186C0 8.7038 0.56905 9.5305 1.6233 9.9695L7.306 12.5145L1.6233 15.0568C0.56905 15.4986 0 16.3225 0 17.4105C0 18.7817 0.97841 19.7897 2.3172 19.7897C3.0544 19.7897 3.7895 19.5224 4.4674 19.0064L9.3296 15.5878L8.7985 21.9483C8.7626 22.2412 8.7509 22.4948 8.7509 22.6622C8.733 24.1753 9.6019 25.0291 11.1514 25.0291Z');
+          starMaskCtx.fill(p);
+          starMaskCtx.restore();
+        })();
+        const starMaskData = starMaskCtx.getImageData(0, 0, STAR_MASK_SIZE, STAR_MASK_SIZE).data;
+
+        let dots = [];
+        let mouse = { x: -1000, y: -1000 };
+        let isInView = true;
+        let animating = false;
+
+        const FADE_ZONE = 200; // px from bottom where dots fade out
+
+        function initDots() {
+          const dpr = window.devicePixelRatio || 1;
+          const selectedWork = document.querySelector('.section-header');
+          const wrapperRect = wrapper.getBoundingClientRect();
+          const workRect = selectedWork.getBoundingClientRect();
+          const canvasHeight = workRect.top - wrapperRect.top;
+          dotCanvas.width = wrapperRect.width * dpr;
+          dotCanvas.height = canvasHeight * dpr;
+          dotCanvas.style.width = wrapperRect.width + 'px';
+          dotCanvas.style.height = canvasHeight + 'px';
+          dotCtx.scale(dpr, dpr);
+          const rect = { width: wrapperRect.width, height: canvasHeight };
+
+          dots = [];
+          const cols = Math.ceil(rect.width / DOT_SPACING) + 1;
+          const rows = Math.ceil(rect.height / DOT_SPACING) + 1;
+          const offsetX = (rect.width - (cols - 1) * DOT_SPACING) / 2;
+          const offsetY = (rect.height - (rows - 1) * DOT_SPACING) / 2;
+
+          for (let row = 0; row < rows; row++) {
+            for (let col = 0; col < cols; col++) {
+              const x = offsetX + col * DOT_SPACING;
+              const y = offsetY + row * DOT_SPACING;
+              dots.push({ ox: x, oy: y, x: x, y: y, colorBlend: 0 });
+            }
+          }
+        }
+
+        function animateDots() {
+          if (!isInView) { animating = false; return; }
+          animating = true;
+
+          const dpr = window.devicePixelRatio || 1;
+          const w = dotCanvas.width / dpr;
+          const h = dotCanvas.height / dpr;
+          dotCtx.clearRect(0, 0, w, h);
+
+          let needsUpdate = false;
+
+          for (let i = 0; i < dots.length; i++) {
+            const dot = dots[i];
+            const dx = dot.ox - mouse.x;
+            const dy = dot.oy - mouse.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+
+            let targetBlend = 0;
+
+            if (pillType === 'impact' || pillType === 'london') {
+              // Only show particles, no cursor area
+              // Check particles
+              for (const p of particles) {
+                const pdx = dot.ox - p.x;
+                const pdy = dot.oy - p.y;
+                // Bounding box skip
+                if (pdx > p.r || pdx < -p.r || pdy > p.r || pdy < -p.r) continue;
+                if (p.type === 'star') {
+                  // Sample pre-rendered star mask
+                  const mx = Math.floor(((pdx / p.r) * 0.5 + 0.5) * STAR_MASK_SIZE);
+                  const my = Math.floor(((pdy / p.r) * 0.5 + 0.5) * STAR_MASK_SIZE);
+                  if (mx >= 0 && mx < STAR_MASK_SIZE && my >= 0 && my < STAR_MASK_SIZE) {
+                    if (starMaskData[(my * STAR_MASK_SIZE + mx) * 4 + 3] > 128) {
+                      targetBlend = 1; break;
+                    }
+                  }
+                } else {
+                  if (pdx * pdx + pdy * pdy < p.r * p.r) { targetBlend = 1; break; }
+                }
+              }
+            } else if (onPill) {
+              let radius = INFLUENCE_RADIUS + Math.sin(pulseTime * 3) * 40 + Math.sin(pulseTime * 1.7) * 25;
+              targetBlend = (dist < radius) ? 1 : 0;
+            }
+            dot.colorBlend = targetBlend;
+
+            const canvasH = dotCanvas.height / (window.devicePixelRatio || 1);
+            const fadeStart = canvasH - FADE_ZONE;
+            const opacity = dot.oy > fadeStart ? Math.max(0, 1 - (dot.oy - fadeStart) / FADE_ZONE) : 1;
+
+            const blend = dot.colorBlend;
+            // Yellow (#FFCC00) for impact, light blue (#32ADE6) for london, blue (#0084ff) for others
+            const tr = pillType === 'impact' ? 255 : pillType === 'london' ? 50 : 0;
+            const tg = pillType === 'impact' ? 204 : pillType === 'london' ? 173 : 132;
+            const tb = pillType === 'impact' ? 0 : pillType === 'london' ? 230 : 255;
+            const r = Math.round(255 + (tr - 255) * blend);
+            const g = Math.round(255 + (tg - 255) * blend);
+            const b = Math.round(255 + (tb - 255) * blend);
+
+            dotCtx.beginPath();
+            dotCtx.arc(dot.ox, dot.oy, DOT_RADIUS, 0, Math.PI * 2);
+            dotCtx.fillStyle = `rgba(${r},${g},${b},${opacity})`;
+            dotCtx.fill();
+          }
+
+          pulseTime += 0.016;
+          spawnTimer += 0.016;
+
+          // Spawn particles
+          if (onPill && spawnTimer > 0.08) {
+            spawnTimer = 0;
+            if (pillType === 'impact') {
+              // Shoot stars in random direction
+              const angle = Math.random() * Math.PI * 2;
+              const speed = 150 + Math.random() * 200;
+              particles.push({
+                x: mouse.x, y: mouse.y,
+                vx: Math.cos(angle) * speed,
+                vy: Math.sin(angle) * speed,
+                r: 35 + Math.random() * 20,
+                life: 1,
+                type: 'star',
+                spin: Math.random() * Math.PI * 2
+              });
+            } else if (pillType === 'london') {
+              // Bubbles drift up
+              particles.push({
+                x: mouse.x + (Math.random() - 0.5) * 120,
+                y: mouse.y,
+                vx: (Math.random() - 0.5) * 80,
+                vy: -(80 + Math.random() * 120),
+                r: 25 + Math.random() * 35,
+                life: 1,
+                type: 'bubble',
+                reflectAngle: Math.random() * Math.PI * 0.5 - Math.PI * 0.25
+              });
+            }
+          }
+
+          // Update particles
+          for (let p = particles.length - 1; p >= 0; p--) {
+            const part = particles[p];
+            part.x += part.vx * 0.016;
+            part.y += part.vy * 0.016;
+            if (part.type === 'star') {
+              part.life -= 0.02;
+              part.r *= 0.995;
+            } else {
+              part.life -= 0.005;
+              part.vy *= 0.995;
+              part.vx += Math.sin(pulseTime * 3 + p) * 1.5; // active sway
+            }
+            if (part.life <= 0) particles.splice(p, 1);
+          }
+
+          // Draw bubble reflections on top after dots
+          const drawReflections = [];
+
+          // Draw bubble reflections
+          for (const p of particles) {
+            if (p.type === 'bubble') {
+              const refR = p.r * 0.25;
+              const refX = p.x - p.r * 0.3;
+              const refY = p.y - p.r * 0.3;
+              dotCtx.beginPath();
+              dotCtx.arc(refX, refY, refR, 0, Math.PI * 2);
+              dotCtx.fillStyle = '#ffffff';
+              dotCtx.fill();
+              // Smaller secondary reflection
+              dotCtx.beginPath();
+              dotCtx.arc(refX + refR * 0.8, refY + refR * 1.2, refR * 0.4, 0, Math.PI * 2);
+              dotCtx.fillStyle = 'rgba(255, 255, 255, 0.7)';
+              dotCtx.fill();
+            }
+          }
+
+          if (particles.length > 0) needsUpdate = true;
+          if (!onPill && particles.length === 0) pillType = null;
+
+          if (needsUpdate || onPill || (mouse.x > 0 && mouse.y > 0)) {
+            requestAnimationFrame(animateDots);
+          } else {
+            animating = false;
+          }
+        }
+
+        function startAnimation() {
+          if (!animating) {
+            animating = true;
+            requestAnimationFrame(animateDots);
+          }
+        }
+
+        function updateMouse(e) {
+          const rect = wrapper.getBoundingClientRect();
+          mouse.x = e.clientX - rect.left;
+          mouse.y = e.clientY - rect.top;
+          startAnimation();
+        }
+
+        wrapper.addEventListener('mousemove', updateMouse);
+
+        // Pill-specific animations
+        document.querySelectorAll('.homepage-header .pill, .homepage-header .pill-highlight, .homepage-header a').forEach(el => {
+          el.addEventListener('mousemove', updateMouse);
+          el.addEventListener('mouseenter', () => {
+            onPill = true;
+            pulseTime = 0;
+            const text = el.textContent.trim().toLowerCase();
+            if (text.includes('impact')) pillType = 'impact';
+            else if (text.includes('london')) pillType = 'london';
+            else pillType = 'default';
+            startAnimation();
+          });
+          el.addEventListener('mouseleave', () => { onPill = false; });
+        });
+
+        wrapper.addEventListener('mouseleave', () => {
+          mouse.x = -1000;
+          mouse.y = -1000;
+          startAnimation();
+        });
+
+        // Visibility check
+        const gridObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            isInView = entry.isIntersecting;
+            if (isInView) startAnimation();
+          });
+        }, { threshold: 0 });
+        gridObserver.observe(wrapper);
+
+        initDots();
+        startAnimation();
+
+        window.addEventListener('resize', () => {
+          initDots();
+          startAnimation();
+        });
+
         // Safari autoplay fix - force muted and play
         const videos = document.querySelectorAll('video[autoplay]');
         videos.forEach(video => {
