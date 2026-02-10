@@ -1153,7 +1153,7 @@
             for (const rip of ripples) {
               const rdist = Math.sqrt((dot.ox - rip.cx) ** 2 + (dot.oy - rip.cy) ** 2);
               const ringDist = Math.abs(rdist - rip.radius);
-              const ringWidth = 80;
+              const ringWidth = 480;
               if (ringDist < ringWidth) {
                 rippleBlend = Math.max(rippleBlend, rip.strength);
               }
@@ -1220,7 +1220,7 @@
           // Update startup ripples
           for (let i = ripples.length - 1; i >= 0; i--) {
             ripples[i].radius += ripples[i].speed * 0.016;
-            if (ripples[i].radius > ripples[i].maxRadius + 80) {
+            if (ripples[i].radius > ripples[i].maxRadius + 480) {
               ripples.splice(i, 1);
             } else {
               needsUpdate = true;
@@ -1377,19 +1377,9 @@
             cx * cx + canvasH * canvasH,
             (wrapperRect.width - cx) ** 2 + canvasH * canvasH
           ));
-          const speed = 1000;
-          const aftershocks = [
-            { delay: 0, strength: 1 },
-            { delay: 300, strength: 0.7 },
-            { delay: 550, strength: 0.45 },
-            { delay: 750, strength: 0.25 },
-          ];
-          aftershocks.forEach(a => {
-            setTimeout(() => {
-              ripples.push({ cx, cy, radius: 0, maxRadius, speed, strength: a.strength });
-              startAnimation();
-            }, a.delay);
-          });
+          const speed = 600;
+          ripples.push({ cx, cy, radius: 0, maxRadius, speed, strength: 0.5 });
+          startAnimation();
         }
 
         // Launch on page load
