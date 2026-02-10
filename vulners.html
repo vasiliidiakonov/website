@@ -1185,12 +1185,15 @@
              Your browser does not support the video tag.
            </video>
            <script>
-             document.getElementById('heroVideo').addEventListener('ended', function() {
-               var img = document.createElement('img');
-               img.src = 'images/New Vulners Images/vul_hero.png';
-               img.className = 'vulners-hero-video';
-               this.replaceWith(img);
-             });
+             (function() {
+               var video = document.getElementById('heroVideo');
+               video.addEventListener('timeupdate', function() {
+                 if (video.duration && video.currentTime >= video.duration - 0.5) {
+                   video.pause();
+                   video.removeAttribute('poster');
+                 }
+               });
+             })();
            </script>
         </div>
 

@@ -530,7 +530,7 @@
           <!-- Vulners Full Width Card at Bottom (flipped layout: image left, text right) -->
           <a href="vulners.html" class="bento-featured bento-featured-vulners bento-featured-flipped no-decoration">
             <div class="bento-featured-right bento-featured-media-left">
-              <video class="bento-featured-video" autoplay muted playsinline preload="auto" disablepictureinpicture poster="images/New Vulners Images/vulners_header_poster.jpg">
+              <video class="bento-featured-video" muted playsinline preload="auto" disablepictureinpicture poster="images/New Vulners Images/vulners_header_poster.jpg" id="vulnersVideo">
                 <source src="images/New Vulners Images/vulners_header_video.mov" type="video/quicktime" />
                 <source src="images/New Vulners Images/vulners_header_video_noaudio.mp4" type="video/mp4" />
               </video>
@@ -1063,7 +1063,7 @@
         const DOT_SPACING = 6;
         const DOT_RADIUS = 1;
         const DOT_COLOR = '#ffffff';
-        const INFLUENCE_RADIUS = 120;
+        const INFLUENCE_RADIUS = 70;
         const ACTIVE_COLOR = '#0084ff';
         let onPill = false;
         let pillType = null;
@@ -1238,7 +1238,7 @@
             if (pillType === 'impact') {
               // Shoot stars in random direction
               const angle = Math.random() * Math.PI * 2;
-              const speed = 150 + Math.random() * 200;
+              const speed = 150 + Math.random() * 250;
               particles.push({
                 x: mouse.x, y: mouse.y,
                 vx: Math.cos(angle) * speed,
@@ -1269,8 +1269,8 @@
             part.x += part.vx * 0.016;
             part.y += part.vy * 0.016;
             if (part.type === 'star') {
-              part.life -= 0.02;
-              part.r *= 0.995;
+              part.life -= 0.008;
+              part.r *= 0.998;
             } else {
               part.life -= 0.005;
               part.vy *= 0.995;
@@ -1428,6 +1428,20 @@
           setTimeout(forcePlay, 500);
           setTimeout(forcePlay, 1000);
         });
+
+        // Vulners video: play on hover, pause on leave
+        const vulnersCard = document.querySelector('.bento-featured-vulners');
+        const vulnersVideo = document.getElementById('vulnersVideo');
+        if (vulnersCard && vulnersVideo) {
+          vulnersCard.addEventListener('mouseenter', () => {
+            vulnersVideo.currentTime = 0;
+            vulnersVideo.play().catch(() => {});
+          });
+          vulnersCard.addEventListener('mouseleave', () => {
+            vulnersVideo.pause();
+            vulnersVideo.currentTime = 0;
+          });
+        }
 
         gsap.registerPlugin(ScrollTrigger);
 
