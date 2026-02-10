@@ -1146,8 +1146,9 @@
             let targetBlend = 0;
 
             if (pillType === 'impact' || pillType === 'london') {
-              // Small cursor circle on pill hover
-              if (dist < currentRadius) targetBlend = 1;
+              // Small pulsing cursor circle on pill hover
+              let radius = currentRadius + Math.sin(pulseTime * 2) * 8 + Math.sin(pulseTime * 1.2) * 5;
+              if (dist < radius) targetBlend = 1;
               // Check particles
               for (const p of particles) {
                 const pdx = dot.ox - p.x;
@@ -1168,11 +1169,12 @@
                 }
               }
             } else if (onPill && (pillType === 'purple' || pillType === 'indigo' || pillType === 'orange')) {
-              // Pulse animation for resume/linkedin/email
+              // Pulse animation for resume/linkedin/email - more intense
               let radius = currentRadius + Math.sin(pulseTime * 3) * 40 + Math.sin(pulseTime * 1.7) * 25;
               targetBlend = (dist < radius) ? 1 : 0;
             } else {
-              targetBlend = (dist < currentRadius) ? 1 : 0;
+              let radius = currentRadius + Math.sin(pulseTime * 2) * 15 + Math.sin(pulseTime * 1.2) * 10;
+              targetBlend = (dist < radius) ? 1 : 0;
             }
             dot.colorBlend = targetBlend;
 
@@ -1202,7 +1204,7 @@
           spawnTimer += 0.016;
 
           // Smoothly transition cursor radius
-          const targetRadius = (onPill && (pillType === 'impact' || pillType === 'london')) ? 50 : INFLUENCE_RADIUS;
+          const targetRadius = (onPill && (pillType === 'impact' || pillType === 'london')) ? 25 : INFLUENCE_RADIUS;
           currentRadius += (targetRadius - currentRadius) * 0.08;
           if (Math.abs(currentRadius - targetRadius) > 0.5) needsUpdate = true;
 
