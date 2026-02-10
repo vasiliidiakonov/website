@@ -1098,6 +1098,9 @@
 
         const FADE_ZONE = 200; // px from bottom where dots fade out
 
+        // Startup ripple from profile image
+        let ripples = []; // [{ cx, cy, radius, maxRadius, speed, strength }]
+
         function initDots() {
           const dpr = window.devicePixelRatio || 1;
           const selectedWork = document.querySelector('.section-header');
@@ -1145,6 +1148,17 @@
 
             let targetBlend = 0;
 
+            // Startup ripple effect
+            let rippleBlend = 0;
+            for (const rip of ripples) {
+              const rdist = Math.sqrt((dot.ox - rip.cx) ** 2 + (dot.oy - rip.cy) ** 2);
+              const ringDist = Math.abs(rdist - rip.radius);
+              const ringWidth = 80;
+              if (ringDist < ringWidth) {
+                rippleBlend = Math.max(rippleBlend, rip.strength);
+              }
+            }
+
             if (pillType === 'impact' || pillType === 'london') {
               // Small pulsing cursor circle on pill hover
               let radius = currentRadius + Math.sin(pulseTime * 2) * 8 + Math.sin(pulseTime * 1.2) * 5;
@@ -1176,7 +1190,7 @@
               let radius = currentRadius + Math.sin(pulseTime * 2) * 15 + Math.sin(pulseTime * 1.2) * 10;
               targetBlend = (dist < radius) ? 1 : 0;
             }
-            dot.colorBlend = targetBlend;
+            dot.colorBlend = Math.max(targetBlend, rippleBlend);
 
             const canvasH = dotCanvas.height / (window.devicePixelRatio || 1);
             const fadeStart = canvasH - FADE_ZONE;
@@ -1202,6 +1216,16 @@
 
           pulseTime += 0.016;
           spawnTimer += 0.016;
+
+          // Update startup ripples
+          for (let i = ripples.length - 1; i >= 0; i--) {
+            ripples[i].radius += ripples[i].speed * 0.016;
+            if (ripples[i].radius > ripples[i].maxRadius + 80) {
+              ripples.splice(i, 1);
+            } else {
+              needsUpdate = true;
+            }
+          }
 
           // Smoothly transition cursor radius
           const targetRadius = (onPill && (pillType === 'impact' || pillType === 'london')) ? 25 : INFLUENCE_RADIUS;
@@ -1337,6 +1361,46 @@
         gridObserver.observe(wrapper);
 
         initDots();
+
+        // Ripple launcher
+        const profileEl = document.querySelector('.profile-container');
+        function launchRipple() {
+          if (!profileEl) return;
+          const profileRect = profileEl.getBoundingClientRect();
+          const wrapperRect = wrapper.getBoundingClientRect();
+          const cx = profileRect.left + profileRect.width / 2 - wrapperRect.left;
+          const cy = profileRect.top + profileRect.height / 2 - wrapperRect.top;
+          const canvasH = dotCanvas.height / (window.devicePixelRatio || 1);
+          const maxRadius = Math.sqrt(Math.max(
+            cx * cx + cy * cy,
+            (wrapperRect.width - cx) ** 2 + cy * cy,
+            cx * cx + canvasH * canvasH,
+            (wrapperRect.width - cx) ** 2 + canvasH * canvasH
+          ));
+          const speed = 1000;
+          const aftershocks = [
+            { delay: 0, strength: 1 },
+            { delay: 300, strength: 0.7 },
+            { delay: 550, strength: 0.45 },
+            { delay: 750, strength: 0.25 },
+          ];
+          aftershocks.forEach(a => {
+            setTimeout(() => {
+              ripples.push({ cx, cy, radius: 0, maxRadius, speed, strength: a.strength });
+              startAnimation();
+            }, a.delay);
+          });
+        }
+
+        // Launch on page load
+        launchRipple();
+
+        // Launch on profile image click
+        if (profileEl) {
+          profileEl.style.cursor = 'pointer';
+          profileEl.addEventListener('click', launchRipple);
+        }
+
         startAnimation();
 
         window.addEventListener('resize', () => {
