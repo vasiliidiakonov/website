@@ -3,7 +3,7 @@
   <head>
     <title>Vasilii Diakonov – Product Designer</title>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=1280" />
     <link rel="icon" type="image/png" href="images/favicon.png" />
     <link rel="shortcut icon" type="image/png" href="images/favicon.png" />
     <link rel="apple-touch-icon" href="images/favicon.png" />
@@ -54,6 +54,20 @@
         line-height: normal;
         display: inline-flex;
         align-items: center;
+        transition: background-color 0.2s ease, color 0.2s ease;
+        cursor: default;
+        position: relative;
+        z-index: 2;
+      }
+
+      .homepage-header .pill-impact:hover {
+        background-color: #fff8e0;
+        color: #ffcc00;
+      }
+
+      .homepage-header .pill-london:hover {
+        background-color: #eaf6fc;
+        color: #32ade6;
       }
 
       .homepage-header .text-flow {
@@ -77,16 +91,34 @@
       .homepage-header .pill-purple {
         background-color: #ffffff;
         color: #0084ff;
+        transition: background-color 0.2s ease, color 0.2s ease;
+      }
+
+      .homepage-header .pill-purple:hover {
+        background-color: #f5eaf9;
+        color: #af52de;
       }
 
       .homepage-header .pill-indigo {
         background-color: #ffffff;
         color: #0084ff;
+        transition: background-color 0.2s ease, color 0.2s ease;
+      }
+
+      .homepage-header .pill-indigo:hover {
+        background-color: #eeeefa;
+        color: #5856d6;
       }
 
       .homepage-header .pill-orange {
         background-color: #ffffff;
         color: #0084ff;
+        transition: background-color 0.2s ease, color 0.2s ease;
+      }
+
+      .homepage-header .pill-orange:hover {
+        background-color: #fff4e5;
+        color: #ff9500;
       }
 
       .homepage-header .text-purple,
@@ -358,10 +390,10 @@
         <!-- Role & Location Line -->
         <div class="text-flow" style="padding: 0 30px;">
           <span class="heading-large">I'm an</span>
-          <span class="pill pill-highlight">Impact</span>
+          <span class="pill pill-highlight pill-impact">Impact</span>
           <span class="heading-large">driven Product Designer</span>
           <span class="heading-large">based in</span>
-          <span class="pill pill-highlight">London</span>
+          <span class="pill pill-highlight pill-london">London</span>
         </div>
 
         <!-- Description -->
@@ -1038,6 +1070,7 @@
         let pulseTime = 0;
         let particles = [];
         let spawnTimer = 0;
+        let currentRadius = INFLUENCE_RADIUS;
 
         // Pre-render star mask for fast lookups
         const STAR_MASK_SIZE = 128;
@@ -1113,7 +1146,8 @@
             let targetBlend = 0;
 
             if (pillType === 'impact' || pillType === 'london') {
-              // Only show particles, no cursor area
+              // Small cursor circle on pill hover
+              if (dist < currentRadius) targetBlend = 1;
               // Check particles
               for (const p of particles) {
                 const pdx = dot.ox - p.x;
@@ -1133,9 +1167,12 @@
                   if (pdx * pdx + pdy * pdy < p.r * p.r) { targetBlend = 1; break; }
                 }
               }
-            } else if (onPill) {
-              let radius = INFLUENCE_RADIUS + Math.sin(pulseTime * 3) * 40 + Math.sin(pulseTime * 1.7) * 25;
+            } else if (onPill && (pillType === 'purple' || pillType === 'indigo' || pillType === 'orange')) {
+              // Pulse animation for resume/linkedin/email
+              let radius = currentRadius + Math.sin(pulseTime * 3) * 40 + Math.sin(pulseTime * 1.7) * 25;
               targetBlend = (dist < radius) ? 1 : 0;
+            } else {
+              targetBlend = (dist < currentRadius) ? 1 : 0;
             }
             dot.colorBlend = targetBlend;
 
@@ -1144,10 +1181,13 @@
             const opacity = dot.oy > fadeStart ? Math.max(0, 1 - (dot.oy - fadeStart) / FADE_ZONE) : 1;
 
             const blend = dot.colorBlend;
-            // Yellow (#FFCC00) for impact, light blue (#32ADE6) for london, blue (#0084ff) for others
-            const tr = pillType === 'impact' ? 255 : pillType === 'london' ? 50 : 0;
-            const tg = pillType === 'impact' ? 204 : pillType === 'london' ? 173 : 132;
-            const tb = pillType === 'impact' ? 0 : pillType === 'london' ? 230 : 255;
+            // Per-pill cursor colors
+            let tr = 0, tg = 132, tb = 255; // default blue #0084ff
+            if (pillType === 'impact') { tr = 255; tg = 204; tb = 0; } // #ffcc00
+            else if (pillType === 'london') { tr = 50; tg = 173; tb = 230; } // #32ade6
+            else if (pillType === 'purple') { tr = 175; tg = 82; tb = 222; } // #af52de
+            else if (pillType === 'indigo') { tr = 88; tg = 86; tb = 214; } // #5856d6
+            else if (pillType === 'orange') { tr = 255; tg = 149; tb = 0; } // #ff9500
             const r = Math.round(255 + (tr - 255) * blend);
             const g = Math.round(255 + (tg - 255) * blend);
             const b = Math.round(255 + (tb - 255) * blend);
@@ -1160,6 +1200,11 @@
 
           pulseTime += 0.016;
           spawnTimer += 0.016;
+
+          // Smoothly transition cursor radius
+          const targetRadius = (onPill && (pillType === 'impact' || pillType === 'london')) ? 50 : INFLUENCE_RADIUS;
+          currentRadius += (targetRadius - currentRadius) * 0.08;
+          if (Math.abs(currentRadius - targetRadius) > 0.5) needsUpdate = true;
 
           // Spawn particles
           if (onPill && spawnTimer > 0.08) {
@@ -1261,9 +1306,13 @@
           el.addEventListener('mouseenter', () => {
             onPill = true;
             pulseTime = 0;
+            particles = [];
             const text = el.textContent.trim().toLowerCase();
             if (text.includes('impact')) pillType = 'impact';
             else if (text.includes('london')) pillType = 'london';
+            else if (el.classList.contains('pill-purple')) pillType = 'purple';
+            else if (el.classList.contains('pill-indigo')) pillType = 'indigo';
+            else if (el.classList.contains('pill-orange')) pillType = 'orange';
             else pillType = 'default';
             startAnimation();
           });
