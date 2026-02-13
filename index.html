@@ -488,7 +488,7 @@
         <!-- Work Cards Container -->
         <div class="work-cards-container">
           <!-- Tabs Full Width Card at Top -->
-          <a href="tabs.html" class="bento-featured no-decoration">
+          <a href="tabs.html" class="bento-featured bento-featured-tabs no-decoration">
             <div class="bento-featured-left">
               <div class="bento-featured-text">
                 <p class="bento-featured-title">Aloha Tabs Redesign</p>
@@ -503,7 +503,7 @@
               </div>
             </div>
             <div class="bento-featured-right">
-              <video class="bento-featured-video" autoplay loop muted playsinline preload="auto" disablepictureinpicture poster="images/tabs_highlight_poster.jpg">
+              <video class="bento-featured-video" autoplay loop muted playsinline preload="auto" disablepictureinpicture id="tabsVideo">
                 <source src="images/tabs_highlight_video.mov" type="video/quicktime" />
                 <source src="images/tabs_highlight_video_noaudio.mp4" type="video/mp4" />
               </video>
@@ -704,7 +704,7 @@
             </div>
             <div class="experience-content">
               <div class="experience-header">
-                <p class="experience-date">November 2023 – Present</p>
+                <p class="experience-date">November 2023 – November 2025</p>
                 <div class="experience-titles">
                   <p class="experience-role">Product Designer</p>
                   <p class="experience-company">Aloha Browser</p>
@@ -1454,6 +1454,28 @@
           setTimeout(forcePlay, 500);
           setTimeout(forcePlay, 1000);
         });
+
+        // Force tabs video autoplay
+        const tabsVideo = document.getElementById('tabsVideo');
+        if (tabsVideo) {
+          tabsVideo.muted = true;
+          tabsVideo.playsInline = true;
+          tabsVideo.controls = false;
+          const playTabsVideo = () => { tabsVideo.play().catch(() => {}); };
+          const tabsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                playTabsVideo();
+              }
+            });
+          }, { threshold: 0.1 });
+          tabsObserver.observe(tabsVideo);
+          // Also try immediately and on user interaction
+          playTabsVideo();
+          document.addEventListener('click', playTabsVideo, { once: true });
+          document.addEventListener('scroll', playTabsVideo, { once: true });
+          document.addEventListener('touchstart', playTabsVideo, { once: true });
+        }
 
         // Vulners video: play on hover, pause on leave
         const vulnersCard = document.querySelector('.bento-featured-vulners');
