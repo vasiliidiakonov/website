@@ -74,6 +74,26 @@
       .snips-phone {
         position: absolute;
         overflow: visible;
+        z-index: 1;
+      }
+
+      .snips-phone img {
+        border-radius: 35px;
+      }
+
+      .snips-phone::before {
+        content: '';
+        position: absolute;
+        top: -12px;
+        left: -12px;
+        right: -12px;
+        bottom: -12px;
+        border-radius: 47px;
+        background: #D0D8E6;
+        -webkit-backdrop-filter: blur(20px);
+        backdrop-filter: blur(20px);
+        border: none;
+        z-index: -1;
       }
 
       .snips-phone-left {
@@ -980,10 +1000,10 @@
         <!-- Hero Phone Container -->
         <div class="snips-hero-container">
           <div class="snips-phone snips-phone-left">
-            <img src="images/New Snips Images/snips-header.png" alt="Snips AI - Screen 1" />
+            <img src="images/New Snips Images/snips-header-1.png" alt="Snips AI - Screen 1" />
           </div>
           <div class="snips-phone snips-phone-right">
-            <img src="images/New Snips Images/snips-header-1.png" alt="Snips AI - Screen 2" />
+            <img src="images/New Snips Images/snips-header.png" alt="Snips AI - Screen 2" />
           </div>
         </div>
 

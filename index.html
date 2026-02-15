@@ -168,8 +168,8 @@
       }
 
       .bento-featured-vulners .bento-featured-right {
-        background-color: #f5f0eb;
-        border: 3px solid rgba(255, 255, 255, 0.2);
+        background-color: #DCC2F9;
+        border: 3px solid #f5f0eb;
         border-radius: 24px;
       }
 
@@ -272,7 +272,7 @@
       .testimonial-card {
         flex: 1;
         background-color: #eeeefa;
-        border-radius: 24px;
+        border-radius: 36px;
         padding: 20px;
         display: flex;
         flex-direction: column;
@@ -314,7 +314,7 @@
       .skill-card {
         flex: 1;
         background-color: rgba(255, 149, 0, 0.05);
-        border-radius: 24px;
+        border-radius: 36px;
         padding: 20px;
         display: flex;
         flex-direction: column;
@@ -1481,13 +1481,19 @@
         const vulnersCard = document.querySelector('.bento-featured-vulners');
         const vulnersVideo = document.getElementById('vulnersVideo');
         if (vulnersCard && vulnersVideo) {
+          vulnersVideo.style.transition = 'opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
           vulnersCard.addEventListener('mouseenter', () => {
+            vulnersVideo.style.opacity = '1';
             vulnersVideo.currentTime = 0;
             vulnersVideo.play().catch(() => {});
           });
           vulnersCard.addEventListener('mouseleave', () => {
-            vulnersVideo.pause();
-            vulnersVideo.currentTime = 0;
+            vulnersVideo.style.opacity = '0';
+            setTimeout(() => {
+              vulnersVideo.pause();
+              vulnersVideo.currentTime = 0;
+              vulnersVideo.style.opacity = '1';
+            }, 800);
           });
         }
 
