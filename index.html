@@ -24,13 +24,7 @@
       }
 
       #dotGrid {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        z-index: 0;
+        display: none;
       }
 
       .homepage-wrapper .portfolio-container {
@@ -64,11 +58,81 @@
         box-shadow: 0px 4px 30px 0px rgba(0, 0, 0, 0.04);
       }
 
-      .homepage-header .pill-impact:hover {
-        background-color: rgba(255, 248, 224, 0.85);
-        color: #ffcc00;
-        box-shadow: none;
-        border-color: transparent;
+      .impact-hover-wrapper {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+      }
+
+      .impact-hover-wrapper:hover .pill-impact {
+        background-color: #fff9e5 !important;
+        color: #414141 !important;
+        box-shadow: none !important;
+        border-color: transparent !important;
+      }
+
+      .impact-chips-overlay {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        z-index: 100;
+        overflow: visible;
+      }
+
+      .impact-hover-wrapper:hover .impact-chips-overlay {
+        opacity: 1;
+      }
+
+      .impact-chip {
+        position: absolute;
+        background: #fff9e5;
+        border-radius: 20px;
+        padding: 12px 16px 12px 12px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 32px;
+        font-weight: 500;
+        color: #404040;
+        white-space: nowrap;
+        line-height: 44px;
+        animation-duration: 40s;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+        animation-play-state: paused;
+      }
+
+      .impact-hover-wrapper:hover .impact-chip {
+        animation-play-state: running;
+      }
+
+      /* Flat ellipse: a=400px wide, b=100px tall */
+      @keyframes chip-orbit {
+        0%    { transform: translate(calc(400px  - 50%), calc(0px   - 50%)); }
+        12.5% { transform: translate(calc(283px  - 50%), calc(-71px - 50%)); }
+        25%   { transform: translate(calc(0px    - 50%), calc(-100px - 50%)); }
+        37.5% { transform: translate(calc(-283px - 50%), calc(-71px - 50%)); }
+        50%   { transform: translate(calc(-400px - 50%), calc(0px   - 50%)); }
+        62.5% { transform: translate(calc(-283px - 50%), calc(71px  - 50%)); }
+        75%   { transform: translate(calc(0px    - 50%), calc(100px - 50%)); }
+        87.5% { transform: translate(calc(283px  - 50%), calc(71px  - 50%)); }
+        100%  { transform: translate(calc(400px  - 50%), calc(0px   - 50%)); }
+      }
+
+      .ic-1 { animation-name: chip-orbit; animation-delay: 0s;    }
+      .ic-2 { animation-name: chip-orbit; animation-delay: -10s;  }
+      .ic-3 { animation-name: chip-orbit; animation-delay: -20s;  }
+      .ic-4 { animation-name: chip-orbit; animation-delay: -30s;  }
+
+      .london-hover-wrapper {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
       }
 
       .homepage-header .pill-london:hover {
@@ -78,12 +142,202 @@
         border-color: transparent;
       }
 
+      .london-photo-cards {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        z-index: 10;
+      }
+
+      .london-card {
+        position: absolute;
+        background: white;
+        border-radius: 20px;
+        padding: 12px;
+        box-shadow: 0px 8px 48px 0px rgba(0, 0, 0, 0.1);
+        opacity: 0;
+        transition: opacity 0.6s ease;
+      }
+
+      .london-hover-wrapper:hover .lc-1 { opacity: 1; transition-delay: 0.6s; }
+      .london-hover-wrapper:hover .lc-2 { opacity: 1; transition-delay: 0.3s; }
+      .london-hover-wrapper:hover .lc-3 { opacity: 1; transition-delay: 0s; }
+
+      .london-card img {
+        border-radius: 10px;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      /* Pivot pushed 120px below each card's bottom edge — larger radius = gentler fan base */
+      .lc-1 {
+        width: 175px;
+        height: 255px;
+        left: calc(50% - 27.5px);
+        bottom: calc(100% + 16px);
+        transform: rotate(0deg);
+        transform-origin: center calc(100% + 120px);
+        z-index: 3;
+      }
+
+      .lc-2 {
+        width: 175px;
+        height: 225px;
+        left: calc(50% - 27.5px);
+        bottom: calc(100% + 16px);
+        transform: rotate(25deg);
+        transform-origin: center calc(100% + 120px);
+        z-index: 2;
+      }
+
+      .lc-3 {
+        width: 175px;
+        height: 195px;
+        left: calc(50% - 27.5px);
+        bottom: calc(100% + 16px);
+        transform: rotate(50deg);
+        transform-origin: center calc(100% + 120px);
+        z-index: 1;
+      }
+
       .homepage-header .text-flow {
         gap: 12px;
       }
 
+
       .homepage-header {
+        gap: 0;
+        overflow: visible;
+        position: relative;
+      }
+
+      .header-default-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         gap: 32px;
+        width: 100%;
+        transition: opacity 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .header-about-content {
+        display: none;
+        opacity: 0;
+        flex-direction: column;
+        align-items: center;
+        gap: 32px;
+        padding: 48px 0 0;
+        position: relative;
+        width: 100%;
+        overflow: visible;
+        transition: opacity 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .about-me-cards {
+        position: sticky;
+        top: calc(50vh - 395px);
+        width: 1200px;
+        margin-left: calc(50vw - 600px);
+        height: 825px;
+        margin-bottom: -825px;
+        flex-shrink: 0;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+
+      .about-me-card {
+        position: absolute;
+        background: white;
+        border-radius: 24px;
+        padding: 16px;
+        box-shadow: 0px 4px 80px 0px rgba(0, 0, 0, 0.03);
+      }
+
+      .about-me-card img {
+        border-radius: 10px;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .card-tl {
+        width: 391px;
+        height: 515px;
+        left: -167px;
+        top: -166px;
+        transform: rotate(-15deg);
+      }
+
+      .card-bl {
+        width: 353px;
+        height: 425px;
+        left: -127px;
+        top: 455px;
+        transform: rotate(15deg);
+        background-color: #f5f5f7;
+      }
+
+      .card-tr {
+        width: 327px;
+        height: 425px;
+        left: 879px;
+        top: -155px;
+        transform: rotate(15deg);
+      }
+
+      .card-br {
+        width: 327px;
+        height: 424px;
+        left: 859px;
+        top: 455px;
+        transform: rotate(-15deg);
+      }
+
+      .about-me-bio {
+        max-width: 524px;
+        width: 100%;
+        font-size: 28px;
+        font-weight: 500;
+        color: #0084ff;
+        line-height: 1.45;
+        text-align: left;
+        position: relative;
+        z-index: 1;
+      }
+
+      .about-me-bio p + p {
+        margin-top: 1em;
+      }
+
+
+      .pill-about-me {
+        cursor: pointer;
+        font-family: inherit;
+        background: rgba(255, 255, 255, 0.7);
+        -webkit-backdrop-filter: blur(12px);
+        backdrop-filter: blur(12px);
+        color: #0084ff;
+        padding: 8px 16px;
+        border-radius: 24px;
+        font-size: 48px;
+        font-weight: 500;
+        line-height: normal;
+        display: inline-flex;
+        align-items: center;
+        transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        box-shadow: 0px 4px 30px 0px rgba(0, 0, 0, 0.04);
+      }
+
+      .pill-about-me:hover {
+        background-color: rgba(238, 238, 250, 0.85);
+        color: #5856d6;
+        box-shadow: none;
+        border-color: transparent;
       }
 
 
@@ -406,82 +660,79 @@
 
       <!-- Header Section -->
       <div class="content-section homepage-header">
-        <!-- Profile Image -->
-        <div class="profile-container">
-          <object class="profile-image" data="images/SVG01.svg" type="image/svg+xml" aria-label="Vasilii Diakonov"></object>
+
+        <!-- Default Header State -->
+        <div id="headerDefault" class="header-default-content">
+
+          <!-- Profile Image -->
+          <div class="profile-container">
+            <object class="profile-image" data="images/SVG01.svg" type="image/svg+xml" aria-label="Vasilii Diakonov"></object>
+          </div>
+
+          <!-- Heading -->
+          <p class="heading-large">Hi, I'm Vasilii</p>
+
+          <!-- Role & Location Line -->
+          <div class="text-flow" style="padding: 0 30px;">
+            <span class="heading-large">I'm an</span>
+            <span class="impact-hover-wrapper">
+              <span class="pill pill-highlight pill-impact">Impact</span>
+              <div class="impact-chips-overlay">
+                <div class="impact-chip ic-1"><svg width="36" height="40" viewBox="0 0 22.3 25.03" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11.1514 25.0291C12.701 25.0291 13.5761 24.1753 13.5492 22.6622C13.5492 22.4948 13.5375 22.2412 13.5017 21.9483L12.9705 15.5878L17.8389 19.0064C18.5169 19.5224 19.243 19.7897 19.9774 19.7897C21.3251 19.7897 22.2974 18.7817 22.2974 17.4105C22.2974 16.3225 21.7283 15.4986 20.6768 15.0568L14.9941 12.5145L20.6768 9.9695C21.7283 9.5305 22.2974 8.7038 22.2974 7.6186C22.2974 6.2502 21.3279 5.2394 19.9774 5.2394C19.243 5.2394 18.5169 5.5067 17.8389 6.0226L12.9705 9.4413L13.5017 3.0807C13.5375 2.7851 13.5492 2.5343 13.5492 2.3641C13.5761 0.85096 12.701 0 11.1514 0C9.6019 0 8.733 0.85096 8.7509 2.3641C8.7509 2.5343 8.7626 2.7851 8.7985 3.0807L9.3296 9.4413L4.4674 6.0226C3.7895 5.5067 3.0544 5.2394 2.3172 5.2394C0.97841 5.2394 0 6.2474 0 7.6186C0 8.7038 0.56905 9.5305 1.6233 9.9695L7.306 12.5145L1.6233 15.0568C0.56905 15.4986 0 16.3225 0 17.4105C0 18.7817 0.97841 19.7897 2.3172 19.7897C3.0544 19.7897 3.7895 19.5224 4.4674 19.0064L9.3296 15.5878L8.7985 21.9483C8.7626 22.2412 8.7509 22.4948 8.7509 22.6622C8.733 24.1753 9.6019 25.0291 11.1514 25.0291Z" fill="#FFCC00"/></svg>-50% dev time</div>
+                <div class="impact-chip ic-2"><svg width="36" height="40" viewBox="0 0 22.3 25.03" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11.1514 25.0291C12.701 25.0291 13.5761 24.1753 13.5492 22.6622C13.5492 22.4948 13.5375 22.2412 13.5017 21.9483L12.9705 15.5878L17.8389 19.0064C18.5169 19.5224 19.243 19.7897 19.9774 19.7897C21.3251 19.7897 22.2974 18.7817 22.2974 17.4105C22.2974 16.3225 21.7283 15.4986 20.6768 15.0568L14.9941 12.5145L20.6768 9.9695C21.7283 9.5305 22.2974 8.7038 22.2974 7.6186C22.2974 6.2502 21.3279 5.2394 19.9774 5.2394C19.243 5.2394 18.5169 5.5067 17.8389 6.0226L12.9705 9.4413L13.5017 3.0807C13.5375 2.7851 13.5492 2.5343 13.5492 2.3641C13.5761 0.85096 12.701 0 11.1514 0C9.6019 0 8.733 0.85096 8.7509 2.3641C8.7509 2.5343 8.7626 2.7851 8.7985 3.0807L9.3296 9.4413L4.4674 6.0226C3.7895 5.5067 3.0544 5.2394 2.3172 5.2394C0.97841 5.2394 0 6.2474 0 7.6186C0 8.7038 0.56905 9.5305 1.6233 9.9695L7.306 12.5145L1.6233 15.0568C0.56905 15.4986 0 16.3225 0 17.4105C0 18.7817 0.97841 19.7897 2.3172 19.7897C3.0544 19.7897 3.7895 19.5224 4.4674 19.0064L9.3296 15.5878L8.7985 21.9483C8.7626 22.2412 8.7509 22.4948 8.7509 22.6622C8.733 24.1753 9.6019 25.0291 11.1514 25.0291Z" fill="#FFCC00"/></svg>+10pp conversion</div>
+                <div class="impact-chip ic-3"><svg width="36" height="40" viewBox="0 0 22.3 25.03" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11.1514 25.0291C12.701 25.0291 13.5761 24.1753 13.5492 22.6622C13.5492 22.4948 13.5375 22.2412 13.5017 21.9483L12.9705 15.5878L17.8389 19.0064C18.5169 19.5224 19.243 19.7897 19.9774 19.7897C21.3251 19.7897 22.2974 18.7817 22.2974 17.4105C22.2974 16.3225 21.7283 15.4986 20.6768 15.0568L14.9941 12.5145L20.6768 9.9695C21.7283 9.5305 22.2974 8.7038 22.2974 7.6186C22.2974 6.2502 21.3279 5.2394 19.9774 5.2394C19.243 5.2394 18.5169 5.5067 17.8389 6.0226L12.9705 9.4413L13.5017 3.0807C13.5375 2.7851 13.5492 2.5343 13.5492 2.3641C13.5761 0.85096 12.701 0 11.1514 0C9.6019 0 8.733 0.85096 8.7509 2.3641C8.7509 2.5343 8.7626 2.7851 8.7985 3.0807L9.3296 9.4413L4.4674 6.0226C3.7895 5.5067 3.0544 5.2394 2.3172 5.2394C0.97841 5.2394 0 6.2474 0 7.6186C0 8.7038 0.56905 9.5305 1.6233 9.9695L7.306 12.5145L1.6233 15.0568C0.56905 15.4986 0 16.3225 0 17.4105C0 18.7817 0.97841 19.7897 2.3172 19.7897C3.0544 19.7897 3.7895 19.5224 4.4674 19.0064L9.3296 15.5878L8.7985 21.9483C8.7626 22.2412 8.7509 22.4948 8.7509 22.6622C8.733 24.1753 9.6019 25.0291 11.1514 25.0291Z" fill="#FFCC00"/></svg>3.4x monthly referrals</div>
+                <div class="impact-chip ic-4"><svg width="36" height="40" viewBox="0 0 22.3 25.03" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11.1514 25.0291C12.701 25.0291 13.5761 24.1753 13.5492 22.6622C13.5492 22.4948 13.5375 22.2412 13.5017 21.9483L12.9705 15.5878L17.8389 19.0064C18.5169 19.5224 19.243 19.7897 19.9774 19.7897C21.3251 19.7897 22.2974 18.7817 22.2974 17.4105C22.2974 16.3225 21.7283 15.4986 20.6768 15.0568L14.9941 12.5145L20.6768 9.9695C21.7283 9.5305 22.2974 8.7038 22.2974 7.6186C22.2974 6.2502 21.3279 5.2394 19.9774 5.2394C19.243 5.2394 18.5169 5.5067 17.8389 6.0226L12.9705 9.4413L13.5017 3.0807C13.5375 2.7851 13.5492 2.5343 13.5492 2.3641C13.5761 0.85096 12.701 0 11.1514 0C9.6019 0 8.733 0.85096 8.7509 2.3641C8.7509 2.5343 8.7626 2.7851 8.7985 3.0807L9.3296 9.4413L4.4674 6.0226C3.7895 5.5067 3.0544 5.2394 2.3172 5.2394C0.97841 5.2394 0 6.2474 0 7.6186C0 8.7038 0.56905 9.5305 1.6233 9.9695L7.306 12.5145L1.6233 15.0568C0.56905 15.4986 0 16.3225 0 17.4105C0 18.7817 0.97841 19.7897 2.3172 19.7897C3.0544 19.7897 3.7895 19.5224 4.4674 19.0064L9.3296 15.5878L8.7985 21.9483C8.7626 22.2412 8.7509 22.4948 8.7509 22.6622C8.733 24.1753 9.6019 25.0291 11.1514 25.0291Z" fill="#FFCC00"/></svg>1.8% retention lift</div>
+              </div>
+            </span>
+            <span class="heading-large">driven Product Designer</span>
+            <span class="heading-large">based in</span>
+            <span class="london-hover-wrapper">
+              <span class="pill pill-highlight pill-london">London</span>
+              <div class="london-photo-cards">
+                <div class="london-card lc-1"><img src="images/about-photo-3.jpg" alt=""></div>
+                <div class="london-card lc-2"><img src="images/about-photo-2.jpg" alt=""></div>
+                <div class="london-card lc-3"><img src="images/about-photo-1.jpg" alt=""></div>
+              </div>
+            </span>
+          </div>
+
+          <!-- Focus -->
+          <p class="heading-large text-center">My focus is on designing consumer products that have a clear mission and seek to add tangible value and delight for users</p>
         </div>
 
-        <!-- Heading -->
-        <p class="heading-large">Hi, I'm Vasilii</p>
+        <!-- About Me Expanded State -->
+        <div id="headerAboutMe" class="header-about-content">
+          <!-- Tilted photo cards -->
+          <div class="about-me-cards">
+            <div class="about-me-card card-tl">
+              <img src="images/about-photo-1.jpg" alt="Vasilii" />
+            </div>
+            <div class="about-me-card card-bl"></div>
+            <div class="about-me-card card-tr">
+              <img src="images/about-photo-2.jpg" alt="Vasilii" />
+            </div>
+            <div class="about-me-card card-br">
+              <img src="images/about-photo-3.jpg" alt="Vasilii" />
+            </div>
+          </div>
 
-        <!-- Role & Location Line -->
-        <div class="text-flow" style="padding: 0 30px;">
-          <span class="heading-large">I'm an</span>
-          <span class="pill pill-highlight pill-impact">Impact</span>
-          <span class="heading-large">driven Product Designer</span>
-          <span class="heading-large">based in</span>
-          <span class="pill pill-highlight pill-london">London</span>
+          <!-- Bio text -->
+          <div class="about-me-bio">
+            <p>I'm Vasilii, a Product Designer based in London.</p>
+            <p>I've designed consumer products for 5 million users at Aloha Browser, working across iOS, Android, Windows, macOS, and web. I improved Day 1 retention by 1.8% and grew referrals 3.4x through end-to-end product work—from research and prototyping to polished UI and iteration.</p>
+            <p>I've also designed B2B products. At Vulners, I built design systems for cybersecurity intelligence tools used by security professionals. As a freelance designer, I worked with startups on brand identity and digital products.</p>
+            <p>I care about products that help people make trust decisions about complex technology. Privacy, decentralization, health, climate—these are the problems I want to work on.</p>
+            <p>I work end-to-end from research through delivery. I conduct user research, build design systems, prototype with AI tools (Claude Code, Cursor, Figma MCP), and collaborate closely with engineering and product teams. I use analytics to validate decisions and iterate based on what moves metrics.</p>
+            <p>I'm currently looking for consumer or growth product design roles in London. I'm interested in mission-driven companies and strategically valuable roles at larger tech companies.</p>
+            <p>Contact: <a href="mailto:vasilii.diakonov@gmail.com" style="color:inherit;">vasilii.diakonov@gmail.com</a> | <a href="https://www.linkedin.com/in/vasiliidiakonov/" target="_blank" style="color:inherit;">LinkedIn</a></p>
+          </div>
+
         </div>
 
-        <!-- Description -->
-        <p class="heading-large text-center">
-          I create collaborative environments where design, engineering, and product ship quickly without sacrificing quality
-        </p>
-
-        <!-- Contact Line - Mobile -->
-        <div class="mobile-text-paragraph desktop-hide">
-          <p class="heading-large">You can read my <a href="Vasilii_Diakonov_CV(KU).pdf" class="inline-link text-purple" target="_blank" download>Resume <svg class="inline-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_184_558_mobile)"><path d="M23.6597 11.994C23.6597 18.5159 18.3612 23.8222 11.828 23.8222C5.30623 23.8222 0 18.5159 0 11.994C0 5.46452 5.30623 0.166016 11.828 0.166016C18.3612 0.166016 23.6597 5.46452 23.6597 11.994ZM10.5956 7.09394V13.1697L10.6773 14.848L10.0841 14.1152L8.51632 12.4489C8.30344 12.2164 7.9957 12.0861 7.68592 12.0861C7.10446 12.0861 6.6014 12.52 6.6014 13.1334C6.6014 13.455 6.72459 13.6989 6.94573 13.9159L10.8704 17.6937C11.1987 18.0111 11.5075 18.1153 11.8358 18.1153C12.1677 18.1153 12.4765 18.0111 12.8048 17.6937L16.7218 13.9159C16.9506 13.6989 17.0738 13.455 17.0738 13.1334C17.0738 12.52 16.5629 12.0861 15.9815 12.0861C15.6718 12.0861 15.3718 12.2164 15.1588 12.4489L13.591 14.1152L13.0008 14.8443L13.0873 13.1697V7.09394C13.0873 6.42902 12.5301 5.87286 11.8358 5.87286C11.1487 5.87286 10.5956 6.42902 10.5956 7.09394Z" fill="currentColor"/></g><defs><clipPath id="clip0_184_558_mobile"><rect width="24" height="23.6675" fill="white" transform="translate(0 0.166016)"/></clipPath></defs></svg></a> or contact me on <a href="https://www.linkedin.com/in/vasiliidiakonov/" class="inline-link text-indigo" target="_blank">Linkedin <svg class="inline-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_140_592_mobile_linkedin)"><path d="M3.31521 20.5276C3.90159 21.1022 4.72656 21.1368 5.38801 20.4866L16.4031 9.48322L18.7751 6.91254C19.3635 6.28679 19.3114 5.52841 18.8166 5.03416C18.3181 4.52074 17.5368 4.44194 16.9078 5.04534L14.3334 7.4136L3.33011 18.4324C2.64258 19.1274 2.74001 19.9635 3.31521 20.5276ZM17.9286 11.9501V16.36C17.9286 17.1797 18.5587 17.8513 19.3453 17.8513C20.1314 17.8513 20.7955 17.1925 20.7955 16.3318L20.7913 4.59174C20.7913 3.66982 20.1783 3.04883 19.2446 3.04883H7.49287C6.61676 3.04883 5.98139 3.70498 5.98139 4.48735C5.98139 5.26598 6.65672 5.89178 7.46463 5.89178H11.7104L18.2099 5.6425L17.9286 11.9501Z" fill="currentColor"/></g><defs><clipPath id="clip0_140_592_mobile_linkedin"><rect width="18.3028" height="17.9325" fill="white" transform="translate(2.84863 3.03418)"/></clipPath></defs></svg></a> or via <a href="mailto:vasilii.diakonov@gmail.com" class="inline-link text-orange">Email <svg class="inline-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_140_592_mobile_email)"><path d="M3.31521 20.5276C3.90159 21.1022 4.72656 21.1368 5.38801 20.4866L16.4031 9.48322L18.7751 6.91254C19.3635 6.28679 19.3114 5.52841 18.8166 5.03416C18.3181 4.52074 17.5368 4.44194 16.9078 5.04534L14.3334 7.4136L3.33011 18.4324C2.64258 19.1274 2.74001 19.9635 3.31521 20.5276ZM17.9286 11.9501V16.36C17.9286 17.1797 18.5587 17.8513 19.3453 17.8513C20.1314 17.8513 20.7955 17.1925 20.7955 16.3318L20.7913 4.59174C20.7913 3.66982 20.1783 3.04883 19.2446 3.04883H7.49287C6.61676 3.04883 5.98139 3.70498 5.98139 4.48735C5.98139 5.26598 6.65672 5.89178 7.46463 5.89178H11.7104L18.2099 5.6425L17.9286 11.9501Z" fill="currentColor"/></g><defs><clipPath id="clip0_140_592_mobile_email"><rect width="18.3028" height="17.9325" fill="white" transform="translate(2.84863 3.03418)"/></clipPath></defs></svg></a></p>
-        </div>
-
-        <!-- Contact Line - Desktop -->
-        <div class="text-flow desktop-only">
-          <p class="heading-large">You can read my</p>
-          <a href="Vasilii_Diakonov_CV(KU).pdf" class="pill pill-purple" target="_blank" download>
-            Resume
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <g clip-path="url(#clip0_184_558_header)">
-                <path d="M23.6597 11.994C23.6597 18.5159 18.3612 23.8222 11.828 23.8222C5.30623 23.8222 0 18.5159 0 11.994C0 5.46452 5.30623 0.166016 11.828 0.166016C18.3612 0.166016 23.6597 5.46452 23.6597 11.994ZM10.5956 7.09394V13.1697L10.6773 14.848L10.0841 14.1152L8.51632 12.4489C8.30344 12.2164 7.9957 12.0861 7.68592 12.0861C7.10446 12.0861 6.6014 12.52 6.6014 13.1334C6.6014 13.455 6.72459 13.6989 6.94573 13.9159L10.8704 17.6937C11.1987 18.0111 11.5075 18.1153 11.8358 18.1153C12.1677 18.1153 12.4765 18.0111 12.8048 17.6937L16.7218 13.9159C16.9506 13.6989 17.0738 13.455 17.0738 13.1334C17.0738 12.52 16.5629 12.0861 15.9815 12.0861C15.6718 12.0861 15.3718 12.2164 15.1588 12.4489L13.591 14.1152L13.0008 14.8443L13.0873 13.1697V7.09394C13.0873 6.42902 12.5301 5.87286 11.8358 5.87286C11.1487 5.87286 10.5956 6.42902 10.5956 7.09394Z" fill="currentColor"/>
-              </g>
-              <defs>
-                <clipPath id="clip0_184_558_header">
-                  <rect width="24" height="23.6675" fill="white" transform="translate(0 0.166016)"/>
-                </clipPath>
-              </defs>
-            </svg>
-          </a>
-          <p class="heading-large">or contact me on</p>
-          <a href="https://www.linkedin.com/in/vasiliidiakonov/" class="pill pill-indigo" target="_blank">
-            Linkedin
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <g clip-path="url(#clip0_140_592_header_linkedin)">
-                <path d="M3.31521 20.5276C3.90159 21.1022 4.72656 21.1368 5.38801 20.4866L16.4031 9.48322L18.7751 6.91254C19.3635 6.28679 19.3114 5.52841 18.8166 5.03416C18.3181 4.52074 17.5368 4.44194 16.9078 5.04534L14.3334 7.4136L3.33011 18.4324C2.64258 19.1274 2.74001 19.9635 3.31521 20.5276ZM17.9286 11.9501V16.36C17.9286 17.1797 18.5587 17.8513 19.3453 17.8513C20.1314 17.8513 20.7955 17.1925 20.7955 16.3318L20.7913 4.59174C20.7913 3.66982 20.1783 3.04883 19.2446 3.04883H7.49287C6.61676 3.04883 5.98139 3.70498 5.98139 4.48735C5.98139 5.26598 6.65672 5.89178 7.46463 5.89178H11.7104L18.2099 5.6425L17.9286 11.9501Z" fill="currentColor"/>
-              </g>
-              <defs>
-                <clipPath id="clip0_140_592_header_linkedin">
-                  <rect width="18.3028" height="17.9325" fill="white" transform="translate(2.84863 3.03418)"/>
-                </clipPath>
-              </defs>
-            </svg>
-          </a>
-          <p class="heading-large">or via</p>
-          <a href="mailto:vasilii.diakonov@gmail.com" class="pill pill-orange">
-            Email
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <g clip-path="url(#clip0_140_592_header_email)">
-                <path d="M3.31521 20.5276C3.90159 21.1022 4.72656 21.1368 5.38801 20.4866L16.4031 9.48322L18.7751 6.91254C19.3635 6.28679 19.3114 5.52841 18.8166 5.03416C18.3181 4.52074 17.5368 4.44194 16.9078 5.04534L14.3334 7.4136L3.33011 18.4324C2.64258 19.1274 2.74001 19.9635 3.31521 20.5276ZM17.9286 11.9501V16.36C17.9286 17.1797 18.5587 17.8513 19.3453 17.8513C20.1314 17.8513 20.7955 17.1925 20.7955 16.3318L20.7913 4.59174C20.7913 3.66982 20.1783 3.04883 19.2446 3.04883H7.49287C6.61676 3.04883 5.98139 3.70498 5.98139 4.48735C5.98139 5.26598 6.65672 5.89178 7.46463 5.89178H11.7104L18.2099 5.6425L17.9286 11.9501Z" fill="currentColor"/>
-              </g>
-              <defs>
-                <clipPath id="clip0_140_592_header_email">
-                  <rect width="18.3028" height="17.9325" fill="white" transform="translate(2.84863 3.03418)"/>
-                </clipPath>
-              </defs>
-            </svg>
-          </a>
-        </div>
       </div>
 
       <!-- Select Work Section -->
-      <div class="content-section">
+      <div class="content-section" id="selectWorkSection">
         <div class="section-header">
           <p class="section-title">Select work</p>
         </div>
@@ -1737,6 +1988,9 @@
 
           footerObserver.observe(footer);
         }
+
+
+
       });
     </script>
 
