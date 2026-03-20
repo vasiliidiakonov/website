@@ -142,6 +142,15 @@
         border-color: transparent;
       }
 
+      .london-hover-bridge {
+        position: absolute;
+        bottom: 100%;
+        left: -60px;
+        width: 520px;
+        height: 310px; /* gap + card height + buffer */
+        pointer-events: auto;
+      }
+
       .london-photo-cards {
         position: absolute;
         inset: 0;
@@ -156,12 +165,14 @@
         padding: 12px;
         box-shadow: 0px 8px 48px 0px rgba(0, 0, 0, 0.1);
         opacity: 0;
-        transition: opacity 0.6s ease;
+        transition: opacity 0.6s ease, transform 0.4s cubic-bezier(0.34, 1.2, 0.64, 1);
       }
 
       .london-hover-wrapper:hover .lc-1 { opacity: 1; transition-delay: 0.6s; }
       .london-hover-wrapper:hover .lc-2 { opacity: 1; transition-delay: 0.3s; }
       .london-hover-wrapper:hover .lc-3 { opacity: 1; transition-delay: 0s; }
+
+      .london-hover-wrapper:hover .london-card { pointer-events: auto; cursor: pointer; }
 
       .london-card img {
         border-radius: 10px;
@@ -174,7 +185,7 @@
       /* Pivot pushed 120px below each card's bottom edge — larger radius = gentler fan base */
       .lc-1 {
         width: 175px;
-        height: 255px;
+        height: 235px;
         left: calc(50% - 27.5px);
         bottom: calc(100% + 16px);
         transform: rotate(0deg);
@@ -184,7 +195,7 @@
 
       .lc-2 {
         width: 175px;
-        height: 225px;
+        height: 235px;
         left: calc(50% - 27.5px);
         bottom: calc(100% + 16px);
         transform: rotate(25deg);
@@ -194,7 +205,7 @@
 
       .lc-3 {
         width: 175px;
-        height: 195px;
+        height: 235px;
         left: calc(50% - 27.5px);
         bottom: calc(100% + 16px);
         transform: rotate(50deg);
@@ -688,6 +699,7 @@
             <span class="heading-large">based in</span>
             <span class="london-hover-wrapper">
               <span class="pill pill-highlight pill-london">London</span>
+              <div class="london-hover-bridge"></div>
               <div class="london-photo-cards">
                 <div class="london-card lc-1"><img src="images/about-photo-3.jpg" alt=""></div>
                 <div class="london-card lc-2"><img src="images/about-photo-2.jpg" alt=""></div>
@@ -1992,6 +2004,34 @@
 
 
       });
+
+      // London photo cycling — hover any card to bring it to front + scale others down
+      (function() {
+        const wrapper = document.querySelector('.london-hover-wrapper');
+        if (!wrapper) return;
+        const cards = [
+          wrapper.querySelector('.lc-1'),
+          wrapper.querySelector('.lc-2'),
+          wrapper.querySelector('.lc-3'),
+        ];
+        const rotations = [0, 25, 50];
+
+        cards.forEach((card, i) => {
+          card.addEventListener('mouseenter', () => {
+            cards.forEach((c, j) => {
+              const scale = j === i ? 1.05 : 0.88;
+              c.style.transform = `rotate(${rotations[j]}deg) scale(${scale})`;
+              c.style.zIndex = j === i ? 10 : 3 - j;
+            });
+          });
+          card.addEventListener('mouseleave', () => {
+            cards.forEach((c, j) => {
+              c.style.transform = `rotate(${rotations[j]}deg)`;
+              c.style.zIndex = 3 - j;
+            });
+          });
+        });
+      })();
     </script>
 
   </body>
